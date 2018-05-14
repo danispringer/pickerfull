@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		334DEC2220A92A8F00B02051 /* UIColor+FromRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334DEC2120A92A8F00B02051 /* UIColor+FromRGB.swift */; };
 		334DEC2420A92DC100B02051 /* String+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334DEC2320A92DC000B02051 /* String+subscript.swift */; };
 		33CF3A88204F084B000823BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF3A87204F084B000823BF /* AppDelegate.swift */; };
 		33CF3A8A204F084B000823BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF3A89204F084B000823BF /* ViewController.swift */; };
@@ -17,7 +16,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		334DEC2120A92A8F00B02051 /* UIColor+FromRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+FromRGB.swift"; sourceTree = "<group>"; };
 		334DEC2320A92DC000B02051 /* String+subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+subscript.swift"; sourceTree = "<group>"; };
 		33CF3A84204F084B000823BF /* Color Picker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Color Picker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33CF3A87204F084B000823BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,7 +58,6 @@
 			children = (
 				33CF3A87204F084B000823BF /* AppDelegate.swift */,
 				33CF3A89204F084B000823BF /* ViewController.swift */,
-				334DEC2120A92A8F00B02051 /* UIColor+FromRGB.swift */,
 				334DEC2320A92DC000B02051 /* String+subscript.swift */,
 				33CF3A8B204F084B000823BF /* Main.storyboard */,
 				33CF3A8E204F084B000823BF /* Assets.xcassets */,
@@ -145,7 +142,6 @@
 				33CF3A8A204F084B000823BF /* ViewController.swift in Sources */,
 				33CF3A88204F084B000823BF /* AppDelegate.swift in Sources */,
 				334DEC2420A92DC100B02051 /* String+subscript.swift in Sources */,
-				334DEC2220A92A8F00B02051 /* UIColor+FromRGB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
