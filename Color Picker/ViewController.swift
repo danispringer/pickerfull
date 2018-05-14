@@ -154,9 +154,5 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-// if sliders are moved, update textfield
-// prefix with pound sign (allow max 7 chars?)
-// move view up? or reposition textfield
-// rename to color-picker
 // optimize and clean up code
 
