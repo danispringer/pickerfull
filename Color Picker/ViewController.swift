@@ -28,6 +28,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var currentUIColor: UIColor!
     var currentHexColor: String!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        subscribeToKeyboardNotifications()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +39,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
         redControl.minimumTrackTintColor = UIColor.red
         greenControl.minimumTrackTintColor = UIColor.green
         blueControl.minimumTrackTintColor = UIColor.blue
+        
+        userTextField.text = "E57BF2"
+        // update controls with animation
+        let redHex = Float("0xE5")! / 255
+        let greenHex = Float("0x7B")! / 255
+        let blueHex = Float("0xF2")! / 255
+        UIView.animate(withDuration: 1.0, animations: {
+            self.redControl.setValue(redHex, animated: true)
+            self.greenControl.setValue(greenHex, animated: true)
+            self.blueControl.setValue(blueHex, animated: true)
+        })
+        
+        
+        view.backgroundColor = UIColor(red: CGFloat(redControl.value), green: CGFloat(greenControl.value), blue: CGFloat(blueControl.value), alpha: 1)
+        
         
         warningLabel.isHidden = true
         infoTextView.text = "What can you do?\n\u{2022} Drag the sliders to get a colour you like, and copy the generated HEX code to save your lovely blend.\n\u{2022} Edit the code to preview any colour from millions of choices."
@@ -48,6 +67,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         infoTextView.backgroundColor = UIColor(white: 1, alpha: 0.6)
         
         self.userTextField.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
     }
     
     @IBAction func changeColorComponent(_ sender: AnyObject) {
@@ -152,6 +176,38 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         return !(string == filtered)
     }
+    
+    // MARK: Subscription
+    
+    func subscribeToKeyboardNotifications() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    // MARK: Keyboard
+    
+    @objc func keyboardWillShow(_ notification:Notification) {
+        view.frame.origin.y -= getKeyboardHeight(notification)
+    }
+    
+    @objc func keyboardWillHide(_ notification:Notification) {
+        view.frame.origin.y = 0
+    }
+    
+    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
+        
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.cgRectValue.height
+    }
+    
 }
 
 // optimize and clean up code
