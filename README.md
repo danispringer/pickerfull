@@ -4,6 +4,8 @@
 - Lets you type a HEX code to preview the resulting colour.
 - Sliders reposition themselves in real time, as soon as you type 6 characters, and the generated HEX code updates in real time as well, as soon as you move any slider.
 
+![Screenshot](https://raw.githubusercontent.com/DaniSpringer/color-picker/master/i/a.gif) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/color-picker/master/i/b.gif)
+
 # How To Run
 - You need Xcode installed on your Computer (Xcode is available for Mac only as a free download).
 - Open `Color Picker.xcodeproj` in Xcode, click on the "play" button.
