@@ -18,53 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.90000000000000002" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="POM-4Y-HHd">
-                                <rect key="frame" x="33" y="51" width="254" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="pKR-HO-L9J"/>
-                                </constraints>
-                                <color key="thumbTintColor" red="1" green="0.24772619260000001" blue="0.23985623889999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="changeColorComponent:" destination="BYZ-38-t0r" eventType="valueChanged" id="mJf-hc-YhI"/>
-                                </connections>
-                            </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NXx-mh-U48" userLabel="Green Control">
-                                <rect key="frame" x="33" y="111" width="254" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="0uR-hA-ORS"/>
-                                </constraints>
-                                <color key="thumbTintColor" red="0.2687359889" green="1" blue="0.27461519979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="changeColorComponent:" destination="BYZ-38-t0r" eventType="valueChanged" id="gz9-gN-oL0"/>
-                                </connections>
-                            </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.69999999999999996" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KHn-Oj-ley" userLabel="Blue Control">
-                                <rect key="frame" x="33" y="171" width="254" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="3Z2-Bw-l1u"/>
-                                </constraints>
-                                <color key="thumbTintColor" red="0.083771967069999995" green="0.1085219283" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="changeColorComponent:" destination="BYZ-38-t0r" eventType="valueChanged" id="p8R-yg-Ats"/>
-                                </connections>
-                            </slider>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="FFFFFF" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sSj-NJ-UBV">
-                                <rect key="frame" x="85.5" y="294" width="149" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="39"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a warning" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YP-z0-Prw">
-                                <rect key="frame" x="72" y="199" width="176" height="87"/>
-                                <color key="backgroundColor" red="1" green="0.29578683035714287" blue="0.29726562499999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="176" id="BgU-Tf-Akh"/>
-                                    <constraint firstAttribute="height" constant="87" id="GG4-TH-Rke"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IyW-KW-s8d">
                                 <rect key="frame" x="16" y="369" width="288" height="137"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,6 +31,53 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a warning" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YP-z0-Prw">
+                                <rect key="frame" x="72" y="369" width="176" height="87"/>
+                                <color key="backgroundColor" red="1" green="0.29578683035714287" blue="0.29726562499999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="176" id="BgU-Tf-Akh"/>
+                                    <constraint firstAttribute="height" constant="87" id="GG4-TH-Rke"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="POM-4Y-HHd">
+                                <rect key="frame" x="33" y="51" width="254" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="pKR-HO-L9J"/>
+                                </constraints>
+                                <color key="thumbTintColor" red="1" green="0.24772619260000001" blue="0.23985623889999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="changeColorComponent:" destination="BYZ-38-t0r" eventType="valueChanged" id="mJf-hc-YhI"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NXx-mh-U48" userLabel="Green Control">
+                                <rect key="frame" x="33" y="111" width="254" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="0uR-hA-ORS"/>
+                                </constraints>
+                                <color key="thumbTintColor" red="0.2687359889" green="1" blue="0.27461519979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="changeColorComponent:" destination="BYZ-38-t0r" eventType="valueChanged" id="gz9-gN-oL0"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KHn-Oj-ley" userLabel="Blue Control">
+                                <rect key="frame" x="33" y="171" width="254" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="3Z2-Bw-l1u"/>
+                                </constraints>
+                                <color key="thumbTintColor" red="0.083771967069999995" green="0.1085219283" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="changeColorComponent:" destination="BYZ-38-t0r" eventType="valueChanged" id="p8R-yg-Ats"/>
+                                </connections>
+                            </slider>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="FFFFFF" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sSj-NJ-UBV">
+                                <rect key="frame" x="85" y="294" width="149" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="39"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -85,7 +85,7 @@
                             <constraint firstItem="6YP-z0-Prw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="4ph-zz-Ku6"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="top" secondItem="NXx-mh-U48" secondAttribute="bottom" constant="30" id="6qI-iq-hbb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IyW-KW-s8d" secondAttribute="bottom" constant="62" id="AgQ-2b-cvD"/>
-                            <constraint firstItem="6YP-z0-Prw" firstAttribute="top" secondItem="sSj-NJ-UBV" secondAttribute="bottom" constant="-145" id="BGO-PH-DWC"/>
+                            <constraint firstItem="6YP-z0-Prw" firstAttribute="top" secondItem="sSj-NJ-UBV" secondAttribute="bottom" constant="25" id="BGO-PH-DWC"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="31" id="P9w-Jk-oXG"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="30" id="Vju-WH-3s4"/>
