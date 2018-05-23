@@ -14,8 +14,12 @@
 # Dependencies
 - You will need Xcode (a program available as a free download. Only available on Macbook) to run this program.
 
-# Contribute
-- Comments/Questions/Suggestions/Kangaroos: [https://danispringer.github.io/](https://danispringer.github.io/)
+# Contributing
+Want to help? You can:
+- Suggest changes by creating an Issue.
+- Submit your own fix or improvements by creating a Pull Request.
+- Share this project to spread the word.
+- Contact me: [https://danispringer.github.io/](https://danispringer.github.io/)
 
 # License
-###### MIT License
+- Distributed under the MIT license. See [LICENSE.txt](LICENSE.txt) for more information.
