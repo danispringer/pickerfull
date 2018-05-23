@@ -22,4 +22,4 @@ Want to help? You can:
 - Contact me: [https://danispringer.github.io/](https://danispringer.github.io/)
 
 # License
-- Distributed under the MIT license. See [LICENSE.txt](LICENSE.txt) for more information.
+- Distributed under the MIT license. See [LICENSE](LICENSE) for more information.
