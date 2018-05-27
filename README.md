@@ -3,6 +3,7 @@
 - Lets you copy the generated HEX code to save your gorgeous blend.
 - Lets you type a HEX code to preview the resulting colour.
 - Sliders reposition themselves in real time, as soon as you type 6 characters, and the generated HEX code updates in real time as well, as soon as you move any slider.
+- **Note:** GIFs below are slower than the app's real-time performance (not sure why).
 
 ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/color-picker/master/i/a.gif) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/color-picker/master/i/b.gif)
 
