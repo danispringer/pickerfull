@@ -1,2 +1,0 @@
-Change hex text as sliders slide upon launch
-Remove colored background to the right of slider thumbs (upon launch)
