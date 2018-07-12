@@ -16,7 +16,10 @@ Create special keyboard with only allowed chars.
   Maybe fixed buttons so view never goes up and user sees sliders adjust
 redo launchscreen with app icon
 \*launch with random color everytime
+CP: Multiple dragging, add brightness slider
 redo slider buttons
+add share button
+add screenshot button with black and white text
 
 Persistence: history of checked colors, remember last color\*
 
