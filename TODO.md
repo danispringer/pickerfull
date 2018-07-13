@@ -20,6 +20,7 @@ CP: Multiple dragging, add brightness slider
 redo slider buttons
 add share button
 add screenshot button with black and white text
+random color generator, allow lowercase (unless custom keyboard works), don’t move view up if it’s already up
 
 Persistence: history of checked colors, remember last color\*
 
