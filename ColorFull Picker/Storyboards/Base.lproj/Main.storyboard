@@ -17,30 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IyW-KW-s8d">
-                                <rect key="frame" x="16" y="369" width="288" height="137"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="137" id="e7t-KP-rlu"/>
-                                    <constraint firstAttribute="width" constant="288" id="hSC-wX-2QX"/>
-                                </constraints>
-                                <string key="text">What can you do?
-- Drag the sliders to get a colour you like, and copy the generated HEX code to save your lovely blend.
-- Edit the code to preview any colour from millions of choices.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a warning" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YP-z0-Prw">
-                                <rect key="frame" x="72" y="369" width="176" height="87"/>
-                                <color key="backgroundColor" red="1" green="0.29578683035714287" blue="0.29726562499999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="176" id="BgU-Tf-Akh"/>
-                                    <constraint firstAttribute="height" constant="87" id="GG4-TH-Rke"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="POM-4Y-HHd">
                                 <rect key="frame" x="33" y="51" width="254" height="31"/>
                                 <constraints>
@@ -71,37 +47,173 @@
                                     <action selector="changeColorComponent:" destination="BYZ-38-t0r" eventType="valueChanged" id="p8R-yg-Ats"/>
                                 </connections>
                             </slider>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="FFFFFF" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sSj-NJ-UBV">
-                                <rect key="frame" x="85" y="294" width="149" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="39"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
-                            </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4d-ak-hd4">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem title="Show options" id="HyH-oh-mAa"/>
+                                </items>
+                            </toolbar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uLZ-qg-FIA" userLabel="Vertical Stack View">
+                                <rect key="frame" x="10" y="364" width="300" height="150"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NhI-cH-Ccx" userLabel="Horizontal Stack View 1">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="46.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="He9-jm-3aY" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="46" height="46.5"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="A">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8PT-ac-5BC" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="51" y="0.0" width="45.5" height="46.5"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="B">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNl-2m-HAq" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="101.5" y="0.0" width="46" height="46.5"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="C">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mzf-sD-dfB" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="152.5" y="0.0" width="46" height="46.5"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="D">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Irm-2q-uab" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="203.5" y="0.0" width="45.5" height="46.5"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="E">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JC5-YD-Eth" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="254" y="0.0" width="46" height="46.5"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="F">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lM8-Hf-EPJ" userLabel="Horizontal Stack View 2">
+                                        <rect key="frame" x="0.0" y="51.5" width="300" height="47"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ope-mz-LLa" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="56" height="47"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="0">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csq-bh-PpQ" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="61" y="0.0" width="56" height="47"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="1">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5MW-Go-M6h" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="122" y="0.0" width="56" height="47"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="2">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwg-2F-jBL" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="183" y="0.0" width="56" height="47"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="3">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yk0-Dn-TvE" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="244" y="0.0" width="56" height="47"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="4">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Vpo-jt-sSm" userLabel="Horizontal Stack View 3">
+                                        <rect key="frame" x="0.0" y="103.5" width="300" height="46.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e55-Ne-YOa" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="56" height="46.5"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="5">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WaT-ok-SN4" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="61" y="0.0" width="56" height="46.5"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="6">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPR-bl-tJR" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="122" y="0.0" width="56" height="46.5"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="7">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcY-m6-lhN" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="183" y="0.0" width="56" height="46.5"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="8">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZ5-l4-zT2" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="244" y="0.0" width="56" height="46.5"/>
+                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="9">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="lM8-Hf-EPJ" secondAttribute="trailing" id="48Q-Ll-Ssq"/>
+                                    <constraint firstItem="lM8-Hf-EPJ" firstAttribute="leading" secondItem="uLZ-qg-FIA" secondAttribute="leading" id="CxE-U0-lLy"/>
+                                    <constraint firstAttribute="trailing" secondItem="NhI-cH-Ccx" secondAttribute="trailing" id="Xp2-iE-PdI"/>
+                                    <constraint firstItem="NhI-cH-Ccx" firstAttribute="leading" secondItem="uLZ-qg-FIA" secondAttribute="leading" id="faQ-Qw-E5t"/>
+                                    <constraint firstAttribute="height" constant="150" id="rWD-wB-BEN"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="013-pC-knr"/>
-                            <constraint firstItem="6YP-z0-Prw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="4ph-zz-Ku6"/>
+                            <constraint firstItem="v4d-ak-hd4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5bu-QX-F5u"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="top" secondItem="NXx-mh-U48" secondAttribute="bottom" constant="30" id="6qI-iq-hbb"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IyW-KW-s8d" secondAttribute="bottom" constant="62" id="AgQ-2b-cvD"/>
-                            <constraint firstItem="6YP-z0-Prw" firstAttribute="top" secondItem="sSj-NJ-UBV" secondAttribute="bottom" constant="25" id="BGO-PH-DWC"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="v4d-ak-hd4" secondAttribute="trailing" id="Owx-2u-KLz"/>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="31" id="P9w-Jk-oXG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="v4d-ak-hd4" secondAttribute="bottom" id="Qe7-yB-Bpk"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="30" id="Vju-WH-3s4"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aDE-se-Dgi"/>
-                            <constraint firstItem="IyW-KW-s8d" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="axj-a3-b7B"/>
-                            <constraint firstItem="sSj-NJ-UBV" firstAttribute="top" secondItem="KHn-Oj-ley" secondAttribute="bottom" constant="93" id="fPZ-9h-XZZ"/>
-                            <constraint firstItem="sSj-NJ-UBV" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lGr-dC-iPY"/>
+                            <constraint firstItem="uLZ-qg-FIA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="eo4-oX-Ip0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uLZ-qg-FIA" secondAttribute="trailing" constant="10" id="gfd-SP-u22"/>
+                            <constraint firstItem="v4d-ak-hd4" firstAttribute="top" secondItem="uLZ-qg-FIA" secondAttribute="bottom" constant="10" id="hRp-w7-TTk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="blueControl" destination="KHn-Oj-ley" id="1P8-wD-cNl"/>
                         <outlet property="greenControl" destination="NXx-mh-U48" id="0Y5-55-rSO"/>
-                        <outlet property="infoTextView" destination="IyW-KW-s8d" id="ik8-U5-w8U"/>
                         <outlet property="redControl" destination="POM-4Y-HHd" id="d0s-9a-kQe"/>
-                        <outlet property="userTextField" destination="sSj-NJ-UBV" id="7kQ-j8-RDT"/>
-                        <outlet property="warningLabel" destination="6YP-z0-Prw" id="Iuu-r9-u0F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

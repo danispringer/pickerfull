@@ -15,6 +15,7 @@
 		33CF3A8F204F084B000823BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33CF3A8E204F084B000823BF /* Assets.xcassets */; };
 		33CF3A92204F084B000823BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33CF3A90204F084B000823BF /* LaunchScreen.storyboard */; };
 		33CFDBBB20FAF53D00421535 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CFDBBA20FAF53D00421535 /* Alert.swift */; };
+		33CFDBBE20FB044500421535 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CFDBBD20FB044500421535 /* KeyboardButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +42,7 @@
 		33CF3A91204F084B000823BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33CF3A93204F084C000823BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33CFDBBA20FAF53D00421535 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		33CFDBBD20FB044500421535 /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,12 +112,21 @@
 			children = (
 				33CF3A87204F084B000823BF /* AppDelegate.swift */,
 				33CD2A2B20FADE9A004A4CB3 /* Model */,
+				33CFDBBC20FB042900421535 /* View */,
 				33CD2A2C20FADF02004A4CB3 /* Controller */,
 				33CD2A2D20FADF1E004A4CB3 /* Storyboards */,
 				33CD2A2E20FADF3D004A4CB3 /* Assets */,
 				33CF3A93204F084C000823BF /* Info.plist */,
 			);
 			path = "ColorFull Picker";
+			sourceTree = "<group>";
+		};
+		33CFDBBC20FB042900421535 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				33CFDBBD20FB044500421535 /* KeyboardButton.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33CFDBBE20FB044500421535 /* KeyboardButton.swift in Sources */,
 				33CF3A8A204F084B000823BF /* MakerViewController.swift in Sources */,
 				33CF3A88204F084B000823BF /* AppDelegate.swift in Sources */,
 				33CD2A2A20FADE62004A4CB3 /* Icons.swift in Sources */,
