@@ -11,7 +11,7 @@ Found a bug? Let me know: [https://danispringer.github.io](https://danispringer.
 EARLIER:
 
 Move tutorial to separate view
-Maybe fixed buttons/label instead of textfield so view never goes up and user sees sliders adjust (maybe "hide/show" fake keyboard with button)
+Maybe fixed buttons/label instead of textfield so view never goes up and user sees sliders adjust, "hide/show" fake keyboard with button
 
 add share button
 
@@ -32,6 +32,7 @@ Remove colored background to the right of slider thumbs (upon launch)
 support all orientations
 size classes
 rgb
+hide status bar etc. make as clean and immersive as it can be.
 
 ###### App Store Description
 ‘ColorFull Picker’ lets you:
