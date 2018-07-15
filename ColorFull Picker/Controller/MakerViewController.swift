@@ -38,9 +38,6 @@ class MakerViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        userTextField.inputView = KeyboardViewController as! UIInputViewController
         
         self.changeColorComponent(self)
         redControl.minimumTrackTintColor = UIColor.red
