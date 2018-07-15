@@ -113,10 +113,13 @@ class MakerViewController: UIViewController, UITextFieldDelegate {
     
     
     func showWarning(reason: String) {
-        if reason == "invalidChar" {
-            warningLabel.text = "Please use:\nA-F, 0-9"
-        } else if reason == "maxChars" {
-            warningLabel.text = "Max 6\n characters\nallowed"
+        if reason == alertReason.invalidChar.rawValue {
+            warningLabel.text = "Please use: A-F, 0-9"
+        } else if reason == alertReason.maxChars.rawValue {
+            warningLabel.text = "Max 6 characters allowed"
+        } else {
+            // TODO: alert user
+            return
         }
         warningLabel.isHidden = false
         warningLabel.alpha = 1.0
@@ -142,9 +145,14 @@ class MakerViewController: UIViewController, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        if string.count == 0 {
+            // Backspace key pressed
+            return true
+        }
+        
         var oldText = textField.text!
         oldText = oldText.uppercased()
-        let hexCharSet = CharacterSet(charactersIn: "1234567890ABCDEF")
+        let hexCharSet = CharacterSet(charactersIn: "1234567890ABCDEFabcdef")
         
         let filtered = string.components(separatedBy: hexCharSet).joined(separator: "")
         
@@ -155,16 +163,13 @@ class MakerViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        var newText = textField.text! as NSString
+        let uppercased = textField.text!.uppercased()
+        var newText = uppercased as NSString
         newText = newText.replacingCharacters(in: range, with: string) as NSString
+        
         if newText.length > 6 {
             showWarning(reason: "maxChars")
             return false
-        }
-        
-        if string.count == 0 {
-            // Backspace key pressed
-            return true
         }
         
         if newText.length == 6 {
