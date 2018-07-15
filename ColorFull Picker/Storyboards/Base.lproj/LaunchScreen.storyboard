@@ -16,19 +16,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="Oit-IR-pXK">
-                                <rect key="frame" x="137" y="193.5" width="100" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="KDt-Xi-ryA"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Oit-IR-pXK" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3IO-o6-6e1"/>
-                            <constraint firstItem="Oit-IR-pXK" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="bPP-ow-gcB"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -37,7 +25,4 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="launch" width="300" height="300"/>
-    </resources>
 </document>
