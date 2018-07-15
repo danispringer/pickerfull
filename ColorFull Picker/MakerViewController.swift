@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MakerViewController.swift
 //  Color Picker
 //
 //  Created by Dani Springer on 06/03/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class MakerViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: Images
     var redText = UIImage(named: "redText.png")
