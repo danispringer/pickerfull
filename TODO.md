@@ -6,7 +6,6 @@ Found a bug? Let me know: [https://danispringer.github.io](https://danispringer.
 
 [no requested features. Is there a feature you'd like? Let me know: [https://danispringer.github.io](https://danispringer.github.io)]
 
-
 ###### Developer notes:
 
 [?] Change hex text as sliders slide upon launch
