@@ -10,31 +10,38 @@ import UIKit
 
 class MakerViewController: UIViewController, UITextFieldDelegate {
 
-    // MARK: Images
-    var redText = UIImage(named: "redText.png")
-    var greenText = UIImage(named: "greenText.png")
-    var blueText = UIImage(named: "blueText.png")
-    
     // MARK: Outlets
+    
     @IBOutlet weak var redControl: UISlider!
     @IBOutlet weak var greenControl: UISlider!
     @IBOutlet weak var blueControl: UISlider!
     
     @IBOutlet weak var userTextField: UITextField!
-    @IBOutlet weak var warningLabel: UILabel!
-    @IBOutlet weak var infoTextView: UITextView!
+    @IBOutlet weak var warningLabel: UILabel! // TODO: to remove after customising keyboard
+    @IBOutlet weak var infoTextView: UITextView! // TODO: to remove after creating tutorial page
     
-    // MARK: helpers and placeholders
+    
+    // MARK: placeholders
+    
     var currentUIColor: UIColor!
     var currentHexColor: String!
     
+    
+    // MARK: Life Cycle
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         subscribeToKeyboardNotifications()
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
+        userTextField.inputView = KeyboardViewController as! UIInputViewController
+        
         self.changeColorComponent(self)
         redControl.minimumTrackTintColor = UIColor.red
         greenControl.minimumTrackTintColor = UIColor.green
@@ -49,10 +56,12 @@ class MakerViewController: UIViewController, UITextFieldDelegate {
             self.redControl.setValue(redHex, animated: true)
             self.greenControl.setValue(greenHex, animated: true)
             self.blueControl.setValue(blueHex, animated: true)
+            
+            self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
         })
         
         
-        view.backgroundColor = UIColor(red: CGFloat(redControl.value), green: CGFloat(greenControl.value), blue: CGFloat(blueControl.value), alpha: 1)
+        
         
         
         warningLabel.isHidden = true
@@ -69,10 +78,14 @@ class MakerViewController: UIViewController, UITextFieldDelegate {
         self.userTextField.delegate = self
     }
     
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
+    
+    
+    // MARK: Helpers
     
     @IBAction func changeColorComponent(_ sender: AnyObject) {
         let r: CGFloat = CGFloat(self.redControl.value)
@@ -82,14 +95,14 @@ class MakerViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
         
         
-        redControl.setThumbImage(redText, for: .normal)
-        redControl.setThumbImage(redText, for: .highlighted)
+        redControl.setThumbImage(SliderIcon.red , for: .normal)
+        redControl.setThumbImage(SliderIcon.red, for: .highlighted)
         
-        greenControl.setThumbImage(greenText, for: .normal)
-        greenControl.setThumbImage(greenText, for: .highlighted)
+        greenControl.setThumbImage(SliderIcon.green, for: .normal)
+        greenControl.setThumbImage(SliderIcon.green, for: .highlighted)
 
-        blueControl.setThumbImage(blueText, for: .normal)
-        blueControl.setThumbImage(blueText, for: .highlighted)
+        blueControl.setThumbImage(SliderIcon.blue, for: .normal)
+        blueControl.setThumbImage(SliderIcon.blue, for: .highlighted)
         
         let rBase255 = Int(r * 255)
         let gBase255 = Int(g * 255)
@@ -100,6 +113,7 @@ class MakerViewController: UIViewController, UITextFieldDelegate {
         let hexCode = redHex + greenHex + blueHex
         userTextField.text = hexCode
     }
+    
     
     func showWarning(reason: String) {
         if reason == "invalidChar" {
@@ -120,12 +134,14 @@ class MakerViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    
     // MARK: delegate methods
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
@@ -177,6 +193,7 @@ class MakerViewController: UIViewController, UITextFieldDelegate {
         return !(string == filtered)
     }
     
+    
     // MARK: Subscription
     
     func subscribeToKeyboardNotifications() {
@@ -190,6 +207,7 @@ class MakerViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
+    
     
     // MARK: Keyboard
     
@@ -209,6 +227,4 @@ class MakerViewController: UIViewController, UITextFieldDelegate {
     }
     
 }
-
-// optimize and clean up code
 
