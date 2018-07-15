@@ -10,14 +10,13 @@ Found a bug? Let me know: [https://danispringer.github.io](https://danispringer.
 
 EARLIER:
 
-Create custom keyboard with only allowed chars.
 Move tutorial to separate view
-  Maybe fixed buttons so view never goes up and user sees sliders adjust
+Maybe fixed buttons/label instead of textfield so view never goes up and user sees sliders adjust (maybe "hide/show" fake keyboard with button)
 
 add share button
 
-allow lowercase (unless custom keyboard works)
-don’t move view up if it’s already up
+replace lowercase with uppercase, unless you can force uppercase
+don’t move view up if it’s already up (unless using fixed buttons)
 
 Persistence: remember last color\*
 Core Data: history of checked colors
@@ -32,6 +31,7 @@ add brightness slider
 Remove colored background to the right of slider thumbs (upon launch)
 support all orientations
 size classes
+rgb
 
 ###### App Store Description
 ‘ColorFull Picker’ lets you:
