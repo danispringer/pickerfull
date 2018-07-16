@@ -12,5 +12,5 @@ import UIKit
 struct SliderIcon {
     static let red = UIImage(named: "redText.png")
     static let green = UIImage(named: "greenText.png")
-    static let blue = UIImage(named: "greenText.png")
+    static let blue = UIImage(named: "blueText.png")
 }
