@@ -1,17 +1,20 @@
-# Known Bugs
+# Known Bugs:
+[no known bugs. Found a bug? Let me know: [https://danispringer.github.io](https://danispringer.github.io)]]
 
-Found a bug? Let me know: [https://danispringer.github.io](https://danispringer.github.io)]
 
 # Requested Features:
 
 [no requested features. Is there a feature you'd like? Let me know: [https://danispringer.github.io](https://danispringer.github.io)]
 
-###### Developer notes:
+
+###### Developer notes (feel free to peek)
 
 EARLIER:
 
 Move tutorial to separate view
 Maybe fixed buttons/label instead of textfield so view never goes up and user sees sliders adjust, "hide/show" fake keyboard with button
+Add “toggle controls” to toolbar options (with: share, save, take screenshot, toggle keyboard, gallery, more?)
+add screenshot button with black and white text
 
 add share button
 
@@ -22,7 +25,9 @@ Persistence: remember last color\*
 Core Data: history of checked colors
 
 LATER:
-add screenshot button with black and white text
+
+Crazy mode
+Change slider values by tilting (only if optional)
 random color generator
 redo slider buttons
 make brightness max while app is open
@@ -33,6 +38,7 @@ support all orientations
 size classes
 rgb
 hide status bar etc. make as clean and immersive as it can be.
+persistence
 
 ###### App Store Description
 ‘ColorFull Picker’ lets you:
