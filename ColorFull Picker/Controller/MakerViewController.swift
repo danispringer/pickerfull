@@ -15,6 +15,7 @@ class MakerViewController: UIViewController {
     @IBOutlet weak var redControl: UISlider!
     @IBOutlet weak var greenControl: UISlider!
     @IBOutlet weak var blueControl: UISlider!
+    @IBOutlet weak var hexTextField: UITextField!
     
 
     // MARK: placeholders
@@ -33,6 +34,8 @@ class MakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        hexTextField.isEnabled = false
         
         self.changeColorComponent(self)
         redControl.minimumTrackTintColor = UIColor.red
@@ -90,7 +93,36 @@ class MakerViewController: UIViewController {
         let greenHex = String(format: "%02X", gBase255)
         let blueHex = String(format: "%02X", bBase255)
         let hexCode = redHex + greenHex + blueHex
-        //        userTextField.text = hexCode // TODO: assign to eventual label
+
+        hexTextField.text = hexCode
     }
+    
+    
+    @IBAction func CharPressed(_ sender: KeyboardButton) {
+        guard (hexTextField.text?.count)! < 6 else {
+            // TODO: max 6 chars allowed
+            print(alertReason.maxChars.rawValue)
+            return
+        }
+        let toAdd = sender.titleLabel?.text
+        hexTextField.text?.append(toAdd!)
+        
+        if hexTextField.text?.count == 6 {
+            
+        }
+        
+    }
+    
+    
+    @IBAction func backSpacePressed(_ sender: Any) {
+        hexTextField.text =  String((hexTextField.text?.dropLast())!)
+    }
+    
+    
+    @IBAction func hideKeyboardPressed(_ sender: Any) {
+    
+    }
+    
+    
 }
 

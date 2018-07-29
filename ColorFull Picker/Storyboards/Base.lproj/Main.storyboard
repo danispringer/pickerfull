@@ -65,6 +65,9 @@
                                                 <state key="normal" title="A">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8lN-KS-02J"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8PT-ac-5BC" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
                                                 <rect key="frame" x="51" y="0.0" width="45.5" height="46.5"/>
@@ -72,13 +75,19 @@
                                                 <state key="normal" title="B">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fiZ-Pa-hnf"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNl-2m-HAq" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
                                                 <rect key="frame" x="101.5" y="0.0" width="46" height="46.5"/>
-                                                <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="C">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wRu-gt-p2w"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mzf-sD-dfB" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
                                                 <rect key="frame" x="152.5" y="0.0" width="46" height="46.5"/>
@@ -86,6 +95,9 @@
                                                 <state key="normal" title="D">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nrx-XK-Lix"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Irm-2q-uab" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
                                                 <rect key="frame" x="203.5" y="0.0" width="45.5" height="46.5"/>
@@ -93,6 +105,9 @@
                                                 <state key="normal" title="E">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GoS-iS-oZV"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JC5-YD-Eth" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
                                                 <rect key="frame" x="254" y="0.0" width="46" height="46.5"/>
@@ -100,6 +115,9 @@
                                                 <state key="normal" title="F">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rE1-a8-MXd"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -107,39 +125,64 @@
                                         <rect key="frame" x="0.0" y="51.5" width="300" height="47"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ope-mz-LLa" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="56" height="47"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="46" height="47"/>
                                                 <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="0">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZDd-qi-03Z"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csq-bh-PpQ" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
-                                                <rect key="frame" x="61" y="0.0" width="56" height="47"/>
+                                                <rect key="frame" x="51" y="0.0" width="45.5" height="47"/>
                                                 <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="1">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l9Z-Mq-VP8"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5MW-Go-M6h" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
-                                                <rect key="frame" x="122" y="0.0" width="56" height="47"/>
+                                                <rect key="frame" x="101.5" y="0.0" width="46" height="47"/>
                                                 <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="2">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WgY-DS-GNz"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwg-2F-jBL" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
-                                                <rect key="frame" x="183" y="0.0" width="56" height="47"/>
+                                                <rect key="frame" x="152.5" y="0.0" width="46" height="47"/>
                                                 <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="3">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2K1-m2-Wec"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yk0-Dn-TvE" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
-                                                <rect key="frame" x="244" y="0.0" width="56" height="47"/>
+                                                <rect key="frame" x="203.5" y="0.0" width="45.5" height="47"/>
                                                 <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="4">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zZ9-Ui-hXm"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IT8-Y4-vif" userLabel="Backspace" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="254" y="0.0" width="46" height="47"/>
+                                                <color key="backgroundColor" red="0.37246855839999998" green="0.37246855839999998" blue="0.37246855839999998" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Backspace">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="backSpacePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gm4-QE-9Gw"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -147,39 +190,64 @@
                                         <rect key="frame" x="0.0" y="103.5" width="300" height="46.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e55-Ne-YOa" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="56" height="46.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="46" height="46.5"/>
                                                 <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="5">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zp9-wf-jwp"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WaT-ok-SN4" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
-                                                <rect key="frame" x="61" y="0.0" width="56" height="46.5"/>
+                                                <rect key="frame" x="51" y="0.0" width="45.5" height="46.5"/>
                                                 <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="6">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FWj-Df-rot"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPR-bl-tJR" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
-                                                <rect key="frame" x="122" y="0.0" width="56" height="46.5"/>
+                                                <rect key="frame" x="101.5" y="0.0" width="46" height="46.5"/>
                                                 <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="7">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EIb-3U-vjI"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcY-m6-lhN" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
-                                                <rect key="frame" x="183" y="0.0" width="56" height="46.5"/>
+                                                <rect key="frame" x="152.5" y="0.0" width="46" height="46.5"/>
                                                 <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="8">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lUU-gB-Avb"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZ5-l4-zT2" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
-                                                <rect key="frame" x="244" y="0.0" width="56" height="46.5"/>
+                                                <rect key="frame" x="203.5" y="0.0" width="45.5" height="46.5"/>
                                                 <color key="backgroundColor" red="0.37246855836229276" green="0.37246855836229276" blue="0.37246855836229276" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="9">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xza-SE-se4"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50N-U5-BN7" userLabel="Hide" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                                <rect key="frame" x="254" y="0.0" width="46" height="46.5"/>
+                                                <color key="backgroundColor" red="0.37246855839999998" green="0.37246855839999998" blue="0.37246855839999998" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Hide">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="hideKeyboardPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PxF-aK-YVg"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -192,6 +260,13 @@
                                     <constraint firstAttribute="height" constant="150" id="rWD-wB-BEN"/>
                                 </constraints>
                             </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="FFFFFF" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHT-v4-fHa">
+                                <rect key="frame" x="100" y="311" width="120" height="33"/>
+                                <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -199,20 +274,24 @@
                             <constraint firstItem="v4d-ak-hd4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5bu-QX-F5u"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="top" secondItem="NXx-mh-U48" secondAttribute="bottom" constant="30" id="6qI-iq-hbb"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aHT-v4-fHa" secondAttribute="trailing" constant="100" id="J8Z-ek-S53"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="v4d-ak-hd4" secondAttribute="trailing" id="Owx-2u-KLz"/>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="31" id="P9w-Jk-oXG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="v4d-ak-hd4" secondAttribute="bottom" id="Qe7-yB-Bpk"/>
+                            <constraint firstItem="aHT-v4-fHa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="UQN-fg-BVi"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="30" id="Vju-WH-3s4"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aDE-se-Dgi"/>
                             <constraint firstItem="uLZ-qg-FIA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="eo4-oX-Ip0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uLZ-qg-FIA" secondAttribute="trailing" constant="10" id="gfd-SP-u22"/>
                             <constraint firstItem="v4d-ak-hd4" firstAttribute="top" secondItem="uLZ-qg-FIA" secondAttribute="bottom" constant="10" id="hRp-w7-TTk"/>
+                            <constraint firstItem="uLZ-qg-FIA" firstAttribute="top" secondItem="aHT-v4-fHa" secondAttribute="bottom" constant="20" id="zvI-04-shD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="blueControl" destination="KHn-Oj-ley" id="1P8-wD-cNl"/>
                         <outlet property="greenControl" destination="NXx-mh-U48" id="0Y5-55-rSO"/>
+                        <outlet property="hexTextField" destination="aHT-v4-fHa" id="P42-sA-cn2"/>
                         <outlet property="redControl" destination="POM-4Y-HHd" id="d0s-9a-kQe"/>
                     </connections>
                 </viewController>
