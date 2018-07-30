@@ -71,7 +71,7 @@ class MakerViewController: UIViewController {
     }
     
     
-    // MARK: Helpers
+    // MARK: Sliders
     
     @IBAction func changeColorComponent(_ sender: AnyObject) {
         let r: CGFloat = CGFloat(self.redControl.value)
@@ -101,6 +101,8 @@ class MakerViewController: UIViewController {
         hexTextField.text = hexCode
     }
     
+    
+    // MARK: Keyboard
     
     @IBAction func CharPressed(_ sender: KeyboardButton) {
         guard (hexTextField.text?.count)! < 6 else {
@@ -141,54 +143,51 @@ class MakerViewController: UIViewController {
     
     
     
-    //    func generateMemedImage() -> UIImage {
-    //        let fontPickerWasHidden = fontPicker.isHidden
-    //        let colorPickerWasHidden = colorPicker.isHidden
-    //
-    //        for toolbar in [topToolbar, bottomToolbar] {
-    //            toolbar?.isHidden = true
-    //        }
-    //
-    //        for picker in [fontPicker, colorPicker] {
-    //            picker?.isHidden = true
-    //        }
-    //
-    //        for button in [fontPickerDoneButton, colorPickerDoneButton] {
-    //            button?.isHidden = true
-    //        }
-    //
-    //        for field in [topTextField, bottomTextField] {
-    //            field?.isEnabled = false
-    //            field?.borderStyle = .none
-    //        }
-    //
-    //        view.frame.origin.y = 0
-    //
-    //        UIGraphicsBeginImageContext(self.view.frame.size)
-    //        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-    //        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-    //        UIGraphicsEndImageContext()
-    //
-    //        for toolbar in [topToolbar, bottomToolbar] {
-    //            toolbar?.isHidden = false
-    //        }
-    //
-    //        if !fontPickerWasHidden {
-    //            fontPicker.isHidden = false
-    //            fontPickerDoneButton.isHidden = false
-    //        }
-    //        if !colorPickerWasHidden {
-    //            colorPicker.isHidden = false
-    //            colorPickerDoneButton.isHidden = false
-    //        }
-    //
-    //        for field in [topTextField, bottomTextField] {
-    //            field?.isEnabled = true
-    //            field?.borderStyle = .line
-    //        }
-    //
-    //        return memedImage
-    //    }
+    // MARK: Menu Options
+    
+    @IBAction func downloadHexAndColor(_ sender: Any) {
+    }
+    
+    
+    @IBAction func copyHexAsText(_ sender: Any) {
+    }
+    
+    
+    @IBAction func copyHexAndColorAsImage(_ sender: Any) {
+    }
+    
+    
+    @IBAction func shareHexAsText(_ sender: Any) {
+    }
+    
+    
+    @IBAction func shareHexAndColorAsImage(_ sender: Any) {
+    }
+    
+    
+        func generateHexImage() -> UIImage {
+    
+            for slider in [redControl, greenControl, blueControl] {
+                slider?.isHidden = true
+            }
+            subView.isHidden = true
+            menuStackView.isHidden = true
+            hexTextField.borderStyle = .none
+    
+            UIGraphicsBeginImageContext(self.view.frame.size)
+            view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+            let hexImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+
+            for slider in [redControl, greenControl, blueControl] {
+                slider?.isHidden = false
+            }
+            subView.isHidden = false
+            menuStackView.isHidden = false
+            hexTextField.borderStyle = .roundedRect
+    
+            return hexImage
+        }
     
     
 }

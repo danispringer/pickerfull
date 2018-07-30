@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		334DEC2420A92DC100B02051 /* String+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334DEC2320A92DC000B02051 /* String+subscript.swift */; };
+		338818DE210F8F350002C49F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338818DD210F8F350002C49F /* AboutViewController.swift */; };
 		3388996B210E737C0094454E /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3388996A210E737C0094454E /* TutorialViewController.swift */; };
 		33CD2A2A20FADE62004A4CB3 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD2A2920FADE62004A4CB3 /* Icons.swift */; };
 		33CF3A88204F084B000823BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF3A87204F084B000823BF /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		334DEC2320A92DC000B02051 /* String+subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+subscript.swift"; sourceTree = "<group>"; };
+		338818DD210F8F350002C49F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		3388996A210E737C0094454E /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		33CD2A2920FADE62004A4CB3 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		33CF3A84204F084B000823BF /* ColorFull Picker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ColorFull Picker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +75,7 @@
 			children = (
 				33CF3A89204F084B000823BF /* MakerViewController.swift */,
 				3388996A210E737C0094454E /* TutorialViewController.swift */,
+				338818DD210F8F350002C49F /* AboutViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				33CF3A88204F084B000823BF /* AppDelegate.swift in Sources */,
 				33CD2A2A20FADE62004A4CB3 /* Icons.swift in Sources */,
 				33CFDBBB20FAF53D00421535 /* Alert.swift in Sources */,
+				338818DE210F8F350002C49F /* AboutViewController.swift in Sources */,
 				334DEC2420A92DC100B02051 /* String+subscript.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
