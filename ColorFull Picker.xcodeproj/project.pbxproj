@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		334DEC2420A92DC100B02051 /* String+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334DEC2320A92DC000B02051 /* String+subscript.swift */; };
+		3388996B210E737C0094454E /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3388996A210E737C0094454E /* TutorialViewController.swift */; };
 		33CD2A2A20FADE62004A4CB3 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD2A2920FADE62004A4CB3 /* Icons.swift */; };
 		33CF3A88204F084B000823BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF3A87204F084B000823BF /* AppDelegate.swift */; };
 		33CF3A8A204F084B000823BF /* MakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF3A89204F084B000823BF /* MakerViewController.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		334DEC2320A92DC000B02051 /* String+subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+subscript.swift"; sourceTree = "<group>"; };
+		3388996A210E737C0094454E /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		33CD2A2920FADE62004A4CB3 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		33CF3A84204F084B000823BF /* ColorFull Picker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ColorFull Picker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33CF3A87204F084B000823BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				33CF3A89204F084B000823BF /* MakerViewController.swift */,
+				3388996A210E737C0094454E /* TutorialViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33CFDBBE20FB044500421535 /* KeyboardButton.swift in Sources */,
+				3388996B210E737C0094454E /* TutorialViewController.swift in Sources */,
 				33CF3A8A204F084B000823BF /* MakerViewController.swift in Sources */,
 				33CF3A88204F084B000823BF /* AppDelegate.swift in Sources */,
 				33CD2A2A20FADE62004A4CB3 /* Icons.swift in Sources */,
