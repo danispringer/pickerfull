@@ -19,6 +19,7 @@ extension UIViewController {
         case unknown = "unknown"
         case maxChars = "maxChars"
         case imageSaved = "imageSaved"
+        case hexSaved = "hexSaved"
     }
     
     func createAlert(alertReasonParam: String) -> UIAlertController {
@@ -41,6 +42,9 @@ extension UIViewController {
         case alertReason.imageSaved.rawValue:
             alertTitle = "Success!"
             alertMessage = "Your image has been saved to your library."
+        case alertReason.hexSaved.rawValue:
+            alertTitle = "Success!"
+            alertMessage = "Your HEX code has been copied.\nDon't forget to paste it somewhere!"
         default:
             alertTitle = "Unknown error"
             alertMessage = "An unknown error occurred. Please try again later, or contact us by visiting DaniSpringer.GitHub.io"
