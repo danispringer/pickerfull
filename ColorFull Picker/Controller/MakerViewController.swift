@@ -170,7 +170,11 @@ class MakerViewController: UIViewController {
     
     
     @IBAction func copyHexAsText(_ sender: Any) {
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = hexTextField.text
         
+        let alert = createAlert(alertReasonParam: alertReason.hexSaved.rawValue)
+        present(alert, animated: true)
     }
     
     
