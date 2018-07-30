@@ -11,17 +11,11 @@
 
 EARLIER:
 
-Move tutorial to separate view
-Maybe fixed buttons/label instead of textfield so view never goes up and user sees sliders adjust, "hide/show" fake keyboard with button
-Add “toggle controls” to toolbar options (with: share, save, take screenshot, toggle keyboard, gallery, more?)
-add screenshot button with black and white text
+implement menu buttons
+back space icon
+menu icon
 
-add share button
-
-replace lowercase with uppercase, unless you can force uppercase
-don’t move view up if it’s already up (unless using fixed buttons)
-
-Persistence: remember last color\*
+Persistence: remember last color
 Core Data: history of checked colors
 
 LATER:
@@ -31,13 +25,10 @@ Change slider values by tilting (only if optional)
 random color generator
 redo slider buttons
 make brightness max while app is open
-add brightness slider
-[?] Change hex text as sliders slide upon launch
-Remove colored background to the right of slider thumbs (upon launch)
-support all orientations
+[?] add brightness slider
 size classes
 rgb
-hide status bar etc. make as clean and immersive as it can be.
+make as clean and immersive as it can be
 persistence
 
 ###### App Store Description
