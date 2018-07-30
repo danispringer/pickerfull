@@ -47,34 +47,8 @@
                                     <action selector="changeColorComponent:" destination="BYZ-38-t0r" eventType="valueChanged" id="p8R-yg-Ats"/>
                                 </connections>
                             </slider>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4d-ak-hd4" userLabel="Key Toolbar">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem title="Key" id="HyH-oh-mAa"/>
-                                </items>
-                            </toolbar>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTh-wc-IDt" userLabel="Options Toolbar">
-                                <rect key="frame" x="0.0" y="480" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem title="Download" id="kQj-Od-nZj"/>
-                                    <barButtonItem title="Share" id="R17-Zp-uh8"/>
-                                    <barButtonItem title="Copy" id="qva-m5-rZg"/>
-                                    <barButtonItem title="Tutorial" id="ALh-3g-bnO">
-                                        <connections>
-                                            <segue destination="XsU-Vh-KqC" kind="presentation" id="h9p-eq-txl"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8OB-jQ-cG5">
-                                <rect key="frame" x="80" y="269" width="15" height="29"/>
-                                <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uLZ-qg-FIA" userLabel="Vertical Stack View">
-                                <rect key="frame" x="10" y="320" width="300" height="150"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uLZ-qg-FIA" userLabel="Keyboard Stack View">
+                                <rect key="frame" x="10" y="398" width="300" height="150"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NhI-cH-Ccx" userLabel="Horizontal Stack View 1">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="46.5"/>
@@ -194,10 +168,10 @@
                                                     <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zZ9-Ui-hXm"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IT8-Y4-vif" userLabel="Backspace" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IT8-Y4-vif" userLabel="Backspace" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
                                                 <rect key="frame" x="254" y="0.0" width="46" height="47"/>
                                                 <color key="backgroundColor" red="0.37246855839999998" green="0.37246855839999998" blue="0.37246855839999998" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Backspace">
+                                                <state key="normal" image="backspace">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -259,14 +233,14 @@
                                                     <action selector="CharPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xza-SE-se4"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50N-U5-BN7" userLabel="Hide" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="NaZ-hM-pKE" customClass="KeyboardButton" customModule="ColorFull_Picker" customModuleProvider="target">
                                                 <rect key="frame" x="254" y="0.0" width="46" height="46.5"/>
-                                                <color key="backgroundColor" red="0.37246855839999998" green="0.37246855839999998" blue="0.37246855839999998" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Hide">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.94117647059999998" green="0.17581422569999999" blue="0.1675189949" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="menu">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="hideKeyboardPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PxF-aK-YVg"/>
+                                                    <action selector="menuPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zSm-a9-5n0"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -280,35 +254,96 @@
                                     <constraint firstAttribute="height" constant="150" id="rWD-wB-BEN"/>
                                 </constraints>
                             </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="FFFFFF" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHT-v4-fHa">
-                                <rect key="frame" x="100" y="267" width="120" height="33"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="FFFFFF" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHT-v4-fHa" userLabel="HEX Text Field">
+                                <rect key="frame" x="100" y="345" width="120" height="33"/>
                                 <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98d-1N-siW" userLabel="Subview">
+                                <rect key="frame" x="20" y="120" width="280" height="348"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="kYP-5x-YPK" userLabel="Menu Stack View">
+                                        <rect key="frame" x="10" y="10" width="260" height="328"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnm-eW-Il3">
+                                                <rect key="frame" x="0.0" y="0.0" width="235" height="41"/>
+                                                <state key="normal" title="Download HEX and color as image">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vhn-VB-xuS">
+                                                <rect key="frame" x="0.0" y="41" width="119" height="41"/>
+                                                <state key="normal" title="Copy HEX as text">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAz-Wg-CDQ">
+                                                <rect key="frame" x="0.0" y="82" width="203" height="41"/>
+                                                <state key="normal" title="Copy HEX and color as image">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edQ-20-6VM">
+                                                <rect key="frame" x="0.0" y="123" width="123" height="41"/>
+                                                <state key="normal" title="Share HEX as text">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNo-Xw-iSW">
+                                                <rect key="frame" x="0.0" y="164" width="207" height="41"/>
+                                                <state key="normal" title="Share HEX and color as image">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3iK-lx-y0f">
+                                                <rect key="frame" x="0.0" y="205" width="90" height="41"/>
+                                                <state key="normal" title="Open tutorial">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3RN-H0-0cd">
+                                                <rect key="frame" x="0.0" y="246" width="117" height="41"/>
+                                                <state key="normal" title="Send us an email">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQa-KN-5N7">
+                                                <rect key="frame" x="0.0" y="287" width="121" height="41"/>
+                                                <state key="normal" title="Leave us a review">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="kYP-5x-YPK" secondAttribute="trailing" constant="10" id="7QW-8R-4sn"/>
+                                    <constraint firstAttribute="bottom" secondItem="kYP-5x-YPK" secondAttribute="bottom" constant="10" id="Gb7-22-9ZK"/>
+                                    <constraint firstItem="kYP-5x-YPK" firstAttribute="top" secondItem="98d-1N-siW" secondAttribute="top" constant="10" id="TEo-XD-Kzl"/>
+                                    <constraint firstItem="kYP-5x-YPK" firstAttribute="leading" secondItem="98d-1N-siW" secondAttribute="leading" constant="10" id="yGe-ah-urQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="013-pC-knr"/>
-                            <constraint firstItem="v4d-ak-hd4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5bu-QX-F5u"/>
-                            <constraint firstItem="tTh-wc-IDt" firstAttribute="top" secondItem="uLZ-qg-FIA" secondAttribute="bottom" constant="10" id="6ID-cl-A6A"/>
-                            <constraint firstItem="8OB-jQ-cG5" firstAttribute="centerY" secondItem="aHT-v4-fHa" secondAttribute="centerY" id="6P9-ah-Le3"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="top" secondItem="NXx-mh-U48" secondAttribute="bottom" constant="30" id="6qI-iq-hbb"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uLZ-qg-FIA" secondAttribute="bottom" constant="20" id="IO2-RY-x7E"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aHT-v4-fHa" secondAttribute="trailing" constant="100" id="J8Z-ek-S53"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tTh-wc-IDt" secondAttribute="trailing" id="Knu-Gd-Cci"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="v4d-ak-hd4" secondAttribute="trailing" id="Owx-2u-KLz"/>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="31" id="P9w-Jk-oXG"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="v4d-ak-hd4" secondAttribute="bottom" id="Qe7-yB-Bpk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="98d-1N-siW" secondAttribute="bottom" constant="100" id="Qra-ac-vaK"/>
                             <constraint firstItem="aHT-v4-fHa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="UQN-fg-BVi"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="30" id="Vju-WH-3s4"/>
-                            <constraint firstItem="v4d-ak-hd4" firstAttribute="top" secondItem="tTh-wc-IDt" secondAttribute="bottom" id="VzK-eV-jEi"/>
-                            <constraint firstItem="aHT-v4-fHa" firstAttribute="leading" secondItem="8OB-jQ-cG5" secondAttribute="trailing" constant="5" id="X04-5Z-Jfl"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aDE-se-Dgi"/>
                             <constraint firstItem="uLZ-qg-FIA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="eo4-oX-Ip0"/>
+                            <constraint firstItem="98d-1N-siW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="gda-8j-2eR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uLZ-qg-FIA" secondAttribute="trailing" constant="10" id="gfd-SP-u22"/>
-                            <constraint firstItem="tTh-wc-IDt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="s7x-Zb-4iJ"/>
+                            <constraint firstItem="98d-1N-siW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="uCj-wd-HTu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="98d-1N-siW" secondAttribute="trailing" constant="20" id="z3n-Jv-F4k"/>
                             <constraint firstItem="uLZ-qg-FIA" firstAttribute="top" secondItem="aHT-v4-fHa" secondAttribute="bottom" constant="20" id="zvI-04-shD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -317,7 +352,10 @@
                         <outlet property="blueControl" destination="KHn-Oj-ley" id="1P8-wD-cNl"/>
                         <outlet property="greenControl" destination="NXx-mh-U48" id="0Y5-55-rSO"/>
                         <outlet property="hexTextField" destination="aHT-v4-fHa" id="P42-sA-cn2"/>
+                        <outlet property="menuButton" destination="NaZ-hM-pKE" id="Vkf-bB-gM4"/>
+                        <outlet property="menuStackView" destination="kYP-5x-YPK" id="bjT-oz-Tdw"/>
                         <outlet property="redControl" destination="POM-4Y-HHd" id="d0s-9a-kQe"/>
+                        <outlet property="subView" destination="98d-1N-siW" id="GYg-Zb-Fbs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -348,27 +386,105 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69P-fj-VtT">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69P-fj-VtT">
                                 <rect key="frame" x="16" y="64" width="288" height="484"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">What can I do?
+                                <attributedString key="attributedText">
+                                    <fragment content="What can I do">
+                                        <attributes>
+                                            <font key="NSFont" size="25" name=".SFNSDisplay"/>
+                                            <font key="NSOriginalFont" size="25" name=".SFNSDisplay"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" with this app">
+                                        <attributes>
+                                            <font key="NSFont" size="25" name=".SFNSDisplay"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="?">
+                                        <attributes>
+                                            <font key="NSFont" size="25" name=".SFNSDisplay"/>
+                                            <font key="NSOriginalFont" size="25" name=".SFNSDisplay"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
 
-• ColorFull Picker lets you generate, save, and share the perfect color.
+ColorFull Picker lets you generate, save, and share the perfect color</string>
+                                        <attributes>
+                                            <font key="NSFont" size="20" name=".SFNSDisplay"/>
+                                            <font key="NSOriginalFont" size="20" name=".SFNSDisplay"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" of your choice">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name=".SFNSDisplay"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">.
 
 
-How can I generate a color?
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="20" name=".SFNSDisplay"/>
+                                            <font key="NSOriginalFont" size="20" name=".SFNSDisplay"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="How can I generate a color?">
+                                        <attributes>
+                                            <font key="NSFont" size="25" name=".SFNSDisplay"/>
+                                            <font key="NSOriginalFont" size="20" name=".SFNSDisplay"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
 
-• You have two ways:
-  1. Drag the red, green and blue sliders left or right. The code and background color will update in real-time.
-  2. Edit the HEX code using the keyboard. The sliders and background color will update in real-time.
+You have two ways:
+1. Drag the red, green and blue sliders left or right. The code and background color will update in real-time.
+2. Edit the HEX code using the keyboard. The sliders and background color will update in real-time.
 
 
-How can I save the color I created?
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="20" name=".SFNSDisplay"/>
+                                            <font key="NSOriginalFont" size="20" name=".SFNSDisplay"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="How can I save the color I created?">
+                                        <attributes>
+                                            <font key="NSFont" size="25" name=".SFNSDisplay"/>
+                                            <font key="NSOriginalFont" size="25" name=".SFNSDisplay"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
 
-• You have a few ways:
-  1. Take a good ol' screenshot (press the power and home button at the same time)
-  2. Open the options menu using the button on the bottom left of the main page of the app to see all available options, including a cleaner screenshot, share menu, and more.</string>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+You have a few ways:
+1. Take a good ol' screenshot (press the power and home button at the same time)
+2. Open the options menu using the button on the bottom left of the main page of the app to see all available options</string>
+                                        <attributes>
+                                            <font key="NSFont" size="20" name=".SFNSDisplay"/>
+                                            <font key="NSOriginalFont" size="20" name=".SFNSDisplay"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=".">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name=".SFNSDisplay"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -385,13 +501,17 @@ How can I save the color I created?
                         <viewLayoutGuide key="safeArea" id="Pas-Pm-dxv"/>
                     </view>
                     <connections>
+                        <outlet property="myTextView" destination="69P-fj-VtT" id="rWQ-ox-Oxs"/>
                         <outlet property="myToolbar" destination="w5M-2d-3Nl" id="YLl-g0-EDF"/>
-                        <outlet property="mytextView" destination="69P-fj-VtT" id="8Nu-Wt-x5k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWu-fy-fU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="967.5" y="132.04225352112675"/>
+            <point key="canvasLocation" x="949" y="133"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="backspace" width="25" height="25"/>
+        <image name="menu" width="25" height="25"/>
+    </resources>
 </document>
