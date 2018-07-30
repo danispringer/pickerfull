@@ -147,6 +147,18 @@ class MakerViewController: UIViewController {
     // MARK: Menu Options
     
     @IBAction func downloadHexAndColor(_ sender: Any) {
+        
+        guard let myText = hexTextField.text else {
+            let alert = createAlert(alertReasonParam: alertReason.unknown.rawValue)
+            present(alert, animated: true)
+            return
+        }
+        guard myText.count == 6 else {
+            let alert = createAlert(alertReasonParam: alertReason.codeTooShort.rawValue)
+            present(alert, animated: true)
+            return
+        }
+        
         let image = generateHexImage()
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
     }
@@ -158,7 +170,6 @@ class MakerViewController: UIViewController {
             present(alert, animated: true)
             return
         }
-        // TODO: success
         let alert = createAlert(alertReasonParam: alertReason.imageSaved.rawValue)
         let goToLibraryButton = UIAlertAction(title: "Open Gallery", style: .default, handler: {
             action in
@@ -172,13 +183,11 @@ class MakerViewController: UIViewController {
     @IBAction func copyHexAsText(_ sender: Any) {
         
         guard let myText = hexTextField.text else {
-            // TODO: unknown
             let alert = createAlert(alertReasonParam: alertReason.unknown.rawValue)
             present(alert, animated: true)
             return
         }
         guard myText.count == 6 else {
-            // TODO: code not complete
             let alert = createAlert(alertReasonParam: alertReason.codeTooShort.rawValue)
             present(alert, animated: true)
             return
@@ -192,6 +201,18 @@ class MakerViewController: UIViewController {
     
     
     @IBAction func copyHexAndColorAsImage(_ sender: Any) {
+        
+        guard let myText = hexTextField.text else {
+            let alert = createAlert(alertReasonParam: alertReason.unknown.rawValue)
+            present(alert, animated: true)
+            return
+        }
+        guard myText.count == 6 else {
+            let alert = createAlert(alertReasonParam: alertReason.codeTooShort.rawValue)
+            present(alert, animated: true)
+            return
+        }
+        
         let image = generateHexImage()
         let pasteboard = UIPasteboard.general
         pasteboard.image = image
@@ -202,9 +223,19 @@ class MakerViewController: UIViewController {
     
     
     @IBAction func shareHexAsText(_ sender: Any) {
-        let message = hexTextField.text
+        
+        guard let myText = hexTextField.text else {
+            let alert = createAlert(alertReasonParam: alertReason.unknown.rawValue)
+            present(alert, animated: true)
+            return
+        }
+        guard myText.count == 6 else {
+            let alert = createAlert(alertReasonParam: alertReason.codeTooShort.rawValue)
+            present(alert, animated: true)
+            return
+        }
 
-        let activityController = UIActivityViewController(activityItems: [message!], applicationActivities: nil)
+        let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = self.view // for iPads not to crash
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
@@ -220,6 +251,18 @@ class MakerViewController: UIViewController {
     
     
     @IBAction func shareHexAndColorAsImage(_ sender: Any) {
+        
+        guard let myText = hexTextField.text else {
+            let alert = createAlert(alertReasonParam: alertReason.unknown.rawValue)
+            present(alert, animated: true)
+            return
+        }
+        guard myText.count == 6 else {
+            let alert = createAlert(alertReasonParam: alertReason.codeTooShort.rawValue)
+            present(alert, animated: true)
+            return
+        }
+        
         let image = generateHexImage()
         
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
@@ -246,7 +289,7 @@ class MakerViewController: UIViewController {
             keyboardStackView.isHidden = true
             hexTextField.borderStyle = .none
     
-            UIGraphicsBeginImageContext(self.view.frame.size)
+            UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0)
             view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
             let hexImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
@@ -261,7 +304,5 @@ class MakerViewController: UIViewController {
     
             return hexImage
         }
-    
-    
 }
 
