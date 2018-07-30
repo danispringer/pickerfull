@@ -19,6 +19,7 @@ class MakerViewController: UIViewController {
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var menuStackView: UIStackView!
     @IBOutlet weak var menuButton: KeyboardButton!
+    @IBOutlet weak var keyboardStackView: UIStackView!
     
     
 
@@ -146,10 +147,30 @@ class MakerViewController: UIViewController {
     // MARK: Menu Options
     
     @IBAction func downloadHexAndColor(_ sender: Any) {
+        let image = generateHexImage()
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+    
+    @objc func saveImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        guard error == nil else {
+            let alert = createAlert(alertReasonParam: alertReason.unknown.rawValue)
+            present(alert, animated: true)
+            return
+        }
+        // TODO: success
+        let alert = createAlert(alertReasonParam: alertReason.imageSaved.rawValue)
+        let goToLibraryButton = UIAlertAction(title: "Open Gallery", style: .default, handler: {
+            action in
+            UIApplication.shared.open(URL(string:"photos-redirect://")!)
+        })
+        alert.addAction(goToLibraryButton)
+        present(alert, animated: true)
     }
     
     
     @IBAction func copyHexAsText(_ sender: Any) {
+        
     }
     
     
@@ -172,6 +193,7 @@ class MakerViewController: UIViewController {
             }
             subView.isHidden = true
             menuStackView.isHidden = true
+            keyboardStackView.isHidden = true
             hexTextField.borderStyle = .none
     
             UIGraphicsBeginImageContext(self.view.frame.size)
@@ -184,6 +206,7 @@ class MakerViewController: UIViewController {
             }
             subView.isHidden = false
             menuStackView.isHidden = false
+            keyboardStackView.isHidden = false
             hexTextField.borderStyle = .roundedRect
     
             return hexImage
