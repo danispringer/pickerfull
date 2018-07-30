@@ -34,5 +34,3 @@ class KeyboardButton: UIButton {
     }
     
 }
-
-// TODO: riscrivi tu
