@@ -59,7 +59,11 @@
                                     <barButtonItem title="Download" id="kQj-Od-nZj"/>
                                     <barButtonItem title="Share" id="R17-Zp-uh8"/>
                                     <barButtonItem title="Copy" id="qva-m5-rZg"/>
-                                    <barButtonItem title="Tutorial" id="ALh-3g-bnO"/>
+                                    <barButtonItem title="Tutorial" id="ALh-3g-bnO">
+                                        <connections>
+                                            <segue destination="XsU-Vh-KqC" kind="presentation" id="h9p-eq-txl"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8OB-jQ-cG5">
