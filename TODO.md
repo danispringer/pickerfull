@@ -12,7 +12,7 @@
 EARLIER:
 
 Persistence: remember last color
-Core Data: history of checked colors
+[?] Core Data: history of checked colors
 
 LATER:
 
@@ -22,8 +22,6 @@ Crazy mode
 Change slider values by tilting (only if optional)
 random color generator
 redo slider buttons
-make brightness max while app is open
-[?] add brightness slider
 size classes
 rgb
 make as clean and immersive as it can be
