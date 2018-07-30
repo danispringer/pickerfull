@@ -16,9 +16,13 @@ class MakerViewController: UIViewController {
     @IBOutlet weak var greenControl: UISlider!
     @IBOutlet weak var blueControl: UISlider!
     @IBOutlet weak var hexTextField: UITextField!
+    @IBOutlet weak var subView: UIView!
+    @IBOutlet weak var menuStackView: UIStackView!
+    @IBOutlet weak var menuButton: KeyboardButton!
+    
     
 
-    // MARK: placeholders
+    // MARK: properties
     
     var currentUIColor: UIColor!
     var currentHexColor: String!
@@ -36,13 +40,16 @@ class MakerViewController: UIViewController {
         super.viewDidLoad()
         
         hexTextField.isEnabled = false
+        menuStackView.isHidden = true
+        subView.isHidden = true
+        menuButton.backgroundColor = .white
         
         self.changeColorComponent(self)
         redControl.minimumTrackTintColor = UIColor.red
         greenControl.minimumTrackTintColor = UIColor.green
         blueControl.minimumTrackTintColor = UIColor.blue
         
-        //        userTextField.text = "E57BF2" // TODO: add text to eventual label
+        hexTextField.text = "E57BF2"
         
         // update controls with animation
         let redHex = Float("0xE5")! / 255
@@ -120,64 +127,68 @@ class MakerViewController: UIViewController {
     }
     
     
-//    func generateMemedImage() -> UIImage {
-//        let fontPickerWasHidden = fontPicker.isHidden
-//        let colorPickerWasHidden = colorPicker.isHidden
-//
-//        for toolbar in [topToolbar, bottomToolbar] {
-//            toolbar?.isHidden = true
-//        }
-//
-//        for picker in [fontPicker, colorPicker] {
-//            picker?.isHidden = true
-//        }
-//
-//        for button in [fontPickerDoneButton, colorPickerDoneButton] {
-//            button?.isHidden = true
-//        }
-//
-//        for field in [topTextField, bottomTextField] {
-//            field?.isEnabled = false
-//            field?.borderStyle = .none
-//        }
-//
-//        view.frame.origin.y = 0
-//
-//        UIGraphicsBeginImageContext(self.view.frame.size)
-//        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-//        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-//        UIGraphicsEndImageContext()
-//
-//        for toolbar in [topToolbar, bottomToolbar] {
-//            toolbar?.isHidden = false
-//        }
-//
-//        if !fontPickerWasHidden {
-//            fontPicker.isHidden = false
-//            fontPickerDoneButton.isHidden = false
-//        }
-//        if !colorPickerWasHidden {
-//            colorPicker.isHidden = false
-//            colorPickerDoneButton.isHidden = false
-//        }
-//
-//        for field in [topTextField, bottomTextField] {
-//            field?.isEnabled = true
-//            field?.borderStyle = .line
-//        }
-//
-//        return memedImage
-//    }
-    
-    
     @IBAction func backSpacePressed(_ sender: Any) {
         hexTextField.text =  String((hexTextField.text?.dropLast())!)
     }
     
     
-    @IBAction func hideKeyboardPressed(_ sender: Any) {
-    
+    @IBAction func menuPressed(_ sender: Any) {
+        menuStackView.isHidden = !menuStackView.isHidden
+        subView.isHidden = menuStackView.isHidden
+        let bgColor: UIColor = menuStackView.isHidden ? .white : .blue
+        menuButton.backgroundColor = bgColor
     }
+    
+    
+    
+    //    func generateMemedImage() -> UIImage {
+    //        let fontPickerWasHidden = fontPicker.isHidden
+    //        let colorPickerWasHidden = colorPicker.isHidden
+    //
+    //        for toolbar in [topToolbar, bottomToolbar] {
+    //            toolbar?.isHidden = true
+    //        }
+    //
+    //        for picker in [fontPicker, colorPicker] {
+    //            picker?.isHidden = true
+    //        }
+    //
+    //        for button in [fontPickerDoneButton, colorPickerDoneButton] {
+    //            button?.isHidden = true
+    //        }
+    //
+    //        for field in [topTextField, bottomTextField] {
+    //            field?.isEnabled = false
+    //            field?.borderStyle = .none
+    //        }
+    //
+    //        view.frame.origin.y = 0
+    //
+    //        UIGraphicsBeginImageContext(self.view.frame.size)
+    //        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+    //        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+    //        UIGraphicsEndImageContext()
+    //
+    //        for toolbar in [topToolbar, bottomToolbar] {
+    //            toolbar?.isHidden = false
+    //        }
+    //
+    //        if !fontPickerWasHidden {
+    //            fontPicker.isHidden = false
+    //            fontPickerDoneButton.isHidden = false
+    //        }
+    //        if !colorPickerWasHidden {
+    //            colorPicker.isHidden = false
+    //            colorPickerDoneButton.isHidden = false
+    //        }
+    //
+    //        for field in [topTextField, bottomTextField] {
+    //            field?.isEnabled = true
+    //            field?.borderStyle = .line
+    //        }
+    //
+    //        return memedImage
+    //    }
     
     
 }
