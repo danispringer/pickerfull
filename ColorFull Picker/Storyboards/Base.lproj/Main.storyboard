@@ -367,6 +367,7 @@
                         <outlet property="blueControl" destination="KHn-Oj-ley" id="1P8-wD-cNl"/>
                         <outlet property="greenControl" destination="NXx-mh-U48" id="0Y5-55-rSO"/>
                         <outlet property="hexTextField" destination="aHT-v4-fHa" id="P42-sA-cn2"/>
+                        <outlet property="keyboardStackView" destination="uLZ-qg-FIA" id="4rU-Ma-dor"/>
                         <outlet property="menuButton" destination="NaZ-hM-pKE" id="Vkf-bB-gM4"/>
                         <outlet property="menuStackView" destination="kYP-5x-YPK" id="bjT-oz-Tdw"/>
                         <outlet property="redControl" destination="POM-4Y-HHd" id="d0s-9a-kQe"/>
