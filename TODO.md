@@ -11,7 +11,6 @@
 
 EARLIER:
 
-implement menu buttons
 change to white back space icon
 
 Persistence: remember last color
