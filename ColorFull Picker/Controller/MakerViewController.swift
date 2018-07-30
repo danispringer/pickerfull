@@ -179,6 +179,12 @@ class MakerViewController: UIViewController {
     
     
     @IBAction func copyHexAndColorAsImage(_ sender: Any) {
+        let image = generateHexImage()
+        let pasteboard = UIPasteboard.general
+        pasteboard.image = image
+        
+        let alert = createAlert(alertReasonParam: alertReason.imageCopied.rawValue)
+        present(alert, animated: true)
     }
     
     
