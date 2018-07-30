@@ -12,8 +12,7 @@
 EARLIER:
 
 implement menu buttons
-back space icon
-menu icon
+change to white back space icon
 
 Persistence: remember last color
 Core Data: history of checked colors
