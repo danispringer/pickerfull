@@ -29,11 +29,12 @@ class MakerViewController: UIViewController {
     var currentHexColor: String!
     
     
+    
     // MARK: Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-
+ 
     }
     
     
@@ -63,12 +64,6 @@ class MakerViewController: UIViewController {
             
             self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
         })
-    }
-    
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
     }
     
     
