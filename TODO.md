@@ -19,6 +19,8 @@ Core Data: history of checked colors
 
 LATER:
 
+clean sliders while launching
+start from black and go to saved color
 Crazy mode
 Change slider values by tilting (only if optional)
 random color generator
