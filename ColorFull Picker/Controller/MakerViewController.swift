@@ -170,6 +170,19 @@ class MakerViewController: UIViewController {
     
     
     @IBAction func copyHexAsText(_ sender: Any) {
+        
+        guard let myText = hexTextField.text else {
+            // TODO: unknown
+            let alert = createAlert(alertReasonParam: alertReason.unknown.rawValue)
+            present(alert, animated: true)
+            return
+        }
+        guard myText.count == 6 else {
+            // TODO: code not complete
+            let alert = createAlert(alertReasonParam: alertReason.codeTooShort.rawValue)
+            present(alert, animated: true)
+            return
+        }
         let pasteboard = UIPasteboard.general
         pasteboard.string = hexTextField.text
         
@@ -207,6 +220,19 @@ class MakerViewController: UIViewController {
     
     
     @IBAction func shareHexAndColorAsImage(_ sender: Any) {
+        let image = generateHexImage()
+        
+        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        activityController.popoverPresentationController?.sourceView = self.view // for iPads not to crash
+        activityController.completionWithItemsHandler = {
+            (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            guard error == nil else {
+                let alert = self.createAlert(alertReasonParam: alertReason.unknown.rawValue)
+                self.present(alert, animated: true)
+                return
+            }
+        }
+        present(activityController, animated: true)
     }
     
     
