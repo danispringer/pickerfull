@@ -11,8 +11,6 @@
 
 EARLIER:
 
-change to white back space icon
-
 Persistence: remember last color
 Core Data: history of checked colors
 
