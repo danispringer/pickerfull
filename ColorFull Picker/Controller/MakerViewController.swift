@@ -189,6 +189,20 @@ class MakerViewController: UIViewController {
     
     
     @IBAction func shareHexAsText(_ sender: Any) {
+        let message = hexTextField.text
+
+        let activityController = UIActivityViewController(activityItems: [message!], applicationActivities: nil)
+        activityController.popoverPresentationController?.sourceView = self.view // for iPads not to crash
+        activityController.completionWithItemsHandler = {
+            (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            guard error == nil else {
+                let alert = self.createAlert(alertReasonParam: alertReason.unknown.rawValue)
+                self.present(alert, animated: true)
+                return
+            }
+        }
+        present(activityController, animated: true)
+
     }
     
     
