@@ -12,13 +12,13 @@ import UIKit
 extension UIViewController {
     
     enum alertReason: String {
-        case textfieldEmpty = "textfieldEmpty"
         case network = "network"
         case messageSaved = "messageSaved"
         case messageFailed = "messageFailed"
         case messageSent = "messageSent"
         case unknown = "unknown"
         case maxChars = "maxChars"
+        case imageSaved = "imageSaved"
     }
     
     func createAlert(alertReasonParam: String) -> UIAlertController {
@@ -29,10 +29,6 @@ extension UIViewController {
         case alertReason.network.rawValue:
             alertTitle = "Network error"
             alertMessage = "Please check your network connection and try again."
-        case alertReason.textfieldEmpty.rawValue:
-            alertTitle = "Oops"
-            alertMessage = "Textfield is empty. Please enter a number and try again."
-
         case alertReason.messageSaved.rawValue:
             alertTitle = "Message saved"
             alertMessage = "Your message has been saved to drafts."
@@ -42,6 +38,9 @@ extension UIViewController {
         case alertReason.messageSent.rawValue:
             alertTitle = "Success!"
             alertMessage = "Your message has been sent. You should hear from us within 24 working hours."
+        case alertReason.imageSaved.rawValue:
+            alertTitle = "Success!"
+            alertMessage = "Your image has been saved to your library."
         default:
             alertTitle = "Unknown error"
             alertMessage = "An unknown error occurred. Please try again later, or contact us by visiting DaniSpringer.GitHub.io"
