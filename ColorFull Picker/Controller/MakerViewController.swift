@@ -55,9 +55,6 @@ class MakerViewController: UIViewController {
             
             self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
         })
-        
-        //        infoTextView.text = "What can you do?\n\u{2022} Drag the sliders to get a colour you like, and copy the generated HEX code to save your lovely blend.\n\u{2022} Edit the code to preview any colour from millions of choices." // TODO: move to tutorial view
-        
     }
     
     
@@ -100,18 +97,77 @@ class MakerViewController: UIViewController {
     
     @IBAction func CharPressed(_ sender: KeyboardButton) {
         guard (hexTextField.text?.count)! < 6 else {
-            // TODO: max 6 chars allowed
+            
             print(alertReason.maxChars.rawValue)
             return
         }
         let toAdd = sender.titleLabel?.text
         hexTextField.text?.append(toAdd!)
         
-        if hexTextField.text?.count == 6 {
+        if hexTextField.text?.count == 6, let newText = hexTextField.text {
+            let redHex = Float("0x" + String(newText)[0...1])! / 255
+            let greenHex = Float("0x" + String(newText)[2...3])! / 255
+            let blueHex = Float("0x" + String(newText)[4...5])! / 255
             
+            UIView.animate(withDuration: 0.5, animations: {
+                self.redControl.setValue(redHex, animated: true)
+                self.greenControl.setValue(greenHex, animated: true)
+                self.blueControl.setValue(blueHex, animated: true)
+            })
+            
+            view.backgroundColor = UIColor(red: CGFloat(redControl.value), green: CGFloat(greenControl.value), blue: CGFloat(blueControl.value), alpha: 1)
         }
-        
     }
+    
+    
+//    func generateMemedImage() -> UIImage {
+//        let fontPickerWasHidden = fontPicker.isHidden
+//        let colorPickerWasHidden = colorPicker.isHidden
+//
+//        for toolbar in [topToolbar, bottomToolbar] {
+//            toolbar?.isHidden = true
+//        }
+//
+//        for picker in [fontPicker, colorPicker] {
+//            picker?.isHidden = true
+//        }
+//
+//        for button in [fontPickerDoneButton, colorPickerDoneButton] {
+//            button?.isHidden = true
+//        }
+//
+//        for field in [topTextField, bottomTextField] {
+//            field?.isEnabled = false
+//            field?.borderStyle = .none
+//        }
+//
+//        view.frame.origin.y = 0
+//
+//        UIGraphicsBeginImageContext(self.view.frame.size)
+//        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+//        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+//        UIGraphicsEndImageContext()
+//
+//        for toolbar in [topToolbar, bottomToolbar] {
+//            toolbar?.isHidden = false
+//        }
+//
+//        if !fontPickerWasHidden {
+//            fontPicker.isHidden = false
+//            fontPickerDoneButton.isHidden = false
+//        }
+//        if !colorPickerWasHidden {
+//            colorPicker.isHidden = false
+//            colorPickerDoneButton.isHidden = false
+//        }
+//
+//        for field in [topTextField, bottomTextField] {
+//            field?.isEnabled = true
+//            field?.borderStyle = .line
+//        }
+//
+//        return memedImage
+//    }
     
     
     @IBAction func backSpacePressed(_ sender: Any) {
