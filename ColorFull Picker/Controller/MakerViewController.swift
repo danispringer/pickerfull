@@ -314,7 +314,7 @@ class MakerViewController: UIViewController {
     
         func generateHexImage() -> UIImage {
     
-            for slider in [redControl, greenControl, blueControl] {
+            for slider in [redControl, greenControl, blueControl, brightnessSlider] {
                 slider?.isHidden = true
             }
             subView.isHidden = true
@@ -327,7 +327,7 @@ class MakerViewController: UIViewController {
             let hexImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
 
-            for slider in [redControl, greenControl, blueControl] {
+            for slider in [redControl, greenControl, blueControl, brightnessSlider] {
                 slider?.isHidden = false
             }
             subView.isHidden = false
