@@ -261,6 +261,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hVt-tU-dBP">
+                                <rect key="frame" x="68" y="231" width="184" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="5gq-SJ-xOk"/>
+                                </constraints>
+                                <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="brightnessChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="SjT-Yo-Vdj"/>
+                                </connections>
+                            </slider>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98d-1N-siW" userLabel="Subview">
                                 <rect key="frame" x="20" y="120" width="280" height="348"/>
                                 <subviews>
@@ -313,8 +324,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3iK-lx-y0f">
-                                                <rect key="frame" x="0.0" y="234.5" width="90" height="46.5"/>
-                                                <state key="normal" title="Open tutorial">
+                                                <rect key="frame" x="0.0" y="234.5" width="131" height="46.5"/>
+                                                <state key="normal" title="Open quick tutorial">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -355,8 +366,10 @@
                             <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="30" id="Vju-WH-3s4"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aDE-se-Dgi"/>
                             <constraint firstItem="uLZ-qg-FIA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="eo4-oX-Ip0"/>
+                            <constraint firstItem="hVt-tU-dBP" firstAttribute="top" secondItem="KHn-Oj-ley" secondAttribute="bottom" constant="30" id="gDf-NI-eMw"/>
                             <constraint firstItem="98d-1N-siW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="gda-8j-2eR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uLZ-qg-FIA" secondAttribute="trailing" constant="10" id="gfd-SP-u22"/>
+                            <constraint firstItem="hVt-tU-dBP" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tA5-8e-HlW"/>
                             <constraint firstItem="98d-1N-siW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="uCj-wd-HTu"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="98d-1N-siW" secondAttribute="trailing" constant="20" id="z3n-Jv-F4k"/>
                             <constraint firstItem="uLZ-qg-FIA" firstAttribute="top" secondItem="aHT-v4-fHa" secondAttribute="bottom" constant="20" id="zvI-04-shD"/>
@@ -365,6 +378,7 @@
                     </view>
                     <connections>
                         <outlet property="blueControl" destination="KHn-Oj-ley" id="1P8-wD-cNl"/>
+                        <outlet property="brightnessSlider" destination="hVt-tU-dBP" id="kWe-2C-k2I"/>
                         <outlet property="greenControl" destination="NXx-mh-U48" id="0Y5-55-rSO"/>
                         <outlet property="hexTextField" destination="aHT-v4-fHa" id="P42-sA-cn2"/>
                         <outlet property="keyboardStackView" destination="uLZ-qg-FIA" id="4rU-Ma-dor"/>
@@ -479,67 +493,21 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="uBf-Nl-CRp"/>
-                                    <barButtonItem title="Back to top" id="Qrs-dL-zJy">
-                                        <connections>
-                                            <action selector="backToTopPressed:" destination="XsU-Vh-KqC" id="rKB-ib-XfW"/>
-                                        </connections>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69P-fj-VtT">
                                 <rect key="frame" x="16" y="64" width="288" height="484"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="What can I do">
+                                    <fragment content="To G">
                                         <attributes>
-                                            <font key="NSFont" size="25" name=".SFNSDisplay"/>
-                                            <font key="NSOriginalFont" size="25" name=".SFNSDisplay"/>
+                                            <font key="NSFont" size="25" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content=" with this app">
+                                    <fragment content="enerate a color">
                                         <attributes>
-                                            <font key="NSFont" size="25" name=".SFNSDisplay"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="?">
-                                        <attributes>
-                                            <font key="NSFont" size="25" name=".SFNSDisplay"/>
-                                            <font key="NSOriginalFont" size="25" name=".SFNSDisplay"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">
-
-ColorFull Picker lets you generate, save, and share the perfect color</string>
-                                        <attributes>
-                                            <font key="NSFont" size="20" name=".SFNSDisplay"/>
-                                            <font key="NSOriginalFont" size="20" name=".SFNSDisplay"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" of your choice">
-                                        <attributes>
-                                            <font key="NSFont" size="20" name=".SFNSDisplay"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">.
-
-
-</string>
-                                        <attributes>
-                                            <font key="NSFont" size="20" name=".SFNSDisplay"/>
-                                            <font key="NSOriginalFont" size="20" name=".SFNSDisplay"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="How can I generate a color?">
-                                        <attributes>
-                                            <font key="NSFont" size="25" name=".SFNSDisplay"/>
+                                            <font key="NSFont" size="25" name=".AppleSystemUIFont"/>
                                             <font key="NSOriginalFont" size="20" name=".SFNSDisplay"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -547,7 +515,6 @@ ColorFull Picker lets you generate, save, and share the perfect color</string>
                                     <fragment>
                                         <string key="content">
 
-You have two ways:
 1. Drag the red, green and blue sliders left or right. 
 2. Edit the HEX code using the keyboard.
 
@@ -559,23 +526,22 @@ You have two ways:
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content="How can I save ">
+                                    <fragment content="To S">
+                                        <attributes>
+                                            <font key="NSFont" size="25" name=".SFNSDisplay"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="ave">
                                         <attributes>
                                             <font key="NSFont" size="25" name=".SFNSDisplay"/>
                                             <font key="NSOriginalFont" size="25" name=".SFNSDisplay"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content="or share ">
+                                    <fragment content=" and share your color">
                                         <attributes>
                                             <font key="NSFont" size="25" name=".SFNSDisplay"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="the color I created?">
-                                        <attributes>
-                                            <font key="NSFont" size="25" name=".SFNSDisplay"/>
-                                            <font key="NSOriginalFont" size="25" name=".SFNSDisplay"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
