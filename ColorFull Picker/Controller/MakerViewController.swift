@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class MakerViewController: UIViewController {
 
@@ -185,8 +186,10 @@ class MakerViewController: UIViewController {
         subView.isHidden = menuStackView.isHidden
         let bgColor: UIColor = menuStackView.isHidden ? .white : .blue
         menuButton.backgroundColor = bgColor
+        if menuStackView.isHidden {
+            SKStoreReviewController.requestReview()
+        }
     }
-    
     
     
     // MARK: Menu Options
