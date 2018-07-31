@@ -62,12 +62,22 @@ class MakerViewController: UIViewController {
         greenControl.minimumTrackTintColor = UIColor.green
         blueControl.minimumTrackTintColor = UIColor.blue
         
-        hexTextField.text = "E57BF2"
+        if UserDefaults.standard.string(forKey: "color") == nil {
+            UserDefaults.standard.register(defaults: ["color": "E57BF2"])
+            print("now it's \(UserDefaults.standard.string(forKey: "color") ?? "aaa")")
+        }
+        
+        print(UserDefaults.standard.string(forKey: "color") ?? "bbb")
+        hexTextField.text = UserDefaults.standard.string(forKey: "color")
+        print("textfield: \(hexTextField.text ?? "ddd")")
         
         // update controls with animation
-        let redHex = Float("0xE5")! / 255
-        let greenHex = Float("0x7B")! / 255
-        let blueHex = Float("0xF2")! / 255
+        let redHex = Float("0x" + hexTextField.text![0...1])! / 255
+        let greenHex = Float("0x" + hexTextField.text![2...3])! / 255
+        let blueHex = Float("0x" + hexTextField.text![4...5])! / 255
+        
+        print(redHex)
+        print(hexTextField.text ?? "ccc")
         
         // TODO: make brightness max gradually in 2 seconds
         UIView.animate(withDuration: 2.0, animations: {
@@ -114,6 +124,8 @@ class MakerViewController: UIViewController {
         let hexCode = redHex + greenHex + blueHex
 
         hexTextField.text = hexCode
+        
+        UserDefaults.standard.set(hexCode, forKey: "color")
     }
     
     
