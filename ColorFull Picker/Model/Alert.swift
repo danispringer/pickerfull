@@ -17,7 +17,6 @@ extension UIViewController {
         case messageFailed = "messageFailed"
         case messageSent = "messageSent"
         case unknown = "unknown"
-        case maxChars = "maxChars"
         case imageSaved = "imageSaved"
         case hexSaved = "hexSaved"
         case imageCopied = "imageCopied"
