@@ -10,14 +10,15 @@
 ###### Developer notes (feel free to peek)
 
 EARLIER:
-
+animate brightnesschange on launch
+add white border around menu view
 Persistence: remember last color
 [?] Core Data: history of checked colors
 
 LATER:
 
 clean sliders while launching
-start from black and go to saved color
+start from black (or opposite side) and go to saved color
 Crazy mode
 Change slider values by tilting (only if optional)
 random color generator
