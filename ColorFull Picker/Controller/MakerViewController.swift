@@ -47,7 +47,12 @@ class MakerViewController: UIViewController {
         hexTextField.isEnabled = false
         menuStackView.isHidden = true
         subView.isHidden = true
-        menuButton.backgroundColor = .white
+        subView.layer.borderColor = UIColor.white.cgColor
+        subView.layer.borderWidth = 5
+        subView.layer.cornerRadius = 10
+        subView.layer.shadowOffset = CGSize(width: -20, height: 15)
+        subView.layer.shadowRadius = 10
+        subView.layer.shadowOpacity = 0.6
         brightnessSlider.setThumbImage(UIImage(named: "brightness.png"), for: .normal)
         brightnessSlider.setThumbImage(UIImage(named: "brightness.png"), for: .highlighted)
         
@@ -184,8 +189,6 @@ class MakerViewController: UIViewController {
     @IBAction func menuPressed(_ sender: Any) {
         menuStackView.isHidden = !menuStackView.isHidden
         subView.isHidden = menuStackView.isHidden
-        let bgColor: UIColor = menuStackView.isHidden ? .white : .blue
-        menuButton.backgroundColor = bgColor
         if menuStackView.isHidden {
             SKStoreReviewController.requestReview()
         }
@@ -193,6 +196,13 @@ class MakerViewController: UIViewController {
     
     
     // MARK: Menu Options
+    
+    @IBAction func closeButtonPressed(_ sender: Any) {
+        menuStackView.isHidden = true
+        subView.isHidden = true
+        SKStoreReviewController.requestReview()
+    }
+    
     
     @IBAction func downloadHexAndColor(_ sender: Any) {
         
