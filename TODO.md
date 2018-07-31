@@ -24,7 +24,6 @@ random color generator
 redo slider buttons
 size classes
 rgb
-make as clean and immersive as it can be
 persistence
 
 ###### App Store Description
