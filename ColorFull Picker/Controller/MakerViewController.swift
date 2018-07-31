@@ -15,6 +15,7 @@ class MakerViewController: UIViewController {
     @IBOutlet weak var redControl: UISlider!
     @IBOutlet weak var greenControl: UISlider!
     @IBOutlet weak var blueControl: UISlider!
+    @IBOutlet weak var brightnessSlider: UISlider!
     @IBOutlet weak var hexTextField: UITextField!
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var menuStackView: UIStackView!
@@ -27,14 +28,15 @@ class MakerViewController: UIViewController {
     
     var currentUIColor: UIColor!
     var currentHexColor: String!
-    
-    
+    var timer: Timer!
+    var brightnessFractionToAdd: CGFloat!
     
     // MARK: Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
- 
+        subscribeToBrightnessNotifications()
+        
     }
     
     
@@ -45,8 +47,17 @@ class MakerViewController: UIViewController {
         menuStackView.isHidden = true
         subView.isHidden = true
         menuButton.backgroundColor = .white
+        brightnessSlider.setThumbImage(UIImage(named: "brightness.png"), for: .normal)
+        brightnessSlider.setThumbImage(UIImage(named: "brightness.png"), for: .highlighted)
+        
+        let initialBrightness = UIScreen.main.brightness
+        let brightnessMissing = 1.0 - initialBrightness
+        brightnessFractionToAdd = brightnessMissing / 20.0
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.animateBrightness), userInfo: nil, repeats: true)
         
         self.changeColorComponent(self)
+        // TODO: needed? self.brightnessChanged(brightnessSlider)
         redControl.minimumTrackTintColor = UIColor.red
         greenControl.minimumTrackTintColor = UIColor.green
         blueControl.minimumTrackTintColor = UIColor.blue
@@ -57,13 +68,21 @@ class MakerViewController: UIViewController {
         let redHex = Float("0xE5")! / 255
         let greenHex = Float("0x7B")! / 255
         let blueHex = Float("0xF2")! / 255
-        UIView.animate(withDuration: 1.0, animations: {
+        
+        // TODO: make brightness max gradually in 2 seconds
+        UIView.animate(withDuration: 2.0, animations: {
             self.redControl.setValue(redHex, animated: true)
             self.greenControl.setValue(greenHex, animated: true)
             self.blueControl.setValue(blueHex, animated: true)
-            
+            self.brightnessSlider.setValue(1.0, animated: true)
             self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
         })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        unsubscribeFromBrightnessNotifications()
     }
     
     
@@ -98,14 +117,33 @@ class MakerViewController: UIViewController {
     }
     
     
+    @objc func updateBrightness(_ notification:Notification) {
+        brightnessSlider.value = Float(UIScreen.main.brightness)
+    }
+    
+    
+    @IBAction func brightnessChanged() {
+        UIScreen.main.brightness = CGFloat(brightnessSlider.value)
+    }
+    
+    
+    @objc func animateBrightness() {
+        if (UIScreen.main.brightness >= 1.0) {
+            timer.invalidate()
+        }
+        else {
+            UIScreen.main.brightness += brightnessFractionToAdd
+        }
+    }
+    
+    
     // MARK: Keyboard
     
     @IBAction func CharPressed(_ sender: KeyboardButton) {
         guard (hexTextField.text?.count)! < 6 else {
-            
-            print(alertReason.maxChars.rawValue)
             return
         }
+        
         let toAdd = sender.titleLabel?.text
         hexTextField.text?.append(toAdd!)
         
@@ -299,5 +337,17 @@ class MakerViewController: UIViewController {
     
             return hexImage
         }
+    
+    // MARK: Notifications
+    
+    func subscribeToBrightnessNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBrightness(_:)), name: .UIScreenBrightnessDidChange, object: nil)
+    }
+    
+    
+    func unsubscribeFromBrightnessNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .UIScreenBrightnessDidChange, object: nil)
+    }
+    
 }
 
