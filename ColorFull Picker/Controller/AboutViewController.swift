@@ -45,7 +45,7 @@ class AboutViewController: UIViewController {
     // MARK: Share
     
     @IBAction func shareButtonPressed() {
-        let message = "Look at this app: ColorFull Picker lets you generate a color from millions of choices using sliders or HEX code, and save or share your color and code! LINK - it's really cool!"
+        let message = "Look at this app: ColorFull Picker lets you generate a color from millions of choices using sliders or HEX code, and save or share your color and code! https://itunes.apple.com/app/id1410565176 - it's really cool!"
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = self.view // for iPads not to crash
         activityController.completionWithItemsHandler = {
@@ -107,7 +107,7 @@ extension AboutViewController {
         // Note: Replace the XXXXXXXXXX below with the App Store ID for your app
         //       You can find the App Store ID in your app's product URL
         
-        guard let writeReviewURL = URL(string: "https://itunes.apple.com/app/idXXXXXXXXXX?action=write-review")
+        guard let writeReviewURL = URL(string: "https://itunes.apple.com/app/id1410565176?action=write-review")
             else {
                 fatalError("Expected a valid URL")
         }
