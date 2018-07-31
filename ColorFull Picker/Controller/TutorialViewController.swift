@@ -26,14 +26,20 @@ class TutorialViewController: UIViewController {
                                      forToolbarPosition: .any,
                                      barMetrics: .default)
         myToolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        
+        myTextView.isScrollEnabled = true
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        myTextView.flashScrollIndicators()
+
     }
     
     
     // MARK: Helpers
-    
-    @IBAction func backToTopPressed(_ sender: Any) {
-        myTextView.scrollRangeToVisible(NSRange(location: 0, length: 0))
-    }
     
 
     @IBAction func doneButtonPressed(_ sender: Any) {
