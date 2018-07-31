@@ -10,7 +10,6 @@
 ###### Developer notes (feel free to peek)
 
 EARLIER:
-animate brightnesschange on launch
 add white border around menu view
 Persistence: remember last color
 [?] Core Data: history of checked colors
