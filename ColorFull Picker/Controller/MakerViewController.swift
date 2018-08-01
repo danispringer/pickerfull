@@ -61,31 +61,32 @@ class MakerViewController: UIViewController {
         brightnessFractionToAdd = brightnessMissing / 20.0
         
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.animateBrightness), userInfo: nil, repeats: true)
-        
-        self.changeColorComponent(self)
-        // TODO: needed? self.brightnessChanged(brightnessSlider)
+
         redControl.minimumTrackTintColor = UIColor.red
         greenControl.minimumTrackTintColor = UIColor.green
         blueControl.minimumTrackTintColor = UIColor.blue
         
+        redControl.setThumbImage(SliderIcon.red , for: .normal)
+        redControl.setThumbImage(SliderIcon.red, for: .highlighted)
+        
+        greenControl.setThumbImage(SliderIcon.green, for: .normal)
+        greenControl.setThumbImage(SliderIcon.green, for: .highlighted)
+        
+        blueControl.setThumbImage(SliderIcon.blue, for: .normal)
+        blueControl.setThumbImage(SliderIcon.blue, for: .highlighted)
+        
         if UserDefaults.standard.string(forKey: "color") == nil {
             UserDefaults.standard.register(defaults: ["color": "E57BF2"])
-            print("now it's \(UserDefaults.standard.string(forKey: "color") ?? "aaa")")
         }
         
-        print(UserDefaults.standard.string(forKey: "color") ?? "bbb")
         hexTextField.text = UserDefaults.standard.string(forKey: "color")
-        print("textfield: \(hexTextField.text ?? "ddd")")
         
         // update controls with animation
         let redHex = Float("0x" + hexTextField.text![0...1])! / 255
         let greenHex = Float("0x" + hexTextField.text![2...3])! / 255
         let blueHex = Float("0x" + hexTextField.text![4...5])! / 255
         
-        print(redHex)
-        print(hexTextField.text ?? "ccc")
-        
-        // TODO: make brightness max gradually in 2 seconds
+        // TODO: more brightness fractions
         UIView.animate(withDuration: 2.0, animations: {
             self.redControl.setValue(redHex, animated: true)
             self.greenControl.setValue(greenHex, animated: true)
@@ -111,16 +112,6 @@ class MakerViewController: UIViewController {
         
         view.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
         
-        
-        redControl.setThumbImage(SliderIcon.red , for: .normal)
-        redControl.setThumbImage(SliderIcon.red, for: .highlighted)
-        
-        greenControl.setThumbImage(SliderIcon.green, for: .normal)
-        greenControl.setThumbImage(SliderIcon.green, for: .highlighted)
-
-        blueControl.setThumbImage(SliderIcon.blue, for: .normal)
-        blueControl.setThumbImage(SliderIcon.blue, for: .highlighted)
-        
         let rBase255 = Int(r * 255)
         let gBase255 = Int(g * 255)
         let bBase255 = Int(b * 255)
@@ -130,7 +121,7 @@ class MakerViewController: UIViewController {
         let hexCode = redHex + greenHex + blueHex
 
         hexTextField.text = hexCode
-        
+        print("setting: \(hexCode)")
         UserDefaults.standard.set(hexCode, forKey: "color")
     }
     
