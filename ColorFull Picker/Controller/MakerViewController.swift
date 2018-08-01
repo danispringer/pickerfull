@@ -53,8 +53,6 @@ class MakerViewController: UIViewController {
         subView.layer.shadowOffset = CGSize(width: -20, height: 15)
         subView.layer.shadowRadius = 10
         subView.layer.shadowOpacity = 0.6
-        brightnessSlider.setThumbImage(UIImage(named: "brightness.png"), for: .normal)
-        brightnessSlider.setThumbImage(UIImage(named: "brightness.png"), for: .highlighted)
         
         let initialBrightness = UIScreen.main.brightness
         let brightnessMissing = 1.0 - initialBrightness
@@ -66,14 +64,13 @@ class MakerViewController: UIViewController {
         greenControl.minimumTrackTintColor = UIColor.green
         blueControl.minimumTrackTintColor = UIColor.blue
         
-        redControl.setThumbImage(SliderIcon.red , for: .normal)
-        redControl.setThumbImage(SliderIcon.red, for: .highlighted)
-        
-        greenControl.setThumbImage(SliderIcon.green, for: .normal)
-        greenControl.setThumbImage(SliderIcon.green, for: .highlighted)
-        
-        blueControl.setThumbImage(SliderIcon.blue, for: .normal)
-        blueControl.setThumbImage(SliderIcon.blue, for: .highlighted)
+        for state: UIControlState in [.normal, .highlighted, .selected, .focused, .application, .reserved]  {
+            redControl.setThumbImage(SliderIcon.red, for: state)
+            greenControl.setThumbImage(SliderIcon.green, for: state)
+            blueControl.setThumbImage(SliderIcon.blue, for: state)
+            brightnessSlider.setThumbImage(SliderIcon.brightness, for: state)
+        }
+
         
         if UserDefaults.standard.string(forKey: "color") == nil {
             UserDefaults.standard.register(defaults: ["color": "E57BF2"])
@@ -121,7 +118,6 @@ class MakerViewController: UIViewController {
         let hexCode = redHex + greenHex + blueHex
 
         hexTextField.text = hexCode
-        print("setting: \(hexCode)")
         UserDefaults.standard.set(hexCode, forKey: "color")
     }
     
