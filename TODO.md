@@ -10,8 +10,7 @@
 ###### Developer notes (feel free to peek)
 
 EARLIER:
-Persistence: remember last color
-[?] Core Data: history of checked colors
+[?] Core Data: history of colors (add save to App Gallery button)
 
 LATER:
 
