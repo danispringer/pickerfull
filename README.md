@@ -4,7 +4,7 @@
 - Change sliders position and edit the generated code to update the resulting color, with the sliders position and generated code updating in real time. 
 - **Note:** GIFs below are slower than the app's real-time performance (no idea why 🤔).
 
-![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/a.gif) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/b.gif)
+![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/i81-resized.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/i82-resized.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/i83-resized.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/i84-resized.jpg)
 
 # Contributing
 Want to help? You can:
