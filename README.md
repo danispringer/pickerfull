@@ -1,8 +1,14 @@
 # ColorFull Picker (iOS)
-- Under construction! (link will be here)
-- Combine the additive primary colours to create millions of combinations and save the result in hex code.
-- Change sliders position and edit the generated code to update the resulting color, with the sliders position and generated code updating in real time. 
-- **Note:** GIFs below are slower than the app's real-time performance (no idea why 🤔).
+• Looking to create your perfect color real fast? This app is for you.
+• ColorFull Picker lets you intuitively generate your perfect color from millions of combinations, using just 3 sliders, or by typing a 6-character HEX code.
+• ColorFull Picker lets you easily save, copy, or share your color, both as an image which includes the color and HEX code, or as plain text.
+• Battery died? No worries. Your last selected color will automatically display when you launch the app again. ColorFull Picker has got your back - and favourite color!
+
+• Get it here: https://itunes.apple.com/app/id1410565176
+
+• Love the app? Please consider leaving a review. It would mean a ColorFull lot to us!
+
+• Is there a feature you'd like to see? A bug you'd like to go away? Let us know by opening the app and tapping on the share button, selecting 'Contact and info', then tapping on the mail icon - or by visiting www.DaniSpringer.GitHub.io
 
 ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/i81-resized.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/i82-resized.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/i83-resized.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/i84-resized.jpg)
 
