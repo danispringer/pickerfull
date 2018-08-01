@@ -13,4 +13,5 @@ struct SliderIcon {
     static let red = UIImage(named: "redText.png")
     static let green = UIImage(named: "greenText.png")
     static let blue = UIImage(named: "blueText.png")
+    static let brightness = UIImage(named: "brightness.png")
 }
