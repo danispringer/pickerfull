@@ -4,7 +4,7 @@
 - ColorFull Picker lets you easily save, copy, or share your color, both as an image which includes the color and HEX code, or as plain text.
 - Battery died? No worries. Your last selected color will automatically display when you launch the app again. ColorFull Picker has got your back - and favourite color!
 
-- Get it here: https://itunes.apple.com/app/id1410565176
+- Get it here: https://itunes.apple.com/app/id1410565176 [**not live yet**]
 
 - Love the app? Please consider leaving a review. It would mean a ColorFull lot to us!
 
