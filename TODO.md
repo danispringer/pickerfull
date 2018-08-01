@@ -10,21 +10,18 @@
 ###### Developer notes (feel free to peek)
 
 EARLIER:
-add white border around menu view
 Persistence: remember last color
 [?] Core Data: history of checked colors
 
 LATER:
 
 clean sliders while launching
-start from black (or opposite side) and go to saved color
-Crazy mode
+start from black and go to saved color
 Change slider values by tilting (only if optional)
 random color generator
 redo slider buttons
 size classes
 rgb
-persistence
 
 ###### App Store Description
 ‘ColorFull Picker’ lets you:
