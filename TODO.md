@@ -18,7 +18,6 @@ clean sliders while launching
 update text while sliding on launch
 Change slider values by tilting (only if optional)
 random color generator
-redo slider buttons
 size classes
 rgb
 
