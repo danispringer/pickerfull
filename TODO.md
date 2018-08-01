@@ -15,7 +15,7 @@ EARLIER:
 LATER:
 
 clean sliders while launching
-start from black and go to saved color
+update text while sliding on launch
 Change slider values by tilting (only if optional)
 random color generator
 redo slider buttons
