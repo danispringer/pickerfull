@@ -63,13 +63,6 @@ class MakerViewController: UIViewController {
         redControl.minimumTrackTintColor = UIColor.red
         greenControl.minimumTrackTintColor = UIColor.green
         blueControl.minimumTrackTintColor = UIColor.blue
-        
-        for state: UIControlState in [.normal, .highlighted, .selected, .focused, .application, .reserved]  {
-            redControl.setThumbImage(SliderIcon.red, for: state)
-            greenControl.setThumbImage(SliderIcon.green, for: state)
-            blueControl.setThumbImage(SliderIcon.blue, for: state)
-            brightnessSlider.setThumbImage(SliderIcon.brightness, for: state)
-        }
 
         
         if UserDefaults.standard.string(forKey: "color") == nil {
