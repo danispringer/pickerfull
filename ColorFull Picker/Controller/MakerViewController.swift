@@ -111,6 +111,7 @@ class MakerViewController: UIViewController {
         let hexCode = redHex + greenHex + blueHex
 
         hexTextField.text = hexCode
+        
         UserDefaults.standard.set(hexCode, forKey: "color")
     }
     
