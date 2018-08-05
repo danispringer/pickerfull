@@ -56,9 +56,9 @@ class MakerViewController: UIViewController {
         
         let initialBrightness = UIScreen.main.brightness
         let brightnessMissing = 1.0 - initialBrightness
-        brightnessFractionToAdd = brightnessMissing / 20.0
+        brightnessFractionToAdd = brightnessMissing / 200.0
         
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.animateBrightness), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.animateBrightness), userInfo: nil, repeats: true)
 
         redControl.minimumTrackTintColor = UIColor.red
         greenControl.minimumTrackTintColor = UIColor.green
