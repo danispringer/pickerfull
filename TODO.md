@@ -14,6 +14,7 @@ EARLIER:
 
 LATER:
 
+take photo and pick color from it
 clean sliders while launching
 update text while sliding on launch
 Change slider values by tilting (only if optional)
