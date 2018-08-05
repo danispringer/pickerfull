@@ -34,13 +34,6 @@ class MakerViewController: UIViewController {
     
     // MARK: Life Cycle
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        subscribeToBrightnessNotifications()
-        
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,11 +52,14 @@ class MakerViewController: UIViewController {
         brightnessFractionToAdd = brightnessMissing / 200.0
         
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.animateBrightness), userInfo: nil, repeats: true)
+        
+        redControl.thumbTintColor = .red
+        greenControl.thumbTintColor = .green
+        blueControl.thumbTintColor = .blue
 
         redControl.minimumTrackTintColor = UIColor.red
         greenControl.minimumTrackTintColor = UIColor.green
         blueControl.minimumTrackTintColor = UIColor.blue
-
         
         if UserDefaults.standard.string(forKey: "color") == nil {
             UserDefaults.standard.register(defaults: ["color": "E57BF2"])
@@ -71,12 +67,10 @@ class MakerViewController: UIViewController {
         
         hexTextField.text = UserDefaults.standard.string(forKey: "color")
         
-        // update controls with animation
         let redHex = Float("0x" + hexTextField.text![0...1])! / 255
         let greenHex = Float("0x" + hexTextField.text![2...3])! / 255
         let blueHex = Float("0x" + hexTextField.text![4...5])! / 255
         
-        // TODO: more brightness fractions
         UIView.animate(withDuration: 2.0, animations: {
             self.redControl.setValue(redHex, animated: true)
             self.greenControl.setValue(greenHex, animated: true)
@@ -84,7 +78,15 @@ class MakerViewController: UIViewController {
             self.brightnessSlider.setValue(1.0, animated: true)
             self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
         })
+        
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        subscribeToBrightnessNotifications()
+    }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

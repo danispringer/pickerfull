@@ -22,7 +22,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="pKR-HO-L9J"/>
                                 </constraints>
-                                <color key="thumbTintColor" red="1" green="0.24772619260000001" blue="0.23985623889999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="changeColorComponent:" destination="BYZ-38-t0r" eventType="valueChanged" id="mJf-hc-YhI"/>
                                 </connections>
@@ -32,7 +31,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="0uR-hA-ORS"/>
                                 </constraints>
-                                <color key="thumbTintColor" red="0.2687359889" green="1" blue="0.27461519979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="changeColorComponent:" destination="BYZ-38-t0r" eventType="valueChanged" id="gz9-gN-oL0"/>
                                 </connections>
@@ -42,7 +40,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="3Z2-Bw-l1u"/>
                                 </constraints>
-                                <color key="thumbTintColor" red="0.083771967069999995" green="0.1085219283" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="changeColorComponent:" destination="BYZ-38-t0r" eventType="valueChanged" id="p8R-yg-Ats"/>
                                 </connections>
