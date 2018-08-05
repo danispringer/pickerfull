@@ -15,15 +15,12 @@ EARLIER:
 LATER:
 
 take photo and pick color from it
-clean sliders while launching
 update text while sliding on launch
 Change slider values by tilting (only if optional)
 random color generator
 size classes
 rgb
-update description "Wouldn't it be nice if you can share your favorite colors?"
-update subtitle "Share..."
-[?] add "real time adjustment" to description
+clean sliders while launching
 
 ###### App Store Description
 • Looking to create your perfect color real fast? This app is for you.
