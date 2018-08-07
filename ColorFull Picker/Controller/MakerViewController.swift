@@ -9,7 +9,7 @@
 import UIKit
 import StoreKit
 
-class MakerViewController: UIViewController {
+class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     // MARK: Outlets
     
@@ -17,12 +17,9 @@ class MakerViewController: UIViewController {
     @IBOutlet weak var greenControl: UISlider!
     @IBOutlet weak var blueControl: UISlider!
     @IBOutlet weak var brightnessSlider: UISlider!
-    @IBOutlet weak var hexTextField: UITextField!
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var menuStackView: UIStackView!
-    @IBOutlet weak var menuButton: KeyboardButton!
-    @IBOutlet weak var keyboardStackView: UIStackView!
-    
+    @IBOutlet weak var hexPicker: UIPickerView!
     
 
     // MARK: properties
@@ -32,12 +29,23 @@ class MakerViewController: UIViewController {
     var timer: Timer!
     var brightnessFractionToAdd: CGFloat!
     
+    var rawArray = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "1A", "1B", "1C", "1D", "1E", "1F", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "2A", "2B", "2C", "2D", "2E", "2F", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "3A", "3B", "3C", "3D", "3E", "3F", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "4A", "4B", "4C", "4D", "4E", "4F", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "5A", "5B", "5C", "5D", "5E", "5F", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "6A", "6B", "6C", "6D", "6E", "6F", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "7A", "7B", "7C", "7D", "7E", "7F", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "8A", "8B", "8C", "8D", "8E", "8F", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "9A", "9B", "9C", "9D", "9E", "9F", "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "AA", "AB", "AC", "AD", "AE", "AF", "B0", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "BA", "BB", "BC", "BD", "BE", "BF", "C0", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "CA", "CB", "CC", "CD", "CE", "CF", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "DA", "DB", "DC", "DD", "DE", "DF", "E0", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "EA", "EB", "EC", "ED", "EE", "EF", "F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "FA", "FB", "FC", "FD", "FE", "FF"] // TODO: generate
+    
+    var redArray: [String]!
+    var greenArray: [String]!
+    var blueArray: [String]!
+    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hexTextField.isEnabled = false
+        hexPicker.delegate = self
+        
+        redArray = rawArray
+        greenArray = rawArray
+        blueArray = rawArray
+
         menuStackView.isHidden = true
         subView.isHidden = true
         subView.layer.borderColor = UIColor.white.cgColor
@@ -65,16 +73,16 @@ class MakerViewController: UIViewController {
             UserDefaults.standard.register(defaults: ["color": "E57BF2"])
         }
         
-        hexTextField.text = UserDefaults.standard.string(forKey: "color")
+        // hexString = UserDefaults.standard.string(forKey: "color")
         
-        let redHex = Float("0x" + hexTextField.text![0...1])! / 255
-        let greenHex = Float("0x" + hexTextField.text![2...3])! / 255
-        let blueHex = Float("0x" + hexTextField.text![4...5])! / 255
+        // red = Float("0x" + hexTextField.text![0...1])! / 255
+        // green = Float("0x" + hexTextField.text![2...3])! / 255
+        // blue = Float("0x" + hexTextField.text![4...5])! / 255
         
         UIView.animate(withDuration: 2.0, animations: {
-            self.redControl.setValue(redHex, animated: true)
-            self.greenControl.setValue(greenHex, animated: true)
-            self.blueControl.setValue(blueHex, animated: true)
+            //self.redControl.setValue(RED, animated: true)
+            //self.greenControl.setValue(GREEN, animated: true)
+            //self.blueControl.setValue(BLUE, animated: true)
             self.brightnessSlider.setValue(1.0, animated: true)
             self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
         })
@@ -112,9 +120,9 @@ class MakerViewController: UIViewController {
         let blueHex = String(format: "%02X", bBase255)
         let hexCode = redHex + greenHex + blueHex
 
-        hexTextField.text = hexCode
+        // hexString = hexCode
         
-        UserDefaults.standard.set(hexCode, forKey: "color")
+        // UserDefaults.standard.set(HEXSTRING, forKey: "color")
     }
     
     
@@ -138,36 +146,47 @@ class MakerViewController: UIViewController {
     }
     
     
-    // MARK: Keyboard
+    // MARK: Pickers
     
-    @IBAction func CharPressed(_ sender: KeyboardButton) {
-        guard (hexTextField.text?.count)! < 6 else {
-            return
-        }
-        
-        let toAdd = sender.titleLabel?.text
-        hexTextField.text?.append(toAdd!)
-        
-        if hexTextField.text?.count == 6, let newText = hexTextField.text {
-            let redHex = Float("0x" + String(newText)[0...1])! / 255
-            let greenHex = Float("0x" + String(newText)[2...3])! / 255
-            let blueHex = Float("0x" + String(newText)[4...5])! / 255
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                self.redControl.setValue(redHex, animated: true)
-                self.greenControl.setValue(greenHex, animated: true)
-                self.blueControl.setValue(blueHex, animated: true)
-            })
-            
-            view.backgroundColor = UIColor(red: CGFloat(redControl.value), green: CGFloat(greenControl.value), blue: CGFloat(blueControl.value), alpha: 1)
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        if pickerView.tag == 0 {
+            return 3
+        } else {
+            fatalError()
         }
     }
     
-    
-    @IBAction func backSpacePressed(_ sender: Any) {
-        hexTextField.text =  String((hexTextField.text?.dropLast())!)
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == 0 {
+            return rawArray.count // TODO: use specific arrays?
+        } else {
+            fatalError()
+        }
     }
     
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let arrays = [redArray, greenArray, blueArray] // TODO: needed? Maybe replace with rawArray
+        var currentArray = [""]
+        if component == 0 || component == 1 || component == 2 {
+            currentArray = arrays[component]!
+        } else {
+            print("component is: \(component)")
+        }
+        return currentArray[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 0 {
+            // TODO: update hexString, sliders, view, user defaults
+        } else {
+            fatalError()
+        }
+        
+        
+    }
+
+    
+    // MARK: Menu Options
     
     @IBAction func menuPressed(_ sender: Any) {
         menuStackView.isHidden = !menuStackView.isHidden
@@ -178,8 +197,6 @@ class MakerViewController: UIViewController {
     }
     
     
-    // MARK: Menu Options
-    
     @IBAction func closeButtonPressed(_ sender: Any) {
         menuStackView.isHidden = true
         subView.isHidden = true
@@ -188,17 +205,6 @@ class MakerViewController: UIViewController {
     
     
     @IBAction func downloadHexAndColor(_ sender: Any) {
-        
-        guard let myText = hexTextField.text else {
-            let alert = createAlert(alertReasonParam: alertReason.unknown.rawValue)
-            present(alert, animated: true)
-            return
-        }
-        guard myText.count == 6 else {
-            let alert = createAlert(alertReasonParam: alertReason.codeTooShort.rawValue)
-            present(alert, animated: true)
-            return
-        }
         
         let image = generateHexImage()
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
@@ -222,19 +228,9 @@ class MakerViewController: UIViewController {
     
     
     @IBAction func copyHexAsText(_ sender: Any) {
-        
-        guard let myText = hexTextField.text else {
-            let alert = createAlert(alertReasonParam: alertReason.unknown.rawValue)
-            present(alert, animated: true)
-            return
-        }
-        guard myText.count == 6 else {
-            let alert = createAlert(alertReasonParam: alertReason.codeTooShort.rawValue)
-            present(alert, animated: true)
-            return
-        }
+
         let pasteboard = UIPasteboard.general
-        pasteboard.string = hexTextField.text
+        pasteboard.string = "" // TODO: hexString
         
         let alert = createAlert(alertReasonParam: alertReason.hexSaved.rawValue)
         present(alert, animated: true)
@@ -242,17 +238,6 @@ class MakerViewController: UIViewController {
     
     
     @IBAction func copyHexAndColorAsImage(_ sender: Any) {
-        
-        guard let myText = hexTextField.text else {
-            let alert = createAlert(alertReasonParam: alertReason.unknown.rawValue)
-            present(alert, animated: true)
-            return
-        }
-        guard myText.count == 6 else {
-            let alert = createAlert(alertReasonParam: alertReason.codeTooShort.rawValue)
-            present(alert, animated: true)
-            return
-        }
         
         let image = generateHexImage()
         let pasteboard = UIPasteboard.general
@@ -265,16 +250,7 @@ class MakerViewController: UIViewController {
     
     @IBAction func shareHexAsText(_ sender: Any) {
         
-        guard let myText = hexTextField.text else {
-            let alert = createAlert(alertReasonParam: alertReason.unknown.rawValue)
-            present(alert, animated: true)
-            return
-        }
-        guard myText.count == 6 else {
-            let alert = createAlert(alertReasonParam: alertReason.codeTooShort.rawValue)
-            present(alert, animated: true)
-            return
-        }
+        let myText = "" // TODO
 
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = self.view // for iPads not to crash
@@ -293,16 +269,6 @@ class MakerViewController: UIViewController {
     
     @IBAction func shareHexAndColorAsImage(_ sender: Any) {
         
-        guard let myText = hexTextField.text else {
-            let alert = createAlert(alertReasonParam: alertReason.unknown.rawValue)
-            present(alert, animated: true)
-            return
-        }
-        guard myText.count == 6 else {
-            let alert = createAlert(alertReasonParam: alertReason.codeTooShort.rawValue)
-            present(alert, animated: true)
-            return
-        }
         
         let image = generateHexImage()
         
@@ -327,9 +293,6 @@ class MakerViewController: UIViewController {
             }
             subView.isHidden = true
             menuStackView.isHidden = true
-            keyboardStackView.isHidden = true
-            hexTextField.borderStyle = .none
-    
             UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0)
             view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
             let hexImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
@@ -340,8 +303,6 @@ class MakerViewController: UIViewController {
             }
             subView.isHidden = false
             menuStackView.isHidden = false
-            keyboardStackView.isHidden = false
-            hexTextField.borderStyle = .roundedRect
     
             return hexImage
         }
