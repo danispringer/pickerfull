@@ -24,6 +24,11 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
 
     // MARK: properties
     
+    enum Controls {
+        case slider
+        case picker
+    }
+    
     var currentUIColor: UIColor!
     var currentHexColor: String!
     var timer: Timer!
@@ -73,16 +78,26 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             UserDefaults.standard.register(defaults: ["color": "E57BF2"])
         }
         
-        // hexString = UserDefaults.standard.string(forKey: "color")
+        let hexString = UserDefaults.standard.string(forKey: "color")
         
-        // red = Float("0x" + hexTextField.text![0...1])! / 255
-        // green = Float("0x" + hexTextField.text![2...3])! / 255
-        // blue = Float("0x" + hexTextField.text![4...5])! / 255
         
         UIView.animate(withDuration: 2.0, animations: {
-            //self.redControl.setValue(RED, animated: true)
-            //self.greenControl.setValue(GREEN, animated: true)
-            //self.blueControl.setValue(BLUE, animated: true)
+            self.redControl.setValue(Float("0x" + hexString![0...1])! / 255, animated: true)
+            self.greenControl.setValue(Float("0x" + hexString![2...3])! / 255, animated: true)
+            self.blueControl.setValue(Float("0x" + hexString![4...5])! / 255, animated: true)
+            
+            let redHex = hexString![0...1]
+            let greenHex = hexString![2...3]
+            let blueHex = hexString![4...5]
+            
+            let redIndex = self.rawArray.index(of: String(redHex))
+            let greenIndex = self.rawArray.index(of: String(greenHex))
+            let blueIndex = self.rawArray.index(of: String(blueHex))
+            
+            self.hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
+            self.hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
+            self.hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
+            
             self.brightnessSlider.setValue(1.0, animated: true)
             self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
         })
@@ -103,26 +118,75 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     
-    // MARK: Sliders
+    // MARK: Helper
     
-    @IBAction func changeColorComponent(_ sender: AnyObject) {
-        let r: CGFloat = CGFloat(self.redControl.value)
-        let g: CGFloat = CGFloat(self.greenControl.value)
-        let b: CGFloat = CGFloat(self.blueControl.value)
+    func updateColor(control: Controls) {
         
-        view.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
-        
-        let rBase255 = Int(r * 255)
-        let gBase255 = Int(g * 255)
-        let bBase255 = Int(b * 255)
-        let redHex = String(format: "%02X", rBase255)
-        let greenHex = String(format: "%02X", gBase255)
-        let blueHex = String(format: "%02X", bBase255)
-        let hexCode = redHex + greenHex + blueHex
+        if control == .slider {
+            
+            let r: CGFloat = CGFloat(self.redControl.value)
+            let g: CGFloat = CGFloat(self.greenControl.value)
+            let b: CGFloat = CGFloat(self.blueControl.value)
+            
+            view.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
+            
+            let rBase255 = Int(r * 255)
+            let gBase255 = Int(g * 255)
+            let bBase255 = Int(b * 255)
+            let redHex = String(format: "%02X", rBase255)
+            let greenHex = String(format: "%02X", gBase255)
+            let blueHex = String(format: "%02X", bBase255)
 
+            let redIndex = rawArray.index(of: redHex)
+            let greenIndex = rawArray.index(of: greenHex)
+            let blueIndex = rawArray.index(of: blueHex)
+            
+            hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
+            hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
+            hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
+            let hexCode = redHex + greenHex + blueHex
+            UserDefaults.standard.set(hexCode, forKey: "color")
+            
+        } else if control == .picker {
+            let redValue: Double = Double(hexPicker.selectedRow(inComponent: 0))
+            let greenValue: Double = Double(hexPicker.selectedRow(inComponent: 1))
+            let blueValue: Double = Double(hexPicker.selectedRow(inComponent: 2))
+            print(redValue)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.redControl.setValue(Float(redValue / 255.0), animated: true)
+                self.greenControl.setValue(Float(greenValue / 255.0), animated: true)
+                self.blueControl.setValue(Float(blueValue / 255.0), animated: true)
+                self.brightnessSlider.setValue(1.0, animated: true)
+                self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
+            })
+
+            
+            let redHex = rawArray[hexPicker.selectedRow(inComponent: 0)]
+            let greenHex = rawArray[hexPicker.selectedRow(inComponent: 1)]
+            let blueHex = rawArray[hexPicker.selectedRow(inComponent: 2)]
+            let hexCode = redHex + greenHex + blueHex
+            UserDefaults.standard.set(hexCode, forKey: "color")
+            print("hexCode from picker: \(hexCode)")
+        } else {
+            fatalError()
+        }
+        
+        
+        
         // hexString = hexCode
         
         // UserDefaults.standard.set(HEXSTRING, forKey: "color")
+    }
+    
+    
+    // MARK: Sliders
+    
+    @IBAction func sliderChanged(_ sender: AnyObject) {
+        
+        // Call color changing func
+        updateColor(control: Controls.slider)
+        
     }
     
     
@@ -178,6 +242,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 0 {
             // TODO: update hexString, sliders, view, user defaults
+            updateColor(control: Controls.picker)
         } else {
             fatalError()
         }
