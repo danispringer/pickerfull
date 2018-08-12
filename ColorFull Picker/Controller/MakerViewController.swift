@@ -99,6 +99,11 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
         })
         
+        for state: UIControlState in [.normal, .reserved, .selected, .highlighted, .focused] {
+            menuButton.setTitleColor(.white, for: state)
+            menuButton.layer.backgroundColor = UIColor(red:0.37, green:0.37, blue:0.37, alpha:0.5).cgColor
+        }
+        
     }
     
     
@@ -213,7 +218,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 0 {
-            return rawArray.count // TODO: use specific arrays?
+            return rawArray.count
         } else {
             fatalError()
         }
@@ -229,7 +234,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 0 {
-            // TODO: update hexString, sliders, view, user defaults
             updateColor(control: Controls.picker)
         } else {
             fatalError()
@@ -282,7 +286,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBAction func copyHexAsText(_ sender: Any) {
 
         let pasteboard = UIPasteboard.general
-        pasteboard.string = "" // TODO: hexString
+        pasteboard.string = UserDefaults.standard.string(forKey: "color")
         
         let alert = createAlert(alertReasonParam: alertReason.hexSaved.rawValue)
         present(alert, animated: true)
@@ -302,7 +306,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func shareHexAsText(_ sender: Any) {
         
-        let myText = "" // TODO
+        let myText = UserDefaults.standard.string(forKey: "color")
 
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = self.view // for iPads not to crash
