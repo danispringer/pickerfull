@@ -55,9 +55,12 @@
                                     <action selector="brightnessChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="SjT-Yo-Vdj"/>
                                 </connections>
                             </slider>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AHi-t1-Uyy">
-                                <rect key="frame" x="16" y="315" width="288" height="216"/>
+                            <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="AHi-t1-Uyy">
+                                <rect key="frame" x="16" y="315" width="288" height="160"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="Bor-DB-bE0"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="A6l-ZI-fgs"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="zZb-Hx-vKU"/>
@@ -172,14 +175,24 @@
                                     <constraint firstItem="kYP-5x-YPK" firstAttribute="leading" secondItem="98d-1N-siW" secondAttribute="leading" constant="20" id="yGe-ah-urQ"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNi-Xs-sE7">
+                                <rect key="frame" x="138.5" y="502" width="43" height="33"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <state key="normal" title="Menu"/>
+                                <connections>
+                                    <action selector="menuPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kWP-aI-koj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="013-pC-knr"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="top" secondItem="hVt-tU-dBP" secondAttribute="bottom" constant="49" id="07X-IL-lf1"/>
+                            <constraint firstItem="yNi-Xs-sE7" firstAttribute="top" secondItem="AHi-t1-Uyy" secondAttribute="bottom" constant="27" id="2cm-ld-hee"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="top" secondItem="NXx-mh-U48" secondAttribute="bottom" constant="25" id="6qI-iq-hbb"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Mbm-WL-1UH"/>
+                            <constraint firstItem="yNi-Xs-sE7" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="NMk-B8-vHd"/>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="31" id="P9w-Jk-oXG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="98d-1N-siW" secondAttribute="bottom" constant="90" id="Qra-ac-vaK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AHi-t1-Uyy" secondAttribute="trailing" constant="16" id="Sej-Vz-6BR"/>
@@ -198,6 +211,7 @@
                         <outlet property="brightnessSlider" destination="hVt-tU-dBP" id="kWe-2C-k2I"/>
                         <outlet property="greenControl" destination="NXx-mh-U48" id="0Y5-55-rSO"/>
                         <outlet property="hexPicker" destination="AHi-t1-Uyy" id="Zan-8k-3cD"/>
+                        <outlet property="menuButton" destination="yNi-Xs-sE7" id="L5z-xF-GWd"/>
                         <outlet property="menuStackView" destination="kYP-5x-YPK" id="bjT-oz-Tdw"/>
                         <outlet property="redControl" destination="POM-4Y-HHd" id="d0s-9a-kQe"/>
                         <outlet property="subView" destination="98d-1N-siW" id="GYg-Zb-Fbs"/>
