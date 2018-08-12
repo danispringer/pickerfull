@@ -210,6 +210,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
     }
     
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 0 {
             return rawArray.count // TODO: use specific arrays?
@@ -218,9 +219,13 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return rawArray[row]
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        let string = rawArray[row]
+        return NSAttributedString(string: string, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
     }
+    
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 0 {
@@ -229,7 +234,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         } else {
             fatalError()
         }
-        
         
     }
 
