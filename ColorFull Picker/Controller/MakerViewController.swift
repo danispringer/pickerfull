@@ -20,6 +20,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var menuStackView: UIStackView!
     @IBOutlet weak var hexPicker: UIPickerView!
+    @IBOutlet weak var menuButton: UIButton!
     
 
     // MARK: properties
@@ -43,6 +44,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         super.viewDidLoad()
         
         hexPicker.delegate = self
+        
 
         menuStackView.isHidden = true
         subView.isHidden = true
@@ -163,11 +165,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             fatalError()
         }
         
-        
-        
-        // hexString = hexCode
-        
-        // UserDefaults.standard.set(HEXSTRING, forKey: "color")
     }
     
     
@@ -342,6 +339,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             }
             subView.isHidden = true
             menuStackView.isHidden = true
+            menuButton.isHidden = true
             UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0)
             view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
             let hexImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
@@ -352,6 +350,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             }
             subView.isHidden = false
             menuStackView.isHidden = false
+            menuButton.isHidden = false
     
             return hexImage
         }
