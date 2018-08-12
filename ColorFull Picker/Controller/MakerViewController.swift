@@ -151,7 +151,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let redValue: Double = Double(hexPicker.selectedRow(inComponent: 0))
             let greenValue: Double = Double(hexPicker.selectedRow(inComponent: 1))
             let blueValue: Double = Double(hexPicker.selectedRow(inComponent: 2))
-            print(redValue)
             
             UIView.animate(withDuration: 0.5, animations: {
                 self.redControl.setValue(Float(redValue / 255.0), animated: true)
@@ -167,7 +166,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let blueHex = rawArray[hexPicker.selectedRow(inComponent: 2)]
             let hexCode = redHex + greenHex + blueHex
             UserDefaults.standard.set(hexCode, forKey: "color")
-            print("hexCode from picker: \(hexCode)")
         } else {
             fatalError()
         }
@@ -229,14 +227,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let arrays = [redArray, greenArray, blueArray] // TODO: needed? Maybe replace with rawArray
-        var currentArray = [""]
-        if component == 0 || component == 1 || component == 2 {
-            currentArray = arrays[component]!
-        } else {
-            print("component is: \(component)")
-        }
-        return currentArray[row]
+        return rawArray[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
