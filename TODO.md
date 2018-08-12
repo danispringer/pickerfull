@@ -11,7 +11,6 @@
 
 EARLIER:
 
-CP: replAce keyboArd with 6 dAte pickers
 CP: Add Ability to pAste A hex code. Either long press on text field (better) or Add to sub view menu (even if long press works, it’s probAbly better to include it in the sub view
 CP: night shift switch (or A leAst detect whether it’s on)
 CP: Add option to include sliders when creAting imAge
