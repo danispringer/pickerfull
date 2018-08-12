@@ -183,6 +183,13 @@
                                     <action selector="menuPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kWP-aI-koj"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error displaying hex code. Please let the developer know." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8SX-MU-lZV">
+                                <rect key="frame" x="16" y="273.5" width="294" height="42.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -190,6 +197,7 @@
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="top" secondItem="hVt-tU-dBP" secondAttribute="bottom" constant="49" id="07X-IL-lf1"/>
                             <constraint firstItem="yNi-Xs-sE7" firstAttribute="top" secondItem="AHi-t1-Uyy" secondAttribute="bottom" constant="27" id="2cm-ld-hee"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="top" secondItem="NXx-mh-U48" secondAttribute="bottom" constant="25" id="6qI-iq-hbb"/>
+                            <constraint firstItem="8SX-MU-lZV" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="C9c-sd-IC6"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Mbm-WL-1UH"/>
                             <constraint firstItem="yNi-Xs-sE7" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="NMk-B8-vHd"/>
@@ -198,10 +206,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AHi-t1-Uyy" secondAttribute="trailing" constant="16" id="Sej-Vz-6BR"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="25" id="Vju-WH-3s4"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aDE-se-Dgi"/>
+                            <constraint firstItem="8SX-MU-lZV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="bFS-jL-P4y"/>
                             <constraint firstItem="hVt-tU-dBP" firstAttribute="top" secondItem="KHn-Oj-ley" secondAttribute="bottom" constant="45" id="gDf-NI-eMw"/>
                             <constraint firstItem="98d-1N-siW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="90" id="gda-8j-2eR"/>
                             <constraint firstItem="hVt-tU-dBP" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tA5-8e-HlW"/>
                             <constraint firstItem="98d-1N-siW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="uCj-wd-HTu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8SX-MU-lZV" secondAttribute="trailing" constant="10" id="wVY-Xn-kJK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="98d-1N-siW" secondAttribute="trailing" constant="10" id="z3n-Jv-F4k"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -210,6 +220,7 @@
                         <outlet property="blueControl" destination="KHn-Oj-ley" id="1P8-wD-cNl"/>
                         <outlet property="brightnessSlider" destination="hVt-tU-dBP" id="kWe-2C-k2I"/>
                         <outlet property="greenControl" destination="NXx-mh-U48" id="0Y5-55-rSO"/>
+                        <outlet property="hexLabel" destination="8SX-MU-lZV" id="J9z-d7-wQW"/>
                         <outlet property="hexPicker" destination="AHi-t1-Uyy" id="Zan-8k-3cD"/>
                         <outlet property="menuButton" destination="yNi-Xs-sE7" id="L5z-xF-GWd"/>
                         <outlet property="menuStackView" destination="kYP-5x-YPK" id="bjT-oz-Tdw"/>
