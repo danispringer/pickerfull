@@ -166,7 +166,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNi-Xs-sE7">
-                                <rect key="frame" x="138.5" y="502" width="43" height="33"/>
+                                <rect key="frame" x="138.5" y="519" width="43" height="33"/>
                                 <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <state key="normal" title="Menu">
@@ -188,8 +188,8 @@
                         <constraints>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="013-pC-knr"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="top" secondItem="hVt-tU-dBP" secondAttribute="bottom" constant="49" id="07X-IL-lf1"/>
-                            <constraint firstItem="yNi-Xs-sE7" firstAttribute="top" secondItem="AHi-t1-Uyy" secondAttribute="bottom" constant="27" id="2cm-ld-hee"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="top" secondItem="NXx-mh-U48" secondAttribute="bottom" constant="25" id="6qI-iq-hbb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yNi-Xs-sE7" secondAttribute="bottom" constant="16" id="9pa-l6-qbi"/>
                             <constraint firstItem="8SX-MU-lZV" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="C9c-sd-IC6"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Mbm-WL-1UH"/>
