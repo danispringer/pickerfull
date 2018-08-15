@@ -12,6 +12,8 @@
 
 SCREENSHOTS HERE
 
+![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/81-resized.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/82-resized.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/83-resized.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/84-resized.jpg)
+
 # Contributing
 Want to help? You can:
 - Suggest changes by creating an Issue.
