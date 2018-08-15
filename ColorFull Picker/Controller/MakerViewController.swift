@@ -158,7 +158,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 self.redControl.setValue(Float(redValue / 255.0), animated: true)
                 self.greenControl.setValue(Float(greenValue / 255.0), animated: true)
                 self.blueControl.setValue(Float(blueValue / 255.0), animated: true)
-                self.brightnessSlider.setValue(1.0, animated: true)
                 self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
             })
 
