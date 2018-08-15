@@ -42,5 +42,5 @@ cleAn sliders while lAunching
 
 • Version N.N.N brings some bug fixes.
 
-• Is there A feAture you'd like to see? A bug you'd like to go AwAy? Let us know by opening the App And tApping on the shAre button, selecting 'ContAct And info', then tApping on the mAil icon - or by visiting www.DAniSpringer.GitHub.io
-• Love the App? PleAse consider leAving A review. It would meAn A ColorFull lot to us!
+• Is there  feature you'd like to see? A bug you'd like to go away? Let us know by opening the app and tapping on the share button, selecting 'Contact and info', then tapping on the mail icon - or by visiting www.DaniSpringer.GitHub.io
+• Love the app? Please consider leaving a review. It would mean a ColorFull lot to us!
