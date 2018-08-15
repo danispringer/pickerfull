@@ -306,7 +306,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func shareHexAsText(_ sender: Any) {
         
-        let myText = UserDefaults.standard.string(forKey: "color")
+        let myText = UserDefaults.standard.string(forKey: "color")!
 
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = self.view // for iPads not to crash
