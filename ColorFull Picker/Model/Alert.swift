@@ -20,7 +20,7 @@ extension UIViewController {
         case imageSaved = "imageSaved"
         case hexSaved = "hexSaved"
         case imageCopied = "imageCopied"
-        case codeTooShort = "codeTooShort"
+        case permissionDenied = "permissionDenied"
     }
     
     func createAlert(alertReasonParam: String) -> UIAlertController {
@@ -49,9 +49,9 @@ extension UIViewController {
         case alertReason.imageCopied.rawValue:
             alertTitle = "Success!"
             alertMessage = "Your image has been copied.\nDon't forget to paste it somewhere!"
-        case alertReason.codeTooShort.rawValue:
-            alertTitle = "HEX too short"
-            alertMessage = "Please type 6 characters to generate a valid HEX code."
+        case alertReason.permissionDenied.rawValue:
+            alertTitle = "Permission denied"
+            alertMessage = "ColorFull needs access to your gallery in order to save your image. Please allow access in Settings."
         default:
             alertTitle = "Unknown error"
             alertMessage = "An unknown error occurred. Please try again later, or contact us by visiting DaniSpringer.GitHub.io"

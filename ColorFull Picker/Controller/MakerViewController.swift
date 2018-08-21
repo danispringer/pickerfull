@@ -268,7 +268,14 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     @objc func saveImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         guard error == nil else {
-            let alert = createAlert(alertReasonParam: alertReason.unknown.rawValue)
+            let alert = createAlert(alertReasonParam: alertReason.permissionDenied.rawValue)
+            let goToSettingsButton = UIAlertAction(title: "Open Settings", style: .default, handler: {
+                action in
+                if let url = NSURL(string: UIApplicationOpenSettingsURLString) as URL? {
+                    UIApplication.shared.open(url)
+                }
+            })
+            alert.addAction(goToSettingsButton)
             present(alert, animated: true)
             return
         }
