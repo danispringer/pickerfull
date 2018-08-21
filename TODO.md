@@ -11,9 +11,10 @@
 
 EARLIER:
 
-CP: Add Ability to pAste A hex code. Either long press on text field (better) or Add to sub view menu (even if long press works, it’s probAbly better to include it in the sub view
+CP: Add Ability to pAste A hex code. Add to sub view menu (even if long press works, it’s probAbly better to include it in the sub view
 CP: Add option to include sliders when creAting imAge
 CP: stArt brightness slider At current brightness? First try moving AnimAtion to viewDidAppeAr
+PF: warn about permission denied if image saving fails
 
 
 [?] Core DAtA: history of colors (Add sAve to App GAllery button)
