@@ -99,7 +99,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
         })
         
-        for state: UIControlState in [.normal, .reserved, .selected, .highlighted, .focused] {
+        for state: UIControl.State in [.normal, .reserved, .selected, .highlighted, .focused] {
             menuButton.setTitleColor(.white, for: state)
             menuButton.layer.backgroundColor = UIColor(red:0.37, green:0.37, blue:0.37, alpha:0.5).cgColor
         }
@@ -227,7 +227,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
         let string = rawArray[row]
-        return NSAttributedString(string: string, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        return NSAttributedString(string: string, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     
     
@@ -271,7 +271,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let alert = createAlert(alertReasonParam: alertReason.permissionDenied.rawValue)
             let goToSettingsButton = UIAlertAction(title: "Open Settings", style: .default, handler: {
                 action in
-                if let url = NSURL(string: UIApplicationOpenSettingsURLString) as URL? {
+                if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
                     UIApplication.shared.open(url)
                 }
             })
@@ -381,12 +381,12 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     // MARK: Notifications
     
     func subscribeToBrightnessNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateBrightness(_:)), name: .UIScreenBrightnessDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBrightness(_:)), name: UIScreen.brightnessDidChangeNotification, object: nil)
     }
     
     
     func unsubscribeFromBrightnessNotifications() {
-        NotificationCenter.default.removeObserver(self, name: .UIScreenBrightnessDidChange, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIScreen.brightnessDidChangeNotification, object: nil)
     }
     
 }
