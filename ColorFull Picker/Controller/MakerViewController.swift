@@ -29,6 +29,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     enum Controls {
         case slider
         case picker
+        case paste
     }
     
     var currentUIColor: UIColor!
@@ -36,7 +37,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     var timer: Timer!
     var brightnessFractionToAdd: CGFloat!
     
-    var rawArray = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "1A", "1B", "1C", "1D", "1E", "1F", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "2A", "2B", "2C", "2D", "2E", "2F", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "3A", "3B", "3C", "3D", "3E", "3F", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "4A", "4B", "4C", "4D", "4E", "4F", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "5A", "5B", "5C", "5D", "5E", "5F", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "6A", "6B", "6C", "6D", "6E", "6F", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "7A", "7B", "7C", "7D", "7E", "7F", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "8A", "8B", "8C", "8D", "8E", "8F", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "9A", "9B", "9C", "9D", "9E", "9F", "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "AA", "AB", "AC", "AD", "AE", "AF", "B0", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "BA", "BB", "BC", "BD", "BE", "BF", "C0", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "CA", "CB", "CC", "CD", "CE", "CF", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "DA", "DB", "DC", "DD", "DE", "DF", "E0", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "EA", "EB", "EC", "ED", "EE", "EF", "F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "FA", "FB", "FC", "FD", "FE", "FF"] // TODO: generate
+    var rawArray = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "1A", "1B", "1C", "1D", "1E", "1F", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "2A", "2B", "2C", "2D", "2E", "2F", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "3A", "3B", "3C", "3D", "3E", "3F", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "4A", "4B", "4C", "4D", "4E", "4F", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "5A", "5B", "5C", "5D", "5E", "5F", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "6A", "6B", "6C", "6D", "6E", "6F", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "7A", "7B", "7C", "7D", "7E", "7F", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "8A", "8B", "8C", "8D", "8E", "8F", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "9A", "9B", "9C", "9D", "9E", "9F", "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "AA", "AB", "AC", "AD", "AE", "AF", "B0", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "BA", "BB", "BC", "BD", "BE", "BF", "C0", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "CA", "CB", "CC", "CD", "CE", "CF", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "DA", "DB", "DC", "DD", "DE", "DF", "E0", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "EA", "EB", "EC", "ED", "EE", "EF", "F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "FA", "FB", "FC", "FD", "FE", "FF"]
     
     
     // MARK: Life Cycle
@@ -122,7 +123,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     // MARK: Helper
     
-    func updateColor(control: Controls) {
+    func updateColor(control: Controls, hexString: String = "") {
         
         if control == .slider {
             
@@ -167,6 +168,31 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let blueHex = rawArray[hexPicker.selectedRow(inComponent: 2)]
             let hexCode = redHex + greenHex + blueHex
             UserDefaults.standard.set(hexCode, forKey: "color")
+        } else if control == .paste {
+            let redString = hexString[0...1]
+            let greenString = hexString[2...3]
+            let blueString = hexString[4...5]
+            
+            let redIndex = rawArray.index(of: String(redString))
+            let greenIndex = rawArray.index(of: String(greenString))
+            let blueIndex = rawArray.index(of: String(blueString))
+            
+            hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
+            hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
+            hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
+            
+            let redValue: Double = Double(hexPicker.selectedRow(inComponent: 0))
+            let greenValue: Double = Double(hexPicker.selectedRow(inComponent: 1))
+            let blueValue: Double = Double(hexPicker.selectedRow(inComponent: 2))
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.redControl.setValue(Float(redValue / 255.0), animated: true)
+                self.greenControl.setValue(Float(greenValue / 255.0), animated: true)
+                self.blueControl.setValue(Float(blueValue / 255.0), animated: true)
+                self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
+            })
+            
+            UserDefaults.standard.set(hexString, forKey: "color")
         } else {
             fatalError()
         }
@@ -268,7 +294,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     @objc func saveImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         guard error == nil else {
-            let alert = createAlert(alertReasonParam: alertReason.permissionDenied.rawValue)
+            let alert = createAlert(alertReasonParam: alertReason.permissionDenied)
             let goToSettingsButton = UIAlertAction(title: "Open Settings", style: .default, handler: {
                 action in
                 if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
@@ -279,7 +305,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             present(alert, animated: true)
             return
         }
-        let alert = createAlert(alertReasonParam: alertReason.imageSaved.rawValue)
+        let alert = createAlert(alertReasonParam: alertReason.imageSaved)
         let goToLibraryButton = UIAlertAction(title: "Open Gallery", style: .default, handler: {
             action in
             UIApplication.shared.open(URL(string:"photos-redirect://")!)
@@ -294,7 +320,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         let pasteboard = UIPasteboard.general
         pasteboard.string = UserDefaults.standard.string(forKey: "color")
         
-        let alert = createAlert(alertReasonParam: alertReason.hexSaved.rawValue)
+        let alert = createAlert(alertReasonParam: alertReason.hexSaved)
         present(alert, animated: true)
     }
     
@@ -305,7 +331,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         let pasteboard = UIPasteboard.general
         pasteboard.image = image
         
-        let alert = createAlert(alertReasonParam: alertReason.imageCopied.rawValue)
+        let alert = createAlert(alertReasonParam: alertReason.imageCopied)
         present(alert, animated: true)
     }
     
@@ -319,7 +345,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
-                let alert = self.createAlert(alertReasonParam: alertReason.unknown.rawValue)
+                let alert = self.createAlert(alertReasonParam: alertReason.unknown)
                 self.present(alert, animated: true)
                 return
             }
@@ -339,7 +365,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
-                let alert = self.createAlert(alertReasonParam: alertReason.unknown.rawValue)
+                let alert = self.createAlert(alertReasonParam: alertReason.unknown)
                 self.present(alert, animated: true)
                 return
             }
@@ -377,6 +403,52 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
             return hexImage
         }
+    
+    
+    @IBAction func pasteText() {
+        // check if valid hex code
+        guard let pastedString = UIPasteboard.general.string else {
+            let alert = createAlert(alertReasonParam: alertReason.unknown)
+            present(alert, animated: true)
+            return
+        }
+        
+        let results = isValidHex(hex: pastedString)
+        
+        guard results.0 else {
+            let alert = createAlert(alertReasonParam: alertReason.invalidHex)
+            present(alert, animated: true)
+            print("invalid hex")
+            return
+        }
+        
+        print("valid hex")
+        updateColor(control: Controls.paste, hexString: results.1)
+        let alert = createAlert(alertReasonParam: alertReason.hexPasted)
+        present(alert, animated: true)
+        
+    }
+    
+    
+    func isValidHex(hex: String) -> (Bool, String) {
+        
+        let uppercased = hex.uppercased()
+        let trimmedFromSpaces = uppercased.trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleanedFromPound = trimmedFromSpaces.replacingOccurrences(of: "#", with: "")
+        let cleanedFromSymbols = cleanedFromPound.trimmingCharacters(in: .punctuationCharacters)
+        
+        let validHexChars = "ABCDEF0123456789"
+        
+        for char in cleanedFromSymbols {
+            if !validHexChars.contains(char) {
+                print("invalid hex: \(char)")
+                return (false, "")
+            }
+        }
+    
+        return (true, cleanedFromSymbols)
+    }
+    
     
     // MARK: Notifications
     
