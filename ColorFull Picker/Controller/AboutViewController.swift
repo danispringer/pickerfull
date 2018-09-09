@@ -51,7 +51,7 @@ class AboutViewController: UIViewController {
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
-                let alert = self.createAlert(alertReasonParam: alertReason.unknown.rawValue)
+                let alert = self.createAlert(alertReasonParam: alertReason.unknown)
                 self.present(alert, animated: true)
                 return
             }
@@ -86,11 +86,11 @@ extension AboutViewController: MFMailComposeViewControllerDelegate {
         dismiss(animated: true, completion: {
             switch result {
             case MFMailComposeResult.failed:
-                alert = self.createAlert(alertReasonParam: alertReason.messageFailed.rawValue)
+                alert = self.createAlert(alertReasonParam: alertReason.messageFailed)
             case MFMailComposeResult.saved:
-                alert = self.createAlert(alertReasonParam: alertReason.messageSaved.rawValue)
+                alert = self.createAlert(alertReasonParam: alertReason.messageSaved)
             case MFMailComposeResult.sent:
-                alert = self.createAlert(alertReasonParam: alertReason.messageSent.rawValue)
+                alert = self.createAlert(alertReasonParam: alertReason.messageSent)
             default:
                 break
             }
