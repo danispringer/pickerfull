@@ -11,7 +11,6 @@
 
 EaRLIER:
 
-CP: add ability to paste a hex code. add to sub view menu (even if long press works, it’s probably better to include it in the sub view
 CP: add option to include sliders when creating image
 CP: start brightness slider at current brightness? First try moving animation to viewDidappear
 
