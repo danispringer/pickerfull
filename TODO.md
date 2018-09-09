@@ -7,7 +7,7 @@
 [no requested features. Is there a feature you'd like? Let me know: [https://danispringer.github.io](https://danispringer.github.io)]
 
 
-###### Developer notes (feel free to peek)
+###### Notes
 
 EaRLIER:
 
