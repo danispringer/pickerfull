@@ -11,47 +11,55 @@ import UIKit
 
 extension UIViewController {
     
-    enum alertReason: String {
-        case network = "network"
-        case messageSaved = "messageSaved"
-        case messageFailed = "messageFailed"
-        case messageSent = "messageSent"
-        case unknown = "unknown"
-        case imageSaved = "imageSaved"
-        case hexSaved = "hexSaved"
-        case imageCopied = "imageCopied"
-        case permissionDenied = "permissionDenied"
+    enum alertReason {
+        case network
+        case messageSaved
+        case messageFailed
+        case messageSent
+        case unknown
+        case imageSaved
+        case hexSaved
+        case imageCopied
+        case permissionDenied
+        case invalidHex
+        case hexPasted
     }
     
-    func createAlert(alertReasonParam: String) -> UIAlertController {
+    func createAlert(alertReasonParam: alertReason) -> UIAlertController {
         
         var alertTitle = ""
         var alertMessage = ""
         switch alertReasonParam {
-        case alertReason.network.rawValue:
+        case .network:
             alertTitle = "Network error"
             alertMessage = "Please check your network connection and try again."
-        case alertReason.messageSaved.rawValue:
+        case .messageSaved:
             alertTitle = "Message saved"
             alertMessage = "Your message has been saved to drafts."
-        case alertReason.messageFailed.rawValue:
+        case .messageFailed:
             alertTitle = "Action failed"
             alertMessage = "Your message has not been sent. Please try again later, or contact us by visiting DaniSpringer.GitHub.io"
-        case alertReason.messageSent.rawValue:
+        case .messageSent:
             alertTitle = "Success!"
             alertMessage = "Your message has been sent. You should hear from us within 24 working hours."
-        case alertReason.imageSaved.rawValue:
+        case .imageSaved:
             alertTitle = "Success!"
             alertMessage = "Your image has been saved to your library."
-        case alertReason.hexSaved.rawValue:
+        case .hexSaved:
             alertTitle = "Success!"
             alertMessage = "Your HEX code has been copied.\nDon't forget to paste it somewhere!"
-        case alertReason.imageCopied.rawValue:
+        case .imageCopied:
             alertTitle = "Success!"
             alertMessage = "Your image has been copied.\nDon't forget to paste it somewhere!"
-        case alertReason.permissionDenied.rawValue:
+        case .permissionDenied:
             alertTitle = "Permission denied"
             alertMessage = "ColorFull needs access to your gallery in order to save your image. Please allow access in Settings."
+        case .invalidHex:
+            alertTitle = "Invalid HEX"
+            alertMessage = "The HEX code you attempted to paste appears to be invalid. Please check your code and try again."
+        case .hexPasted:
+            alertTitle = "Success!"
+            alertMessage = "The app's sliders and spinners have been updated with your pasted HEX code."
         default:
             alertTitle = "Unknown error"
             alertMessage = "An unknown error occurred. Please try again later, or contact us by visiting DaniSpringer.GitHub.io"
