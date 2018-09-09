@@ -432,6 +432,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func isValidHex(hex: String) -> (Bool, String) {
         
+        guard hex.count == 6 else {
+            return (false, "")
+        }
+        
         let uppercased = hex.uppercased()
         let trimmedFromSpaces = uppercased.trimmingCharacters(in: .whitespacesAndNewlines)
         let cleanedFromPound = trimmedFromSpaces.replacingOccurrences(of: "#", with: "")
