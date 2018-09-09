@@ -168,6 +168,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let blueHex = rawArray[hexPicker.selectedRow(inComponent: 2)]
             let hexCode = redHex + greenHex + blueHex
             UserDefaults.standard.set(hexCode, forKey: "color")
+            
         } else if control == .paste {
             let redString = hexString[0...1]
             let greenString = hexString[2...3]
