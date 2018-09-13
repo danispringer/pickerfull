@@ -409,7 +409,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBAction func pasteText() {
         // check if valid hex code
         guard let pastedString = UIPasteboard.general.string else {
-            let alert = createAlert(alertReasonParam: alertReason.unknown)
+            let alert = createAlert(alertReasonParam: alertReason.emptyPaste)
             present(alert, animated: true)
             return
         }

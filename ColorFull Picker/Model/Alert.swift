@@ -21,6 +21,7 @@ extension UIViewController {
         case hexSaved
         case imageCopied
         case permissionDenied
+        case emptyPaste
         case invalidHex
         case hexPasted
     }
@@ -57,6 +58,9 @@ extension UIViewController {
         case .invalidHex:
             alertTitle = "Invalid HEX"
             alertMessage = "The HEX code you attempted to paste appears to be invalid. Please check your code and try again."
+        case .emptyPaste:
+            alertTitle = "Pasteboard empty"
+            alertMessage = "There's nothing to paste. Please copy a HEX code and try again."
         case .hexPasted:
             alertTitle = "Success!"
             alertMessage = "The app's sliders and spinners have been updated with your pasted HEX code."
