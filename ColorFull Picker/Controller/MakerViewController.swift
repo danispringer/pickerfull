@@ -271,7 +271,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     // MARK: Menu Options
     
     @IBAction func menuPressed(_ sender: Any) {
-        menuStackView.isHidden = !menuStackView.isHidden
+        menuStackView.isHidden.toggle()
         subView.isHidden = menuStackView.isHidden
         if menuStackView.isHidden {
             SKStoreReviewController.requestReview()
