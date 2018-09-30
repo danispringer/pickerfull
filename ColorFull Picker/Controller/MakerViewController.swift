@@ -417,7 +417,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         let results = isValidHex(hex: pastedString)
         
         guard results.0 else {
-            let alert = createAlert(alertReasonParam: alertReason.invalidHex)
+            let alert = createAlert(alertReasonParam: alertReason.invalidHex, invalidHex: results.1)
             present(alert, animated: true)
             print("invalid hex")
             return
@@ -434,7 +434,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     func isValidHex(hex: String) -> (Bool, String) {
         
         guard hex.count == 6 else {
-            return (false, "")
+            return (false, hex)
         }
         
         let uppercased = hex.uppercased()
@@ -447,7 +447,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         for char in cleanedFromSymbols {
             if !validHexChars.contains(char) {
                 print("invalid hex: \(char)")
-                return (false, "")
+                return (false, hex)
             }
         }
     
