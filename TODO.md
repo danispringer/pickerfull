@@ -11,21 +11,9 @@
 
 EaRLIER:
 
-CP: add option to include sliders when creating image
-CP: start brightness slider at current brightness? First try moving animation to viewDidappear
+Core Data: history of colors (add save to app Gallery button)
 
-
-[?] Core Data: history of colors (add save to app Gallery button)
-
-LaTER:
-
-take photo and pick color from it
-update text while sliding on launch
-Change slider values by tilting (only if optional)
-random color generator
 size classes
-rgb
-clean sliders while launching
 
 ###### app Store Description
 • Looking to create your perfect color real fast? This app is for you.
