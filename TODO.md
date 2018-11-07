@@ -9,11 +9,8 @@
 
 ###### Notes
 
-EaRLIER:
-
-Core Data: history of colors (add save to app Gallery button)
-
-size classes
+- Core Data: history of colors (add save to app Gallery button)
+- size classes
 
 ###### app Store Description
 • Looking to create your perfect color real fast? This app is for you.
