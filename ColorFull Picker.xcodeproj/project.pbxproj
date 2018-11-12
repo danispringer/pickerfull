@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		332B411B219A3C5400491A87 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332B411A219A3C5400491A87 /* UIImage+Extension.swift */; };
 		334DEC2420A92DC100B02051 /* String+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334DEC2320A92DC000B02051 /* String+subscript.swift */; };
 		338818DE210F8F350002C49F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338818DD210F8F350002C49F /* AboutViewController.swift */; };
 		33CF3A88204F084B000823BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF3A87204F084B000823BF /* AppDelegate.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		332B411A219A3C5400491A87 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "../../../primes-fun/Primes Fun/Model/UIImage+Extension.swift"; sourceTree = "<group>"; };
 		334DEC2320A92DC000B02051 /* String+subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+subscript.swift"; sourceTree = "<group>"; };
 		338818DD210F8F350002C49F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		33CF3A84204F084B000823BF /* ColorFull Picker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ColorFull Picker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +61,7 @@
 		33CD2A2B20FADE9A004A4CB3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				332B411A219A3C5400491A87 /* UIImage+Extension.swift */,
 				334DEC2320A92DC000B02051 /* String+subscript.swift */,
 				33CFDBBA20FAF53D00421535 /* Alert.swift */,
 			);
@@ -204,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33CFDBBE20FB044500421535 /* KeyboardButton.swift in Sources */,
+				332B411B219A3C5400491A87 /* UIImage+Extension.swift in Sources */,
 				33CF3A8A204F084B000823BF /* MakerViewController.swift in Sources */,
 				33CF3A88204F084B000823BF /* AppDelegate.swift in Sources */,
 				33CFDBBB20FAF53D00421535 /* Alert.swift in Sources */,
