@@ -13,7 +13,6 @@
 - improve for ipad
 - [?] black status bar
 - Core Data: history of colors (add save to app Gallery button)
-- tableview dark mode
 
 
 ###### App Store Description
