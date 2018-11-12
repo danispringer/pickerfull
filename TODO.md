@@ -9,10 +9,12 @@
 
 ###### Notes
 
+- pick from image
+- improve for ipad
 - Core Data: history of colors (add save to app Gallery button)
-- size classes
 
-###### app Store Description
+
+###### App Store Description
 • Looking to create your perfect color real fast? This app is for you.
 • ColorFull Picker lets you intuitively generate your perfect color from millions of combinations, using just 3 sliders, or 3 spinners for max precision.
 • ColorFull Picker lets you also directly paste a HEX code you previously copied, so you can instantly preview it, edit it, or share it as a customised screenshot (simply tap on 'Menu', 'Share as image').
