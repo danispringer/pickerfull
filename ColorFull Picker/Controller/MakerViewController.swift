@@ -24,6 +24,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var myToolbar: UIToolbar!
     @IBOutlet weak var hexLabel: UILabel!
     @IBOutlet weak var creditLabel: UILabel!
+    @IBOutlet weak var myTableView: UITableView!
     
 
     // MARK: properties
@@ -70,6 +71,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         menuButton.tintColor = .white
         myToolbar.setBackgroundImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha:0.5)), forToolbarPosition: .any, barMetrics: .default)
+        
+        myTableView.backgroundColor = .black
+        myTableView.tintColor = .white
+        
     }
     
     
@@ -262,6 +267,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         if menuTableView.isHidden {
             SKStoreReviewController.requestReview()
+        } else {
+            menuTableView.flashScrollIndicators()
         }
     }
 
@@ -447,6 +454,11 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         cell.textLabel?.text = "\(myDataSource[(indexPath as NSIndexPath).row])"
         cell.selectionStyle = .none
+        cell.backgroundColor = .black
+        cell.tintColor = .white
+        cell.textLabel?.backgroundColor = .black
+        cell.textLabel?.tintColor = .white
+        cell.textLabel?.textColor = .white
         
         return cell
     }
