@@ -60,11 +60,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         subView.layer.shadowRadius = 10
         subView.layer.shadowOpacity = 0.6
         
-        let initialBrightness = UIScreen.main.brightness
-        let brightnessMissing = 1.0 - initialBrightness
-        brightnessFractionToAdd = brightnessMissing / 200.0
-        
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.animateBrightness), userInfo: nil, repeats: true)
+        UIScreen.main.brightness = 1.0
         
         redControl.thumbTintColor = .red
         greenControl.thumbTintColor = .green
@@ -81,7 +77,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         let hexString = UserDefaults.standard.string(forKey: "color")
         
         
-        UIView.animate(withDuration: 2.0, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.redControl.setValue(Float("0x" + hexString![0...1])! / 255, animated: true)
             self.greenControl.setValue(Float("0x" + hexString![2...3])! / 255, animated: true)
             self.blueControl.setValue(Float("0x" + hexString![4...5])! / 255, animated: true)
@@ -99,6 +95,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
             
             self.brightnessSlider.setValue(1.0, animated: true)
+            
             self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
         })
         
@@ -220,16 +217,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func brightnessChanged() {
         UIScreen.main.brightness = CGFloat(brightnessSlider.value)
-    }
-    
-    
-    @objc func animateBrightness() {
-        if (UIScreen.main.brightness >= 1.0) {
-            timer.invalidate()
-        }
-        else {
-            UIScreen.main.brightness += brightnessFractionToAdd
-        }
     }
     
     
