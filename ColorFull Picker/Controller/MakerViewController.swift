@@ -22,6 +22,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var hexPicker: UIPickerView!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var hexLabel: UILabel!
+    @IBOutlet weak var creditLabel: UILabel!
     
 
     // MARK: properties
@@ -48,6 +49,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         hexPicker.delegate = self
         
         hexLabel.isHidden = true
+        creditLabel.isHidden = true
 
         menuStackView.isHidden = true
         subView.isHidden = true
@@ -387,11 +389,13 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             
             hexLabel.text = UserDefaults.standard.string(forKey: "color")
             hexLabel.isHidden = false
+            creditLabel.isHidden = false
             UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0)
             view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
             let hexImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
             hexLabel.isHidden = true
+            creditLabel.isHidden = true
 
             for slider in [redControl, greenControl, blueControl, brightnessSlider] {
                 slider?.isHidden = false
