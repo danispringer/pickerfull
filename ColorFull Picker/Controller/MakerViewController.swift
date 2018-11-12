@@ -74,8 +74,25 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             UserDefaults.standard.register(defaults: ["color": "E57BF2"])
         }
         
-        let hexString = UserDefaults.standard.string(forKey: "color")
+        for state: UIControl.State in [.normal, .reserved, .selected, .highlighted, .focused] {
+            menuButton.setTitleColor(.white, for: state)
+            menuButton.layer.backgroundColor = UIColor(red:0.37, green:0.37, blue:0.37, alpha:0.5).cgColor
+        }
         
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        subscribeToBrightnessNotifications()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let hexString = UserDefaults.standard.string(forKey: "color")
         
         UIView.animate(withDuration: 0.5, animations: {
             self.redControl.setValue(Float("0x" + hexString![0...1])! / 255, animated: true)
@@ -98,18 +115,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             
             self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
         })
-        
-        for state: UIControl.State in [.normal, .reserved, .selected, .highlighted, .focused] {
-            menuButton.setTitleColor(.white, for: state)
-            menuButton.layer.backgroundColor = UIColor(red:0.37, green:0.37, blue:0.37, alpha:0.5).cgColor
-        }
-        
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        subscribeToBrightnessNotifications()
     }
     
     
