@@ -11,7 +11,7 @@
 
 - pick from image
 - improve for ipad
-- black status bar
+- [?] black status bar
 - Core Data: history of colors (add save to app Gallery button)
 
 
