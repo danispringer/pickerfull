@@ -17,7 +17,7 @@
 ###### App Store Description
 • Looking to create your perfect color real fast? This app is for you.
 • ColorFull Picker lets you intuitively generate your perfect color from millions of combinations, using just 3 sliders, or 3 spinners for max precision.
-• ColorFull Picker lets you also directly paste a HEX code you previously copied, so you can instantly preview it, edit it, or share it as a customised screenshot (simply tap on 'Menu', 'Share as image').
+• ColorFull Picker lets you also directly paste a HEX code you previously copied, so you can instantly preview it, edit it, or share it as a customised screenshot (simply tap on 'Menu', 'Paste text' to preview and edit, then 'Share as image').
 • ColorFull Picker lets you easily save, copy, or share your color, both as an image which includes the color and HEX code, or as plain text.
 • Battery died? No worries. Your last selected color will automatically display when you launch the app again. ColorFull Picker has got your back - and favourite color!
 
