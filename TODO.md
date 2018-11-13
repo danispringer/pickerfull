@@ -29,5 +29,5 @@
 
 • Version N.N.N brings some bug fixes.
 
-• Is there a feature you'd like to see? a bug you'd like to go away? Let us know by opening the app and tapping on the share button, selecting 'Contact and info', then tapping on the mail icon - or by visiting www.DaniSpringer.GitHub.io
+• Is there a feature you'd like to see? a bug you'd like to go away? Let us know by opening the app and tapping on the Menu button, selecting 'Contact and info', then tapping on the mail icon - or by visiting www.DaniSpringer.GitHub.io
 • Love the app? Please consider leaving a review. It would mean a ColorFull lot to us!
