@@ -8,7 +8,7 @@
 - Love the app? Please consider leaving a review. It would mean a ColorFull lot to us!
 - Is there a feature you'd like to see? A bug you'd like to go away? Let us know by opening the app and tapping on the Menu button, selecting 'Contact and info', then tapping on the mail icon - or by visiting www.DaniSpringer.GitHub.io
 
-![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/81-resized.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/82-resized.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/83-resized.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull-picker/master/i/84-resized.jpg)
+PUT SCREENSHOTS HERE
 
 # Contributing
 Want to help? You can:
