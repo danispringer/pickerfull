@@ -454,9 +454,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         cell.textLabel?.text = "\(myDataSource[(indexPath as NSIndexPath).row])"
         cell.selectionStyle = .none
-        cell.backgroundColor = .black
+        cell.backgroundColor = UIColor(red: 0.18, green: 0.18, blue: 0.18, alpha: 1.0)
         cell.tintColor = .white
-        cell.textLabel?.backgroundColor = .black
+        cell.textLabel?.backgroundColor = UIColor(red: 0.18, green: 0.18, blue: 0.18, alpha: 1.0)
         cell.textLabel?.tintColor = .white
         cell.textLabel?.textColor = .white
         
@@ -487,6 +487,18 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             print("default")
         }
         
+    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Menu"
+    }
+    
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = .black
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = .white
     }
     
     
