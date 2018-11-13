@@ -12,6 +12,7 @@
 - pick from image
 - improve for ipad
 - Core Data: history of colors (add save to app Gallery button)
+- Improve design for screenshot labels: CP
 
 
 ###### App Store Description
