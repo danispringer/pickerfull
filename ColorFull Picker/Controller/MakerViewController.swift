@@ -40,13 +40,17 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     var currentUIColor: UIColor!
     var currentHexColor: String!
     
-    var rawArray = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "1A", "1B", "1C", "1D", "1E", "1F", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "2A", "2B", "2C", "2D", "2E", "2F", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "3A", "3B", "3C", "3D", "3E", "3F", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "4A", "4B", "4C", "4D", "4E", "4F", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "5A", "5B", "5C", "5D", "5E", "5F", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "6A", "6B", "6C", "6D", "6E", "6F", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "7A", "7B", "7C", "7D", "7E", "7F", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "8A", "8B", "8C", "8D", "8E", "8F", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "9A", "9B", "9C", "9D", "9E", "9F", "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "AA", "AB", "AC", "AD", "AE", "AF", "B0", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "BA", "BB", "BC", "BD", "BE", "BF", "C0", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "CA", "CB", "CC", "CD", "CE", "CF", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "DA", "DB", "DC", "DD", "DE", "DF", "E0", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "EA", "EB", "EC", "ED", "EE", "EF", "F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "FA", "FB", "FC", "FD", "FE", "FF"]
+    var hexArray: [String] = []
     
     
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for i in 0...255 {
+            hexArray.append(String(format:"%02X", i))
+        }
         
         hexPicker.delegate = self
         
@@ -99,9 +103,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let greenHex = hexString![2...3]
             let blueHex = hexString![4...5]
             
-            let redIndex = self.rawArray.index(of: String(redHex))
-            let greenIndex = self.rawArray.index(of: String(greenHex))
-            let blueIndex = self.rawArray.index(of: String(blueHex))
+            let redIndex = self.hexArray.index(of: String(redHex))
+            let greenIndex = self.hexArray.index(of: String(greenHex))
+            let blueIndex = self.hexArray.index(of: String(blueHex))
             
             self.hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
             self.hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
@@ -140,9 +144,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let greenHex = String(format: "%02X", gBase255)
             let blueHex = String(format: "%02X", bBase255)
 
-            let redIndex = rawArray.index(of: redHex)
-            let greenIndex = rawArray.index(of: greenHex)
-            let blueIndex = rawArray.index(of: blueHex)
+            let redIndex = hexArray.index(of: redHex)
+            let greenIndex = hexArray.index(of: greenHex)
+            let blueIndex = hexArray.index(of: blueHex)
             
             hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
             hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
@@ -163,9 +167,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             })
 
             
-            let redHex = rawArray[hexPicker.selectedRow(inComponent: 0)]
-            let greenHex = rawArray[hexPicker.selectedRow(inComponent: 1)]
-            let blueHex = rawArray[hexPicker.selectedRow(inComponent: 2)]
+            let redHex = hexArray[hexPicker.selectedRow(inComponent: 0)]
+            let greenHex = hexArray[hexPicker.selectedRow(inComponent: 1)]
+            let blueHex = hexArray[hexPicker.selectedRow(inComponent: 2)]
             let hexCode = redHex + greenHex + blueHex
             UserDefaults.standard.set(hexCode, forKey: "color")
             
@@ -174,9 +178,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let greenString = hexString[2...3]
             let blueString = hexString[4...5]
             
-            let redIndex = rawArray.index(of: String(redString))
-            let greenIndex = rawArray.index(of: String(greenString))
-            let blueIndex = rawArray.index(of: String(blueString))
+            let redIndex = hexArray.index(of: String(redString))
+            let greenIndex = hexArray.index(of: String(greenString))
+            let blueIndex = hexArray.index(of: String(blueString))
             
             hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
             hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
@@ -234,7 +238,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 0 {
-            return rawArray.count
+            return hexArray.count
         } else {
             fatalError()
         }
@@ -243,7 +247,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
-        let string = rawArray[row]
+        let string = hexArray[row]
         return NSAttributedString(string: string, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     
