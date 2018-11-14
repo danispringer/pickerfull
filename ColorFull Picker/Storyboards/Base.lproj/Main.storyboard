@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="POM-4Y-HHd">
-                                <rect key="frame" x="80" y="76" width="254" height="31"/>
+                                <rect key="frame" x="80" y="141" width="254" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="pKR-HO-L9J"/>
                                 </constraints>
@@ -27,7 +27,7 @@
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NXx-mh-U48" userLabel="Green Control">
-                                <rect key="frame" x="80" y="131" width="254" height="31"/>
+                                <rect key="frame" x="80" y="196" width="254" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="0uR-hA-ORS"/>
                                 </constraints>
@@ -36,7 +36,7 @@
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KHn-Oj-ley" userLabel="Blue Control">
-                                <rect key="frame" x="80" y="186" width="254" height="31"/>
+                                <rect key="frame" x="80" y="251" width="254" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="3Z2-Bw-l1u"/>
                                 </constraints>
@@ -45,7 +45,7 @@
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hVt-tU-dBP">
-                                <rect key="frame" x="115" y="261" width="184" height="31"/>
+                                <rect key="frame" x="115" y="326" width="184" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="5gq-SJ-xOk"/>
                                 </constraints>
@@ -56,7 +56,7 @@
                                 </connections>
                             </slider>
                             <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="AHi-t1-Uyy">
-                                <rect key="frame" x="0.0" y="336" width="414" height="160"/>
+                                <rect key="frame" x="0.0" y="420" width="414" height="160"/>
                                 <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="Bor-DB-bE0"/>
@@ -82,20 +82,8 @@ Available on the iOS App Store</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yg-0q-cO8">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="SlN-P5-NLh"/>
-                                    <barButtonItem title="Open Menu" id="jey-5k-YDp">
-                                        <connections>
-                                            <action selector="menuPressed:" destination="BYZ-38-t0r" id="LK3-V8-TOJ"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="SAy-QT-gXh"/>
-                                </items>
-                            </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XWc-xH-MVQ">
-                                <rect key="frame" x="0.0" y="336" width="414" height="477"/>
+                                <rect key="frame" x="0.0" y="420" width="414" height="442"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -114,33 +102,45 @@ Available on the iOS App Store</string>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="9Xv-Lm-BfC"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQZ-Rv-xM8" userLabel="Menu Button">
+                                <rect key="frame" x="355" y="44" width="43" height="33"/>
+                                <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Menu">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="menuPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aL8-x8-Qja"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="013-pC-knr"/>
-                            <constraint firstItem="AHi-t1-Uyy" firstAttribute="top" secondItem="hVt-tU-dBP" secondAttribute="bottom" constant="45" id="07X-IL-lf1"/>
+                            <constraint firstItem="AHi-t1-Uyy" firstAttribute="top" secondItem="hVt-tU-dBP" secondAttribute="bottom" constant="64" id="07X-IL-lf1"/>
                             <constraint firstItem="8SX-MU-lZV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="5b6-UX-fB4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BKY-HB-wIv" secondAttribute="trailing" constant="16" id="6b1-xL-Gcm"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="top" secondItem="NXx-mh-U48" secondAttribute="bottom" constant="25" id="6qI-iq-hbb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="XWc-xH-MVQ" secondAttribute="bottom" id="9Xf-tv-g8O"/>
                             <constraint firstItem="8SX-MU-lZV" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="C9c-sd-IC6"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4yg-0q-cO8" secondAttribute="bottom" id="GZU-Rw-yCB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BKY-HB-wIv" secondAttribute="bottom" constant="50" id="HOA-ps-jAK"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Mbm-WL-1UH"/>
-                            <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="P9w-Jk-oXG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AHi-t1-Uyy" secondAttribute="trailing" id="Sej-Vz-6BR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yQZ-Rv-xM8" secondAttribute="trailing" constant="16" id="Ug6-fq-dyL"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="25" id="Vju-WH-3s4"/>
-                            <constraint firstItem="4yg-0q-cO8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WdP-Gb-Uas"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aDE-se-Dgi"/>
                             <constraint firstItem="hVt-tU-dBP" firstAttribute="top" secondItem="KHn-Oj-ley" secondAttribute="bottom" constant="45" id="gDf-NI-eMw"/>
                             <constraint firstItem="XWc-xH-MVQ" firstAttribute="top" secondItem="AHi-t1-Uyy" secondAttribute="top" id="gyM-Te-Vis"/>
-                            <constraint firstItem="4yg-0q-cO8" firstAttribute="top" secondItem="XWc-xH-MVQ" secondAttribute="bottom" id="ibn-6t-OaV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8SX-MU-lZV" secondAttribute="trailing" constant="16" id="m97-om-cGt"/>
                             <constraint firstItem="BKY-HB-wIv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="n95-Oy-Pzb"/>
                             <constraint firstItem="XWc-xH-MVQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="naw-sc-mBg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XWc-xH-MVQ" secondAttribute="trailing" id="nug-bV-ovA"/>
+                            <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="yQZ-Rv-xM8" secondAttribute="bottom" constant="64" id="qrp-oC-Qvb"/>
                             <constraint firstItem="hVt-tU-dBP" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tA5-8e-HlW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4yg-0q-cO8" secondAttribute="trailing" id="xed-Qj-py4"/>
+                            <constraint firstItem="yQZ-Rv-xM8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="usc-96-lrD"/>
+                            <constraint firstItem="yQZ-Rv-xM8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="wrA-UH-DSd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -151,10 +151,9 @@ Available on the iOS App Store</string>
                         <outlet property="greenControl" destination="NXx-mh-U48" id="0Y5-55-rSO"/>
                         <outlet property="hexLabel" destination="8SX-MU-lZV" id="J9z-d7-wQW"/>
                         <outlet property="hexPicker" destination="AHi-t1-Uyy" id="Zan-8k-3cD"/>
-                        <outlet property="menuButton" destination="jey-5k-YDp" id="SE2-di-N5E"/>
+                        <outlet property="menuButton" destination="yQZ-Rv-xM8" id="TIg-xY-kkT"/>
                         <outlet property="menuTableView" destination="XWc-xH-MVQ" id="5au-AR-g3A"/>
                         <outlet property="myTableView" destination="XWc-xH-MVQ" id="FId-l2-HxW"/>
-                        <outlet property="myToolbar" destination="4yg-0q-cO8" id="9Bo-VR-NBW"/>
                         <outlet property="redControl" destination="POM-4Y-HHd" id="d0s-9a-kQe"/>
                     </connections>
                 </viewController>
