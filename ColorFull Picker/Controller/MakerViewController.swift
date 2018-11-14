@@ -75,8 +75,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         menuButton.layer.cornerRadius = 10
         menuButton.titleLabel?.textColor = .white
         menuButton.backgroundColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)
-        menuButton.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
-        
+        menuButton.imageEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+
         myTableView.backgroundColor = .black
         myTableView.tintColor = .white
         
@@ -270,7 +270,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         if menuTableView.isHidden {
             SKStoreReviewController.requestReview()
+            menuButton.setImage(UIImage(named: "menu.png"), for: .normal)
         } else {
+            menuButton.setImage(UIImage(named: "close.png"), for: .normal)
             menuTableView.flashScrollIndicators()
         }
     }
