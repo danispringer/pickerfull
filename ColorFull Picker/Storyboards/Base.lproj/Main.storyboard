@@ -194,19 +194,19 @@ Available on the iOS App Store</string>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="0Ct-Ll-cmv"/>
-                                    <barButtonItem title="Item" image="review" id="xld-t1-w1n">
+                                    <barButtonItem title="Leave a review" image="review" id="xld-t1-w1n">
                                         <connections>
                                             <action selector="requestReviewManually" destination="UeM-w9-sF0" id="68a-H7-RaO"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="JPp-Zy-p1y"/>
-                                    <barButtonItem title="Item" image="mail" id="NzG-O1-a65">
+                                    <barButtonItem title="Send feedback" image="mail" id="NzG-O1-a65">
                                         <connections>
                                             <action selector="launchEmailWithSender:" destination="UeM-w9-sF0" id="02D-Cb-u0X"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ik4-kB-GYt"/>
-                                    <barButtonItem systemItem="action" id="uQq-VW-fzO">
+                                    <barButtonItem title="Share" image="share" id="uQq-VW-fzO">
                                         <connections>
                                             <action selector="shareButtonPressed" destination="UeM-w9-sF0" id="oci-iT-JSM"/>
                                         </connections>
@@ -243,5 +243,6 @@ Available on the iOS App Store</string>
         <image name="mail" width="37.5" height="37.5"/>
         <image name="menu" width="30" height="30"/>
         <image name="review" width="37.5" height="37.5"/>
+        <image name="share" width="50" height="50"/>
     </resources>
 </document>
