@@ -100,7 +100,7 @@ Available on the iOS App Store</string>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XWc-xH-MVQ">
-                                <rect key="frame" x="0.0" y="297" width="414" height="439"/>
+                                <rect key="frame" x="0.0" y="297" width="414" height="471"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -130,7 +130,7 @@ Available on the iOS App Store</string>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BKY-HB-wIv" secondAttribute="bottom" constant="50" id="HOA-ps-jAK"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Mbm-WL-1UH"/>
-                            <constraint firstItem="yQZ-Rv-xM8" firstAttribute="top" secondItem="XWc-xH-MVQ" secondAttribute="bottom" constant="64" id="O1X-bF-Mrs"/>
+                            <constraint firstItem="yQZ-Rv-xM8" firstAttribute="top" secondItem="XWc-xH-MVQ" secondAttribute="bottom" constant="32" id="O1X-bF-Mrs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AHi-t1-Uyy" secondAttribute="trailing" id="Sej-Vz-6BR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yQZ-Rv-xM8" secondAttribute="trailing" constant="16" id="Ug6-fq-dyL"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="25" id="Vju-WH-3s4"/>
