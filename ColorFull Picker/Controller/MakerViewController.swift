@@ -20,11 +20,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var brightnessSlider: UISlider!
     @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet weak var hexPicker: UIPickerView!
-    @IBOutlet weak var menuButton: UIBarButtonItem!
-    @IBOutlet weak var myToolbar: UIToolbar!
     @IBOutlet weak var hexLabel: UILabel!
     @IBOutlet weak var creditLabel: UILabel!
     @IBOutlet weak var myTableView: UITableView!
+    @IBOutlet weak var menuButton: UIButton!
     
 
     // MARK: properties
@@ -73,8 +72,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             UserDefaults.standard.register(defaults: ["color": "E57BF2"])
         }
         
-        menuButton.tintColor = .white
-        myToolbar.setBackgroundImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha:0.5)), forToolbarPosition: .any, barMetrics: .default)
+        menuButton.layer.cornerRadius = 10
+        menuButton.titleLabel?.textColor = .white
+        menuButton.backgroundColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)
+        menuButton.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
         
         myTableView.backgroundColor = .black
         myTableView.tintColor = .white
@@ -266,8 +267,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func menuPressed(_ sender: Any) {
         menuTableView.isHidden.toggle()
-
-        menuButton.title = menuTableView.isHidden ? "Open Menu" : "Close Menu"
         
         if menuTableView.isHidden {
             SKStoreReviewController.requestReview()
@@ -371,8 +370,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 slider?.isHidden = true
             }
             menuTableView.isHidden = true
-            myToolbar.isHidden = true
             hexPicker.isHidden = true
+            menuButton.isHidden = true
             
             hexLabel.text = UserDefaults.standard.string(forKey: "color")
             hexLabel.isHidden = false
@@ -388,9 +387,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 slider?.isHidden = false
             }
             menuTableView.isHidden = false
-            myToolbar.isHidden = false
             hexPicker.isHidden = false
-
+            menuButton.isHidden = false
     
             return hexImage
         }
