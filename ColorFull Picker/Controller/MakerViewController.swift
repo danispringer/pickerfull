@@ -273,6 +273,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             menuButton.setImage(UIImage(named: "menu.png"), for: .normal)
         } else {
             menuButton.setImage(UIImage(named: "close.png"), for: .normal)
+            let myIndexPath = IndexPath(row: 0, section: 0)
+            menuTableView.scrollToRow(at: myIndexPath, at: .top, animated: true)
             menuTableView.flashScrollIndicators()
         }
     }
