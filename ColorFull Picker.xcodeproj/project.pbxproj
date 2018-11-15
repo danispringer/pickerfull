@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		332B411B219A3C5400491A87 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332B411A219A3C5400491A87 /* UIImage+Extension.swift */; };
 		334DEC2420A92DC100B02051 /* String+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334DEC2320A92DC000B02051 /* String+subscript.swift */; };
-		338818DE210F8F350002C49F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338818DD210F8F350002C49F /* AboutViewController.swift */; };
 		33CF3A88204F084B000823BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF3A87204F084B000823BF /* AppDelegate.swift */; };
 		33CF3A8A204F084B000823BF /* MakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF3A89204F084B000823BF /* MakerViewController.swift */; };
 		33CF3A8D204F084B000823BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33CF3A8B204F084B000823BF /* Main.storyboard */; };
@@ -34,7 +33,6 @@
 /* Begin PBXFileReference section */
 		332B411A219A3C5400491A87 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "../../../primes-fun/Primes Fun/Model/UIImage+Extension.swift"; sourceTree = "<group>"; };
 		334DEC2320A92DC000B02051 /* String+subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+subscript.swift"; sourceTree = "<group>"; };
-		338818DD210F8F350002C49F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		33CF3A84204F084B000823BF /* ColorFull Picker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ColorFull Picker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33CF3A87204F084B000823BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33CF3A89204F084B000823BF /* MakerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakerViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				33CF3A89204F084B000823BF /* MakerViewController.swift */,
-				338818DD210F8F350002C49F /* AboutViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -199,7 +196,6 @@
 				33CF3A8A204F084B000823BF /* MakerViewController.swift in Sources */,
 				33CF3A88204F084B000823BF /* AppDelegate.swift in Sources */,
 				33CFDBBB20FAF53D00421535 /* Alert.swift in Sources */,
-				338818DE210F8F350002C49F /* AboutViewController.swift in Sources */,
 				334DEC2420A92DC100B02051 /* String+subscript.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -140,84 +140,8 @@ Available on the iOS App Store</string>
             </objects>
             <point key="canvasLocation" x="133.59999999999999" y="132.68365817091455"/>
         </scene>
-        <!--About View Controller-->
-        <scene sceneID="zLw-FM-65c">
-            <objects>
-                <viewController storyboardIdentifier="AboutViewController" id="UeM-w9-sF0" customClass="AboutViewController" customModule="ColorFull_Picker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="180-T9-7Jx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ColorFull Picker" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8If-PI-39o">
-                                <rect key="frame" x="10" y="443" width="394" height="20.333333333333314"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error displaying version number. Please let the developers know." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BiL-Ai-KHK">
-                                <rect key="frame" x="10" y="478.33333333333331" width="394" height="37.999999999999943"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypA-sX-MC7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
-                                <items>
-                                    <barButtonItem title="Done" image="close" id="umQ-3T-ubB">
-                                        <connections>
-                                            <action selector="doneButtonPressed:" destination="UeM-w9-sF0" id="kmY-LO-3CE"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0Ct-Ll-cmv"/>
-                                    <barButtonItem title="Leave a review" image="review" id="xld-t1-w1n">
-                                        <connections>
-                                            <action selector="requestReviewManually" destination="UeM-w9-sF0" id="68a-H7-RaO"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="JPp-Zy-p1y"/>
-                                    <barButtonItem title="Send feedback" image="mail" id="NzG-O1-a65">
-                                        <connections>
-                                            <action selector="launchEmailWithSender:" destination="UeM-w9-sF0" id="02D-Cb-u0X"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ik4-kB-GYt"/>
-                                    <barButtonItem title="Share" image="share" id="uQq-VW-fzO">
-                                        <connections>
-                                            <action selector="shareButtonPressed" destination="UeM-w9-sF0" id="oci-iT-JSM"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="8If-PI-39o" firstAttribute="leading" secondItem="y1r-y2-23S" secondAttribute="leading" constant="10" id="0TQ-DS-acE"/>
-                            <constraint firstItem="ypA-sX-MC7" firstAttribute="leading" secondItem="y1r-y2-23S" secondAttribute="leading" id="3FX-6P-5h6"/>
-                            <constraint firstItem="BiL-Ai-KHK" firstAttribute="leading" secondItem="y1r-y2-23S" secondAttribute="leading" constant="10" id="9qW-OK-j3m"/>
-                            <constraint firstItem="y1r-y2-23S" firstAttribute="trailing" secondItem="8If-PI-39o" secondAttribute="trailing" constant="10" id="9tF-vn-8D5"/>
-                            <constraint firstItem="BiL-Ai-KHK" firstAttribute="top" secondItem="8If-PI-39o" secondAttribute="bottom" constant="15" id="E64-d4-Zsh"/>
-                            <constraint firstItem="y1r-y2-23S" firstAttribute="trailing" secondItem="BiL-Ai-KHK" secondAttribute="trailing" constant="10" id="ESY-60-rLh"/>
-                            <constraint firstItem="ypA-sX-MC7" firstAttribute="top" secondItem="y1r-y2-23S" secondAttribute="top" id="QJN-1K-zfz"/>
-                            <constraint firstItem="8If-PI-39o" firstAttribute="centerY" secondItem="y1r-y2-23S" secondAttribute="centerY" id="dW7-dc-sy2"/>
-                            <constraint firstItem="y1r-y2-23S" firstAttribute="trailing" secondItem="ypA-sX-MC7" secondAttribute="trailing" id="nWM-ZT-jUn"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="y1r-y2-23S"/>
-                    </view>
-                    <connections>
-                        <outlet property="myToolbar" destination="ypA-sX-MC7" id="5mP-TW-tKR"/>
-                        <outlet property="versionLabel" destination="BiL-Ai-KHK" id="XQg-Pj-TPL"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PAS-jo-dwB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="894" y="133"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="close" width="51" height="51"/>
-        <image name="mail" width="37.5" height="37.5"/>
         <image name="menu" width="30" height="30"/>
-        <image name="review" width="37.5" height="37.5"/>
-        <image name="share" width="50" height="50"/>
     </resources>
 </document>
