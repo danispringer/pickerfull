@@ -275,6 +275,11 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             infoAlert.message = "Version \(version)"
             infoAlert.title = "ColorFull Picker"
         }
+        
+        for alert in [mainAlert, copyAlert, shareAlert, infoAlert] {
+            alert.modalPresentationStyle = .popover
+        }
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
             _ in
             self.dismiss(animated: true, completion: {
@@ -303,6 +308,11 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         let copyAction = UIAlertAction(title: "Copy", style: .default) {
             _ in
+            
+            if let presenter = copyAlert.popoverPresentationController {
+                presenter.sourceView = self.menuToolbar
+                presenter.sourceRect = self.menuToolbar.bounds
+            }
             self.present(copyAlert, animated: true)
         }
         
@@ -322,6 +332,11 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         let shareAction = UIAlertAction(title: "Share", style: .default) {
             _ in
+            
+            if let presenter = shareAlert.popoverPresentationController {
+                presenter.sourceView = self.menuToolbar
+                presenter.sourceRect = self.menuToolbar.bounds
+            }
             self.present(shareAlert, animated: true)
         }
         
@@ -351,11 +366,21 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         let infoAction = UIAlertAction(title: "Contact and info", style: .default) {
             _ in
+            
+            if let presenter = infoAlert.popoverPresentationController {
+                presenter.sourceView = self.menuToolbar
+                presenter.sourceRect = self.menuToolbar.bounds
+            }
             self.present(infoAlert, animated: true)
         }
         
         for action in [downloadImageAction, copyAction, shareAction, pasteTextAction, infoAction, cancelAction] {
             mainAlert.addAction(action)
+        }
+        
+        if let presenter = mainAlert.popoverPresentationController {
+            presenter.sourceView = menuToolbar
+            presenter.sourceRect = menuToolbar.bounds
         }
         
         present(mainAlert, animated: true)
@@ -534,6 +559,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         let message = "Look at this app: ColorFull Picker lets you generate a color from millions of choices using sliders or HEX code, and save or share your created color! https://itunes.apple.com/app/id1410565176 - it's really cool!"
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
+        activityController.modalPresentationStyle = .popover
         activityController.popoverPresentationController?.sourceView = self.view // for iPads not to crash
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
@@ -543,6 +569,11 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 return
             }
         }
+        if let presenter = activityController.popoverPresentationController {
+            presenter.sourceView = menuToolbar
+            presenter.sourceRect = menuToolbar.bounds
+        }
+        
         present(activityController, animated: true)
     }
     
