@@ -22,9 +22,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var hexPicker: UIPickerView!
     @IBOutlet weak var hexLabel: UILabel!
     @IBOutlet weak var creditLabel: UILabel!
-    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var menuToolbar: UIToolbar!
     
-
     // MARK: properties
     
     let myDataSource = ["Download as image", "Copy as text", "Copy as image", "Share as text", "Share as image", "Paste text", "Contact and info"]
@@ -69,10 +68,15 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             UserDefaults.standard.register(defaults: ["color": "E57BF2"])
         }
         
-        menuButton.layer.cornerRadius = 10
-        menuButton.titleLabel?.textColor = .white
-        menuButton.backgroundColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)
-        menuButton.imageEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+        //menuButton.layer.cornerRadius = 10
+        //menuButton.titleLabel?.textColor = .white
+        //menuButton.backgroundColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)
+        //menuButton.imageEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+        
+        menuToolbar.setShadowImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any)
+        menuToolbar.setBackgroundImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any, barMetrics: .default)
+        menuToolbar.layer.cornerRadius = 10
+        menuToolbar.layer.masksToBounds = true
         
     }
     
@@ -454,7 +458,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             }
 
             hexPicker.isHidden = true
-            menuButton.isHidden = true
+            menuToolbar.isHidden = true
             
             hexLabel.text = UserDefaults.standard.string(forKey: "color")
             hexLabel.isHidden = false
@@ -471,7 +475,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             }
 
             hexPicker.isHidden = false
-            menuButton.isHidden = false
+            menuToolbar.isHidden = false
     
             return hexImage
         }
