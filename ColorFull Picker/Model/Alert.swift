@@ -56,7 +56,7 @@ extension UIViewController {
             alertMessage = "ColorFull needs access to your gallery in order to save your image. Please allow access in Settings."
         case .invalidHex:
             alertTitle = "Invalid HEX"
-            alertMessage = "\(invalidHex) is not a valid HEX."
+            alertMessage = "The pasted text\n\"\(invalidHex)\"\nis not a valid HEX."
         case .emptyPaste:
             alertTitle = "Pasteboard empty"
             alertMessage = "There's nothing to paste. Please copy a HEX code and try again."
