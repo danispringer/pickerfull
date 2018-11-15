@@ -11,9 +11,7 @@
 
 - pick from image
 - improve for ipad
-- Core Data: history of colors (add save to app Gallery button)
 - Improve design for custom screenshot labels
-- update app store screenshots
 - random color generator (? + siri shortcuts)
 
 
