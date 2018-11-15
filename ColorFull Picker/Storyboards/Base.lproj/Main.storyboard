@@ -99,26 +99,6 @@ Available on the iOS App Store</string>
                                     <action selector="menuPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aL8-x8-Qja"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XWc-xH-MVQ">
-                                <rect key="frame" x="0.0" y="297" width="414" height="471"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Abx-7e-zhp">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Abx-7e-zhp" id="oGa-Wg-EJ2">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="cVx-Bz-kLv"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="9Xv-Lm-BfC"/>
-                                </connections>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -130,7 +110,6 @@ Available on the iOS App Store</string>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BKY-HB-wIv" secondAttribute="bottom" constant="50" id="HOA-ps-jAK"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Mbm-WL-1UH"/>
-                            <constraint firstItem="yQZ-Rv-xM8" firstAttribute="top" secondItem="XWc-xH-MVQ" secondAttribute="bottom" constant="32" id="O1X-bF-Mrs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AHi-t1-Uyy" secondAttribute="trailing" id="Sej-Vz-6BR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yQZ-Rv-xM8" secondAttribute="trailing" constant="16" id="Ug6-fq-dyL"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="25" id="Vju-WH-3s4"/>
@@ -141,11 +120,8 @@ Available on the iOS App Store</string>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="AHi-t1-Uyy" secondAttribute="bottom" constant="64" id="jlD-jg-bjR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8SX-MU-lZV" secondAttribute="trailing" constant="16" id="m97-om-cGt"/>
                             <constraint firstItem="BKY-HB-wIv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="n95-Oy-Pzb"/>
-                            <constraint firstItem="XWc-xH-MVQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="naw-sc-mBg"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XWc-xH-MVQ" secondAttribute="trailing" id="nug-bV-ovA"/>
                             <constraint firstItem="hVt-tU-dBP" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tA5-8e-HlW"/>
                             <constraint firstItem="yQZ-Rv-xM8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="usc-96-lrD"/>
-                            <constraint firstItem="XWc-xH-MVQ" firstAttribute="top" secondItem="AHi-t1-Uyy" secondAttribute="top" id="zNe-4P-PN0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -157,8 +133,6 @@ Available on the iOS App Store</string>
                         <outlet property="hexLabel" destination="8SX-MU-lZV" id="J9z-d7-wQW"/>
                         <outlet property="hexPicker" destination="AHi-t1-Uyy" id="Zan-8k-3cD"/>
                         <outlet property="menuButton" destination="yQZ-Rv-xM8" id="TIg-xY-kkT"/>
-                        <outlet property="menuTableView" destination="XWc-xH-MVQ" id="5au-AR-g3A"/>
-                        <outlet property="myTableView" destination="XWc-xH-MVQ" id="FId-l2-HxW"/>
                         <outlet property="redControl" destination="POM-4Y-HHd" id="d0s-9a-kQe"/>
                     </connections>
                 </viewController>

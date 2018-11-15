@@ -9,7 +9,7 @@
 import UIKit
 import StoreKit
 
-class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDataSource, UITableViewDelegate {
+class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
 
     // MARK: Outlets
@@ -18,11 +18,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var greenControl: UISlider!
     @IBOutlet weak var blueControl: UISlider!
     @IBOutlet weak var brightnessSlider: UISlider!
-    @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet weak var hexPicker: UIPickerView!
     @IBOutlet weak var hexLabel: UILabel!
     @IBOutlet weak var creditLabel: UILabel!
-    @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var menuButton: UIButton!
     
 
@@ -55,8 +53,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         hexLabel.isHidden = true
         creditLabel.isHidden = true
-
-        menuTableView.isHidden = true
         
         UIScreen.main.brightness = 1.0
         
@@ -76,9 +72,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         menuButton.titleLabel?.textColor = .white
         menuButton.backgroundColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)
         menuButton.imageEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
-
-        myTableView.backgroundColor = .black
-        myTableView.tintColor = .white
         
     }
     
@@ -267,17 +260,58 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func menuPressed(_ sender: Any) {
         
-        let myIndexPath = IndexPath(row: 0, section: 0)
-        menuTableView.scrollToRow(at: myIndexPath, at: .top, animated: true)
-        menuTableView.isHidden.toggle()
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        if menuTableView.isHidden {
-            SKStoreReviewController.requestReview()
-            menuButton.setImage(UIImage(named: "menu.png"), for: .normal)
-        } else {
-            menuButton.setImage(UIImage(named: "close.png"), for: .normal)
-            menuTableView.flashScrollIndicators()
+        let downloadImageAction = UIAlertAction(title: "Download as image", style: .default, handler: {
+            _ in
+            self.downloadHexAndColor()
+        })
+        
+        let copyTextAction = UIAlertAction(title: "Copy as text", style: .default, handler: {
+            _ in
+            self.copyHexAsText()
+            })
+        
+        let copyImageAction = UIAlertAction(title: "Copy as image", style: .default) {
+            _ in
+            self.copyHexAndColorAsImage()
         }
+        
+        let shareTextAction = UIAlertAction(title: "Share as text", style: .default) {
+            _ in
+            self.shareHexAsText()
+        }
+        
+        let shareImageAction = UIAlertAction(title: "Share as image", style: .default) {
+            _ in
+            self.shareHexAndColorAsImage()
+        }
+        
+        let pasteTextAction = UIAlertAction(title: "Paste text", style: .default) {
+            _ in
+            self.pasteText()
+        }
+        
+        let infoAction = UIAlertAction(title: "Contact and info", style: .default) {
+            _ in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "AboutViewController")
+            self.present(controller, animated: true)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            _ in
+            self.dismiss(animated: true, completion: {
+                SKStoreReviewController.requestReview()
+            })
+        }
+        
+        for action in [downloadImageAction, copyTextAction, copyImageAction, shareTextAction, shareImageAction, pasteTextAction, infoAction, cancelAction] {
+            alert.addAction(action)
+        }
+        
+        present(alert, animated: true)
+
     }
 
     
@@ -374,7 +408,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             for slider in [redControl, greenControl, blueControl, brightnessSlider] {
                 slider?.isHidden = true
             }
-            menuTableView.isHidden = true
+
             hexPicker.isHidden = true
             menuButton.isHidden = true
             
@@ -391,7 +425,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             for slider in [redControl, greenControl, blueControl, brightnessSlider] {
                 slider?.isHidden = false
             }
-            menuTableView.isHidden = false
+
             hexPicker.isHidden = false
             menuButton.isHidden = false
     
@@ -445,67 +479,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
     
         return (true, cleanedFromSymbols)
-    }
-    
-    
-    // MARK: TableView Delegate
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myDataSource.count
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
-        
-        cell.textLabel?.text = "\(myDataSource[(indexPath as NSIndexPath).row])"
-        cell.selectionStyle = .none
-        cell.backgroundColor = UIColor(red: 0.18, green: 0.18, blue: 0.18, alpha: 1.0)
-        cell.tintColor = .white
-        cell.textLabel?.backgroundColor = UIColor(red: 0.18, green: 0.18, blue: 0.18, alpha: 1.0)
-        cell.textLabel?.tintColor = .white
-        cell.textLabel?.textColor = .white
-        
-        return cell
-    }
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch indexPath.row {
-        case 0:
-            downloadHexAndColor()
-        case 1:
-            copyHexAsText()
-        case 2:
-            copyHexAndColorAsImage()
-        case 3:
-            shareHexAsText()
-        case 4:
-            shareHexAndColorAsImage()
-        case 5:
-            pasteText()
-        case 6:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "AboutViewController")
-            present(controller, animated: true)
-        default:
-            print("default")
-        }
-        
-    }
-    
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Menu"
-    }
-    
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = .black
-        let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = .white
     }
     
     
