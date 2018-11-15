@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import MessageUI
 
 class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -260,7 +261,22 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func menuPressed(_ sender: Any) {
         
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let mainAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let copyAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let shareAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let version: String? = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
+        let infoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        if let version = version {
+            infoAlert.message = "Version \(version)"
+            infoAlert.title = "ColorFull Picker"
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            _ in
+            self.dismiss(animated: true, completion: {
+                SKStoreReviewController.requestReview()
+            })
+        }
         
         let downloadImageAction = UIAlertAction(title: "Download as image", style: .default, handler: {
             _ in
@@ -270,11 +286,20 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         let copyTextAction = UIAlertAction(title: "Copy as text", style: .default, handler: {
             _ in
             self.copyHexAsText()
-            })
+        })
         
         let copyImageAction = UIAlertAction(title: "Copy as image", style: .default) {
             _ in
             self.copyHexAndColorAsImage()
+        }
+        
+        for action in [copyImageAction, copyTextAction, cancelAction] {
+            copyAlert.addAction(action)
+        }
+        
+        let copyAction = UIAlertAction(title: "Copy", style: .default) {
+            _ in
+            self.present(copyAlert, animated: true)
         }
         
         let shareTextAction = UIAlertAction(title: "Share as text", style: .default) {
@@ -287,30 +312,49 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.shareHexAndColorAsImage()
         }
         
+        for action in [shareImageAction, shareTextAction, cancelAction] {
+            shareAlert.addAction(action)
+        }
+        
+        let shareAction = UIAlertAction(title: "Share", style: .default) {
+            _ in
+            self.present(shareAlert, animated: true)
+        }
+        
         let pasteTextAction = UIAlertAction(title: "Paste text", style: .default) {
             _ in
             self.pasteText()
         }
         
+        let mailAction = UIAlertAction(title: "Send feedback or question", style: .default) {
+            _ in
+            self.launchEmail()
+        }
+        
+        let reviewAction = UIAlertAction(title: "Leave a review", style: .default) {
+            _ in
+            self.requestReviewManually()
+        }
+        
+        let shareAppAction = UIAlertAction(title: "Share App with friends", style: .default) {
+            _ in
+            self.shareApp()
+        }
+        
+        for action in [mailAction, reviewAction, shareAppAction, cancelAction] {
+            infoAlert.addAction(action)
+        }
+        
         let infoAction = UIAlertAction(title: "Contact and info", style: .default) {
             _ in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "AboutViewController")
-            self.present(controller, animated: true)
+            self.present(infoAlert, animated: true)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
-            _ in
-            self.dismiss(animated: true, completion: {
-                SKStoreReviewController.requestReview()
-            })
+        for action in [downloadImageAction, copyAction, shareAction, pasteTextAction, infoAction, cancelAction] {
+            mainAlert.addAction(action)
         }
         
-        for action in [downloadImageAction, copyTextAction, copyImageAction, shareTextAction, shareImageAction, pasteTextAction, infoAction, cancelAction] {
-            alert.addAction(action)
-        }
-        
-        present(alert, animated: true)
+        present(mainAlert, animated: true)
 
     }
 
@@ -482,6 +526,23 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     
+    func shareApp() {
+        
+        let message = "Look at this app: ColorFull Picker lets you generate a color from millions of choices using sliders or HEX code, and save or share your created color! https://itunes.apple.com/app/id1410565176 - it's really cool!"
+        let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
+        activityController.popoverPresentationController?.sourceView = self.view // for iPads not to crash
+        activityController.completionWithItemsHandler = {
+            (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            guard error == nil else {
+                let alert = self.createAlert(alertReasonParam: alertReason.unknown)
+                self.present(alert, animated: true)
+                return
+            }
+        }
+        present(activityController, animated: true)
+    }
+    
+    
     // MARK: Notifications
     
     func subscribeToBrightnessNotifications() {
@@ -495,3 +556,64 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
 }
 
+
+extension MakerViewController: MFMailComposeViewControllerDelegate {
+    
+    func launchEmail() {
+        
+        var emailTitle = "ColorFull Picker"
+        if let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] {
+            emailTitle += " \(version)"
+        }
+        
+        let messageBody = "Hi. I have a question..."
+        let toRecipents = ["musicbyds@icloud.com"]
+        let mc: MFMailComposeViewController = MFMailComposeViewController()
+        mc.mailComposeDelegate = self
+        mc.setSubject(emailTitle)
+        mc.setMessageBody(messageBody, isHTML: false)
+        mc.setToRecipients(toRecipents)
+        
+        self.present(mc, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        var alert = UIAlertController()
+        
+        dismiss(animated: true, completion: {
+            switch result {
+            case MFMailComposeResult.failed:
+                alert = self.createAlert(alertReasonParam: alertReason.messageFailed)
+            case MFMailComposeResult.saved:
+                alert = self.createAlert(alertReasonParam: alertReason.messageSaved)
+            case MFMailComposeResult.sent:
+                alert = self.createAlert(alertReasonParam: alertReason.messageSent)
+            default:
+                break
+            }
+            if let _ = alert.title {
+                self.present(alert, animated: true)
+            }
+        })
+    }
+}
+
+extension MakerViewController {
+    
+    func requestReviewManually() {
+        // Note: Replace the XXXXXXXXXX below with the App Store ID for your app
+        //       You can find the App Store ID in your app's product URL
+        
+        guard let writeReviewURL = URL(string: "https://itunes.apple.com/app/id1410565176?action=write-review")
+            else {
+                fatalError("Expected a valid URL")
+        }
+        
+        UIApplication.shared.open(writeReviewURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+    }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}
