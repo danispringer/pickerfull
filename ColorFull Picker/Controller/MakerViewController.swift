@@ -68,11 +68,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             UserDefaults.standard.register(defaults: ["color": "E57BF2"])
         }
         
-        //menuButton.layer.cornerRadius = 10
-        //menuButton.titleLabel?.textColor = .white
-        //menuButton.backgroundColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)
-        //menuButton.imageEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
-        
         menuToolbar.setShadowImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any)
         menuToolbar.setBackgroundImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any, barMetrics: .default)
         menuToolbar.layer.cornerRadius = 10
