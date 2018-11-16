@@ -16,7 +16,8 @@
 - RGB picker
 - Generate launch screen image to use on next launch with last selected color
 - !! App icon too?
-- CP: add brightness transition back
+- add brightness transition back
+- Add back screenshots in READMEs.
 
 
 ###### App Store Description
