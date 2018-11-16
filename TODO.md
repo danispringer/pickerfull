@@ -13,6 +13,7 @@
 - improve for ipad
 - Improve design for custom screenshot labels
 - random color generator (? + siri shortcuts)
+- RGB picker
 
 
 ###### App Store Description
