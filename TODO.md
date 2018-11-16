@@ -14,6 +14,9 @@
 - Improve design for custom screenshot labels
 - random color generator (? + siri shortcuts)
 - RGB picker
+- Generate launch screen image to use on next launch with last selected color
+- !! App icon too?
+- CP: add brightness transition back
 
 
 ###### App Store Description
