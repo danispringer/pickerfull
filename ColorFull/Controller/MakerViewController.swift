@@ -20,8 +20,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var blueSlider: UISlider!
     @IBOutlet weak var brightnessSlider: UISlider!
     @IBOutlet weak var hexPicker: UIPickerView!
-    @IBOutlet weak var hexLabel: UILabel!
-    @IBOutlet weak var creditLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var shareToolbar: UIToolbar!
     
     
@@ -54,8 +53,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         hexPicker.layer.cornerRadius = 10
         hexPicker.layer.masksToBounds = true
         
-        hexLabel.isHidden = true
-        creditLabel.isHidden = true
+        messageLabel.isHidden = true
         
         redSlider.thumbTintColor = .red
         greenSlider.thumbTintColor = .green
@@ -75,6 +73,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             toolbar?.layer.cornerRadius = 10
             toolbar?.layer.masksToBounds = true
         }
+        
+        messageLabel.layer.cornerRadius = 10
+        messageLabel.layer.masksToBounds = true
+        
 
     }
     
@@ -508,15 +510,33 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             hexPicker.isHidden = true
             shareToolbar.isHidden = true
             
-            hexLabel.text = UserDefaults.standard.string(forKey: "color")
-            hexLabel.isHidden = false
-            creditLabel.isHidden = false
+            let regularAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 16)]
+            
+            let jumboAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 50)]
+            
+            let attributedMessagePre = NSAttributedString(string: "\nThe hex value for your color is:\n", attributes: regularAttributes)
+            
+            let hexColorString = UserDefaults.standard.string(forKey: "color") ?? "<error>"
+            
+            let attributedMessageJumbo = NSAttributedString(string: hexColorString, attributes: jumboAttributes)
+            
+            let attributedMessagePost = NSAttributedString(string: "\nCreated using:\nColorFull by Daniel Springer\nAvailable exclusively on the iOS App Store.\n", attributes: regularAttributes)
+            
+            let myAttributedText = NSMutableAttributedString()
+            
+            myAttributedText.append(attributedMessagePre)
+            myAttributedText.append(attributedMessageJumbo)
+            myAttributedText.append(attributedMessagePost)
+            
+            messageLabel.attributedText = myAttributedText
+            messageLabel.isHidden = false
             UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0)
             view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
             let hexImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
-            hexLabel.isHidden = true
-            creditLabel.isHidden = true
+            messageLabel.isHidden = true
 
             for slider in [redSlider, greenSlider, blueSlider, brightnessSlider] {
                 slider?.isHidden = false

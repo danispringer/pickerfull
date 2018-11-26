@@ -15,6 +15,7 @@
 - add option to pinch to zoom image
 - add button that recenters pointer, in case it goes out of reach
 - add actionsheet with instructions for pointer after image is selected
+- pick from image: use image coordinates
 
 
 ###### App Store Description
