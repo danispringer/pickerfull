@@ -1,4 +1,3 @@
-- pick from image
 - rename to ColorFull
 - improve for ipad
 - Improve design for custom screenshot labels: unite to one label?
