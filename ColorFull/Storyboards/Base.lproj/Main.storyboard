@@ -99,14 +99,14 @@
                                     <constraint firstAttribute="width" constant="60" id="ppg-mD-QyL"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="T29-Iw-ncz"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="IDe-gR-UZg"/>
                                     <barButtonItem title="Random" image="random" id="ZMN-hO-xxK">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="randomPressed:" destination="BYZ-38-t0r" id="gPJ-7P-NFS"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="For-VF-rEO"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="SWT-Qy-vx2"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -152,6 +152,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="random" width="35" height="35"/>
+        <image name="random" width="100" height="100"/>
     </resources>
 </document>
