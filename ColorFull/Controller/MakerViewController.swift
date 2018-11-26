@@ -31,7 +31,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     enum Controls {
         case slider
         case picker
-        case paste
+        case pasteOrRandom
     }
     
     var currentUIColor: UIColor!
@@ -197,7 +197,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let hexCode = redHex + greenHex + blueHex
             UserDefaults.standard.set(hexCode, forKey: "color")
             
-        } else if control == .paste {
+        } else if control == .pasteOrRandom {
             let redString = hexString[0...1]
             let greenString = hexString[2...3]
             let blueString = hexString[4...5]
@@ -399,7 +399,13 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.present(infoAlert, animated: true)
         }
         
-        for action in [downloadImageAction, copyAction, shareAction, pasteTextAction, infoAction, cancelAction] {
+        let randomAction = UIAlertAction(title: "Random color", style: .default) {
+            _ in
+            self.randomColor()
+        }
+        
+        
+        for action in [downloadImageAction, copyAction, shareAction, pasteTextAction, randomAction, infoAction, cancelAction] {
             mainAlert.addAction(action)
         }
         
@@ -567,7 +573,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
         
         print("valid hex")
-        updateColor(control: Controls.paste, hexString: results.1)
+        updateColor(control: Controls.pasteOrRandom, hexString: results.1)
         let alert = createAlert(alertReasonParam: alertReason.hexPasted)
         present(alert, animated: true)
         
@@ -597,6 +603,19 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
     
         return (true, cleanedFromSymbols)
+    }
+    
+    
+    func randomColor() {
+        var randomHex = ""
+        let randomRed = hexArray.randomElement()!
+        let randomGreen = hexArray.randomElement()!
+        let randomBlue = hexArray.randomElement()!
+        
+        randomHex = randomRed + randomGreen + randomBlue
+        
+        updateColor(control: .pasteOrRandom, hexString: randomHex)
+        
     }
     
     
