@@ -10,19 +10,26 @@ import UIKit
 import StoreKit
 import MessageUI
 
-class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
 
     // MARK: Outlets
     
-    @IBOutlet weak var redControl: UISlider!
-    @IBOutlet weak var greenControl: UISlider!
-    @IBOutlet weak var blueControl: UISlider!
+    @IBOutlet weak var redSlider: UISlider!
+    @IBOutlet weak var greenSlider: UISlider!
+    @IBOutlet weak var blueSlider: UISlider!
     @IBOutlet weak var brightnessSlider: UISlider!
     @IBOutlet weak var hexPicker: UIPickerView!
     @IBOutlet weak var hexLabel: UILabel!
     @IBOutlet weak var creditLabel: UILabel!
-    @IBOutlet weak var menuToolbar: UIToolbar!
+    @IBOutlet weak var shareToolbar: UIToolbar!
+    @IBOutlet weak var cameraToolbar: UIToolbar!
+    @IBOutlet weak var hideImagePickerToolbar: UIToolbar!
+    @IBOutlet weak var myImageView: UIImageView!
+    @IBOutlet weak var pointerToolbar: UIToolbar!
+    @IBOutlet weak var pointerY: NSLayoutConstraint!
+    @IBOutlet weak var pointerX: NSLayoutConstraint!
+    
     
     // MARK: properties
     
@@ -50,29 +57,38 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
         
         hexPicker.delegate = self
+        hexPicker.layer.cornerRadius = 10
+        hexPicker.layer.masksToBounds = true
         
         hexLabel.isHidden = true
         creditLabel.isHidden = true
+        hideImagePickerToolbar.isHidden = true
+        pointerToolbar.isHidden = true
         
-        UIScreen.main.brightness = 1.0
-        
-        redControl.thumbTintColor = .red
-        greenControl.thumbTintColor = .green
-        blueControl.thumbTintColor = .blue
+        redSlider.thumbTintColor = .red
+        greenSlider.thumbTintColor = .green
+        blueSlider.thumbTintColor = .blue
 
-        redControl.minimumTrackTintColor = UIColor.red
-        greenControl.minimumTrackTintColor = UIColor.green
-        blueControl.minimumTrackTintColor = UIColor.blue
+        redSlider.minimumTrackTintColor = UIColor.red
+        greenSlider.minimumTrackTintColor = UIColor.green
+        blueSlider.minimumTrackTintColor = UIColor.blue
         
         if UserDefaults.standard.string(forKey: "color") == nil {
             UserDefaults.standard.register(defaults: ["color": "E57BF2"])
         }
         
-        menuToolbar.setShadowImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any)
-        menuToolbar.setBackgroundImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any, barMetrics: .default)
-        menuToolbar.layer.cornerRadius = 10
-        menuToolbar.layer.masksToBounds = true
+        for toolbar in [shareToolbar, cameraToolbar, hideImagePickerToolbar, pointerToolbar] {
+            toolbar?.setShadowImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any)
+            toolbar?.setBackgroundImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any, barMetrics: .default)
+            toolbar?.layer.cornerRadius = 10
+            toolbar?.layer.masksToBounds = true
+        }
         
+        pointerToolbar.layer.cornerRadius = pointerToolbar.frame.width / 2
+        
+        let pointerGesture = UIPanGestureRecognizer(target: self, action: #selector(pointerDragged))
+        pointerToolbar.isUserInteractionEnabled = true
+        pointerToolbar.addGestureRecognizer(pointerGesture)
     }
     
     
@@ -80,18 +96,37 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         super.viewWillAppear(true)
         
         subscribeToBrightnessNotifications()
+        
+        UIScreen.main.brightness = 1.0
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        let welcomeAlert = UIAlertController(title: "Welcome", message: "For the best experience, turn off Night Shift and True Tone when using the app.", preferredStyle: .actionSheet)
+        
+        let closeAction = UIAlertAction(title: "Don't show this again", style: .cancel) {
+            _ in
+            UserDefaults.standard.set(false, forKey: "isFirstLaunch")
+        }
+        welcomeAlert.addAction(closeAction)
+        
+        let remindAction = UIAlertAction(title: "Show this next time app is opened", style: .default)
+        
+        welcomeAlert.addAction(remindAction)
+        
+        if let presenter = welcomeAlert.popoverPresentationController {
+            presenter.sourceView = self.shareToolbar
+            presenter.sourceRect = self.shareToolbar.bounds
+        }
+        
         let hexString = UserDefaults.standard.string(forKey: "color")
         
         UIView.animate(withDuration: 0.5, animations: {
-            self.redControl.setValue(Float("0x" + hexString![0...1])! / 255, animated: true)
-            self.greenControl.setValue(Float("0x" + hexString![2...3])! / 255, animated: true)
-            self.blueControl.setValue(Float("0x" + hexString![4...5])! / 255, animated: true)
+            self.redSlider.setValue(Float("0x" + hexString![0...1])! / 255, animated: true)
+            self.greenSlider.setValue(Float("0x" + hexString![2...3])! / 255, animated: true)
+            self.blueSlider.setValue(Float("0x" + hexString![4...5])! / 255, animated: true)
             
             let redHex = hexString![0...1]
             let greenHex = hexString![2...3]
@@ -107,8 +142,14 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             
             self.brightnessSlider.setValue(1.0, animated: true)
             
-            self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
+            self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value), green: CGFloat(self.greenSlider.value), blue: CGFloat(self.blueSlider.value), alpha: 1)
+        }, completion: {
+            _ in
+            if UserDefaults.standard.bool(forKey: "isFirstLaunch") {
+                self.present(welcomeAlert, animated: true)
+            }
         })
+        
     }
     
     
@@ -119,15 +160,15 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     
-    // MARK: Helper
+    // MARK: Update Color
     
     func updateColor(control: Controls, hexString: String = "") {
         
         if control == .slider {
             
-            let r: CGFloat = CGFloat(self.redControl.value)
-            let g: CGFloat = CGFloat(self.greenControl.value)
-            let b: CGFloat = CGFloat(self.blueControl.value)
+            let r: CGFloat = CGFloat(self.redSlider.value)
+            let g: CGFloat = CGFloat(self.greenSlider.value)
+            let b: CGFloat = CGFloat(self.blueSlider.value)
             
             view.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
             
@@ -154,10 +195,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let blueValue: Double = Double(hexPicker.selectedRow(inComponent: 2))
             
             UIView.animate(withDuration: 0.5, animations: {
-                self.redControl.setValue(Float(redValue / 255.0), animated: true)
-                self.greenControl.setValue(Float(greenValue / 255.0), animated: true)
-                self.blueControl.setValue(Float(blueValue / 255.0), animated: true)
-                self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
+                self.redSlider.setValue(Float(redValue / 255.0), animated: true)
+                self.greenSlider.setValue(Float(greenValue / 255.0), animated: true)
+                self.blueSlider.setValue(Float(blueValue / 255.0), animated: true)
+                self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value), green: CGFloat(self.greenSlider.value), blue: CGFloat(self.blueSlider.value), alpha: 1)
             })
 
             
@@ -185,10 +226,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let blueValue: Double = Double(hexPicker.selectedRow(inComponent: 2))
             
             UIView.animate(withDuration: 0.5, animations: {
-                self.redControl.setValue(Float(redValue / 255.0), animated: true)
-                self.greenControl.setValue(Float(greenValue / 255.0), animated: true)
-                self.blueControl.setValue(Float(blueValue / 255.0), animated: true)
-                self.view.backgroundColor = UIColor(red: CGFloat(self.redControl.value), green: CGFloat(self.greenControl.value), blue: CGFloat(self.blueControl.value), alpha: 1)
+                self.redSlider.setValue(Float(redValue / 255.0), animated: true)
+                self.greenSlider.setValue(Float(greenValue / 255.0), animated: true)
+                self.blueSlider.setValue(Float(blueValue / 255.0), animated: true)
+                self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value), green: CGFloat(self.greenSlider.value), blue: CGFloat(self.blueSlider.value), alpha: 1)
             })
             
             UserDefaults.standard.set(hexString, forKey: "color")
@@ -256,9 +297,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
 
     
-    // MARK: Menu Options
+    // MARK: Share Toolbar Options
     
-    @IBAction func menuPressed(_ sender: Any) {
+    @IBAction func shareToolbarPressed(_ sender: Any) {
         
         let mainAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let copyAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -305,8 +346,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             _ in
             
             if let presenter = copyAlert.popoverPresentationController {
-                presenter.sourceView = self.menuToolbar
-                presenter.sourceRect = self.menuToolbar.bounds
+                presenter.sourceView = self.shareToolbar
+                presenter.sourceRect = self.shareToolbar.bounds
             }
             self.present(copyAlert, animated: true)
         }
@@ -329,8 +370,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             _ in
             
             if let presenter = shareAlert.popoverPresentationController {
-                presenter.sourceView = self.menuToolbar
-                presenter.sourceRect = self.menuToolbar.bounds
+                presenter.sourceView = self.shareToolbar
+                presenter.sourceRect = self.shareToolbar.bounds
             }
             self.present(shareAlert, animated: true)
         }
@@ -363,8 +404,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             _ in
             
             if let presenter = infoAlert.popoverPresentationController {
-                presenter.sourceView = self.menuToolbar
-                presenter.sourceRect = self.menuToolbar.bounds
+                presenter.sourceView = self.shareToolbar
+                presenter.sourceRect = self.shareToolbar.bounds
             }
             self.present(infoAlert, animated: true)
         }
@@ -374,8 +415,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
         
         if let presenter = mainAlert.popoverPresentationController {
-            presenter.sourceView = menuToolbar
-            presenter.sourceRect = menuToolbar.bounds
+            presenter.sourceView = shareToolbar
+            presenter.sourceRect = shareToolbar.bounds
         }
         
         present(mainAlert, animated: true)
@@ -473,12 +514,12 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
         func generateHexImage() -> UIImage {
     
-            for slider in [redControl, greenControl, blueControl, brightnessSlider] {
+            for slider in [redSlider, greenSlider, blueSlider, brightnessSlider] {
                 slider?.isHidden = true
             }
 
             hexPicker.isHidden = true
-            menuToolbar.isHidden = true
+            shareToolbar.isHidden = true
             
             hexLabel.text = UserDefaults.standard.string(forKey: "color")
             hexLabel.isHidden = false
@@ -490,12 +531,12 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             hexLabel.isHidden = true
             creditLabel.isHidden = true
 
-            for slider in [redControl, greenControl, blueControl, brightnessSlider] {
+            for slider in [redSlider, greenSlider, blueSlider, brightnessSlider] {
                 slider?.isHidden = false
             }
 
             hexPicker.isHidden = false
-            menuToolbar.isHidden = false
+            shareToolbar.isHidden = false
     
             return hexImage
         }
@@ -525,6 +566,128 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
     }
     
+    
+    // MARK: Camera Options
+    
+    @IBAction func cameraPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Choose color from image", message: nil, preferredStyle: .actionSheet)
+        
+        alert.modalPresentationStyle = .popover
+        
+        let libraryAction = UIAlertAction(title: "Library", style: .default) {
+            _ in
+            self.launchImagePicker(sourceType: .photoLibrary)
+        }
+        alert.addAction(libraryAction)
+        
+        let cancelAction = UIAlertAction(title: "Close", style: .cancel)
+        alert.addAction(cancelAction)
+        
+        
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraAction = UIAlertAction(title: "Camera", style: .default) {
+                _ in
+                self.launchImagePicker(sourceType: .camera)
+            }
+            alert.addAction(cameraAction)
+            
+        }
+        if let presenter = alert.popoverPresentationController {
+            presenter.sourceView = cameraToolbar
+            presenter.sourceRect = cameraToolbar.bounds
+        }
+        present(alert, animated: true)
+    }
+    
+    
+    // MARK: Hide Image Picker Toolbar
+    
+    @IBAction func hidePressed(_ sender: Any) {
+        myImageView.image = nil
+        
+        hexPicker.isHidden = false
+        
+        for toolbar in [cameraToolbar, shareToolbar] {
+            toolbar?.isHidden = false
+        }
+        
+        for slider in [redSlider, greenSlider, blueSlider, brightnessSlider] {
+            slider?.isHidden = false
+        }
+        
+        hideImagePickerToolbar.isHidden = true
+        pointerToolbar.isHidden = true
+    }
+    
+    
+    
+    // MARK: Image Picker Delegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        
+        if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
+            
+            myImageView.image = pickedImage
+            
+            hexPicker.isHidden = true
+            
+            for toolbar in [cameraToolbar, shareToolbar] {
+                toolbar?.isHidden = true
+            }
+            
+            for slider in [redSlider, greenSlider, blueSlider, brightnessSlider] {
+                slider?.isHidden = true
+            }
+            
+            hideImagePickerToolbar.isHidden = false
+            pointerToolbar.isHidden = false
+            
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func pickImageFromAlbum() {
+        launchImagePicker(sourceType: .photoLibrary)
+    }
+    
+    
+    func pickImageFromCamera() {
+        launchImagePicker(sourceType: .camera)
+    }
+    
+    
+    func launchImagePicker(sourceType: UIImagePickerController.SourceType) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.sourceType = sourceType
+        present(pickerController, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: Pointer Dragged
+    
+    @objc func pointerDragged(gesture: UIPanGestureRecognizer) {
+        self.view.bringSubviewToFront(pointerToolbar)
+        let translation = gesture.translation(in: self.view)
+        pointerX.constant = pointerX.constant + translation.x
+        pointerY.constant = pointerY.constant + translation.y
+        pointerToolbar.center = CGPoint(x: pointerToolbar.center.x + translation.x, y: pointerToolbar.center.y + translation.y)
+        gesture.setTranslation(CGPoint.zero, in: self.view)
+        
+        #warning("get pixel color")
+    }
+    
+    
+    // MARK: Helpers
     
     func isValidHex(hex: String) -> (Bool, String) {
         
@@ -565,8 +728,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             }
         }
         if let presenter = activityController.popoverPresentationController {
-            presenter.sourceView = menuToolbar
-            presenter.sourceRect = menuToolbar.bounds
+            presenter.sourceView = shareToolbar
+            presenter.sourceRect = shareToolbar.bounds
         }
         
         present(activityController, animated: true)
@@ -646,4 +809,16 @@ extension MakerViewController {
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
     return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}
+
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+    return input.rawValue
+}
+
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
 }
