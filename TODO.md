@@ -1,6 +1,4 @@
-- rename to ColorFull
 - improve for ipad
-- Improve design for custom screenshot labels: unite to one label?
 - random color generator (? + siri shortcuts)
 - RGB picker
 - Generate launch screen image to use on next launch with last selected color
