@@ -1,5 +1,5 @@
 - improve for ipad
-- random color generator: siri shortcuts
+- random color generator: siri shortcuts)
 - RGB picker
 - Generate launch screen image to use on next launch with last selected color
 - !! App icon too?
@@ -10,10 +10,11 @@
 - Notifications: random color
 - Use Constants Struct
 - Add iOS-like Splash screen: current action sheet
-- add option to pinch to zoom image
-- add button that recenters pointer, in case it goes out of reach
-- add actionsheet with instructions for pointer after image is selected
+
 - pick from image: use image coordinates
+    - add option to pinch to zoom image
+    - add button that recenters pointer, in case it goes out of reach
+    - add actionsheet with instructions for pointer after image is selected
 
 
 ###### App Store Description
