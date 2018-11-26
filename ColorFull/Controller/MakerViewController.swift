@@ -22,6 +22,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var hexPicker: UIPickerView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var shareToolbar: UIToolbar!
+    @IBOutlet weak var randomToolbar: UIToolbar!
     
     
     // MARK: properties
@@ -67,7 +68,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             UserDefaults.standard.register(defaults: ["color": "E57BF2"])
         }
         
-        for toolbar in [shareToolbar] {
+        for toolbar in [shareToolbar, randomToolbar] {
             toolbar?.setShadowImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any)
             toolbar?.setBackgroundImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any, barMetrics: .default)
             toolbar?.layer.cornerRadius = 10
@@ -399,13 +400,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.present(infoAlert, animated: true)
         }
         
-        let randomAction = UIAlertAction(title: "Random color", style: .default) {
-            _ in
-            self.randomColor()
-        }
         
-        
-        for action in [downloadImageAction, copyAction, shareAction, pasteTextAction, randomAction, infoAction, cancelAction] {
+        for action in [downloadImageAction, copyAction, shareAction, pasteTextAction, infoAction, cancelAction] {
             mainAlert.addAction(action)
         }
         
@@ -417,7 +413,22 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         present(mainAlert, animated: true)
 
     }
+    
+    
+    // MARK: Random Toolbar
 
+    @IBAction func randomPressed(_ sender: Any) {
+        var randomHex = ""
+        let randomRed = hexArray.randomElement()!
+        let randomGreen = hexArray.randomElement()!
+        let randomBlue = hexArray.randomElement()!
+        
+        randomHex = randomRed + randomGreen + randomBlue
+        
+        updateColor(control: .pasteOrRandom, hexString: randomHex)
+    }
+    
+    
     
     func downloadHexAndColor() {
         
@@ -603,19 +614,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
     
         return (true, cleanedFromSymbols)
-    }
-    
-    
-    func randomColor() {
-        var randomHex = ""
-        let randomRed = hexArray.randomElement()!
-        let randomGreen = hexArray.randomElement()!
-        let randomBlue = hexArray.randomElement()!
-        
-        randomHex = randomRed + randomGreen + randomBlue
-        
-        updateColor(control: .pasteOrRandom, hexString: randomHex)
-        
     }
     
     

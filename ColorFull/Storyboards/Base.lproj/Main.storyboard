@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MakerViewController" customModule="ColorFull" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="POM-4Y-HHd">
-                                <rect key="frame" x="60.5" y="282" width="254" height="31"/>
+                                <rect key="frame" x="80" y="472" width="254" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="pKR-HO-L9J"/>
                                 </constraints>
@@ -28,7 +28,7 @@
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NXx-mh-U48" userLabel="Green Control">
-                                <rect key="frame" x="60.5" y="337" width="254" height="31"/>
+                                <rect key="frame" x="80" y="527" width="254" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="0uR-hA-ORS"/>
                                 </constraints>
@@ -37,7 +37,7 @@
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KHn-Oj-ley" userLabel="Blue Control">
-                                <rect key="frame" x="60.5" y="392" width="254" height="31"/>
+                                <rect key="frame" x="80" y="582" width="254" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="3Z2-Bw-l1u"/>
                                 </constraints>
@@ -46,7 +46,7 @@
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hVt-tU-dBP">
-                                <rect key="frame" x="95.5" y="467" width="184" height="31"/>
+                                <rect key="frame" x="115" y="657" width="184" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="5gq-SJ-xOk"/>
                                 </constraints>
@@ -57,7 +57,7 @@
                                 </connections>
                             </slider>
                             <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="AHi-t1-Uyy">
-                                <rect key="frame" x="16" y="58" width="343" height="160"/>
+                                <rect key="frame" x="16" y="248" width="382" height="160"/>
                                 <color key="backgroundColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="Bor-DB-bE0"/>
@@ -68,7 +68,7 @@
                                 </connections>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKY-HB-wIv" userLabel="Message Label">
-                                <rect key="frame" x="16" y="240.5" width="343" height="162.5"/>
+                                <rect key="frame" x="16" y="357.5" width="382" height="142.5"/>
                                 <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <string key="text">lorem ipsum dorem ipsum  lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum  lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -76,7 +76,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cFq-en-Umf">
-                                <rect key="frame" x="299" y="563" width="60" height="60"/>
+                                <rect key="frame" x="338" y="753" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="FM9-lr-CsB"/>
                                     <constraint firstAttribute="height" constant="60" id="blU-nb-YLR"/>
@@ -92,6 +92,23 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="9Ac-5d-A5C"/>
                                 </items>
                             </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xOa-QI-JxT">
+                                <rect key="frame" x="16" y="753" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="gKW-19-9I1"/>
+                                    <constraint firstAttribute="width" constant="60" id="ppg-mD-QyL"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="T29-Iw-ncz"/>
+                                    <barButtonItem title="Random" image="random" id="ZMN-hO-xxK">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="randomPressed:" destination="BYZ-38-t0r" id="gPJ-7P-NFS"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="For-VF-rEO"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -99,7 +116,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BKY-HB-wIv" secondAttribute="trailing" constant="16" id="6b1-xL-Gcm"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="top" secondItem="NXx-mh-U48" secondAttribute="bottom" constant="25" id="6qI-iq-hbb"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
+                            <constraint firstItem="xOa-QI-JxT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="KbY-fh-Z1h"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Mbm-WL-1UH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xOa-QI-JxT" secondAttribute="bottom" id="PhO-c1-L1y"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AHi-t1-Uyy" secondAttribute="trailing" constant="16" id="Sej-Vz-6BR"/>
                             <constraint firstItem="BKY-HB-wIv" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="UGn-o2-pkB"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="25" id="Vju-WH-3s4"/>
@@ -122,6 +141,7 @@
                         <outlet property="greenSlider" destination="NXx-mh-U48" id="0Y5-55-rSO"/>
                         <outlet property="hexPicker" destination="AHi-t1-Uyy" id="Zan-8k-3cD"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="iEH-He-Xif"/>
+                        <outlet property="randomToolbar" destination="xOa-QI-JxT" id="7f2-n9-bWY"/>
                         <outlet property="redSlider" destination="POM-4Y-HHd" id="d0s-9a-kQe"/>
                         <outlet property="shareToolbar" destination="cFq-en-Umf" id="YIQ-nE-nDv"/>
                     </connections>
@@ -131,4 +151,7 @@
             <point key="canvasLocation" x="132" y="132.26600985221674"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="random" width="35" height="35"/>
+    </resources>
 </document>
