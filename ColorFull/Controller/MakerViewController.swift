@@ -522,7 +522,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             
             let attributedMessageJumbo = NSAttributedString(string: hexColorString, attributes: jumboAttributes)
             
-            let attributedMessagePost = NSAttributedString(string: "\nCreated using:\nColorFull by Daniel Springer\nAvailable exclusively on the iOS App Store.\n", attributes: regularAttributes)
+            let attributedMessagePost = NSAttributedString(string: "\nCreated using:\nColorFull by Daniel Springer\nAvailable exclusively on the iOS App Store\n", attributes: regularAttributes)
             
             let myAttributedText = NSMutableAttributedString()
             
