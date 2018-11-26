@@ -11,6 +11,7 @@
 - Notifications: random color
 - Use Constants Struct
 - Add iOS-like Splash screen: current action sheet
+- add in-app gallery
 
 - pick from image: use image coordinates
     - add option to pinch to zoom image
