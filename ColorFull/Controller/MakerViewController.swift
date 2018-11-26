@@ -22,7 +22,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var hexPicker: UIPickerView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var shareToolbar: UIToolbar!
+    @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var randomToolbar: UIToolbar!
+    @IBOutlet weak var randomBarButtonItem: UIBarButtonItem!
     
     
     // MARK: properties
@@ -152,7 +154,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     // MARK: Update Color
     
-    func updateColor(control: Controls, hexString: String = "") {
+    func updateColor(control: Controls, hexString: String = "", completionHandler: @escaping (Bool) -> Void = {_ in return }) {
         
         if control == .slider {
             
@@ -190,7 +192,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 self.blueSlider.setValue(Float(blueValue / 255.0), animated: true)
                 self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value), green: CGFloat(self.greenSlider.value), blue: CGFloat(self.blueSlider.value), alpha: 1)
             })
-
             
             let redHex = hexArray[hexPicker.selectedRow(inComponent: 0)]
             let greenHex = hexArray[hexPicker.selectedRow(inComponent: 1)]
@@ -220,9 +221,12 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 self.greenSlider.setValue(Float(greenValue / 255.0), animated: true)
                 self.blueSlider.setValue(Float(blueValue / 255.0), animated: true)
                 self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value), green: CGFloat(self.greenSlider.value), blue: CGFloat(self.blueSlider.value), alpha: 1)
+            }, completion: { (finished: Bool) in
+                
+                UserDefaults.standard.set(hexString, forKey: "color")
+                completionHandler(true)
             })
             
-            UserDefaults.standard.set(hexString, forKey: "color")
         } else {
             fatalError()
         }
@@ -418,6 +422,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     // MARK: Random Toolbar
 
     @IBAction func randomPressed(_ sender: Any) {
+        toggleUI(enable: false)
         var randomHex = ""
         let randomRed = hexArray.randomElement()!
         let randomGreen = hexArray.randomElement()!
@@ -425,7 +430,12 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         randomHex = randomRed + randomGreen + randomBlue
         
-        updateColor(control: .pasteOrRandom, hexString: randomHex)
+        updateColor(control: .pasteOrRandom, hexString: randomHex) {
+            completed in
+            if completed {
+                self.toggleUI(enable: true)
+            }
+        }
     }
     
     
@@ -649,6 +659,29 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func unsubscribeFromBrightnessNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIScreen.brightnessDidChangeNotification, object: nil)
+    }
+    
+    func toggleUI(enable: Bool) {
+        
+        DispatchQueue.main.async {
+//            for slider in [self.redSlider, self.greenSlider, self.blueSlider, self.brightnessSlider] {
+//                slider?.isEnabled = enable
+//            }
+            
+            // self.shareBarButtonItem,
+            for item in [self.randomBarButtonItem] {
+                item?.isEnabled = enable
+            }
+            
+            // self.shareToolbar,
+            for toolbar in [self.randomToolbar] {
+                toolbar?.isUserInteractionEnabled = enable
+                toolbar?.alpha = enable ? 1.0 : 0.6
+            }
+            
+//            self.hexPicker.isUserInteractionEnabled = enable
+//            self.hexPicker.alpha = enable ? 1.0 : 0.6
+        }
     }
     
 }

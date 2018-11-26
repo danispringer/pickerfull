@@ -69,8 +69,8 @@
 		330F746A21ABBA9300F420B0 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				330F746B21ABBA9300F420B0 /* LaunchScreen.storyboard */,
 				330F746D21ABBA9300F420B0 /* Main.storyboard */,
+				330F746B21ABBA9300F420B0 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";

@@ -141,8 +141,10 @@
                         <outlet property="greenSlider" destination="NXx-mh-U48" id="0Y5-55-rSO"/>
                         <outlet property="hexPicker" destination="AHi-t1-Uyy" id="Zan-8k-3cD"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="iEH-He-Xif"/>
+                        <outlet property="randomBarButtonItem" destination="ZMN-hO-xxK" id="0Ra-9c-yxv"/>
                         <outlet property="randomToolbar" destination="xOa-QI-JxT" id="7f2-n9-bWY"/>
                         <outlet property="redSlider" destination="POM-4Y-HHd" id="d0s-9a-kQe"/>
+                        <outlet property="shareBarButtonItem" destination="7Tf-R1-A8S" id="LtY-Xz-ib9"/>
                         <outlet property="shareToolbar" destination="cFq-en-Umf" id="YIQ-nE-nDv"/>
                     </connections>
                 </viewController>
