@@ -23,12 +23,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var hexLabel: UILabel!
     @IBOutlet weak var creditLabel: UILabel!
     @IBOutlet weak var shareToolbar: UIToolbar!
-    @IBOutlet weak var cameraToolbar: UIToolbar!
-    @IBOutlet weak var hideImagePickerToolbar: UIToolbar!
-    @IBOutlet weak var myImageView: UIImageView!
-    @IBOutlet weak var pointerToolbar: UIToolbar!
-    @IBOutlet weak var pointerY: NSLayoutConstraint!
-    @IBOutlet weak var pointerX: NSLayoutConstraint!
     
     
     // MARK: properties
@@ -62,8 +56,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         hexLabel.isHidden = true
         creditLabel.isHidden = true
-        hideImagePickerToolbar.isHidden = true
-        pointerToolbar.isHidden = true
         
         redSlider.thumbTintColor = .red
         greenSlider.thumbTintColor = .green
@@ -77,18 +69,13 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             UserDefaults.standard.register(defaults: ["color": "E57BF2"])
         }
         
-        for toolbar in [shareToolbar, cameraToolbar, hideImagePickerToolbar, pointerToolbar] {
+        for toolbar in [shareToolbar] {
             toolbar?.setShadowImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any)
             toolbar?.setBackgroundImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any, barMetrics: .default)
             toolbar?.layer.cornerRadius = 10
             toolbar?.layer.masksToBounds = true
         }
-        
-        pointerToolbar.layer.cornerRadius = pointerToolbar.frame.width / 2
-        
-        let pointerGesture = UIPanGestureRecognizer(target: self, action: #selector(pointerDragged))
-        pointerToolbar.isUserInteractionEnabled = true
-        pointerToolbar.addGestureRecognizer(pointerGesture)
+
     }
     
     
@@ -564,126 +551,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         let alert = createAlert(alertReasonParam: alertReason.hexPasted)
         present(alert, animated: true)
         
-    }
-    
-    
-    // MARK: Camera Options
-    
-    @IBAction func cameraPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Choose color from image", message: nil, preferredStyle: .actionSheet)
-        
-        alert.modalPresentationStyle = .popover
-        
-        let libraryAction = UIAlertAction(title: "Library", style: .default) {
-            _ in
-            self.launchImagePicker(sourceType: .photoLibrary)
-        }
-        alert.addAction(libraryAction)
-        
-        let cancelAction = UIAlertAction(title: "Close", style: .cancel)
-        alert.addAction(cancelAction)
-        
-        
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraAction = UIAlertAction(title: "Camera", style: .default) {
-                _ in
-                self.launchImagePicker(sourceType: .camera)
-            }
-            alert.addAction(cameraAction)
-            
-        }
-        if let presenter = alert.popoverPresentationController {
-            presenter.sourceView = cameraToolbar
-            presenter.sourceRect = cameraToolbar.bounds
-        }
-        present(alert, animated: true)
-    }
-    
-    
-    // MARK: Hide Image Picker Toolbar
-    
-    @IBAction func hidePressed(_ sender: Any) {
-        myImageView.image = nil
-        
-        hexPicker.isHidden = false
-        
-        for toolbar in [cameraToolbar, shareToolbar] {
-            toolbar?.isHidden = false
-        }
-        
-        for slider in [redSlider, greenSlider, blueSlider, brightnessSlider] {
-            slider?.isHidden = false
-        }
-        
-        hideImagePickerToolbar.isHidden = true
-        pointerToolbar.isHidden = true
-    }
-    
-    
-    
-    // MARK: Image Picker Delegate
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // Local variable inserted by Swift 4.2 migrator.
-        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-        
-        if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
-            
-            myImageView.image = pickedImage
-            
-            hexPicker.isHidden = true
-            
-            for toolbar in [cameraToolbar, shareToolbar] {
-                toolbar?.isHidden = true
-            }
-            
-            for slider in [redSlider, greenSlider, blueSlider, brightnessSlider] {
-                slider?.isHidden = true
-            }
-            
-            hideImagePickerToolbar.isHidden = false
-            pointerToolbar.isHidden = false
-            
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
-    func pickImageFromAlbum() {
-        launchImagePicker(sourceType: .photoLibrary)
-    }
-    
-    
-    func pickImageFromCamera() {
-        launchImagePicker(sourceType: .camera)
-    }
-    
-    
-    func launchImagePicker(sourceType: UIImagePickerController.SourceType) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = sourceType
-        present(pickerController, animated: true, completion: nil)
-    }
-    
-    
-    // MARK: Pointer Dragged
-    
-    @objc func pointerDragged(gesture: UIPanGestureRecognizer) {
-        self.view.bringSubviewToFront(pointerToolbar)
-        let translation = gesture.translation(in: self.view)
-        pointerX.constant = pointerX.constant + translation.x
-        pointerY.constant = pointerY.constant + translation.y
-        pointerToolbar.center = CGPoint(x: pointerToolbar.center.x + translation.x, y: pointerToolbar.center.y + translation.y)
-        gesture.setTranslation(CGPoint.zero, in: self.view)
-        
-        #warning("get pixel color")
     }
     
     
