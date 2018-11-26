@@ -1,5 +1,5 @@
 - improve for ipad
-- random color generator (? + siri shortcuts)
+- random color generator: siri shortcuts
 - RGB picker
 - Generate launch screen image to use on next launch with last selected color
 - !! App icon too?
