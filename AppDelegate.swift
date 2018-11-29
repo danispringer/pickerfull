@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Color Picker
+//  ColorFull
 //
 //  Created by Dani Springer on 06/03/2018.
 //  Copyright © 2018 Dani Springer. All rights reserved.
