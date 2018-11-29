@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="POM-4Y-HHd">
-                                <rect key="frame" x="33" y="260" width="254" height="31"/>
+                                <rect key="frame" x="33" y="310" width="254" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="pKR-HO-L9J"/>
                                 </constraints>
@@ -28,7 +28,7 @@
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NXx-mh-U48" userLabel="Green Control">
-                                <rect key="frame" x="33" y="315" width="254" height="31"/>
+                                <rect key="frame" x="33" y="356" width="254" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="0uR-hA-ORS"/>
                                 </constraints>
@@ -37,7 +37,7 @@
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KHn-Oj-ley" userLabel="Blue Control">
-                                <rect key="frame" x="33" y="370" width="254" height="31"/>
+                                <rect key="frame" x="33" y="402" width="254" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="3Z2-Bw-l1u"/>
                                 </constraints>
@@ -46,7 +46,7 @@
                                 </connections>
                             </slider>
                             <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="AHi-t1-Uyy">
-                                <rect key="frame" x="16" y="36" width="288" height="160"/>
+                                <rect key="frame" x="16" y="118" width="288" height="160"/>
                                 <color key="backgroundColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="Bor-DB-bE0"/>
@@ -54,6 +54,17 @@
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="A6l-ZI-fgs"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="zZb-Hx-vKU"/>
+                                </connections>
+                            </pickerView>
+                            <pickerView tag="1" contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="uKU-jx-ct7" userLabel="RGB Picker">
+                                <rect key="frame" x="16" y="118" width="288" height="160"/>
+                                <color key="backgroundColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="DhN-4e-mng"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="nbL-8x-HRz"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="j2U-iL-XpD"/>
                                 </connections>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKY-HB-wIv" userLabel="Message Label">
@@ -98,24 +109,63 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="SWT-Qy-vx2"/>
                                 </items>
                             </toolbar>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zs7-9j-c2y" userLabel="Pickers Switch">
+                                <rect key="frame" x="135.5" y="79" width="51" height="31"/>
+                                <connections>
+                                    <action selector="pickerSwitchToggled:" destination="BYZ-38-t0r" eventType="valueChanged" id="OAx-fq-IYi"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HEX" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hF-fJ-o4K" userLabel="HEX Switch Label">
+                                <rect key="frame" x="69.5" y="79.5" width="50" height="30"/>
+                                <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="X2m-S3-PxI"/>
+                                    <constraint firstAttribute="width" constant="50" id="dKJ-nZ-jKI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RGB" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70p-KU-Eea" userLabel="RBG Switch Label">
+                                <rect key="frame" x="200.5" y="79.5" width="50" height="30"/>
+                                <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2Dw-6C-XEw"/>
+                                    <constraint firstAttribute="width" constant="50" id="6Vo-Ev-90V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="013-pC-knr"/>
+                            <constraint firstItem="7hF-fJ-o4K" firstAttribute="centerY" secondItem="Zs7-9j-c2y" secondAttribute="centerY" id="4nM-ct-cti"/>
+                            <constraint firstItem="uKU-jx-ct7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="5FD-Jd-or1"/>
+                            <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="uKU-jx-ct7" secondAttribute="bottom" constant="32" id="6An-1j-CR0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BKY-HB-wIv" secondAttribute="trailing" constant="16" id="6b1-xL-Gcm"/>
-                            <constraint firstItem="KHn-Oj-ley" firstAttribute="top" secondItem="NXx-mh-U48" secondAttribute="bottom" constant="25" id="6qI-iq-hbb"/>
+                            <constraint firstItem="70p-KU-Eea" firstAttribute="leading" secondItem="Zs7-9j-c2y" secondAttribute="trailing" constant="16" id="6ot-NK-2QH"/>
+                            <constraint firstItem="KHn-Oj-ley" firstAttribute="top" secondItem="NXx-mh-U48" secondAttribute="bottom" constant="16" id="6qI-iq-hbb"/>
+                            <constraint firstItem="7hF-fJ-o4K" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="7yz-Pg-jnd"/>
+                            <constraint firstItem="70p-KU-Eea" firstAttribute="centerY" secondItem="Zs7-9j-c2y" secondAttribute="centerY" id="ASp-Jc-bHQ"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
                             <constraint firstItem="xOa-QI-JxT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="KbY-fh-Z1h"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Mbm-WL-1UH"/>
+                            <constraint firstItem="AHi-t1-Uyy" firstAttribute="top" secondItem="Zs7-9j-c2y" secondAttribute="bottom" constant="8" id="POe-b4-pPV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xOa-QI-JxT" secondAttribute="bottom" id="PhO-c1-L1y"/>
+                            <constraint firstItem="Zs7-9j-c2y" firstAttribute="leading" secondItem="7hF-fJ-o4K" secondAttribute="trailing" constant="16" id="RKb-a2-aQs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AHi-t1-Uyy" secondAttribute="trailing" constant="16" id="Sej-Vz-6BR"/>
                             <constraint firstItem="BKY-HB-wIv" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="UGn-o2-pkB"/>
-                            <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="25" id="Vju-WH-3s4"/>
+                            <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="16" id="Vju-WH-3s4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cFq-en-Umf" secondAttribute="bottom" id="XuN-aG-lYo"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aDE-se-Dgi"/>
-                            <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="AHi-t1-Uyy" secondAttribute="bottom" constant="64" id="jlD-jg-bjR"/>
+                            <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="AHi-t1-Uyy" secondAttribute="bottom" constant="32" id="jlD-jg-bjR"/>
                             <constraint firstItem="BKY-HB-wIv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="n95-Oy-Pzb"/>
-                            <constraint firstItem="cFq-en-Umf" firstAttribute="top" secondItem="KHn-Oj-ley" secondAttribute="bottom" constant="64" id="wrf-Gl-FGM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uKU-jx-ct7" secondAttribute="trailing" constant="16" id="rQ4-8Y-l9n"/>
+                            <constraint firstItem="Zs7-9j-c2y" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="t9D-dS-swg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="70p-KU-Eea" secondAttribute="trailing" symbolic="YES" id="tfc-BP-sCN"/>
+                            <constraint firstItem="cFq-en-Umf" firstAttribute="top" secondItem="KHn-Oj-ley" secondAttribute="bottom" constant="32" id="wrf-Gl-FGM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cFq-en-Umf" secondAttribute="trailing" constant="16" id="x4N-zP-p4V"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -126,10 +176,14 @@
                         <outlet property="blueSlider" destination="KHn-Oj-ley" id="1P8-wD-cNl"/>
                         <outlet property="greenSlider" destination="NXx-mh-U48" id="0Y5-55-rSO"/>
                         <outlet property="hexPicker" destination="AHi-t1-Uyy" id="Zan-8k-3cD"/>
+                        <outlet property="hexSwitchLabel" destination="7hF-fJ-o4K" id="lSy-J8-fI9"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="iEH-He-Xif"/>
+                        <outlet property="pickersSwitch" destination="Zs7-9j-c2y" id="3R7-dJ-6Mm"/>
                         <outlet property="randomBarButtonItem" destination="ZMN-hO-xxK" id="0Ra-9c-yxv"/>
                         <outlet property="randomToolbar" destination="xOa-QI-JxT" id="7f2-n9-bWY"/>
                         <outlet property="redSlider" destination="POM-4Y-HHd" id="d0s-9a-kQe"/>
+                        <outlet property="rgbPicker" destination="uKU-jx-ct7" id="tCh-tu-DB2"/>
+                        <outlet property="rgbSwitchLabel" destination="70p-KU-Eea" id="NcK-gu-CDW"/>
                         <outlet property="shareBarButtonItem" destination="7Tf-R1-A8S" id="LtY-Xz-ib9"/>
                         <outlet property="shareToolbar" destination="cFq-en-Umf" id="YIQ-nE-nDv"/>
                     </connections>
