@@ -18,21 +18,28 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
+    
     @IBOutlet weak var hexPicker: UIPickerView!
+    @IBOutlet weak var rgbPicker: UIPickerView!
+    @IBOutlet weak var pickersSwitch: UISwitch!
+    @IBOutlet weak var hexSwitchLabel: UILabel!
+    @IBOutlet weak var rgbSwitchLabel: UILabel!
+    
     @IBOutlet weak var messageLabel: UILabel!
+    
     @IBOutlet weak var shareToolbar: UIToolbar!
     @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
+    
     @IBOutlet weak var randomToolbar: UIToolbar!
     @IBOutlet weak var randomBarButtonItem: UIBarButtonItem!
     
     
     // MARK: properties
     
-    let myDataSource = ["Download as image", "Copy as text", "Copy as image", "Share as text", "Share as image", "Paste text", "Contact and info"]
-    
     enum Controls {
         case slider
-        case picker
+        case hexPicker
+        case rgbPicker
         case pasteOrRandom
     }
     
@@ -40,6 +47,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     var currentHexColor: String!
     
     var hexArray: [String] = []
+    var rgbArray: [String] = []
     
     
     // MARK: Life Cycle
@@ -51,9 +59,15 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             hexArray.append(String(format:"%02X", i))
         }
         
-        hexPicker.delegate = self
-        hexPicker.layer.cornerRadius = 10
-        hexPicker.layer.masksToBounds = true
+        for i in 0...255 {
+            rgbArray.append(String(i))
+        }
+        
+        for picker in [hexPicker, rgbPicker] {
+            picker?.delegate = self
+            picker?.layer.cornerRadius = 10
+            picker?.layer.masksToBounds = true
+        }
         
         messageLabel.isHidden = true
         
@@ -69,6 +83,14 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             UserDefaults.standard.register(defaults: ["color": "E57BF2"])
         }
         
+        if UserDefaults.standard.string(forKey: Constants.hexPickerSelected) == nil {
+            UserDefaults.standard.register(defaults: [Constants.hexPickerSelected: true])
+        }
+
+        _ = UserDefaults.standard.value(forKey: Constants.hexPickerSelected) as! Bool ? (hexPicker.isHidden = false, rgbPicker.isHidden = true) : (hexPicker.isHidden = true, rgbPicker.isHidden = false)
+        
+        pickersSwitch.isOn = !(UserDefaults.standard.value(forKey: Constants.hexPickerSelected) as! Bool)
+        
         for toolbar in [shareToolbar, randomToolbar] {
             toolbar?.setShadowImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any)
             toolbar?.setBackgroundImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)), forToolbarPosition: .any, barMetrics: .default)
@@ -76,8 +98,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             toolbar?.layer.masksToBounds = true
         }
         
-        messageLabel.layer.cornerRadius = 10
-        messageLabel.layer.masksToBounds = true
+        for label in [messageLabel, hexSwitchLabel, rgbSwitchLabel] {
+            label?.layer.cornerRadius = 10
+            label?.layer.masksToBounds = true
+        }
         
 
     }
@@ -111,6 +135,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         let hexString = UserDefaults.standard.string(forKey: "color")
         
+        print(Int("ff", radix: 16))
+        
         UIView.animate(withDuration: 0.5, animations: {
             self.redSlider.setValue(Float("0x" + hexString![0...1])! / 255, animated: true)
             self.greenSlider.setValue(Float("0x" + hexString![2...3])! / 255, animated: true)
@@ -120,13 +146,21 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let greenHex = hexString![2...3]
             let blueHex = hexString![4...5]
             
-            let redIndex = self.hexArray.index(of: String(redHex))
-            let greenIndex = self.hexArray.index(of: String(greenHex))
-            let blueIndex = self.hexArray.index(of: String(blueHex))
+            let redIndexHex = self.hexArray.index(of: String(redHex))
+            let greenIndexHex = self.hexArray.index(of: String(greenHex))
+            let blueIndexHex = self.hexArray.index(of: String(blueHex))
             
-            self.hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
-            self.hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
-            self.hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
+            self.hexPicker.selectRow(redIndexHex!, inComponent: 0, animated: true)
+            self.hexPicker.selectRow(greenIndexHex!, inComponent: 1, animated: true)
+            self.hexPicker.selectRow(blueIndexHex!, inComponent: 2, animated: true)
+            
+            let redIndexRGB = Int(hexString![0...1], radix: 16)
+            let greenIndexRGB = Int(hexString![2...3], radix: 16)
+            let blueIndexRGB = Int(hexString![4...5], radix: 16)
+            
+            self.rgbPicker.selectRow(redIndexRGB!, inComponent: 0, animated: true)
+            self.rgbPicker.selectRow(greenIndexRGB!, inComponent: 1, animated: true)
+            self.rgbPicker.selectRow(blueIndexRGB!, inComponent: 2, animated: true)
             
             self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value), green: CGFloat(self.greenSlider.value), blue: CGFloat(self.blueSlider.value), alpha: 1)
         }, completion: {
@@ -160,6 +194,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let rBase255 = Int(r * 255)
             let gBase255 = Int(g * 255)
             let bBase255 = Int(b * 255)
+            
             let redHex = String(format: "%02X", rBase255)
             let greenHex = String(format: "%02X", gBase255)
             let blueHex = String(format: "%02X", bBase255)
@@ -171,13 +206,18 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
             hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
             hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
+            
+            self.rgbPicker.selectRow(rBase255, inComponent: 0, animated: true)
+            self.rgbPicker.selectRow(gBase255, inComponent: 1, animated: true)
+            self.rgbPicker.selectRow(bBase255, inComponent: 2, animated: true)
+            
             let hexCode = redHex + greenHex + blueHex
             UserDefaults.standard.set(hexCode, forKey: "color")
             
-        } else if control == .picker {
-            let redValue: Double = Double(hexPicker.selectedRow(inComponent: 0))
-            let greenValue: Double = Double(hexPicker.selectedRow(inComponent: 1))
-            let blueValue: Double = Double(hexPicker.selectedRow(inComponent: 2))
+        } else if control == .hexPicker {
+            let redValue: Float = Float(hexPicker.selectedRow(inComponent: 0))
+            let greenValue: Float = Float(hexPicker.selectedRow(inComponent: 1))
+            let blueValue: Float = Float(hexPicker.selectedRow(inComponent: 2))
             
             UIView.animate(withDuration: 0.5, animations: {
                 self.redSlider.setValue(Float(redValue / 255.0), animated: true)
@@ -189,7 +229,36 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let redHex = hexArray[hexPicker.selectedRow(inComponent: 0)]
             let greenHex = hexArray[hexPicker.selectedRow(inComponent: 1)]
             let blueHex = hexArray[hexPicker.selectedRow(inComponent: 2)]
+            
+            self.rgbPicker.selectRow(Int(redValue), inComponent: 0, animated: true)
+            self.rgbPicker.selectRow(Int(greenValue), inComponent: 1, animated: true)
+            self.rgbPicker.selectRow(Int(blueValue), inComponent: 2, animated: true)
+            
             let hexCode = redHex + greenHex + blueHex
+            UserDefaults.standard.set(hexCode, forKey: "color")
+            
+        } else if control == .rgbPicker {
+            let redValue: Double = Double(rgbPicker.selectedRow(inComponent: 0))
+            let greenValue: Double = Double(rgbPicker.selectedRow(inComponent: 1))
+            let blueValue: Double = Double(rgbPicker.selectedRow(inComponent: 2))
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.redSlider.setValue(Float(redValue / 255.0), animated: true)
+                self.greenSlider.setValue(Float(greenValue / 255.0), animated: true)
+                self.blueSlider.setValue(Float(blueValue / 255.0), animated: true)
+                self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value), green: CGFloat(self.greenSlider.value), blue: CGFloat(self.blueSlider.value), alpha: 1)
+            })
+            
+            self.hexPicker.selectRow(Int(redValue), inComponent: 0, animated: true)
+            self.hexPicker.selectRow(Int(greenValue), inComponent: 1, animated: true)
+            self.hexPicker.selectRow(Int(blueValue), inComponent: 2, animated: true)
+            
+            let redHex = String(format: "%02X", redValue)
+            let greenHex = String(format: "%02X", greenValue)
+            let blueHex = String(format: "%02X", blueValue)
+            
+            let hexCode = redHex + greenHex + blueHex
+            
             UserDefaults.standard.set(hexCode, forKey: "color")
             
         } else if control == .pasteOrRandom {
@@ -204,6 +273,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
             hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
             hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
+            
+            self.rgbPicker.selectRow(Int(redString, radix: 16)!, inComponent: 0, animated: true)
+            self.rgbPicker.selectRow(Int(greenString, radix: 16)!, inComponent: 1, animated: true)
+            self.rgbPicker.selectRow(Int(blueString, radix: 16)!, inComponent: 2, animated: true)
             
             let redValue: Double = Double(hexPicker.selectedRow(inComponent: 0))
             let greenValue: Double = Double(hexPicker.selectedRow(inComponent: 1))
@@ -237,10 +310,18 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     
+    // MARK: Picker Switch
+    
+    @IBAction func pickerSwitchToggled(_ sender: Any) {
+        UserDefaults.standard.set(!pickersSwitch.isOn, forKey: Constants.hexPickerSelected)
+        _ = pickersSwitch.isOn ? (hexPicker.isHidden = true, rgbPicker.isHidden = false) : (hexPicker.isHidden = false, rgbPicker.isHidden = true)
+    }
+    
+    
     // MARK: Pickers
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        if pickerView.tag == 0 {
+        if pickerView.tag == 0 || pickerView.tag == 1 {
             return 3
         } else {
             fatalError()
@@ -251,6 +332,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 0 {
             return hexArray.count
+        } else if pickerView.tag == 1 {
+            return rgbArray.count
         } else {
             fatalError()
         }
@@ -259,14 +342,27 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
-        let string = hexArray[row]
+        var string = ""
+        
+        if pickerView.tag == 0 {
+            string = hexArray[row]
+            return NSAttributedString(string: string, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            
+        } else if pickerView.tag == 1 {
+            string = rgbArray[row]
+        } else {
+            fatalError()
+        }
+
         return NSAttributedString(string: string, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 0 {
-            updateColor(control: Controls.picker)
+            updateColor(control: .hexPicker)
+        } else if pickerView.tag == 1 {
+            updateColor(control: .rgbPicker)
         } else {
             fatalError()
         }
@@ -517,7 +613,12 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 slider?.isHidden = true
             }
 
-            hexPicker.isHidden = true
+            let hexPickerWasHidden = hexPicker.isHidden
+            
+            for picker in [hexPicker, rgbPicker] {
+                picker?.isHidden = true
+            }
+            
             shareToolbar.isHidden = true
             
             let regularAttributes: [NSAttributedString.Key: Any] = [
@@ -551,8 +652,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             for slider in [redSlider, greenSlider, blueSlider] {
                 slider?.isHidden = false
             }
-
-            hexPicker.isHidden = false
+            
+            _ = hexPickerWasHidden ? (rgbPicker.isHidden = false) : (hexPicker.isHidden = false)
+            
             shareToolbar.isHidden = false
     
             return hexImage
@@ -560,7 +662,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     
     func pasteText() {
-        // check if valid hex code
+
         guard let pastedString = UIPasteboard.general.string else {
             let alert = createAlert(alertReasonParam: alertReason.emptyPaste)
             present(alert, animated: true)
@@ -572,11 +674,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         guard results.0 else {
             let alert = createAlert(alertReasonParam: alertReason.invalidHex, invalidHex: results.1)
             present(alert, animated: true)
-            print("invalid hex")
             return
         }
         
-        print("valid hex")
         updateColor(control: Controls.pasteOrRandom, hexString: results.1)
         let alert = createAlert(alertReasonParam: alertReason.hexPasted)
         present(alert, animated: true)
@@ -601,7 +701,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         for char in cleanedFromSymbols {
             if !validHexChars.contains(char) {
-                print("invalid hex: \(char)")
                 return (false, hex)
             }
         }
@@ -636,23 +735,15 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     func toggleUI(enable: Bool) {
         
         DispatchQueue.main.async {
-//            for slider in [self.redSlider, self.greenSlider, self.blueSlider] {
-//                slider?.isEnabled = enable
-//            }
-            
-            // self.shareBarButtonItem,
+
             for item in [self.randomBarButtonItem] {
                 item?.isEnabled = enable
             }
             
-            // self.shareToolbar,
             for toolbar in [self.randomToolbar] {
                 toolbar?.isUserInteractionEnabled = enable
                 toolbar?.alpha = enable ? 1.0 : 0.6
             }
-            
-//            self.hexPicker.isUserInteractionEnabled = enable
-//            self.hexPicker.alpha = enable ? 1.0 : 0.6
         }
     }
     
