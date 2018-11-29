@@ -18,7 +18,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
-    @IBOutlet weak var brightnessSlider: UISlider!
     @IBOutlet weak var hexPicker: UIPickerView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var shareToolbar: UIToolbar!
@@ -86,17 +85,14 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        subscribeToBrightnessNotifications()
-        
-        UIScreen.main.brightness = 1.0
+
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let welcomeAlert = UIAlertController(title: "Welcome", message: "For the best experience, turn off Night Shift and True Tone when using the app.", preferredStyle: .actionSheet)
+        let welcomeAlert = UIAlertController(title: "Welcome", message: "For the best experience:\n- Turn off Night Shift\n- Turn off True Tone\n- Pickup your screen's brightness", preferredStyle: .actionSheet)
         
         let closeAction = UIAlertAction(title: "Don't show this again", style: .cancel) {
             _ in
@@ -132,8 +128,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
             self.hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
             
-            self.brightnessSlider.setValue(1.0, animated: true)
-            
             self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value), green: CGFloat(self.greenSlider.value), blue: CGFloat(self.blueSlider.value), alpha: 1)
         }, completion: {
             _ in
@@ -147,8 +141,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        unsubscribeFromBrightnessNotifications()
+
     }
     
     
@@ -241,16 +234,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         // Call color changing func
         updateColor(control: Controls.slider)
         
-    }
-    
-    
-    @objc func updateBrightness(_ notification:Notification) {
-        brightnessSlider.value = Float(UIScreen.main.brightness)
-    }
-    
-    
-    @IBAction func brightnessChanged() {
-        UIScreen.main.brightness = CGFloat(brightnessSlider.value)
     }
     
     
@@ -530,7 +513,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
         func generateHexImage() -> UIImage {
     
-            for slider in [redSlider, greenSlider, blueSlider, brightnessSlider] {
+            for slider in [redSlider, greenSlider, blueSlider] {
                 slider?.isHidden = true
             }
 
@@ -565,7 +548,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             UIGraphicsEndImageContext()
             messageLabel.isHidden = true
 
-            for slider in [redSlider, greenSlider, blueSlider, brightnessSlider] {
+            for slider in [redSlider, greenSlider, blueSlider] {
                 slider?.isHidden = false
             }
 
@@ -650,22 +633,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     
-    // MARK: Notifications
-    
-    func subscribeToBrightnessNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateBrightness(_:)), name: UIScreen.brightnessDidChangeNotification, object: nil)
-    }
-    
-    
-    func unsubscribeFromBrightnessNotifications() {
-        NotificationCenter.default.removeObserver(self, name: UIScreen.brightnessDidChangeNotification, object: nil)
-    }
-    
-    
     func toggleUI(enable: Bool) {
         
         DispatchQueue.main.async {
-//            for slider in [self.redSlider, self.greenSlider, self.blueSlider, self.brightnessSlider] {
+//            for slider in [self.redSlider, self.greenSlider, self.blueSlider] {
 //                slider?.isEnabled = enable
 //            }
             
