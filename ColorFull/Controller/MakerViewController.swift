@@ -135,8 +135,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         let hexString = UserDefaults.standard.string(forKey: "color")
         
-        print(Int("ff", radix: 16))
-        
         UIView.animate(withDuration: 0.5, animations: {
             self.redSlider.setValue(Float("0x" + hexString![0...1])! / 255, animated: true)
             self.greenSlider.setValue(Float("0x" + hexString![2...3])! / 255, animated: true)
@@ -375,8 +373,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBAction func shareToolbarPressed(_ sender: Any) {
         
         let mainAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let copyAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let shareAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let copyMainAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let copyTextAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let shareMainAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let shareTextAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let version: String? = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
         let infoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -385,7 +385,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             infoAlert.title = "ColorFull"
         }
         
-        for alert in [mainAlert, copyAlert, shareAlert, infoAlert] {
+        for alert in [mainAlert, copyMainAlert, copyTextAlert, shareMainAlert, shareTextAlert, infoAlert] {
             alert.modalPresentationStyle = .popover
         }
         
@@ -401,9 +401,28 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.downloadHexAndColor()
         })
         
-        let copyTextAction = UIAlertAction(title: "Copy as text", style: .default, handler: {
+        let copyTextHexAction = UIAlertAction(title: "Copy as hex text", style: .default) {
             _ in
-            self.copyHexAsText()
+            self.copyAsText(format: .hex)
+            
+        }
+        
+        let copyTextRGBAction = UIAlertAction(title: "Copy as rgb text", style: .default) {
+            _ in
+            self.copyAsText(format: .rgb)
+        }
+        
+        for action in [copyTextHexAction, copyTextRGBAction,cancelAction] {
+            copyTextAlert.addAction(action)
+        }
+        
+        let copyTextMainAction = UIAlertAction(title: "Copy as text", style: .default, handler: {
+            _ in
+            if let presenter = copyMainAlert.popoverPresentationController {
+                presenter.sourceView = self.shareToolbar
+                presenter.sourceRect = self.shareToolbar.bounds
+            }
+            self.present(copyTextAlert, animated: true)
         })
         
         let copyImageAction = UIAlertAction(title: "Copy as image", style: .default) {
@@ -411,23 +430,42 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.copyHexAndColorAsImage()
         }
         
-        for action in [copyImageAction, copyTextAction, cancelAction] {
-            copyAlert.addAction(action)
+        for action in [copyImageAction, copyTextMainAction, cancelAction] {
+            copyMainAlert.addAction(action)
         }
         
-        let copyAction = UIAlertAction(title: "Copy", style: .default) {
+        let copyMainAction = UIAlertAction(title: "Copy", style: .default) {
             _ in
             
-            if let presenter = copyAlert.popoverPresentationController {
+            if let presenter = copyMainAlert.popoverPresentationController {
                 presenter.sourceView = self.shareToolbar
                 presenter.sourceRect = self.shareToolbar.bounds
             }
-            self.present(copyAlert, animated: true)
+            self.present(copyMainAlert, animated: true)
         }
         
-        let shareTextAction = UIAlertAction(title: "Share as text", style: .default) {
+        let shareTextHexAction = UIAlertAction(title: "Share as hex text", style: .default) {
             _ in
-            self.shareHexAsText()
+            self.shareColorAsText(format: .hex)
+        }
+        
+        let shareTextRGBAction = UIAlertAction(title: "Share as rgb text", style: .default) {
+            _ in
+            self.shareColorAsText(format: .rgb)
+        }
+        
+        for action in [shareTextHexAction, shareTextRGBAction, cancelAction] {
+            shareTextAlert.addAction(action)
+        }
+        
+        let shareTextMainAction = UIAlertAction(title: "Share as text", style: .default) {
+            _ in
+            #warning("show share as text options")
+            if let presenter = copyMainAlert.popoverPresentationController {
+                presenter.sourceView = self.shareToolbar
+                presenter.sourceRect = self.shareToolbar.bounds
+            }
+            self.present(shareTextAlert, animated: true)
         }
         
         let shareImageAction = UIAlertAction(title: "Share as image", style: .default) {
@@ -435,21 +473,21 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.shareHexAndColorAsImage()
         }
         
-        for action in [shareImageAction, shareTextAction, cancelAction] {
-            shareAlert.addAction(action)
+        for action in [shareImageAction, shareTextMainAction, cancelAction] {
+            shareMainAlert.addAction(action)
         }
         
         let shareAction = UIAlertAction(title: "Share", style: .default) {
             _ in
             
-            if let presenter = shareAlert.popoverPresentationController {
+            if let presenter = shareMainAlert.popoverPresentationController {
                 presenter.sourceView = self.shareToolbar
                 presenter.sourceRect = self.shareToolbar.bounds
             }
-            self.present(shareAlert, animated: true)
+            self.present(shareMainAlert, animated: true)
         }
         
-        let pasteTextAction = UIAlertAction(title: "Paste text", style: .default) {
+        let pasteTextAction = UIAlertAction(title: "Paste hex text", style: .default) {
             _ in
             self.pasteText()
         }
@@ -483,8 +521,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.present(infoAlert, animated: true)
         }
         
-        
-        for action in [downloadImageAction, copyAction, shareAction, pasteTextAction, infoAction, cancelAction] {
+        for action in [downloadImageAction, copyMainAction, shareAction, pasteTextAction, infoAction, cancelAction] {
             mainAlert.addAction(action)
         }
         
@@ -549,12 +586,27 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     
-    func copyHexAsText() {
-
-        let pasteboard = UIPasteboard.general
-        pasteboard.string = UserDefaults.standard.string(forKey: "color")
+    func copyAsText(format: Format) {
         
-        let alert = createAlert(alertReasonParam: alertReason.hexSaved)
+        let pasteboard = UIPasteboard.general
+        
+        switch format {
+        case .hex:
+            pasteboard.string = UserDefaults.standard.string(forKey: "color")
+        case .rgb:
+            #warning("copy rgb to pasteboard")
+            
+            let hexString = UserDefaults.standard.string(forKey: "color")
+            
+            let redValue = Int(hexString![0...1], radix: 16)!
+            let greenValue = Int(hexString![2...3], radix: 16)!
+            let blueValue = Int(hexString![4...5], radix: 16)!
+            
+            pasteboard.string = "r: \(redValue), g: \(greenValue), b: \(blueValue)"
+            
+        }
+        
+        let alert = createAlert(alertReasonParam: alertReason.textCopied, format: format)
         present(alert, animated: true)
     }
     
@@ -570,9 +622,24 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     
-    func shareHexAsText() {
+    func shareColorAsText(format: Format) {
         
-        let myText = UserDefaults.standard.string(forKey: "color")!
+        var myText = ""
+        
+        switch format {
+        case .hex:
+            myText = UserDefaults.standard.string(forKey: "color")!
+        case .rgb:
+            let hexString = UserDefaults.standard.string(forKey: "color")
+            
+            let redValue = Int(hexString![0...1], radix: 16)!
+            let greenValue = Int(hexString![2...3], radix: 16)!
+            let blueValue = Int(hexString![4...5], radix: 16)!
+            
+            myText = "r: \(redValue), g: \(greenValue), b: \(blueValue)"
+        }
+        
+        
 
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = self.view // for iPads not to crash
@@ -619,7 +686,15 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 picker?.isHidden = true
             }
             
-            shareToolbar.isHidden = true
+            for toolbar in [shareToolbar, randomToolbar] {
+                toolbar?.isHidden = true
+            }
+            
+            for label in [hexSwitchLabel, rgbSwitchLabel] {
+                label?.isHidden = true
+            }
+            
+            pickersSwitch.isHidden = true
             
             let regularAttributes: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 16)]
@@ -627,18 +702,30 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let jumboAttributes: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 50)]
             
-            let attributedMessagePre = NSAttributedString(string: "\nThe hex value for your color is:\n", attributes: regularAttributes)
+            let attributedMessagePreHex = NSAttributedString(string: "\nThe hex value for your color is:\n", attributes: regularAttributes)
             
-            let hexColorString = UserDefaults.standard.string(forKey: "color") ?? "<error>"
+            let hexString = UserDefaults.standard.string(forKey: "color") ?? "<error>"
             
-            let attributedMessageJumbo = NSAttributedString(string: hexColorString, attributes: jumboAttributes)
+            let attributedMessageJumboHex = NSAttributedString(string: hexString, attributes: jumboAttributes)
             
-            let attributedMessagePost = NSAttributedString(string: "\nCreated using:\nColorFull by Daniel Springer\nAvailable exclusively on the iOS App Store\n", attributes: regularAttributes)
+            let attributedMessagePreRGB = NSAttributedString(string: "\n\nThe rgb value for your color is:\n", attributes: regularAttributes)
+            
+            let redValue = Int(hexString[0...1], radix: 16)!
+            let greenValue = Int(hexString[2...3], radix: 16)!
+            let blueValue = Int(hexString[4...5], radix: 16)!
+            
+            let rgbString = "r: \(redValue), g: \(greenValue), b: \(blueValue)"
+            
+            let attributedMessageJumboRGB = NSAttributedString(string: rgbString, attributes: jumboAttributes)
+            
+            let attributedMessagePost = NSAttributedString(string: "\n\nCreated using:\nColorFull by Daniel Springer\nAvailable exclusively on the iOS App Store\n", attributes: regularAttributes)
             
             let myAttributedText = NSMutableAttributedString()
             
-            myAttributedText.append(attributedMessagePre)
-            myAttributedText.append(attributedMessageJumbo)
+            myAttributedText.append(attributedMessagePreHex)
+            myAttributedText.append(attributedMessageJumboHex)
+            myAttributedText.append(attributedMessagePreRGB)
+            myAttributedText.append(attributedMessageJumboRGB)
             myAttributedText.append(attributedMessagePost)
             
             messageLabel.attributedText = myAttributedText
@@ -655,7 +742,15 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             
             _ = hexPickerWasHidden ? (rgbPicker.isHidden = false) : (hexPicker.isHidden = false)
             
-            shareToolbar.isHidden = false
+            for toolbar in [shareToolbar, randomToolbar] {
+                toolbar?.isHidden = false
+            }
+            
+            for label in [hexSwitchLabel, rgbSwitchLabel] {
+                label?.isHidden = false
+            }
+            
+            pickersSwitch.isHidden = false
     
             return hexImage
         }
