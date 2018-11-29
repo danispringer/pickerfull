@@ -17,7 +17,7 @@ extension UIViewController {
         case messageSent
         case unknown
         case imageSaved
-        case hexSaved
+        case textCopied
         case imageCopied
         case permissionDenied
         case emptyPaste
@@ -25,7 +25,14 @@ extension UIViewController {
         case hexPasted
     }
     
-    func createAlert(alertReasonParam: alertReason, invalidHex: String = "") -> UIAlertController {
+    
+    enum Format {
+        case hex
+        case rgb
+    }
+    
+    
+    func createAlert(alertReasonParam: alertReason, invalidHex: String = "", format: Format = .hex) -> UIAlertController {
         
         var alertTitle = ""
         var alertMessage = ""
@@ -45,9 +52,9 @@ extension UIViewController {
         case .imageSaved:
             alertTitle = "Success!"
             alertMessage = "Your image has been saved to your library."
-        case .hexSaved:
+        case .textCopied:
             alertTitle = "Success!"
-            alertMessage = "Your HEX code has been copied.\nDon't forget to paste it somewhere!"
+            alertMessage = "Your color has been copied as text in \(format) format.\nDon't forget to paste it somewhere!"
         case .imageCopied:
             alertTitle = "Success!"
             alertMessage = "Your image has been copied.\nDon't forget to paste it somewhere!"
