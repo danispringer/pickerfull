@@ -1,6 +1,6 @@
 //
 //  MakerViewController.swift
-//  Color Picker
+//  ColorFull
 //
 //  Created by Dani Springer on 06/03/2018.
 //  Copyright © 2018 Dani Springer. All rights reserved.
@@ -303,7 +303,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         let infoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         if let version = version {
             infoAlert.message = "Version \(version)"
-            infoAlert.title = "ColorFull Picker"
+            infoAlert.title = "ColorFull"
         }
         
         for alert in [mainAlert, copyAlert, shareAlert, infoAlert] {
@@ -629,7 +629,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func shareApp() {
         
-        let message = "Look at this app: ColorFull Picker lets you generate a color from millions of choices using sliders or HEX code, and save or share your created color! https://itunes.apple.com/app/id1410565176 - it's really cool!"
+        let message = "Look at this app: ColorFull lets you generate a color from millions of choices using sliders or HEX code, and save or share your created color! https://itunes.apple.com/app/id1410565176 - it's really cool!"
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
         activityController.popoverPresentationController?.sourceView = self.view // for iPads not to crash
@@ -661,6 +661,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         NotificationCenter.default.removeObserver(self, name: UIScreen.brightnessDidChangeNotification, object: nil)
     }
     
+    
     func toggleUI(enable: Bool) {
         
         DispatchQueue.main.async {
@@ -691,7 +692,7 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
     
     func launchEmail() {
         
-        var emailTitle = "ColorFull Picker"
+        var emailTitle = "ColorFull"
         if let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] {
             emailTitle += " \(version)"
         }
