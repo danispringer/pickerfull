@@ -1,14 +1,14 @@
 - improve for ipad
 - random color generator: siri shortcuts
-- RGB picker
-- Generate launch screen image to use on next launch with last selected color
-- !! App icon too?
+- RGB picker: paste as rgb
 - Add back screenshots in READMEs.
 - improve slider icons
 - Notifications: random color
 - Use Constants Struct
 - Add iOS-like Splash screen: current action sheet
 - add in-app gallery
+- create helper functions: rgb to hex, hex to rgb, slider value (1/255?) to hex/rgb
+- update app store description
 
 
 ###### App Store Description
