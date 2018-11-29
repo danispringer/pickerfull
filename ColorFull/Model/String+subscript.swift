@@ -1,6 +1,6 @@
 //
 //  String+subscript.swift
-//  Color Picker
+//  ColorFull
 //
 //  Created by Dani Springer on 14/05/2018.
 //  Copyright © 2018 Dani Springer. All rights reserved.
