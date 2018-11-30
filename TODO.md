@@ -9,6 +9,7 @@
 - add in-app gallery
 - create helper functions: rgb to hex, hex to rgb, slider value (1/255?) to hex/rgb
 - update app store description
+- add reviewkit
 
 
 ###### App Store Description
