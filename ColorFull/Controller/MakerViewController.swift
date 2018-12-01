@@ -460,7 +460,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         let shareTextMainAction = UIAlertAction(title: "Share as text", style: .default) {
             _ in
-            #warning("show share as text options")
             if let presenter = copyMainAlert.popoverPresentationController {
                 presenter.sourceView = self.shareToolbar
                 presenter.sourceRect = self.shareToolbar.bounds
@@ -594,7 +593,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         case .hex:
             pasteboard.string = UserDefaults.standard.string(forKey: "color")
         case .rgb:
-            #warning("copy rgb to pasteboard")
             
             let hexString = UserDefaults.standard.string(forKey: "color")
             
@@ -783,24 +781,23 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func isValidHex(hex: String) -> (Bool, String) {
         
-        guard hex.count == 6 else {
+        print(hex)
+        
+        let uppercasedDirtyHex = hex.uppercased()
+        
+        print(uppercasedDirtyHex)
+        
+        let cleanedHex = uppercasedDirtyHex.filter {
+            "ABCDEF0123456789".contains($0)
+        }
+        
+        print(cleanedHex)
+        
+        guard cleanedHex.count == 6 else {
             return (false, hex)
         }
-        
-        let uppercased = hex.uppercased()
-        let trimmedFromSpaces = uppercased.trimmingCharacters(in: .whitespacesAndNewlines)
-        let cleanedFromPound = trimmedFromSpaces.replacingOccurrences(of: "#", with: "")
-        let cleanedFromSymbols = cleanedFromPound.trimmingCharacters(in: .punctuationCharacters)
-        
-        let validHexChars = "ABCDEF0123456789"
-        
-        for char in cleanedFromSymbols {
-            if !validHexChars.contains(char) {
-                return (false, hex)
-            }
-        }
-    
-        return (true, cleanedFromSymbols)
+
+        return (true, cleanedHex)
     }
     
     
