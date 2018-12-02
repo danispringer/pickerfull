@@ -450,7 +450,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         let copyTextMainAction = UIAlertAction(title: "Copy as text", style: .default, handler: {
             _ in
-            if let presenter = copyMainAlert.popoverPresentationController {
+            if let presenter = copyTextAlert.popoverPresentationController {
                 presenter.sourceView = self.shareToolbar
                 presenter.sourceRect = self.shareToolbar.bounds
             }
@@ -492,7 +492,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         let shareTextMainAction = UIAlertAction(title: "Share as text", style: .default) {
             _ in
-            if let presenter = copyMainAlert.popoverPresentationController {
+            if let presenter = shareTextAlert.popoverPresentationController {
                 presenter.sourceView = self.shareToolbar
                 presenter.sourceRect = self.shareToolbar.bounds
             }
