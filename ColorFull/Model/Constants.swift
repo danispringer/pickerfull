@@ -10,4 +10,5 @@ import Foundation
 
 struct Constants {
     static let hexPickerSelected = "hexPickerSelected"
+    static let colorKey = "color"
 }
