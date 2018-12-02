@@ -12,6 +12,7 @@
 - add reviewkit
 - add “history”, back button (forward button too? Try only back first)
 - OR: like feature, saves to in-app gallery
+- if pasted hex or rgb is invalid, check if it's the other one, and if valid, notify user
 
 
 ###### App Store Description
