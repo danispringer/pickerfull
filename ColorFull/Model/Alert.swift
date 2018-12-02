@@ -20,9 +20,12 @@ extension UIViewController {
         case textCopied
         case imageCopied
         case permissionDenied
-        case emptyPaste
+        case emptyPasteHex
+        case emptyPasteRGB
         case invalidHex
+        case invalidRGB
         case hexPasted
+        case RGBPasted
     }
     
     
@@ -32,7 +35,7 @@ extension UIViewController {
     }
     
     
-    func createAlert(alertReasonParam: alertReason, invalidHex: String = "", format: Format = .hex) -> UIAlertController {
+    func createAlert(alertReasonParam: alertReason, invalidCode: String = "", format: Format = .hex) -> UIAlertController {
         
         var alertTitle = ""
         var alertMessage = ""
@@ -63,13 +66,23 @@ extension UIViewController {
             alertMessage = "ColorFull needs access to your gallery in order to save your image. Please allow access in Settings."
         case .invalidHex:
             alertTitle = "Invalid HEX"
-            alertMessage = "The pasted text\n\"\(invalidHex)\"\nis not a valid HEX."
-        case .emptyPaste:
+            alertMessage = "The pasted text\n\"\(invalidCode)\"\nis not a valid HEX."
+        case .emptyPasteHex:
             alertTitle = "Pasteboard empty"
             alertMessage = "There's nothing to paste. Please copy a HEX code and try again."
         case .hexPasted:
             alertTitle = "Success!"
             alertMessage = "The app's sliders and spinners have been updated with your pasted HEX code."
+        case .invalidRGB:
+            alertTitle = "Invalid RGB"
+            alertMessage = "The pasted text\n\"\(invalidCode)\"\nis not a valid RGB.\nPaste numbers only, separated by commas.\nFor example: 255,12,90"
+        case .emptyPasteRGB:
+            alertTitle = "Pasteboard emtpy"
+            alertMessage = "There's nothing to paste. Please copy a RGB code and try again."
+        case .RGBPasted:
+            alertTitle = "Success!"
+            alertMessage = "The app's sliders and spinners have been updated with your pasted HEX code."
+            
         default:
             alertTitle = "Unknown error"
             alertMessage = "An unknown error occurred. Please try again later, or contact us by visiting DaniSpringer.GitHub.io"
