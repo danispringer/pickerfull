@@ -1,4 +1,3 @@
-- RGB picker: paste as rgb
 - improve for ipad
 - random color generator: siri shortcuts
 - Add back screenshots in READMEs.
