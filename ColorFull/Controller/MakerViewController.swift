@@ -111,7 +111,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let welcomeAlert = UIAlertController(title: "Welcome", message: "For the best ColorFull experience:\n- Turn off Night Shift\n- Turn off True Tone\n- Pickup your screen's brightness", preferredStyle: .actionSheet)
+        let welcomeAlert = UIAlertController(title: "Welcome", message: "For the best ColorFull experience:\n- Turn off Night Shift\n- Turn off True Tone\n- Raise your screen's brightness", preferredStyle: .actionSheet)
         
         let closeAction = UIAlertAction(title: "Don't show this again", style: .cancel) {
             _ in
