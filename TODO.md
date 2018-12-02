@@ -1,6 +1,6 @@
+- RGB picker: paste as rgb
 - improve for ipad
 - random color generator: siri shortcuts
-- RGB picker: paste as rgb
 - Add back screenshots in READMEs.
 - improve slider icons
 - Notifications: random color
