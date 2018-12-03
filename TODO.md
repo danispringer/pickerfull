@@ -13,6 +13,8 @@
 - OR: like feature, saves to in-app gallery
 - if pasted hex or rgb is invalid, check if it's the other one, and if valid, notify user
 - add random color option to menu, animate random button on selection (use closure to show animation after menu is dismissed)
+- Add Multiple options for languages in apps.
+- AR
 
 
 ###### App Store Description
