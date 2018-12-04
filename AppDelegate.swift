@@ -12,16 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: Properties
-    
+
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
         UserDefaults.standard.register(defaults: ["isFirstLaunch": true])
         UserDefaults.standard.register(defaults: [Constants.colorKey: "E57BF2"])
 
         return true
     }
-    
-}
 
+}
