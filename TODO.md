@@ -15,6 +15,7 @@
 - add random color option to menu, animate random button on selection (use closure to show animation after menu is dismissed)
 - Add Multiple options for languages in apps.
 - AR
+- Re-enable rule and fix error: function_body_length
 
 
 ###### App Store Description
@@ -24,12 +25,12 @@
 • ColorFull lets you easily save, copy, or share your color, both as an image which includes the color and both HEX and RGB values, or as plain text, both as HEX or RGB values.
 • Battery died? No worries. Your last selected color will automatically display when you launch the app again. ColorFull has got your back - and favorite color!
 
-• Is there a feature you'd like to see? A bug you'd like to go away? Let us know by opening the app and tapping on the share icon on the bottom right, selecting 'Contact and info', then selecting 'Send feedback or question' - or by visiting www.DaniSpringer.GitHub.io
+• Is there a feature you'd like to see? A bug you'd like to go away? Let us know by opening the app and tapping on the share icon on the bottom right, selecting 'Contact and info', then selecting 'Send feedback or question'.
 • Love the app? Please consider leaving a review. It would mean a ColorFull lot to us!
 
 ##### Update
 
 • Version N.N.N brings some bug fixes.
 
-• Is there a feature you'd like to see? a bug you'd like to go away? Let us know by opening the app and tapping on the Menu button, selecting 'Contact and info', then tapping on the mail icon - or by visiting www.DaniSpringer.GitHub.io
+• Is there a feature you'd like to see? a bug you'd like to go away? Let us know by opening the app and tapping on the Menu button, selecting 'Contact and info', then tapping on the mail icon.
 • Love the app? Please consider leaving a review. It would mean a ColorFull lot to us!
