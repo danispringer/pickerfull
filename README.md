@@ -5,7 +5,7 @@
 - ColorFull lets you easily save, copy, or share your color, both as an image which includes the color and both HEX and RGB values, or as plain text, both as HEX or RGB values.
 - Battery died? No worries. Your last selected color will automatically display when you launch the app again. ColorFull has got your back - and favorite color!
 
-- Is there a feature you'd like to see? A bug you'd like to go away? Let us know by opening the app and tapping on the share icon on the bottom right, selecting 'Contact and info', then selecting 'Send feedback or question' - or by visiting www.DaniSpringer.GitHub.io
+- Is there a feature you'd like to see? A bug you'd like to go away? Let us know by opening the app and tapping on the share icon on the bottom right, selecting 'Contact and info', then selecting 'Send feedback or question'.
 - Love the app? Please consider leaving a review. It would mean a ColorFull lot to us!
 - Get it here: https://itunes.apple.com/app/id1410565176
 
@@ -16,7 +16,6 @@ Want to help? You can:
 - Suggest changes by creating an Issue.
 - Submit your own fix or improvements by creating a Pull Request.
 - Share this project to spread the word.
-- Contact me: https://danispringer.github.io
 
 # License
-Copyright © 2018 Dani Springer. All rights reserved.
+Copyright © 2018 Daniel Springer. All rights reserved.
