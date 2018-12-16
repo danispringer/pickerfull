@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  ColorFull
 //
-//  Created by Dani Springer on 06/03/2018.
-//  Copyright © 2018 Dani Springer. All rights reserved.
+//  Created by Daniel Springer on 06/03/2018.
+//  Copyright © 2018 Daniel Springer. All rights reserved.
 //
 
 import UIKit
@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         UserDefaults.standard.register(defaults: ["isFirstLaunch": true])
-        UserDefaults.standard.register(defaults: [Constants.colorKey: "E57BF2"])
+        UserDefaults.standard.register(defaults: [Constants.UserDef.colorKey: "E57BF2"])
 
         return true
     }
