@@ -2,8 +2,8 @@
 //  Alert.swift
 //  Primes Fun
 //
-//  Created by Dani Springer on 20/06/2018.
-//  Copyright © 2018 Dani Springer. All rights reserved.
+//  Created by Daniel Springer on 20/06/2018.
+//  Copyright © 2018 Daniel Springer. All rights reserved.
 //
 
 import UIKit
@@ -50,8 +50,7 @@ extension UIViewController {
         case .messageFailed:
             alertTitle = "Action failed"
             alertMessage = """
-            Your message has not been sent. Please try again later, or contact us by visiting \
-            DaniSpringer.GitHub.io
+            Your message has not been sent. Please try again later, or contact us by leaving a review.
             """
         case .messageSent:
             alertTitle = "Success!"
@@ -99,8 +98,7 @@ extension UIViewController {
         default:
             alertTitle = "Unknown error"
             alertMessage = """
-            An unknown error occurred. Please try again later, or contact us by visiting \
-            DaniSpringer.GitHub.io
+            An unknown error occurred. Please try again later, or contact us by leaving a review.
             """
         }
 
