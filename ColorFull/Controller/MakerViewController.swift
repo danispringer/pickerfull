@@ -2,8 +2,8 @@
 //  MakerViewController.swift
 //  ColorFull
 //
-//  Created by Dani Springer on 06/03/2018.
-//  Copyright © 2018 Dani Springer. All rights reserved.
+//  Created by Daniel Springer on 06/03/2018.
+//  Copyright © 2018 Daniel Springer. All rights reserved.
 //
 
 import UIKit
@@ -63,11 +63,11 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        for number in 0...255 {
-            hexArray.append(String(format: "%02X", number))
+        for number in 0...Int(Constants.Values.rgbMax) {
+            hexArray.append(String(format: Constants.Values.numToHexFormatter, number))
         }
 
-        for number in 0...255 {
+        for number in 0...Int(Constants.Values.rgbMax) {
             rgbArray.append(String(number))
         }
 
@@ -87,16 +87,17 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
         greenSlider.minimumTrackTintColor = UIColor.green
         blueSlider.minimumTrackTintColor = UIColor.blue
 
-        if UserDefaults.standard.string(forKey: Constants.hexPickerSelected) == nil {
-            UserDefaults.standard.register(defaults: [Constants.hexPickerSelected: true])
+        if UserDefaults.standard.string(forKey: Constants.UserDef.hexPickerSelected) == nil {
+            UserDefaults.standard.register(defaults: [Constants.UserDef.hexPickerSelected: true])
         }
 
         _ = UserDefaults.standard.value(
-            forKey: Constants.hexPickerSelected) as? Bool ?? true ?
+            forKey: Constants.UserDef.hexPickerSelected) as? Bool ?? true ?
                 (hexPicker.isHidden = false, rgbPicker.isHidden = true) :
             (hexPicker.isHidden = true, rgbPicker.isHidden = false)
 
-        pickersSwitch.isOn = !(UserDefaults.standard.value(forKey: Constants.hexPickerSelected) as? Bool ?? false)
+        pickersSwitch.isOn = !(UserDefaults.standard.value(
+            forKey: Constants.UserDef.hexPickerSelected) as? Bool ?? false)
 
         for toolbar in [shareToolbar, randomToolbar] {
             toolbar?.setShadowImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)),
@@ -123,34 +124,16 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        let welcomeAlert = UIAlertController(title: "Welcome",
-                                             message: """
-                                             For the best ColorFull experience:\n- Turn off \
-                                             Night Shift\n- Turn off True Tone\n- Raise your \
-                                             screen's brightness
-                                             """,
-                                             preferredStyle: .actionSheet)
-
-        let closeAction = UIAlertAction(title: "Don't show this again", style: .cancel) { _ in
-            UserDefaults.standard.set(false, forKey: "isFirstLaunch")
-        }
-        welcomeAlert.addAction(closeAction)
-
-        let remindAction = UIAlertAction(title: "Show this next time app is opened", style: .default)
-
-        welcomeAlert.addAction(remindAction)
-
-        if let presenter = welcomeAlert.popoverPresentationController {
-            presenter.sourceView = self.shareToolbar
-            presenter.sourceRect = self.shareToolbar.bounds
-        }
-
-        let hexString = UserDefaults.standard.string(forKey: Constants.colorKey)
+        let hexString = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)
 
         UIView.animate(withDuration: 0.5, animations: {
-            self.redSlider.setValue(Float("0x" + hexString![0...1])! / 255, animated: true)
-            self.greenSlider.setValue(Float("0x" + hexString![2...3])! / 255, animated: true)
-            self.blueSlider.setValue(Float("0x" + hexString![4...5])! / 255, animated: true)
+            self.redSlider.setValue(Float(Constants.Values.hexToNumFormatter +
+                hexString![0...1])! /
+                Float(Constants.Values.rgbMax), animated: true)
+            self.greenSlider.setValue(Float(Constants.Values.hexToNumFormatter +
+                hexString![2...3])! / Float(Constants.Values.rgbMax), animated: true)
+            self.blueSlider.setValue(Float(Constants.Values.hexToNumFormatter +
+                hexString![4...5])! / Float(Constants.Values.rgbMax), animated: true)
 
             let redHex = hexString![0...1]
             let greenHex = hexString![2...3]
@@ -177,8 +160,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
                                                 blue: CGFloat(self.blueSlider.value),
                                                 alpha: 1)
         }, completion: { _ in
-            if UserDefaults.standard.bool(forKey: "isFirstLaunch") {
-                self.present(welcomeAlert, animated: true)
+            if UserDefaults.standard.bool(forKey: Constants.UserDef.isFirstLaunch) {
+                self.createWelcomeAlert()
             }
         })
 
@@ -187,7 +170,34 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
 
+
+    // MARK: Helpers
+
+    func createWelcomeAlert() {
+        let welcomeAlert = UIAlertController(title: "Welcome",
+                                             message: """
+                                             For the best ColorFull experience:\n- Turn off \
+                                             Night Shift\n- Turn off True Tone\n- Raise your \
+                                             screen's brightness
+                                             """,
+                                             preferredStyle: .actionSheet)
+
+        let closeAction = UIAlertAction(title: "Don't show this again", style: .cancel) { _ in
+            UserDefaults.standard.set(false, forKey: Constants.UserDef.isFirstLaunch)
+        }
+        welcomeAlert.addAction(closeAction)
+
+        let remindAction = UIAlertAction(title: "Show this next time app is opened", style: .default)
+
+        welcomeAlert.addAction(remindAction)
+
+        if let presenter = welcomeAlert.popoverPresentationController {
+            presenter.sourceView = self.shareToolbar
+            presenter.sourceRect = self.shareToolbar.bounds
+        }
+        self.present(welcomeAlert, animated: true)
     }
 
 
@@ -206,13 +216,13 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
             view.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
 
-            let rBase255 = Int(red * 255)
-            let gBase255 = Int(green * 255)
-            let bBase255 = Int(blue * 255)
+            let rBase255 = Int(red * CGFloat(Constants.Values.rgbMax))
+            let gBase255 = Int(green * CGFloat(Constants.Values.rgbMax))
+            let bBase255 = Int(blue * CGFloat(Constants.Values.rgbMax))
 
-            let redHex = String(format: "%02X", rBase255)
-            let greenHex = String(format: "%02X", gBase255)
-            let blueHex = String(format: "%02X", bBase255)
+            let redHex = String(format: Constants.Values.numToHexFormatter, rBase255)
+            let greenHex = String(format: Constants.Values.numToHexFormatter, gBase255)
+            let blueHex = String(format: Constants.Values.numToHexFormatter, bBase255)
 
             let redIndex = hexArray.index(of: redHex)
             let greenIndex = hexArray.index(of: greenHex)
@@ -227,7 +237,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             self.rgbPicker.selectRow(bBase255, inComponent: 2, animated: true)
 
             let hexCode = redHex + greenHex + blueHex
-            UserDefaults.standard.set(hexCode, forKey: Constants.colorKey)
+            UserDefaults.standard.set(hexCode, forKey: Constants.UserDef.colorKey)
 
         } else if control == .hexPicker {
             let redValue: Float = Float(hexPicker.selectedRow(inComponent: 0))
@@ -235,9 +245,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             let blueValue: Float = Float(hexPicker.selectedRow(inComponent: 2))
 
             UIView.animate(withDuration: 0.5, animations: {
-                self.redSlider.setValue(Float(redValue / 255.0), animated: true)
-                self.greenSlider.setValue(Float(greenValue / 255.0), animated: true)
-                self.blueSlider.setValue(Float(blueValue / 255.0), animated: true)
+                self.redSlider.setValue(redValue / Float(Constants.Values.rgbMax), animated: true)
+                self.greenSlider.setValue(greenValue / Float(Constants.Values.rgbMax), animated: true)
+                self.blueSlider.setValue(blueValue / Float(Constants.Values.rgbMax), animated: true)
                 self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
                                                     green: CGFloat(self.greenSlider.value),
                                                     blue: CGFloat(self.blueSlider.value),
@@ -253,7 +263,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             self.rgbPicker.selectRow(Int(blueValue), inComponent: 2, animated: true)
 
             let hexCode = redHex + greenHex + blueHex
-            UserDefaults.standard.set(hexCode, forKey: Constants.colorKey)
+            UserDefaults.standard.set(hexCode, forKey: Constants.UserDef.colorKey)
 
         } else if control == .rgbPicker {
             let redValue: Double = Double(rgbPicker.selectedRow(inComponent: 0))
@@ -264,23 +274,23 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             self.hexPicker.selectRow(Int(greenValue), inComponent: 1, animated: true)
             self.hexPicker.selectRow(Int(blueValue), inComponent: 2, animated: true)
 
-            let redHex = String(format: "%02X", redValue)
-            let greenHex = String(format: "%02X", greenValue)
-            let blueHex = String(format: "%02X", blueValue)
+            let redHex = String(format: Constants.Values.numToHexFormatter, redValue)
+            let greenHex = String(format: Constants.Values.numToHexFormatter, greenValue)
+            let blueHex = String(format: Constants.Values.numToHexFormatter, blueValue)
 
             let hexCode = redHex + greenHex + blueHex
 
             UIView.animate(withDuration: 0.5, animations: {
-                self.redSlider.setValue(Float(redValue / 255.0), animated: true)
-                self.greenSlider.setValue(Float(greenValue / 255.0), animated: true)
-                self.blueSlider.setValue(Float(blueValue / 255.0), animated: true)
+                self.redSlider.setValue(Float(redValue / Constants.Values.rgbMax), animated: true)
+                self.greenSlider.setValue(Float(greenValue / Constants.Values.rgbMax), animated: true)
+                self.blueSlider.setValue(Float(blueValue / Constants.Values.rgbMax), animated: true)
                 self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
                                                     green: CGFloat(self.greenSlider.value),
                                                     blue: CGFloat(self.blueSlider.value),
                                                     alpha: 1)
             }, completion: { _ in
                 print(hexCode)
-                UserDefaults.standard.set(hexCode, forKey: Constants.colorKey)
+                UserDefaults.standard.set(hexCode, forKey: Constants.UserDef.colorKey)
             })
 
         } else if control == .pasteHexOrRandomHex {
@@ -306,16 +316,16 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             let blueValue: Double = Double(hexPicker.selectedRow(inComponent: 2))
 
             UIView.animate(withDuration: 0.5, animations: {
-                self.redSlider.setValue(Float(redValue / 255.0), animated: true)
-                self.greenSlider.setValue(Float(greenValue / 255.0), animated: true)
-                self.blueSlider.setValue(Float(blueValue / 255.0), animated: true)
+                self.redSlider.setValue(Float(redValue / Constants.Values.rgbMax), animated: true)
+                self.greenSlider.setValue(Float(greenValue / Constants.Values.rgbMax), animated: true)
+                self.blueSlider.setValue(Float(blueValue / Constants.Values.rgbMax), animated: true)
                 self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
                                                     green: CGFloat(self.greenSlider.value),
                                                     blue: CGFloat(self.blueSlider.value),
                                                     alpha: 1)
             }, completion: { _ in
 
-                UserDefaults.standard.set(hexStringParam, forKey: Constants.colorKey)
+                UserDefaults.standard.set(hexStringParam, forKey: Constants.UserDef.colorKey)
                 completionHandler(true)
             })
 
@@ -325,9 +335,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             let greenValue = rgbArray[1]
             let blueValue = rgbArray[2]
 
-            let redHex = String(format: "%02X", redValue)
-            let greenHex = String(format: "%02X", greenValue)
-            let blueHex = String(format: "%02X", blueValue)
+            let redHex = String(format: Constants.Values.numToHexFormatter, redValue)
+            let greenHex = String(format: Constants.Values.numToHexFormatter, greenValue)
+            let blueHex = String(format: Constants.Values.numToHexFormatter, blueValue)
 
             let hexString = redHex + greenHex + blueHex
 
@@ -344,15 +354,15 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             rgbPicker.selectRow(blueValue, inComponent: 2, animated: true)
 
             UIView.animate(withDuration: 0.5, animations: {
-                self.redSlider.setValue(Float(Double(redValue) / 255.0), animated: true)
-                self.greenSlider.setValue(Float(Double(greenValue) / 255.0), animated: true)
-                self.blueSlider.setValue(Float(Double(blueValue) / 255.0), animated: true)
+                self.redSlider.setValue(Float(Double(redValue) / Constants.Values.rgbMax), animated: true)
+                self.greenSlider.setValue(Float(Double(greenValue) / Constants.Values.rgbMax), animated: true)
+                self.blueSlider.setValue(Float(Double(blueValue) / Constants.Values.rgbMax), animated: true)
                 self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
                                                     green: CGFloat(self.greenSlider.value),
                                                     blue: CGFloat(self.blueSlider.value),
                                                     alpha: 1)
             }, completion: { _ in
-                UserDefaults.standard.set(hexString, forKey: Constants.colorKey)
+                UserDefaults.standard.set(hexString, forKey: Constants.UserDef.colorKey)
                 completionHandler(true)
             })
 
@@ -376,7 +386,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     // MARK: Picker Switch
 
     @IBAction func pickerSwitchToggled(_ sender: Any) {
-        UserDefaults.standard.set(!pickersSwitch.isOn, forKey: Constants.hexPickerSelected)
+        UserDefaults.standard.set(!pickersSwitch.isOn, forKey: Constants.UserDef.hexPickerSelected)
         hexPicker.isHidden = pickersSwitch.isOn
         rgbPicker.isHidden = !pickersSwitch.isOn
     }
@@ -447,11 +457,11 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
         let shareTextAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let pasteAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        let version: String? = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
+        let version: String? = Bundle.main.infoDictionary![Constants.AppInfo.bundleShort] as? String
         let infoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         if let version = version {
             infoAlert.message = "Version \(version)"
-            infoAlert.title = "ColorFull"
+            infoAlert.title = Constants.AppInfo.appName
         }
 
         for alert in [mainAlert, copyMainAlert, copyTextAlert, shareMainAlert, shareTextAlert, pasteAlert, infoAlert] {
@@ -622,7 +632,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     }
 
 
-
     func downloadHexAndColor() {
 
         let image = generateHexImage()
@@ -644,7 +653,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
         }
         let alert = createAlert(alertReasonParam: AlertReason.imageSaved)
         let goToLibraryButton = UIAlertAction(title: "Open Gallery", style: .default, handler: { _ in
-            UIApplication.shared.open(URL(string: "photos-redirect://")!)
+            UIApplication.shared.open(URL(string: Constants.AppInfo.galleryLink)!)
         })
         alert.addAction(goToLibraryButton)
         present(alert, animated: true)
@@ -657,10 +666,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
         switch format {
         case .hex:
-            pasteboard.string = UserDefaults.standard.string(forKey: Constants.colorKey)
+            pasteboard.string = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)
         case .rgb:
 
-            let hexString = UserDefaults.standard.string(forKey: Constants.colorKey)
+            let hexString = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)
 
             let redValue = Int(hexString![0...1], radix: 16)!
             let greenValue = Int(hexString![2...3], radix: 16)!
@@ -692,9 +701,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
         switch format {
         case .hex:
-            myText = UserDefaults.standard.string(forKey: Constants.colorKey)!
+            myText = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)!
         case .rgb:
-            let hexString = UserDefaults.standard.string(forKey: Constants.colorKey)
+            let hexString = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)
 
             let redValue = Int(hexString![0...1], radix: 16)!
             let greenValue = Int(hexString![2...3], radix: 16)!
@@ -702,8 +711,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
             myText = "\(redValue),\(greenValue),\(blueValue)"
         }
-
-
 
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = self.view // for iPads not to crash
@@ -740,25 +747,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
     func generateHexImage() -> UIImage {
 
-        for slider in [redSlider, greenSlider, blueSlider] {
-            slider?.isHidden = true
-        }
-
-        let hexPickerWasHidden = hexPicker.isHidden
-
-        for picker in [hexPicker, rgbPicker] {
-            picker?.isHidden = true
-        }
-
-        for toolbar in [shareToolbar, randomToolbar] {
-            toolbar?.isHidden = true
-        }
-
-        for label in [hexSwitchLabel, rgbSwitchLabel] {
-            label?.isHidden = true
-        }
-
-        pickersSwitch.isHidden = true
+        let hexPickerWasHidden = elementsShould(hide: true, hexPickerWasHidden: hexPicker.isHidden)
 
         let regularAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 16)]
@@ -770,7 +759,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             string: "\nThe HEX value for your color is:\n",
             attributes: regularAttributes)
 
-        let hexString = UserDefaults.standard.string(forKey: Constants.colorKey) ?? "<error>"
+        let hexString = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) ?? "<error>"
 
         let attributedMessageJumboHex = NSAttributedString(string: hexString, attributes: jumboAttributes)
 
@@ -799,30 +788,40 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
         myAttributedText.append(attributedMessagePost)
 
         messageLabel.attributedText = myAttributedText
-        messageLabel.isHidden = false
+
         UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let hexImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        messageLabel.isHidden = true
 
-        for slider in [redSlider, greenSlider, blueSlider] {
-            slider?.isHidden = false
-        }
-
-        _ = hexPickerWasHidden ? (rgbPicker.isHidden = false) : (hexPicker.isHidden = false)
-
-        for toolbar in [shareToolbar, randomToolbar] {
-            toolbar?.isHidden = false
-        }
-
-        for label in [hexSwitchLabel, rgbSwitchLabel] {
-            label?.isHidden = false
-        }
-
-        pickersSwitch.isHidden = false
+        _ = elementsShould(hide: false, hexPickerWasHidden: hexPickerWasHidden)
 
         return hexImage
+    }
+
+
+    func elementsShould(hide: Bool, hexPickerWasHidden: Bool) -> Bool {
+        for slider in [redSlider, greenSlider, blueSlider] {
+            slider?.isHidden = hide
+        }
+        for toolbar in [shareToolbar, randomToolbar] {
+            toolbar?.isHidden = hide
+        }
+        for label in [hexSwitchLabel, rgbSwitchLabel] {
+            label?.isHidden = hide
+        }
+        pickersSwitch.isHidden = hide
+        messageLabel.isHidden = !hide
+
+        if !hide {
+            _ = hexPickerWasHidden ? (rgbPicker.isHidden = false) : (hexPicker.isHidden = false)
+        } else {
+            for picker in [hexPicker, rgbPicker] {
+                picker?.isHidden = hide
+            }
+        }
+
+        return hexPickerWasHidden
     }
 
 
@@ -872,7 +871,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
     func isValidHex(hex: String) -> (Bool, String) {
 
+        print("hex: \(hex)")
         let uppercasedDirtyHex = hex.uppercased()
+        print("uppercasedDirtyHex: \(uppercasedDirtyHex)")
 
         let cleanedHex = uppercasedDirtyHex.filter {
             "ABCDEF0123456789".contains($0)
@@ -908,7 +909,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
         let firstThreeValues = Array(intsArray[0...2])
         print(firstThreeValues)
 
-        guard firstThreeValues.allSatisfy({ (0...255).contains($0) }) else {
+        guard firstThreeValues.allSatisfy({ (0...Int(Constants.Values.rgbMax)).contains($0) }) else {
             return RGBResult(isValid: false, invalidRgbValue: rgb, validRgbValue: firstThreeValues)
         }
 
@@ -965,13 +966,13 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
 
     func launchEmail() {
 
-        var emailTitle = "ColorFull"
-        if let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] {
+        var emailTitle = Constants.AppInfo.appName
+        if let version = Bundle.main.infoDictionary![Constants.AppInfo.bundleShort] {
             emailTitle += " \(version)"
         }
 
         let messageBody = "Hi. I have a question..."
-        let toRecipents = ["musicbyds@icloud.com"]
+        let toRecipents = [Constants.AppInfo.email]
         let mailComposer: MFMailComposeViewController = MFMailComposeViewController()
         mailComposer.mailComposeDelegate = self
         mailComposer.setSubject(emailTitle)
@@ -1009,7 +1010,7 @@ extension MakerViewController {
         // Note: Replace the XXXXXXXXXX below with the App Store ID for your app
         //       You can find the App Store ID in your app's product URL
 
-        guard let writeReviewURL = URL(string: "https://itunes.apple.com/app/id1410565176?action=write-review")
+        guard let writeReviewURL = URL(string: Constants.AppInfo.reviewLink)
             else {
                 fatalError("Expected a valid URL")
         }
