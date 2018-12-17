@@ -115,12 +115,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     }
 
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-
-    }
-
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -161,21 +155,16 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
                                                 alpha: 1)
         }, completion: { _ in
             if UserDefaults.standard.bool(forKey: Constants.UserDef.isFirstLaunch) {
-                self.createWelcomeAlert()
+                self.presentWelcomeAlert()
             }
         })
 
     }
 
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-
-
     // MARK: Helpers
 
-    func createWelcomeAlert() {
+    func presentWelcomeAlert() {
         let welcomeAlert = UIAlertController(title: "Welcome",
                                              message: """
                                              For the best ColorFull experience:\n- Turn off \
@@ -189,7 +178,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
         }
         welcomeAlert.addAction(closeAction)
 
-        let remindAction = UIAlertAction(title: "Show this next time app is opened", style: .default)
+        let remindAction = UIAlertAction(title: "Show this again", style: .default)
 
         welcomeAlert.addAction(remindAction)
 
@@ -376,10 +365,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     // MARK: Sliders
 
     @IBAction func sliderChanged(_ sender: AnyObject) {
-
-        // Call color changing func
         updateColor(control: Controls.slider)
-
     }
 
 
@@ -448,25 +434,11 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
     // MARK: Share Toolbar Options
 
-    @IBAction func shareToolbarPressed(_ sender: Any) {
+    @IBAction func showMainMenu(_ sender: Any) {
 
-        let mainAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let copyMainAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let copyTextAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let shareMainAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let shareTextAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let pasteAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let mainMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        let version: String? = Bundle.main.infoDictionary![Constants.AppInfo.bundleShort] as? String
-        let infoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        if let version = version {
-            infoAlert.message = "Version \(version)"
-            infoAlert.title = Constants.AppInfo.appName
-        }
-
-        for alert in [mainAlert, copyMainAlert, copyTextAlert, shareMainAlert, shareTextAlert, pasteAlert, infoAlert] {
-            alert.modalPresentationStyle = .popover
-        }
+        mainMenuAlert.modalPresentationStyle = .popover
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             self.dismiss(animated: true, completion: {
@@ -475,83 +447,136 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
         }
 
         let downloadImageAction = UIAlertAction(title: "Download as image", style: .default, handler: { _ in
-            self.downloadHexAndColor()
+            self.downloadAsImage()
         })
+
+        let copyMainAction = UIAlertAction(title: "Copy", style: .default) { _ in
+            self.showCopyMainMenu()
+        }
+
+        let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
+            self.showShareMainMenu()
+        }
+
+        let pasteTextAction = UIAlertAction(title: "Paste text", style: .default) { _ in
+            self.showPasteMainMenu()
+        }
+
+        let infoAction = UIAlertAction(title: "Contact and info", style: .default) { _ in
+            self.showInfoMainMenu()
+        }
+
+        for action in [downloadImageAction, copyMainAction, shareAction, pasteTextAction, infoAction, cancelAction] {
+            mainMenuAlert.addAction(action)
+        }
+
+        if let presenter = mainMenuAlert.popoverPresentationController {
+            presenter.sourceView = shareToolbar
+            presenter.sourceRect = shareToolbar.bounds
+        }
+
+        present(mainMenuAlert, animated: true)
+    }
+
+
+    func showCopyMainMenu() {
+        let copyMainMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        copyMainMenuAlert.modalPresentationStyle = .popover
+
+        let copyTextMainAction = UIAlertAction(title: "Copy as text", style: .default, handler: { _ in
+            self.showCopyTextMenu()
+        })
+
+        let copyImageAction = UIAlertAction(title: "Copy as image", style: .default) { _ in
+            self.copyAsImage()
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.dismiss(animated: true, completion: {
+                SKStoreReviewController.requestReview()
+            })
+        }
+
+        for action in [copyImageAction, copyTextMainAction, cancelAction] {
+            copyMainMenuAlert.addAction(action)
+        }
+
+        if let presenter = copyMainMenuAlert.popoverPresentationController {
+            presenter.sourceView = shareToolbar
+            presenter.sourceRect = shareToolbar.bounds
+        }
+
+        present(copyMainMenuAlert, animated: true)
+    }
+
+
+    func showCopyTextMenu() {
+        let copyTextMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        copyTextMenuAlert.modalPresentationStyle = .popover
 
         let copyTextHexAction = UIAlertAction(title: "Copy as HEX text", style: .default) { _ in
             self.copyAsText(format: .hex)
-
         }
 
         let copyTextRGBAction = UIAlertAction(title: "Copy as RGB text", style: .default) { _ in
             self.copyAsText(format: .rgb)
         }
 
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.dismiss(animated: true, completion: {
+                SKStoreReviewController.requestReview()
+            })
+        }
+
         for action in [copyTextHexAction, copyTextRGBAction, cancelAction] {
-            copyTextAlert.addAction(action)
+            copyTextMenuAlert.addAction(action)
         }
 
-        let copyTextMainAction = UIAlertAction(title: "Copy as text", style: .default, handler: { _ in
-            if let presenter = copyTextAlert.popoverPresentationController {
-                presenter.sourceView = self.shareToolbar
-                presenter.sourceRect = self.shareToolbar.bounds
-            }
-            self.present(copyTextAlert, animated: true)
-        })
-
-        let copyImageAction = UIAlertAction(title: "Copy as image", style: .default) { _ in
-            self.copyHexAndColorAsImage()
+        if let presenter = copyTextMenuAlert.popoverPresentationController {
+            presenter.sourceView = shareToolbar
+            presenter.sourceRect = shareToolbar.bounds
         }
 
-        for action in [copyImageAction, copyTextMainAction, cancelAction] {
-            copyMainAlert.addAction(action)
-        }
+        present(copyTextMenuAlert, animated: true)
+    }
 
-        let copyMainAction = UIAlertAction(title: "Copy", style: .default) { _ in
 
-            if let presenter = copyMainAlert.popoverPresentationController {
-                presenter.sourceView = self.shareToolbar
-                presenter.sourceRect = self.shareToolbar.bounds
-            }
-            self.present(copyMainAlert, animated: true)
-        }
+    func showShareMainMenu() {
+        let shareMainMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        shareMainMenuAlert.modalPresentationStyle = .popover
 
-        let shareTextHexAction = UIAlertAction(title: "Share as HEX text", style: .default) { _ in
-            self.shareColorAsText(format: .hex)
-        }
-
-        let shareTextRGBAction = UIAlertAction(title: "Share as RGB text", style: .default) { _ in
-            self.shareColorAsText(format: .rgb)
-        }
-
-        for action in [shareTextHexAction, shareTextRGBAction, cancelAction] {
-            shareTextAlert.addAction(action)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.dismiss(animated: true, completion: {
+                SKStoreReviewController.requestReview()
+            })
         }
 
         let shareTextMainAction = UIAlertAction(title: "Share as text", style: .default) { _ in
-            if let presenter = shareTextAlert.popoverPresentationController {
-                presenter.sourceView = self.shareToolbar
-                presenter.sourceRect = self.shareToolbar.bounds
-            }
-            self.present(shareTextAlert, animated: true)
+            // TODO: weak self?
+            self.showShareTextMenu()
         }
 
         let shareImageAction = UIAlertAction(title: "Share as image", style: .default) { _ in
-            self.shareHexAndColorAsImage()
+            self.shareAsImage()
         }
 
         for action in [shareImageAction, shareTextMainAction, cancelAction] {
-            shareMainAlert.addAction(action)
+            shareMainMenuAlert.addAction(action)
         }
 
-        let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
-
-            if let presenter = shareMainAlert.popoverPresentationController {
-                presenter.sourceView = self.shareToolbar
-                presenter.sourceRect = self.shareToolbar.bounds
-            }
-            self.present(shareMainAlert, animated: true)
+        if let presenter = shareMainMenuAlert.popoverPresentationController {
+            presenter.sourceView = self.shareToolbar
+            presenter.sourceRect = self.shareToolbar.bounds
         }
+        self.present(shareMainMenuAlert, animated: true)
+    }
+
+
+    func showPasteMainMenu() {
+        let pasteMainMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        pasteMainMenuAlert.modalPresentationStyle = .popover
 
         let pasteTextHexAction = UIAlertAction(title: "Paste HEX text", style: .default) { _ in
             self.pasteHexText()
@@ -561,18 +586,64 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             self.pasteRGBText()
         }
 
-        for action in [pasteTextHexAction, pasteTextRGBAction, cancelAction] {
-            pasteAlert.addAction(action)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.dismiss(animated: true, completion: {
+                SKStoreReviewController.requestReview()
+            })
         }
 
-        let pasteTextAction = UIAlertAction(title: "Paste text", style: .default) { _ in
-            // present paste menu
-            if let presenter = pasteAlert.popoverPresentationController {
-                presenter.sourceView = self.shareToolbar
-                presenter.sourceRect = self.shareToolbar.bounds
-            }
-            self.present(pasteAlert, animated: true)
+        for action in [pasteTextHexAction, pasteTextRGBAction, cancelAction] {
+            pasteMainMenuAlert.addAction(action)
         }
+
+        if let presenter = pasteMainMenuAlert.popoverPresentationController {
+            presenter.sourceView = shareToolbar
+            presenter.sourceRect = shareToolbar.bounds
+        }
+
+        present(pasteMainMenuAlert, animated: true)
+    }
+
+
+    func showShareTextMenu() {
+        let shareTextMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        shareTextMenuAlert.modalPresentationStyle = .popover
+
+        let shareTextHexAction = UIAlertAction(title: "Share as HEX text", style: .default) { _ in
+            self.shareAsText(format: .hex)
+        }
+
+        let shareTextRGBAction = UIAlertAction(title: "Share as RGB text", style: .default) { _ in
+            self.shareAsText(format: .rgb)
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.dismiss(animated: true, completion: {
+                SKStoreReviewController.requestReview()
+            })
+        }
+
+        for action in [shareTextHexAction, shareTextRGBAction, cancelAction] {
+            shareTextMenuAlert.addAction(action)
+        }
+
+        if let presenter = shareTextMenuAlert.popoverPresentationController {
+            presenter.sourceView = self.shareToolbar
+            presenter.sourceRect = self.shareToolbar.bounds
+        }
+        self.present(shareTextMenuAlert, animated: true)
+    }
+
+
+    func showInfoMainMenu() {
+        let version: String? = Bundle.main.infoDictionary![Constants.AppInfo.bundleShort] as? String
+        let infoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        if let version = version {
+            infoAlert.message = "Version \(version)"
+            infoAlert.title = Constants.AppInfo.appName
+        }
+        infoAlert.modalPresentationStyle = .popover
 
         let mailAction = UIAlertAction(title: "Send feedback or question", style: .default) { _ in
             self.launchEmail()
@@ -586,30 +657,22 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             self.shareApp()
         }
 
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.dismiss(animated: true, completion: {
+                SKStoreReviewController.requestReview()
+            })
+        }
+
         for action in [mailAction, reviewAction, shareAppAction, cancelAction] {
             infoAlert.addAction(action)
         }
 
-        let infoAction = UIAlertAction(title: "Contact and info", style: .default) { _ in
-
-            if let presenter = infoAlert.popoverPresentationController {
-                presenter.sourceView = self.shareToolbar
-                presenter.sourceRect = self.shareToolbar.bounds
-            }
-            self.present(infoAlert, animated: true)
-        }
-
-        for action in [downloadImageAction, copyMainAction, shareAction, pasteTextAction, infoAction, cancelAction] {
-            mainAlert.addAction(action)
-        }
-
-        if let presenter = mainAlert.popoverPresentationController {
+        if let presenter = infoAlert.popoverPresentationController {
             presenter.sourceView = shareToolbar
             presenter.sourceRect = shareToolbar.bounds
         }
 
-        present(mainAlert, animated: true)
-
+        present(infoAlert, animated: true)
     }
 
 
@@ -632,7 +695,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     }
 
 
-    func downloadHexAndColor() {
+    func downloadAsImage() {
 
         let image = generateHexImage()
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
@@ -684,7 +747,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     }
 
 
-    func copyHexAndColorAsImage() {
+    func copyAsImage() {
 
         let image = generateHexImage()
         let pasteboard = UIPasteboard.general
@@ -695,7 +758,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     }
 
 
-    func shareColorAsText(format: Format) {
+    func shareAsText(format: Format) {
 
         var myText = ""
 
@@ -727,7 +790,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     }
 
 
-    func shareHexAndColorAsImage() {
+    func shareAsImage() {
 
         let image = generateHexImage()
 
@@ -895,15 +958,12 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
         let cleanedRGB = rgb.filter {
             "0123456789,".contains($0)
         }
-        print(cleanedRGB)
 
         let stringsArray = cleanedRGB.split(separator: ",")
-        print(stringsArray)
         let intsArray: [Int] = stringsArray.map { Int($0)!}
-        print(intsArray)
 
         guard Array(intsArray).count >= 3 else {
-            return RGBResult(isValid: false, invalidRgbValue: "", validRgbValue: Array(intsArray))
+            return RGBResult(isValid: false, invalidRgbValue: rgb, validRgbValue: Array(intsArray))
         }
 
         let firstThreeValues = Array(intsArray[0...2])
