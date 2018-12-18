@@ -15,7 +15,7 @@
 - add random color option to menu, animate random button on selection (use closure to show animation after menu is dismissed)
 - Add Multiple options for languages in apps.
 - AR
-- Re-enable rule and fix error: function_body_length
+- Re-enable rules
 - add "back" buttons to menu
 
 
