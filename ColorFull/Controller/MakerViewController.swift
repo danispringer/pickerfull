@@ -167,8 +167,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     func presentWelcomeAlert() {
         let welcomeAlert = UIAlertController(title: "Welcome",
                                              message: """
-                                             For the best ColorFull experience:\n- Turn off \
-                                             Night Shift\n- Turn off True Tone\n- Raise your \
+                                             For the best ColorFull experience:\n• Turn off \
+                                             Night Shift\n• Turn off True Tone\n• Raise your \
                                              screen's brightness
                                              """,
                                              preferredStyle: .actionSheet)
@@ -554,7 +554,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
         }
 
         let shareTextMainAction = UIAlertAction(title: "Share as text", style: .default) { _ in
-            // TODO: weak self?
             self.showShareTextMenu()
         }
 
