@@ -940,13 +940,17 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
         let cleanedHex = uppercasedDirtyHex.filter {
             "ABCDEF0123456789".contains($0)
         }
-
-        guard cleanedHex.count == 6 else {
+        print(cleanedHex)
+        guard !(cleanedHex.count < 6) else {
             return (false, hex)
         }
 
-        return (true, cleanedHex)
+        let firstSixChars = cleanedHex[0...5]
+        print(firstSixChars)
+
+        return (true, firstSixChars)
     }
+
 
     // n,n,n
     // then, if practical, more formats: spaces, letters, percentages, dots
