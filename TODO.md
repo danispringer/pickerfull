@@ -15,6 +15,7 @@
 - AR
 - Re-enable rules
 - add "back" buttons to menu
+- test splash screen not showing after first launch
 
 ###### App Store Description
 • Looking to create your perfect color real fast? This app is for you.
