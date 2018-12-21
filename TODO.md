@@ -1,4 +1,4 @@
-- random color generator: siri shortcuts
+- siri: button. [verify:] show after user pressed random at least once, hide after they add to siri.
 - improve for ipad
 - Add back screenshots in READMEs.
 - improve slider icons
