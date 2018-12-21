@@ -1,5 +1,5 @@
-- improve for ipad
 - random color generator: siri shortcuts
+- improve for ipad
 - Add back screenshots in READMEs.
 - improve slider icons
 - Notifications: random color
