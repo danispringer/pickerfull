@@ -9,6 +9,7 @@
 import UIKit
 import StoreKit
 import MessageUI
+import Intents
 
 class MakerViewController: UIViewController, UIPickerViewDelegate,
     UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -127,44 +128,42 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
         let hexString = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)
 
-        UIView.animate(withDuration: 0.5, animations: {
-            self.redSlider.setValue(Float(Constants.Values.hexToNumFormatter +
-                hexString![0...1])! /
-                Float(Constants.Values.rgbMax), animated: true)
-            self.greenSlider.setValue(Float(Constants.Values.hexToNumFormatter +
-                hexString![2...3])! / Float(Constants.Values.rgbMax), animated: true)
-            self.blueSlider.setValue(Float(Constants.Values.hexToNumFormatter +
-                hexString![4...5])! / Float(Constants.Values.rgbMax), animated: true)
+        self.redSlider.setValue(Float(Constants.Values.hexToNumFormatter +
+            hexString![0...1])! /
+            Float(Constants.Values.rgbMax), animated: false)
+        self.greenSlider.setValue(Float(Constants.Values.hexToNumFormatter +
+            hexString![2...3])! / Float(Constants.Values.rgbMax), animated: false)
+        self.blueSlider.setValue(Float(Constants.Values.hexToNumFormatter +
+            hexString![4...5])! / Float(Constants.Values.rgbMax), animated: false)
 
-            let redHex = hexString![0...1]
-            let greenHex = hexString![2...3]
-            let blueHex = hexString![4...5]
+        let redHex = hexString![0...1]
+        let greenHex = hexString![2...3]
+        let blueHex = hexString![4...5]
 
-            let redIndexHex = self.hexArray.index(of: String(redHex))
-            let greenIndexHex = self.hexArray.index(of: String(greenHex))
-            let blueIndexHex = self.hexArray.index(of: String(blueHex))
+        let redIndexHex = self.hexArray.index(of: String(redHex))
+        let greenIndexHex = self.hexArray.index(of: String(greenHex))
+        let blueIndexHex = self.hexArray.index(of: String(blueHex))
 
-            self.hexPicker.selectRow(redIndexHex!, inComponent: 0, animated: true)
-            self.hexPicker.selectRow(greenIndexHex!, inComponent: 1, animated: true)
-            self.hexPicker.selectRow(blueIndexHex!, inComponent: 2, animated: true)
+        self.hexPicker.selectRow(redIndexHex!, inComponent: 0, animated: false)
+        self.hexPicker.selectRow(greenIndexHex!, inComponent: 1, animated: false)
+        self.hexPicker.selectRow(blueIndexHex!, inComponent: 2, animated: false)
 
-            let redIndexRGB = Int(hexString![0...1], radix: 16)
-            let greenIndexRGB = Int(hexString![2...3], radix: 16)
-            let blueIndexRGB = Int(hexString![4...5], radix: 16)
+        let redIndexRGB = Int(hexString![0...1], radix: 16)
+        let greenIndexRGB = Int(hexString![2...3], radix: 16)
+        let blueIndexRGB = Int(hexString![4...5], radix: 16)
 
-            self.rgbPicker.selectRow(redIndexRGB!, inComponent: 0, animated: true)
-            self.rgbPicker.selectRow(greenIndexRGB!, inComponent: 1, animated: true)
-            self.rgbPicker.selectRow(blueIndexRGB!, inComponent: 2, animated: true)
+        self.rgbPicker.selectRow(redIndexRGB!, inComponent: 0, animated: false)
+        self.rgbPicker.selectRow(greenIndexRGB!, inComponent: 1, animated: false)
+        self.rgbPicker.selectRow(blueIndexRGB!, inComponent: 2, animated: false)
 
-            self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
-                                                green: CGFloat(self.greenSlider.value),
-                                                blue: CGFloat(self.blueSlider.value),
-                                                alpha: 1)
-        }, completion: { _ in
-            if UserDefaults.standard.bool(forKey: Constants.UserDef.isFirstLaunch) {
-                self.presentWelcomeAlert()
-            }
-        })
+        self.view.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
+                                            green: CGFloat(self.greenSlider.value),
+                                            blue: CGFloat(self.blueSlider.value),
+                                            alpha: 1)
+
+        if UserDefaults.standard.bool(forKey: Constants.UserDef.isFirstLaunch) {
+            self.presentWelcomeAlert()
+        }
 
     }
 
@@ -172,20 +171,22 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     // MARK: Helpers
 
     func presentWelcomeAlert() {
-        let welcomeAlert = UIAlertController(title: "Welcome",
+        let welcomeAlert = UIAlertController(title: "❤️ Welcome",
                                              message: """
-                                             For the best ColorFull experience:\n• Turn off \
-                                             Night Shift\n• Turn off True Tone\n• Raise your \
-                                             screen's brightness
+                                             ColorFull lets you create, edit and share \
+                                             millions of colors with maximum precision.\nFor the \
+                                             best experience and highest accuracy:\n\n🔆 Raise \
+                                             your screen's brightness\n\n🌚 Turn off Night Shift \
+                                             \n📜 Turn off True Tone
                                              """,
                                              preferredStyle: .actionSheet)
 
-        let closeAction = UIAlertAction(title: "Don't show this again", style: .cancel) { _ in
+        let closeAction = UIAlertAction(title: "Don't show again", style: .cancel) { _ in
             UserDefaults.standard.set(false, forKey: Constants.UserDef.isFirstLaunch)
         }
         welcomeAlert.addAction(closeAction)
 
-        let remindAction = UIAlertAction(title: "Show this again", style: .default)
+        let remindAction = UIAlertAction(title: "Show again next time", style: .default)
 
         welcomeAlert.addAction(remindAction)
 
@@ -685,6 +686,27 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     // MARK: Random Toolbar
 
     @IBAction func randomPressed(_ sender: Any) {
+        print("randomPressed called")
+        let activity = NSUserActivity(activityType: Constants.AppInfo.bundleAndRandom)
+        activity.title = "Get a Random Color"
+        activity.isEligibleForSearch = true
+
+        if #available(iOS 12.0, *) {
+            activity.isEligibleForPrediction = true
+            activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Constants.AppInfo.bundleAndRandom)
+            activity.suggestedInvocationPhrase = "Get Random Color"
+        } else {
+            print("not ios 12")
+        }
+        view.userActivity = activity
+        activity.becomeCurrent()
+
+        makeRandomColor()
+    }
+
+
+    public func makeRandomColor() {
+        print("makeRandomColor called")
         toggleUI(enable: false)
         var randomHex = ""
         let randomRed = hexArray.randomElement()!
