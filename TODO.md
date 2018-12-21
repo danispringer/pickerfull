@@ -16,6 +16,7 @@
 - AR
 - Re-enable rules
 - add "back" buttons to menu
+- improve thumb images
 
 
 ###### App Store Description
