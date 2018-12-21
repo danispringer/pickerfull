@@ -3,7 +3,6 @@
 - Add back screenshots in READMEs.
 - improve slider icons
 - Notifications: random color
-- Use Constants Struct
 - Add iOS-like Splash screen: current action sheet
 - add in-app gallery
 - create helper functions: rgb to hex, hex to rgb, slider value (1/255?) to hex/rgb
@@ -16,8 +15,6 @@
 - AR
 - Re-enable rules
 - add "back" buttons to menu
-- improve thumb images
-
 
 ###### App Store Description
 • Looking to create your perfect color real fast? This app is for you.
