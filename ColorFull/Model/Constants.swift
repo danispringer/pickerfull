@@ -26,5 +26,10 @@ struct Constants {
         static let email = "musicbyds@icloud.com"
         static let reviewLink = "https://itunes.apple.com/app/id1410565176?action=write-review"
     }
+    struct Image {
+        static let red = "red.png"
+        static let green = "green.png"
+        static let blue = "blue.png"
+    }
 
 }
