@@ -181,14 +181,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
                                              """,
                                              preferredStyle: .actionSheet)
 
-        let closeAction = UIAlertAction(title: "Don't show again", style: .cancel) { _ in
+        let closeAction = UIAlertAction(title: "OK", style: .cancel) { _ in
             UserDefaults.standard.set(false, forKey: Constants.UserDef.isFirstLaunch)
         }
         welcomeAlert.addAction(closeAction)
-
-        let remindAction = UIAlertAction(title: "Show again next time", style: .default)
-
-        welcomeAlert.addAction(remindAction)
 
         if let presenter = welcomeAlert.popoverPresentationController {
             presenter.sourceView = self.shareToolbar
@@ -442,9 +438,9 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
     // MARK: Share Toolbar Options
 
-    @IBAction func showMainMenu(_ sender: Any) {
+    @IBAction func showMainMenu() {
 
-        let mainMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let mainMenuAlert = UIAlertController(title: "Main Menu", message: nil, preferredStyle: .actionSheet)
 
         mainMenuAlert.modalPresentationStyle = .popover
 
@@ -488,9 +484,13 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
 
     func showCopyMainMenu() {
-        let copyMainMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let copyMainMenuAlert = UIAlertController(title: "Copy Menu", message: nil, preferredStyle: .actionSheet)
 
         copyMainMenuAlert.modalPresentationStyle = .popover
+
+        let backAction = UIAlertAction(title: "Back to Main Menu", style: .default) { _ in
+            self.showMainMenu()
+        }
 
         let copyTextMainAction = UIAlertAction(title: "Copy as text", style: .default, handler: { _ in
             self.showCopyTextMenu()
@@ -506,7 +506,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             })
         }
 
-        for action in [copyImageAction, copyTextMainAction, cancelAction] {
+        for action in [backAction, copyImageAction, copyTextMainAction, cancelAction] {
             copyMainMenuAlert.addAction(action)
         }
 
@@ -520,7 +520,8 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
 
     func showCopyTextMenu() {
-        let copyTextMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let copyTextMenuAlert = UIAlertController(title: "Copy as Text Menu",
+                                                  message: nil, preferredStyle: .actionSheet)
 
         copyTextMenuAlert.modalPresentationStyle = .popover
 
@@ -532,13 +533,17 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             self.copyAsText(format: .rgb)
         }
 
+        let backAction = UIAlertAction(title: "Back to Copy Menu", style: .default) { _ in
+            self.showCopyMainMenu()
+        }
+
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             self.dismiss(animated: true, completion: {
                 SKStoreReviewController.requestReview()
             })
         }
 
-        for action in [copyTextHexAction, copyTextRGBAction, cancelAction] {
+        for action in [backAction, copyTextHexAction, copyTextRGBAction, cancelAction] {
             copyTextMenuAlert.addAction(action)
         }
 
@@ -552,13 +557,17 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
 
     func showShareMainMenu() {
-        let shareMainMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let shareMainMenuAlert = UIAlertController(title: "Share Menu", message: nil, preferredStyle: .actionSheet)
         shareMainMenuAlert.modalPresentationStyle = .popover
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             self.dismiss(animated: true, completion: {
                 SKStoreReviewController.requestReview()
             })
+        }
+
+        let backAction = UIAlertAction(title: "Back to Main Menu", style: .default) { _ in
+            self.showMainMenu()
         }
 
         let shareTextMainAction = UIAlertAction(title: "Share as text", style: .default) { _ in
@@ -569,7 +578,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             self.shareAsImage()
         }
 
-        for action in [shareImageAction, shareTextMainAction, cancelAction] {
+        for action in [backAction, shareImageAction, shareTextMainAction, cancelAction] {
             shareMainMenuAlert.addAction(action)
         }
 
@@ -582,7 +591,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
 
     func showPasteMainMenu() {
-        let pasteMainMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let pasteMainMenuAlert = UIAlertController(title: "Paste Menu", message: nil, preferredStyle: .actionSheet)
         pasteMainMenuAlert.modalPresentationStyle = .popover
 
         let pasteTextHexAction = UIAlertAction(title: "Paste HEX text", style: .default) { _ in
@@ -599,7 +608,11 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             })
         }
 
-        for action in [pasteTextHexAction, pasteTextRGBAction, cancelAction] {
+        let backAction = UIAlertAction(title: "Back to Main Menu", style: .default) { _ in
+            self.showMainMenu()
+        }
+
+        for action in [backAction, pasteTextHexAction, pasteTextRGBAction, cancelAction] {
             pasteMainMenuAlert.addAction(action)
         }
 
@@ -613,7 +626,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
 
     func showShareTextMenu() {
-        let shareTextMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let shareTextMenuAlert = UIAlertController(title: "Share as Text Menu", message: nil, preferredStyle: .actionSheet)
 
         shareTextMenuAlert.modalPresentationStyle = .popover
 
@@ -631,7 +644,11 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             })
         }
 
-        for action in [shareTextHexAction, shareTextRGBAction, cancelAction] {
+        let backAction = UIAlertAction(title: "Back to Share Menu", style: .default) { _ in
+            self.showShareMainMenu()
+        }
+
+        for action in [backAction, shareTextHexAction, shareTextRGBAction, cancelAction] {
             shareTextMenuAlert.addAction(action)
         }
 
@@ -664,13 +681,17 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             self.shareApp()
         }
 
+        let backAction = UIAlertAction(title: "Back to Main Menu", style: .default) { _ in
+            self.showMainMenu()
+        }
+
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             self.dismiss(animated: true, completion: {
                 SKStoreReviewController.requestReview()
             })
         }
 
-        for action in [mailAction, reviewAction, shareAppAction, cancelAction] {
+        for action in [backAction, mailAction, reviewAction, shareAppAction, cancelAction] {
             infoAlert.addAction(action)
         }
 
