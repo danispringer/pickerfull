@@ -7,13 +7,12 @@
 - Add iOS-like Splash screen: current action sheet
 - add in-app gallery
 - create helper functions: rgb to hex, hex to rgb, slider value (1/255?) to hex/rgb
-- update app store description
 - add reviewkit
 - add “history”, back button (forward button too? Try only back first)
 - OR: like feature, saves to in-app gallery
 - if pasted hex or rgb is invalid, check if it's the other one, and if valid, notify user
 - add random color option to menu, animate random button on selection (use closure to show animation after menu is dismissed)
-- Add Multiple options for languages in apps.
+- Add Multiple options for languages.
 - AR
 - Re-enable rules
 - add "back" buttons to menu
