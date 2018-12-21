@@ -83,6 +83,13 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
         greenSlider.thumbTintColor = .green
         blueSlider.thumbTintColor = .blue
 
+        redSlider.setThumbImage(UIImage(named: "red.png"), for: .normal)
+        redSlider.setThumbImage(UIImage(named: "red.png"), for: .highlighted)
+        greenSlider.setThumbImage(UIImage(named: "green.png"), for: .normal)
+        greenSlider.setThumbImage(UIImage(named: "green.png"), for: .highlighted)
+        blueSlider.setThumbImage(UIImage(named: "blue.png"), for: .normal)
+        blueSlider.setThumbImage(UIImage(named: "blue.png"), for: .highlighted)
+
         redSlider.minimumTrackTintColor = UIColor.red
         greenSlider.minimumTrackTintColor = UIColor.green
         blueSlider.minimumTrackTintColor = UIColor.blue
