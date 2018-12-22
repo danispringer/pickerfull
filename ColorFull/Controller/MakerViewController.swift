@@ -707,15 +707,14 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
     // MARK: Random Toolbar
 
     @IBAction func randomPressed(_ sender: Any) {
-        print("randomPressed called")
         let activity = NSUserActivity(activityType: Constants.AppInfo.bundleAndRandom)
-        activity.title = "Get a Random Color"
+        activity.title = "Create random color"
         activity.isEligibleForSearch = true
 
         if #available(iOS 12.0, *) {
             activity.isEligibleForPrediction = true
             activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Constants.AppInfo.bundleAndRandom)
-            activity.suggestedInvocationPhrase = "Get Random Color"
+            activity.suggestedInvocationPhrase = "Show me a Random Color"
         } else {
             print("not ios 12")
         }
@@ -727,7 +726,6 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
 
     public func makeRandomColor() {
-        print("makeRandomColor called")
         toggleUI(enable: false)
         var randomHex = ""
         let randomRed = hexArray.randomElement()!
