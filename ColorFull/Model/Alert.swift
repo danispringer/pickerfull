@@ -8,7 +8,9 @@
 
 import UIKit
 
+
 extension UIViewController {
+
 
     enum AlertReason {
         case network
@@ -108,4 +110,6 @@ extension UIViewController {
 
         return alert
     }
+
+    
 }
