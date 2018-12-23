@@ -11,6 +11,7 @@ import StoreKit
 import MessageUI
 import Intents
 
+
 class MakerViewController: UIViewController, UIPickerViewDelegate,
     UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -44,6 +45,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
         let validRgbValue: [Int]
     }
 
+
     enum Controls {
         case slider
         case hexPicker
@@ -51,6 +53,7 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
         case pasteHexOrRandomHex
         case pasteRGB
     }
+
 
     var currentUIColor: UIColor!
     var currentHexColor: String!
@@ -1093,6 +1096,7 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
         self.present(mailComposer, animated: true, completion: nil)
     }
 
+
     func mailComposeController(_ controller: MFMailComposeViewController,
                                didFinishWith result: MFMailComposeResult, error: Error?) {
         var alert = UIAlertController()
@@ -1113,7 +1117,10 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
             }
         })
     }
+
+
 }
+
 
 extension MakerViewController {
 
@@ -1130,7 +1137,10 @@ extension MakerViewController {
                                   options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
                                   completionHandler: nil)
     }
+
+
 }
+
 
 // Helper function inserted by Swift 4.2 migrator.
 private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(
