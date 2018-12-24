@@ -1061,9 +1061,9 @@ class MakerViewController: UIViewController,
     func shareApp() {
 
         let message = """
-            Look at this app: ColorFull lets you generate a color from millions of choices \
-            using sliders or HEX code, and save or share your created color! \
-            https://itunes.apple.com/app/id1410565176 - it's really cool!
+            This app lets you create a color from millions of choices \
+            using sliders, HEX or RGB code, and save or share your color: \
+            https://itunes.apple.com/app/id1410565176
             """
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
