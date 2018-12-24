@@ -30,6 +30,8 @@ struct Constants {
         static let email = "musicbyds@icloud.com"
         static let reviewLink = "https://itunes.apple.com/app/id1410565176?action=write-review"
         static let bundleAndRandom = "io.github.danispringer.Color-Picker.makeRandom"
+        static let showAppsButtonTitle = "More by Daniel Springer"
+        static let devID = "1402417666"
     }
 
     struct Image {

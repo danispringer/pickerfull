@@ -22,5 +22,5 @@ extension String {
         let end = index(startIndex, offsetBy: bounds.upperBound)
         return String(self[start..<end])
     }
-    
+
 }
