@@ -16,8 +16,7 @@ class MakerViewController: UIViewController,
                            UIPickerViewDelegate,
                            UIPickerViewDataSource,
                            UIImagePickerControllerDelegate,
-                           UINavigationControllerDelegate,
-                           SKStoreProductViewControllerDelegate {
+                           UINavigationControllerDelegate {
 
 
     // MARK: Outlets
@@ -181,18 +180,15 @@ class MakerViewController: UIViewController,
 
     func showApps() {
 
-        let controller = SKStoreProductViewController()
-        controller.delegate = self
-        controller.loadProduct(
-            withParameters: [SKStoreProductParameterITunesItemIdentifier: Constants.AppInfo.devID],
-            completionBlock: nil)
+        let myURL = URL(string: Constants.AppInfo.appsLink)
 
-        present(controller, animated: true)
-    }
+        guard let safeURL = myURL else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            present(alert, animated: true)
+            return
+        }
 
-
-    func productViewControllerDidFinish(_ viewController: SKStoreProductViewController) {
-        dismiss(animated: true, completion: nil)
+        UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
     }
 
 
