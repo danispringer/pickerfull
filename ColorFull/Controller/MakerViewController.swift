@@ -12,8 +12,12 @@ import MessageUI
 import Intents
 
 
-class MakerViewController: UIViewController, UIPickerViewDelegate,
-    UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MakerViewController: UIViewController,
+                           UIPickerViewDelegate,
+                           UIPickerViewDataSource,
+                           UIImagePickerControllerDelegate,
+                           UINavigationControllerDelegate,
+                           SKStoreProductViewControllerDelegate {
 
 
     // MARK: Outlets
@@ -172,6 +176,25 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
 
     // MARK: Helpers
+
+    // MARK: Show Apps
+
+    func showApps() {
+
+        let controller = SKStoreProductViewController()
+        controller.delegate = self
+        controller.loadProduct(
+            withParameters: [SKStoreProductParameterITunesItemIdentifier: Constants.AppInfo.devID],
+            completionBlock: nil)
+
+        present(controller, animated: true)
+    }
+
+
+    func productViewControllerDidFinish(_ viewController: SKStoreProductViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+
 
     func presentWelcomeAlert() {
         let welcomeAlert = UIAlertController(title: "❤️ Welcome",
@@ -629,7 +652,10 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
 
 
     func showShareTextMenu() {
-        let shareTextMenuAlert = UIAlertController(title: "Share as Text Menu", message: nil, preferredStyle: .actionSheet)
+        let shareTextMenuAlert = UIAlertController(
+            title: "Share as Text Menu",
+            message: nil,
+            preferredStyle: .actionSheet)
 
         shareTextMenuAlert.modalPresentationStyle = .popover
 
@@ -688,13 +714,18 @@ class MakerViewController: UIViewController, UIPickerViewDelegate,
             self.showMainMenu()
         }
 
+        let showAppsAction = UIAlertAction(title: Constants.AppInfo.showAppsButtonTitle, style: .default) { _ in
+            self.showApps()
+        }
+
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             self.dismiss(animated: true, completion: {
                 SKStoreReviewController.requestReview()
             })
         }
 
-        for action in [backAction, mailAction, reviewAction, shareAppAction, cancelAction] {
+        for action in [backAction, mailAction, reviewAction, shareAppAction,
+                       showAppsAction, cancelAction] {
             infoAlert.addAction(action)
         }
 
