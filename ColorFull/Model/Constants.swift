@@ -33,6 +33,10 @@ struct Constants {
         static let bundleAndRandom = "io.github.danispringer.Color-Picker.makeRandom"
         static let showAppsButtonTitle = "More by Daniel Springer"
         static let appsLink = "https://itunes.apple.com/developer/id1402417666"
+        static let creditMessage = """
+        \n\nCreated using:\nColorFull - Find Your Color by Daniel Springer
+        Available exclusively on the iOS App Store\n
+        """
     }
 
     struct Image {

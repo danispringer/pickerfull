@@ -916,7 +916,7 @@ class MakerViewController: UIViewController,
         let attributedMessageJumboRGB = NSAttributedString(string: rgbString, attributes: jumboAttributes)
 
         let attributedMessagePost = NSAttributedString(
-            string: "\n\nCreated using:\nColorFull - Find Your Color by Daniel Springer\nAvailable exclusively on the iOS App Store\n",
+            string: Constants.AppInfo.creditMessage,
             attributes: regularAttributes)
 
         let myAttributedText = NSMutableAttributedString()
