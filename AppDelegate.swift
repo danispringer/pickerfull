@@ -8,7 +8,9 @@
 
 import UIKit
 
+
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
@@ -22,11 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        UserDefaults.standard.register(defaults: ["isFirstLaunch": true])
-        UserDefaults.standard.register(defaults: [Constants.UserDef.colorKey: "E57BF2"])
+        UserDefaults.standard.register(defaults: [Constants.UserDef.isFirstLaunch: true])
+        UserDefaults.standard.register(
+            defaults: [Constants.UserDef.colorKey: Constants.UserDef.defaultColor])
 
         return true
     }
+
 
     // MARK: Siri Shortcuts
 
