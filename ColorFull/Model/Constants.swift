@@ -15,6 +15,7 @@ struct Constants {
         static let hexPickerSelected = "hexPickerSelected"
         static let colorKey = "color"
         static let isFirstLaunch = "isFirstLaunch"
+        static let defaultColor = "E57BF2"
     }
 
     struct Values {
