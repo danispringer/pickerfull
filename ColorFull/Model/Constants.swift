@@ -6,7 +6,7 @@
 //  Copyright © 2018 Daniel Springer. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 struct Constants {
@@ -22,6 +22,9 @@ struct Constants {
         static let numToHexFormatter = "%02X"
         static let hexToNumFormatter = "0x"
         static let rgbMax = 255.0
+        static let mainBackgroundColor = UIColor.black
+        static let mainTextColor = UIColor.white
+        static let transparentGray = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)
     }
 
     struct AppInfo {
