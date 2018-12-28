@@ -1,3 +1,4 @@
+- set menu bounds to share button for ipad
 - improve for ipad
 - Add back screenshots in README.
 - Notifications: random color
