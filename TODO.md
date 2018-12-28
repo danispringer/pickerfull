@@ -19,6 +19,7 @@
 • ColorFull lets you also directly paste a HEX or RGB code so you can instantly preview, edit, and share it as a customized screenshot (simply tap on the share icon on the bottom right, then choose 'Paste text' to paste, preview and edit the pasted color, then tap on 'Share' and 'Share as image' to create a customized screenshot with your newly created color).
 • ColorFull lets you easily save, copy, or share your color, both as an image which includes the color and both HEX and RGB values, or as plain text, both as HEX or RGB values.
 • Battery died? No worries. Your last selected color will automatically display when you launch the app again. ColorFull has got your back - and favorite color!
+• Create a random color anytime you'd like by tapping on the Search icon, or by asking Siri! ColorFull supports Siri Shortcuts, so you can create a voice command to have Siri open the app with a new color ready for you. Make sure you create at least one random color in the app itself before setting up Siri Shortcuts, then open Settings > Siri & Search > All Shortcuts > Get random color, and record your phrase.
 
 • Is there a feature you'd like to see? A bug you'd like to go away? Let us know by opening the app and tapping on the share icon on the bottom right, selecting 'Contact and info', then selecting 'Send feedback or question'.
 • Love the app? Please consider leaving a review. It would mean a ColorFull lot to us!
@@ -27,5 +28,5 @@
 
 • Version N.N.N brings some bug fixes.
 
-• Is there a feature you'd like to see? a bug you'd like to go away? Let us know by opening the app and tapping on the Menu button, selecting 'Contact and info', then tapping on the mail icon.
+• Is there a feature you'd like to see? a bug you'd like to go away? Let us know by opening the app and tapping on the Share icon, selecting 'Contact and info', then tapping on 'Send feedback or question'.
 • Love the app? Please consider leaving a review. It would mean a ColorFull lot to us!
