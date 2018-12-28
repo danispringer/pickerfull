@@ -27,9 +27,6 @@ class MakerViewController: UIViewController,
 
     @IBOutlet weak var hexPicker: UIPickerView!
     @IBOutlet weak var rgbPicker: UIPickerView!
-    @IBOutlet weak var pickersSwitch: UISwitch!
-    @IBOutlet weak var hexSwitchLabel: UILabel!
-    @IBOutlet weak var rgbSwitchLabel: UILabel!
 
     @IBOutlet weak var messageLabel: UILabel!
 
@@ -38,6 +35,11 @@ class MakerViewController: UIViewController,
 
     @IBOutlet weak var randomToolbar: UIToolbar!
     @IBOutlet weak var randomBarButtonItem: UIBarButtonItem!
+
+    @IBOutlet weak var motherView: UIView!
+    @IBOutlet weak var subView: UIStackView!
+    @IBOutlet weak var hexButton: UIButton!
+    @IBOutlet weak var rgbButton: UIButton!
 
 
     // MARK: properties
@@ -110,22 +112,32 @@ class MakerViewController: UIViewController,
                 (hexPicker.isHidden = false, rgbPicker.isHidden = true) :
             (hexPicker.isHidden = true, rgbPicker.isHidden = false)
 
-        pickersSwitch.isOn = !(UserDefaults.standard.value(
-            forKey: Constants.UserDef.hexPickerSelected) as? Bool ?? false)
-
         for toolbar in [shareToolbar, randomToolbar] {
-            toolbar?.setShadowImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)),
+            toolbar?.setShadowImage(UIImage.from(color: Constants.Values.mainBackgroundColor),
                                     forToolbarPosition: .any)
-            toolbar?.setBackgroundImage(UIImage.from(color: UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)),
+            toolbar?.setBackgroundImage(UIImage.from(color: Constants.Values.mainBackgroundColor),
                                         forToolbarPosition: .any, barMetrics: .default)
             toolbar?.layer.cornerRadius = 10
             toolbar?.layer.masksToBounds = true
         }
 
-        for label in [messageLabel, hexSwitchLabel, rgbSwitchLabel] {
+        for label in [messageLabel] {
             label?.layer.cornerRadius = 10
             label?.layer.masksToBounds = true
         }
+
+        motherView.layer.borderWidth = 2
+        motherView.layer.borderColor = UIColor.red.cgColor
+        motherView.layer.cornerRadius = 7
+        motherView.clipsToBounds = true
+
+        hexButton.isEnabled = !(UserDefaults.standard.value(
+            forKey: Constants.UserDef.hexPickerSelected) as? Bool ?? true)
+        rgbButton.isEnabled = (UserDefaults.standard.value(
+            forKey: Constants.UserDef.hexPickerSelected) as? Bool ?? false)
+
+        updateButtonsStyle()
+
     }
 
 
@@ -397,10 +409,34 @@ class MakerViewController: UIViewController,
 
     // MARK: Picker Switch
 
-    @IBAction func pickerSwitchToggled(_ sender: Any) {
-        UserDefaults.standard.set(!pickersSwitch.isOn, forKey: Constants.UserDef.hexPickerSelected)
-        hexPicker.isHidden = pickersSwitch.isOn
-        rgbPicker.isHidden = !pickersSwitch.isOn
+    @IBAction func hexAndRGBToggled(_ sender: UIButton) {
+
+        switch sender.tag {
+        case 0:
+            hexButton.isEnabled = false
+            rgbButton.isEnabled = true
+            hexPicker.isHidden = false
+            rgbPicker.isHidden = true
+            UserDefaults.standard.set(true, forKey: Constants.UserDef.hexPickerSelected)
+        case 1:
+            hexButton.isEnabled = true
+            rgbButton.isEnabled = false
+            hexPicker.isHidden = true
+            rgbPicker.isHidden = false
+            UserDefaults.standard.set(false, forKey: Constants.UserDef.hexPickerSelected)
+        default:
+            break
+        }
+
+        updateButtonsStyle()
+    }
+
+
+    func updateButtonsStyle() {
+        hexButton.tintColor = hexButton.isEnabled ? Constants.Values.mainTextColor : Constants.Values.mainBackgroundColor
+        rgbButton.tintColor = rgbButton.isEnabled ? Constants.Values.mainTextColor : Constants.Values.mainBackgroundColor
+        hexButton.backgroundColor = hexButton.isEnabled ? Constants.Values.mainBackgroundColor : Constants.Values.mainTextColor
+        rgbButton.backgroundColor = rgbButton.isEnabled ? Constants.Values.mainBackgroundColor : Constants.Values.mainTextColor
     }
 
 
@@ -947,10 +983,8 @@ class MakerViewController: UIViewController,
         for toolbar in [shareToolbar, randomToolbar] {
             toolbar?.isHidden = hide
         }
-        for label in [hexSwitchLabel, rgbSwitchLabel] {
-            label?.isHidden = hide
-        }
-        pickersSwitch.isHidden = hide
+
+        subView.isHidden = hide
         messageLabel.isHidden = !hide
 
         if !hide {
