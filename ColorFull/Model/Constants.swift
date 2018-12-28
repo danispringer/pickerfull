@@ -22,9 +22,6 @@ struct Constants {
         static let numToHexFormatter = "%02X"
         static let hexToNumFormatter = "0x"
         static let rgbMax = 255.0
-        static let mainBackgroundColor = UIColor.black
-        static let mainTextColor = UIColor.white
-        static let transparentGray = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 0.5)
     }
 
     struct AppInfo {
@@ -40,12 +37,6 @@ struct Constants {
         \n\nCreated using:\nColorFull - Find Your Color by Daniel Springer
         Available exclusively on the iOS App Store\n
         """
-    }
-
-    struct Image {
-        static let red = "red.png"
-        static let green = "green.png"
-        static let blue = "blue.png"
     }
 
 }
