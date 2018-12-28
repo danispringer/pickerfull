@@ -24,10 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        UserDefaults.standard.register(defaults: [Constants.UserDef.isFirstLaunch: true])
-        UserDefaults.standard.register(
-            defaults: [Constants.UserDef.colorKey: Constants.UserDef.defaultColor])
-
+        UserDefaults.standard.register(defaults: [
+            Constants.UserDef.isFirstLaunch: true,
+            Constants.UserDef.colorKey: Constants.UserDef.defaultColor,
+            Constants.UserDef.hexPickerSelected: true])
         return true
     }
 
