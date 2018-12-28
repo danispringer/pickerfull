@@ -1,3 +1,5 @@
+- add "all shortcuts" step to places
+- add "has got your back...persistence" to tips
 - set menu bounds to share button for ipad
 - improve for ipad
 - Add back screenshots in README.
