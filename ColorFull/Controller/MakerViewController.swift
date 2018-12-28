@@ -181,19 +181,59 @@ class MakerViewController: UIViewController,
 
 
     func presentWelcomeAlert() {
-        let welcomeAlert = UIAlertController(title: "❤️ Welcome",
-                                             message: """
-                                             ColorFull lets you create, edit and share \
-                                             millions of colors with maximum precision.\nFor the \
-                                             best experience and highest accuracy:\n\n🔆 Raise \
-                                             your screen's brightness\n\n🌚 Turn off Night Shift \
-                                             \n📜 Turn off True Tone
-                                             """,
-                                             preferredStyle: .actionSheet)
+        UserDefaults.standard.set(false, forKey: Constants.UserDef.isFirstLaunch)
+        let welcomeAlert = UIAlertController(
+            title: "❤️ Welcome",
+            message: """
+                     ColorFull lets you create, edit and share millions of colors with maximum \
+                     precision.
+                     Let's make sure you get the most out of this simple yet powerful app.
 
-        let closeAction = UIAlertAction(title: "OK", style: .cancel) { _ in
-            UserDefaults.standard.set(false, forKey: Constants.UserDef.isFirstLaunch)
+                     For the highest accuracy:
+
+                     🔆 Raise your screen's brightness
+                     🌚 Turn off Night Shift
+                     📜 Turn off True Tone
+
+
+                     <OK, done. What can I do here?>
+
+                     Keep scrolling for more!
+
+                     Tap 🔍 for a new color.
+
+                     Tap on HEX or RGB to change the values shown for the current color.
+
+                     Drag ⬆️ and ⬇️ on the 3 spinners, or ⬅️ and ➡️ on the 3 sliders to edit \
+                     your color with maximum precision. 💪
+
+                     😍 When you like what you see, tap on the share icon on the top right to \
+                     save, copy, or share your color with the world!
+
+                     When saving (or copying, or sharing) your color, you can choose between an image which includes \
+                     the color, HEX and RGB values, or plain text, with a choice of either HEX \
+                     or RGB value.
+
+                     🖍 You can also paste (import) a color from outside the app as a HEX or \
+                     RGB value and the app will update in real time.
+
+                     ℹ️ Find out more by opening the Main Menu (button on top right) and tapping \
+                     on 'Contact and info'
+
+                     💎 See these tips again anytime by opening the Main Menu > 'Contact and info' \
+                     > 'See tips'
+
+
+                     What are you waiting for? Show the world your true colors! 🥰
+                     """,
+            preferredStyle: .actionSheet)
+
+        let openMainMenuAction = UIAlertAction(title: "Open Main Menu", style: .default) { _ in
+            self.showMainMenu()
         }
+        let closeAction = UIAlertAction(title: "Start now", style: .cancel)
+
+        welcomeAlert.addAction(openMainMenuAction)
         welcomeAlert.addAction(closeAction)
 
         if let presenter = welcomeAlert.popoverPresentationController {
@@ -724,6 +764,10 @@ class MakerViewController: UIViewController,
             self.launchEmail()
         }
 
+        let tipsAction = UIAlertAction(title: "See tips", style: .default) { _ in
+            self.presentWelcomeAlert()
+        }
+
         let reviewAction = UIAlertAction(title: "Leave a review", style: .default) { _ in
             self.requestReviewManually()
         }
@@ -746,7 +790,7 @@ class MakerViewController: UIViewController,
             })
         }
 
-        for action in [backAction, mailAction, reviewAction, shareAppAction,
+        for action in [backAction, mailAction, tipsAction, reviewAction, shareAppAction,
                        showAppsAction, cancelAction] {
             infoAlert.addAction(action)
         }
