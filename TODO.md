@@ -1,20 +1,16 @@
-- siri: button. [verify:] show after user pressed random at least once, hide after they add to siri.
 - improve for ipad
-- Add back screenshots in READMEs.
-- improve slider icons
+- Add back screenshots in README.
 - Notifications: random color
-- Add iOS-like Splash screen: current action sheet
-- add in-app gallery
-- create helper functions: rgb to hex, hex to rgb, slider value (1/255?) to hex/rgb
+- Add iOS-like Splash screen: current tips
+- add in-app gallery of favorites
 - add reviewkit
-- add “history”, back button (forward button too? Try only back first)
-- OR: like feature, saves to in-app gallery
-- if pasted hex or rgb is invalid, check if it's the other one, and if valid, notify user
-- add random color option to menu, animate random button on selection (use closure to show animation after menu is dismissed)
+- add store media
+- add in-app history of randomly generated colors
+- if pasted hex or rgb is invalid, check if it's the other one, and if valid, use and
+  notify user
 - Add Multiple options for languages.
 - AR
 - Re-enable rules
-- add "back" buttons to menu
 - test splash screen not showing after first launch
 
 ###### App Store Description
