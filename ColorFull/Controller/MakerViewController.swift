@@ -200,7 +200,12 @@ class MakerViewController: UIViewController,
 
                      Keep scrolling for more!
 
-                     Tap 🔍 for a new color.
+                     Tap 🔍 for a new random color.
+                     You can also get random colors using Siri. Make sure you create at least one \
+                     random color using the 🔍 in the app, then open Settings > Siri & Search > \
+                     All Shortcuts > Create random color, and follow the on-screen instructions to \
+                     record your custom phrase. Once setup, you can tell Siri your custom phrase \
+                     and Siri will open the app with a new random color waiting for you.
 
                      Tap on HEX or RGB to change the values shown for the current color.
 
