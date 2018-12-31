@@ -737,7 +737,7 @@ class MakerViewController: UIViewController,
         }
         infoAlert.modalPresentationStyle = .popover
 
-        let mailAction = UIAlertAction(title: "Send feedback or question", style: .default) { _ in
+        let mailAction = UIAlertAction(title: "Contact Us", style: .default) { _ in
             self.launchEmail()
         }
 
@@ -749,7 +749,7 @@ class MakerViewController: UIViewController,
             self.requestReviewManually()
         }
 
-        let shareAppAction = UIAlertAction(title: "Share App with friends", style: .default) { _ in
+        let shareAppAction = UIAlertAction(title: "Tell a Friend", style: .default) { _ in
             self.shareApp()
         }
 

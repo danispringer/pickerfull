@@ -70,10 +70,9 @@ extension UIViewController {
             alertTitle = "Success!"
             alertMessage = "Your image has been copied.\nDon't forget to paste it somewhere!"
         case .permissionDenied:
-            alertTitle = "Permission denied"
+            alertTitle = "Allow ColorFull access to your gallery"
             alertMessage = """
-            ColorFull needs access to your gallery in order to save your image. \
-            Please allow access in Settings.
+            Access was previously denied. Please grant access from Settings so ColorFull can save your image.
             """
         case .invalidHex:
             alertTitle = "Invalid HEX"
