@@ -16,6 +16,7 @@ struct Constants {
         static let colorKey = "color"
         static let isFirstLaunch = "isFirstLaunch"
         static let defaultColor = "E57BF2"
+        static let darkModeIsOn = "darkModeIsOn"
     }
 
     struct Values {
