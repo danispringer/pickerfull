@@ -14,6 +14,7 @@
 - Add Multiple options for languages.
 - AR
 - Re-enable rules
+- Weak/unowned self in apps: CP, PF, GF, ST.
 - test splash screen not showing after first launch
 
 ###### App Store Description
