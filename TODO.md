@@ -16,6 +16,8 @@
 - Re-enable rules
 - Weak/unowned self in apps: CP, PF, GF, ST.
 - test splash screen not showing after first launch
+- add history button to view history of randomly generated colors
+- checkout other color picker apps and websites
 
 ###### App Store Description
 • Looking to create your perfect color real fast? This app is for you.
