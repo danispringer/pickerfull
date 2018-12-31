@@ -37,7 +37,6 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var themeButton: UIBarButtonItem!
 
-
     // MARK: properties
 
     struct RGBResult {
@@ -981,7 +980,7 @@ class MakerViewController: UIViewController,
         myAttributedText.append(attributedMessagePost)
 
         messageLabel.attributedText = myAttributedText
-
+        let viewColorWas = view.backgroundColor
         view.backgroundColor = UIColor(
             red: CGFloat(Double(redValue)/255),
             green: CGFloat(Double(greenValue)/255),
@@ -993,7 +992,7 @@ class MakerViewController: UIViewController,
         hexImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
-        view.backgroundColor = .white
+        view.backgroundColor = viewColorWas
         elementsShould(hide: false)
 
 
