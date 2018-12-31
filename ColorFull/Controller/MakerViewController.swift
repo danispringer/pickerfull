@@ -15,7 +15,6 @@ import Intents
 class MakerViewController: UIViewController,
                            UIPickerViewDelegate,
                            UIPickerViewDataSource,
-                           UIImagePickerControllerDelegate,
                            UINavigationControllerDelegate {
 
 
@@ -30,16 +29,13 @@ class MakerViewController: UIViewController,
 
     @IBOutlet weak var messageLabel: UILabel!
 
-    @IBOutlet weak var mainToolbar: UIToolbar!
+    @IBOutlet weak var myToolbar: UIToolbar!
     @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
 
     @IBOutlet weak var randomBarButtonItem: UIBarButtonItem!
-
-    @IBOutlet weak var motherView: UIView!
-    @IBOutlet weak var subView: UIStackView!
-    @IBOutlet weak var hexButton: UIButton!
-    @IBOutlet weak var rgbButton: UIButton!
+    @IBOutlet weak var mySwitchButton: UIBarButtonItem!
     @IBOutlet weak var resultView: UIView!
+    @IBOutlet weak var themeButton: UIBarButtonItem!
 
 
     // MARK: properties
@@ -50,7 +46,6 @@ class MakerViewController: UIViewController,
         let validRgbValue: [Int]
     }
 
-
     enum Controls {
         case slider
         case hexPicker
@@ -59,7 +54,6 @@ class MakerViewController: UIViewController,
         case pasteRGB
     }
 
-
     var currentUIColor: UIColor!
     var currentHexColor: String!
 
@@ -67,7 +61,8 @@ class MakerViewController: UIViewController,
     var rgbArray: [String] = []
 
     var hexImage: UIImage!
-    var hexPickerWasHidden: Bool!
+
+    var textColor = UIColor.black
 
 
     // MARK: Life Cycle
@@ -89,30 +84,27 @@ class MakerViewController: UIViewController,
 
         }
 
-            messageLabel.isHidden = true
-            redSlider.thumbTintColor = .red
-            greenSlider.thumbTintColor = .green
-            blueSlider.thumbTintColor = .blue
+        messageLabel.isHidden = true
+        redSlider.thumbTintColor = .red
+        greenSlider.thumbTintColor = .green
+        blueSlider.thumbTintColor = .blue
 
-            redSlider.minimumTrackTintColor = UIColor.red
-            greenSlider.minimumTrackTintColor = UIColor.green
-            blueSlider.minimumTrackTintColor = UIColor.blue
+        redSlider.minimumTrackTintColor = UIColor.red
+        greenSlider.minimumTrackTintColor = UIColor.green
+        blueSlider.minimumTrackTintColor = UIColor.blue
 
-            _ = UserDefaults.standard.bool(
-                forKey: Constants.UserDef.hexPickerSelected) ?
-                    (hexPicker.isHidden = false, rgbPicker.isHidden = true) :
-                (hexPicker.isHidden = true, rgbPicker.isHidden = false)
+        messageLabel.layer.cornerRadius = 10
+        messageLabel.layer.masksToBounds = true
 
-            messageLabel.layer.cornerRadius = 10
-            messageLabel.layer.masksToBounds = true
 
-            motherView.layer.borderWidth = 2
-            motherView.layer.borderColor = view.tintColor.cgColor
-            motherView.layer.cornerRadius = 5
-            motherView.clipsToBounds = true
+        let hexPickerSelected = UserDefaults.standard.bool(
+            forKey: Constants.UserDef.hexPickerSelected)
 
-        updateButtonsStyle()
+        hexPicker.isHidden = !hexPickerSelected
+        rgbPicker.isHidden = hexPickerSelected
 
+        mySwitchButton.title = hexPickerSelected ? "RGB" : "HEX"
+        updateTheme()
     }
 
 
@@ -242,8 +234,8 @@ class MakerViewController: UIViewController,
         welcomeAlert.addAction(closeAction)
 
         if let presenter = welcomeAlert.popoverPresentationController {
-            presenter.sourceView = mainToolbar
-            presenter.sourceRect = mainToolbar.bounds
+            presenter.sourceView = myToolbar
+            presenter.sourceRect = myToolbar.bounds
         }
             present(welcomeAlert, animated: true)
 
@@ -441,33 +433,14 @@ class MakerViewController: UIViewController,
 
     // MARK: HEX and RGB Toggled
 
-    @IBAction func hexAndRGBToggled(_ sender: UIButton) {
+    @IBAction func hexAndRGBToggled() {
+        let hexPickerSelected = UserDefaults.standard.bool(forKey: Constants.UserDef.hexPickerSelected)
+        UserDefaults.standard.set(!hexPickerSelected, forKey: Constants.UserDef.hexPickerSelected)
 
-            switch sender.tag {
-            case 0:
-                hexPicker.isHidden = false
-                rgbPicker.isHidden = true
-                UserDefaults.standard.set(true, forKey: Constants.UserDef.hexPickerSelected)
-            case 1:
-                hexPicker.isHidden = true
-                rgbPicker.isHidden = false
-                UserDefaults.standard.set(false, forKey: Constants.UserDef.hexPickerSelected)
-            default:
-                break
-            }
+        hexPicker.isHidden = hexPickerSelected
+        rgbPicker.isHidden = !hexPickerSelected
 
-            updateButtonsStyle()
-
-    }
-
-
-    func updateButtonsStyle() {
-            let myBool = UserDefaults.standard.bool(forKey: Constants.UserDef.hexPickerSelected)
-
-            hexButton.tintColor = myBool ? .white : view.tintColor
-            rgbButton.tintColor = !myBool ? .white : view.tintColor
-            hexButton.backgroundColor = myBool ? view.tintColor : .white
-            rgbButton.backgroundColor = !myBool ? view.tintColor : .white
+        mySwitchButton.title = hexPickerSelected ? "HEX" : "RGB"
 
     }
 
@@ -502,7 +475,7 @@ class MakerViewController: UIViewController,
         if pickerView.tag == 0 {
             string = hexArray[row]
             return NSAttributedString(string: string,
-                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+                                      attributes: [NSAttributedString.Key.foregroundColor: textColor])
 
         } else if pickerView.tag == 1 {
             string = rgbArray[row]
@@ -510,7 +483,7 @@ class MakerViewController: UIViewController,
             fatalError()
         }
 
-        return NSAttributedString(string: string, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        return NSAttributedString(string: string, attributes: [NSAttributedString.Key.foregroundColor: textColor])
     }
 
 
@@ -566,8 +539,8 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = mainMenuAlert.popoverPresentationController {
-            presenter.sourceView = mainToolbar
-            presenter.sourceRect = mainToolbar.bounds
+            presenter.sourceView = myToolbar
+            presenter.sourceRect = myToolbar.bounds
         }
 
             present(mainMenuAlert, animated: true)
@@ -602,8 +575,8 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = copyMainMenuAlert.popoverPresentationController {
-            presenter.sourceView = mainToolbar
-            presenter.sourceRect = mainToolbar.bounds
+            presenter.sourceView = myToolbar
+            presenter.sourceRect = myToolbar.bounds
         }
             present(copyMainMenuAlert, animated: true)
     }
@@ -638,8 +611,8 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = copyTextMenuAlert.popoverPresentationController {
-            presenter.sourceView = mainToolbar
-            presenter.sourceRect = mainToolbar.bounds
+            presenter.sourceView = myToolbar
+            presenter.sourceRect = myToolbar.bounds
         }
 
             present(copyTextMenuAlert, animated: true)
@@ -674,8 +647,8 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = shareMainMenuAlert.popoverPresentationController {
-            presenter.sourceView = mainToolbar
-            presenter.sourceRect = mainToolbar.bounds
+            presenter.sourceView = myToolbar
+            presenter.sourceRect = myToolbar.bounds
         }
             present(shareMainMenuAlert, animated: true)
 
@@ -709,8 +682,8 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = pasteMainMenuAlert.popoverPresentationController {
-            presenter.sourceView = mainToolbar
-            presenter.sourceRect = mainToolbar.bounds
+            presenter.sourceView = myToolbar
+            presenter.sourceRect = myToolbar.bounds
         }
 
             present(pasteMainMenuAlert, animated: true)
@@ -749,8 +722,8 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = shareTextMenuAlert.popoverPresentationController {
-            presenter.sourceView = mainToolbar
-            presenter.sourceRect = mainToolbar.bounds
+            presenter.sourceView = myToolbar
+            presenter.sourceRect = myToolbar.bounds
         }
             present(shareTextMenuAlert, animated: true)
     }
@@ -801,8 +774,8 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = infoAlert.popoverPresentationController {
-            presenter.sourceView = mainToolbar
-            presenter.sourceRect = mainToolbar.bounds
+            presenter.sourceView = myToolbar
+            presenter.sourceRect = myToolbar.bounds
         }
 
             present(infoAlert, animated: true)
@@ -972,9 +945,7 @@ class MakerViewController: UIViewController,
 
     func generateHexImage() -> UIImage {
 
-        hexPickerWasHidden = elementsShould(
-            hide: true,
-            hexPickerWasHiddenLocal: hexPicker.isHidden)
+        elementsShould(hide: true)
 
         let regularAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 16)]
@@ -1023,36 +994,33 @@ class MakerViewController: UIViewController,
         UIGraphicsEndImageContext()
 
         view.backgroundColor = .white
-        _ = elementsShould(hide: false,
-                                hexPickerWasHiddenLocal: hexPickerWasHidden)
+        elementsShould(hide: false)
 
 
         return hexImage
     }
 
 
-    func elementsShould(hide: Bool, hexPickerWasHiddenLocal: Bool) -> Bool {
+    func elementsShould(hide: Bool) {
 
         for slider in [redSlider, greenSlider, blueSlider] {
             slider?.isHidden = hide
         }
-        for toolbar in [mainToolbar] {
+        for toolbar in [myToolbar] {
             toolbar?.isHidden = hide
         }
 
-        subView.isHidden = hide
-        motherView.isHidden = hide
         messageLabel.isHidden = !hide
 
         if !hide {
-            _ = hexPickerWasHiddenLocal ? (rgbPicker.isHidden = false) : (hexPicker.isHidden = false)
+            _ = UserDefaults.standard.bool(
+                forKey: Constants.UserDef.hexPickerSelected)
+                ? (hexPicker.isHidden = false) : (rgbPicker.isHidden = false)
         } else {
             for picker in [hexPicker, rgbPicker] {
                 picker?.isHidden = hide
             }
         }
-
-        return hexPickerWasHiddenLocal
 
     }
 
@@ -1155,6 +1123,38 @@ class MakerViewController: UIViewController,
     }
 
 
+    // MARK: Theme
+
+    @IBAction func themeToggled(_ sender: Any) {
+
+        let darkModeIsOn = UserDefaults.standard.bool(forKey: Constants.UserDef.darkModeIsOn)
+        UserDefaults.standard.set(!darkModeIsOn, forKey: Constants.UserDef.darkModeIsOn)
+
+        updateTheme()
+    }
+
+
+    func updateTheme() {
+        if UserDefaults.standard.bool(forKey: Constants.UserDef.darkModeIsOn) {
+            myToolbar.barTintColor = .black
+            hexPicker.backgroundColor = .black
+            rgbPicker.backgroundColor = .black
+            view.backgroundColor = .black
+            textColor = .white
+        } else {
+            myToolbar.barTintColor = .white
+            hexPicker.backgroundColor = .white
+            rgbPicker.backgroundColor = .white
+            view.backgroundColor = .white
+            textColor = .black
+        }
+        rgbPicker.reloadAllComponents()
+        hexPicker.reloadAllComponents()
+    }
+
+
+    // MARK: Share app
+
     func shareApp() {
 
         let message = """
@@ -1175,8 +1175,8 @@ class MakerViewController: UIViewController,
             }
         }
         if let presenter = activityController.popoverPresentationController {
-            presenter.sourceView = mainToolbar
-            presenter.sourceRect = mainToolbar.bounds
+            presenter.sourceView = myToolbar
+            presenter.sourceRect = myToolbar.bounds
         }
 
         present(activityController, animated: true)

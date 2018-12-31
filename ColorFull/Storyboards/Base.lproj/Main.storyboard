@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7iT-jJ-EaV" userLabel="Result View">
-                                <rect key="frame" x="0.0" y="88" width="414" height="539"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="583"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="POM-4Y-HHd" userLabel="Red Control">
@@ -65,14 +65,26 @@
                                 </connections>
                             </pickerView>
                             <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFq-en-Umf" userLabel="Main Toolbar">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="423" width="414" height="44"/>
                                 <items>
                                     <barButtonItem systemItem="search" id="ZMN-hO-xxK">
                                         <connections>
                                             <action selector="randomPressed:" destination="BYZ-38-t0r" id="Xj9-SA-kz6"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Lkw-yh-fs2"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="gZ2-ip-4l9"/>
+                                    <barButtonItem systemItem="bookmarks" id="1KM-ms-I0F">
+                                        <connections>
+                                            <action selector="themeToggled:" destination="BYZ-38-t0r" id="rMy-kW-TeD"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="kgp-VT-znV"/>
+                                    <barButtonItem title="PICKER" id="T6J-kF-PpL" userLabel="Pickers Switch">
+                                        <connections>
+                                            <action selector="hexAndRGBToggled" destination="BYZ-38-t0r" id="Oc7-9B-Wt4"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nXe-8m-eRY"/>
                                     <barButtonItem systemItem="action" id="7Tf-R1-A8S">
                                         <connections>
                                             <action selector="showMainMenu" destination="BYZ-38-t0r" id="Pbl-sA-2kN"/>
@@ -80,41 +92,6 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EFk-2k-BGh" userLabel="Mother View">
-                                <rect key="frame" x="117" y="51" width="180" height="30"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Le1-yY-Ogi" userLabel="Sub Stack View">
-                                        <rect key="frame" x="0.0" y="0.0" width="180" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qaz-Ut-qa7">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <state key="normal" title="HEX"/>
-                                                <connections>
-                                                    <action selector="hexAndRGBToggled:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mJJ-0j-5WX"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6b-BD-6IC">
-                                                <rect key="frame" x="90" y="0.0" width="90" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <state key="normal" title="RGB"/>
-                                                <connections>
-                                                    <action selector="hexAndRGBToggled:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jKC-Lb-s0O"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="3Kb-fM-z1n"/>
-                                    <constraint firstItem="Le1-yY-Ogi" firstAttribute="centerY" secondItem="EFk-2k-BGh" secondAttribute="centerY" id="IhG-ur-VFo"/>
-                                    <constraint firstItem="Le1-yY-Ogi" firstAttribute="width" secondItem="EFk-2k-BGh" secondAttribute="width" id="Otc-RW-mh3"/>
-                                    <constraint firstAttribute="width" constant="180" id="RZa-5d-QG6"/>
-                                    <constraint firstItem="Le1-yY-Ogi" firstAttribute="centerX" secondItem="EFk-2k-BGh" secondAttribute="centerX" id="nbz-GI-ov8"/>
-                                    <constraint firstItem="Le1-yY-Ogi" firstAttribute="height" secondItem="EFk-2k-BGh" secondAttribute="height" id="qfR-79-Ta9"/>
-                                </constraints>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKY-HB-wIv" userLabel="Message Label">
                                 <rect key="frame" x="16" y="357.5" width="382" height="142.5"/>
                                 <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="calibratedRGB"/>
@@ -123,22 +100,28 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIC-8s-dkm" userLabel="Notch Hider">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="013-pC-knr"/>
+                            <constraint firstItem="AHi-t1-Uyy" firstAttribute="top" secondItem="cFq-en-Umf" secondAttribute="bottom" id="4XD-hX-0S6"/>
                             <constraint firstItem="uKU-jx-ct7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5FD-Jd-or1"/>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="uKU-jx-ct7" secondAttribute="bottom" constant="32" id="6An-1j-CR0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BKY-HB-wIv" secondAttribute="trailing" constant="16" id="6b1-xL-Gcm"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="top" secondItem="NXx-mh-U48" secondAttribute="bottom" constant="16" id="6qI-iq-hbb"/>
-                            <constraint firstItem="cFq-en-Umf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ETn-Sb-Sir"/>
+                            <constraint firstItem="EIC-8s-dkm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9Ur-Pm-xl2"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="EIC-8s-dkm" secondAttribute="bottom" id="Jxn-jW-4eo"/>
+                            <constraint firstItem="7iT-jJ-EaV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="K79-mx-9sk"/>
                             <constraint firstItem="BKY-HB-wIv" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="KwL-8V-RXH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="KHn-Oj-ley" secondAttribute="bottom" constant="32" id="MGH-Rr-91V"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Mbm-WL-1UH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KHn-Oj-ley" secondAttribute="trailing" constant="57" id="NGl-FL-h6B"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7iT-jJ-EaV" secondAttribute="trailing" id="P5C-FX-5bk"/>
-                            <constraint firstItem="7iT-jJ-EaV" firstAttribute="top" secondItem="cFq-en-Umf" secondAttribute="bottom" id="PgF-z0-oka"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AHi-t1-Uyy" secondAttribute="trailing" id="Sej-Vz-6BR"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="16" id="Vju-WH-3s4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NXx-mh-U48" secondAttribute="trailing" constant="57" id="XJF-a8-MC6"/>
@@ -146,16 +129,16 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="POM-4Y-HHd" secondAttribute="trailing" constant="57" id="aPa-ir-rqz"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="cvz-d1-liM"/>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="fwg-iU-5sh"/>
-                            <constraint firstItem="EFk-2k-BGh" firstAttribute="centerY" secondItem="cFq-en-Umf" secondAttribute="centerY" id="hmN-2o-Zlp"/>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="AHi-t1-Uyy" secondAttribute="bottom" constant="32" id="jlD-jg-bjR"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mw9-bO-m8F"/>
                             <constraint firstItem="BKY-HB-wIv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="n95-Oy-Pzb"/>
-                            <constraint firstItem="EFk-2k-BGh" firstAttribute="centerX" secondItem="cFq-en-Umf" secondAttribute="centerX" id="n9T-HY-Hjc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cFq-en-Umf" secondAttribute="trailing" id="pzy-Cm-C7f"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="qn9-TN-yAf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uKU-jx-ct7" secondAttribute="trailing" id="rQ4-8Y-l9n"/>
+                            <constraint firstItem="EIC-8s-dkm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="vG5-Hb-qYd"/>
                             <constraint firstItem="cFq-en-Umf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vm5-sZ-pcg"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="bottom" secondItem="7iT-jJ-EaV" secondAttribute="bottom" id="xah-G3-YHT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EIC-8s-dkm" secondAttribute="trailing" id="yBm-XS-Cvw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -164,18 +147,16 @@
                     <connections>
                         <outlet property="blueSlider" destination="KHn-Oj-ley" id="r47-vM-wFZ"/>
                         <outlet property="greenSlider" destination="NXx-mh-U48" id="ooP-rR-vQe"/>
-                        <outlet property="hexButton" destination="qaz-Ut-qa7" id="Btw-gI-lRV"/>
                         <outlet property="hexPicker" destination="AHi-t1-Uyy" id="SpF-Mr-oMX"/>
-                        <outlet property="mainToolbar" destination="cFq-en-Umf" id="SUR-uE-5gn"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="nVb-Od-V3R"/>
-                        <outlet property="motherView" destination="EFk-2k-BGh" id="ub2-7U-gu6"/>
+                        <outlet property="mySwitchButton" destination="T6J-kF-PpL" id="IUk-O5-dgU"/>
+                        <outlet property="myToolbar" destination="cFq-en-Umf" id="SUR-uE-5gn"/>
                         <outlet property="randomBarButtonItem" destination="ZMN-hO-xxK" id="KMr-YG-SlC"/>
                         <outlet property="redSlider" destination="POM-4Y-HHd" id="YBh-n2-NCF"/>
                         <outlet property="resultView" destination="7iT-jJ-EaV" id="fu8-S3-1HE"/>
-                        <outlet property="rgbButton" destination="b6b-BD-6IC" id="oaJ-dd-4MU"/>
                         <outlet property="rgbPicker" destination="uKU-jx-ct7" id="YF6-Xd-WQH"/>
                         <outlet property="shareBarButtonItem" destination="7Tf-R1-A8S" id="k9H-aY-adi"/>
-                        <outlet property="subView" destination="Le1-yY-Ogi" id="wrj-xs-HFA"/>
+                        <outlet property="themeButton" destination="1KM-ms-I0F" id="ZXd-nD-X0d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
