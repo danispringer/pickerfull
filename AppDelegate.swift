@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         UserDefaults.standard.register(defaults: [
-            Constants.UserDef.isFirstLaunch: true,
             Constants.UserDef.colorKey: Constants.UserDef.defaultColor,
             Constants.UserDef.hexPickerSelected: true,
             Constants.UserDef.darkModeIsOn: false])
