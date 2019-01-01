@@ -18,6 +18,7 @@
 - test splash screen not showing after first launch
 - add history button to view history of randomly generated colors
 - checkout other color picker apps and websites
+- bug: toolbar border flickers on launch if darkModeEnabled.
 
 ###### App Store Description
 • Looking to create your perfect color real fast? This app is for you.
