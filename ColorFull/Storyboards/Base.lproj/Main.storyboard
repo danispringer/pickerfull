@@ -80,7 +80,7 @@
                                             <action selector="randomPressed:" destination="BYZ-38-t0r" id="Xj9-SA-kz6"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="gZ2-ip-4l9"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="gZ2-ip-4l9"/>
                                     <barButtonItem systemItem="bookmarks" id="1KM-ms-I0F">
                                         <connections>
                                             <action selector="themeToggled:" destination="BYZ-38-t0r" id="rMy-kW-TeD"/>
