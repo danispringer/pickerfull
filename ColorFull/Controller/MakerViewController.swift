@@ -464,8 +464,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = mainMenuAlert.popoverPresentationController {
-            presenter.sourceView = myToolbar
-            presenter.sourceRect = myToolbar.bounds
+            presenter.barButtonItem = shareBarButtonItem
         }
 
             present(mainMenuAlert, animated: true)
@@ -500,8 +499,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = copyMainMenuAlert.popoverPresentationController {
-            presenter.sourceView = myToolbar
-            presenter.sourceRect = myToolbar.bounds
+            presenter.barButtonItem = shareBarButtonItem
         }
             present(copyMainMenuAlert, animated: true)
     }
@@ -536,8 +534,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = copyTextMenuAlert.popoverPresentationController {
-            presenter.sourceView = myToolbar
-            presenter.sourceRect = myToolbar.bounds
+            presenter.barButtonItem = shareBarButtonItem
         }
 
             present(copyTextMenuAlert, animated: true)
@@ -572,8 +569,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = shareMainMenuAlert.popoverPresentationController {
-            presenter.sourceView = myToolbar
-            presenter.sourceRect = myToolbar.bounds
+            presenter.barButtonItem = shareBarButtonItem
         }
             present(shareMainMenuAlert, animated: true)
 
@@ -607,8 +603,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = pasteMainMenuAlert.popoverPresentationController {
-            presenter.sourceView = myToolbar
-            presenter.sourceRect = myToolbar.bounds
+            presenter.barButtonItem = shareBarButtonItem
         }
 
             present(pasteMainMenuAlert, animated: true)
@@ -647,8 +642,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = shareTextMenuAlert.popoverPresentationController {
-            presenter.sourceView = myToolbar
-            presenter.sourceRect = myToolbar.bounds
+            presenter.barButtonItem = shareBarButtonItem
         }
             present(shareTextMenuAlert, animated: true)
     }
@@ -695,8 +689,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = infoAlert.popoverPresentationController {
-            presenter.sourceView = myToolbar
-            presenter.sourceRect = myToolbar.bounds
+            presenter.barButtonItem = shareBarButtonItem
         }
 
             present(infoAlert, animated: true)
@@ -828,7 +821,7 @@ class MakerViewController: UIViewController,
         }
 
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
-        activityController.popoverPresentationController?.sourceView = view // for iPads not to crash
+        activityController.popoverPresentationController?.barButtonItem = shareBarButtonItem
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
@@ -849,7 +842,7 @@ class MakerViewController: UIViewController,
         let image = generateHexImage()
 
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        activityController.popoverPresentationController?.sourceView = view
+        activityController.popoverPresentationController?.barButtonItem = shareBarButtonItem
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
@@ -1085,7 +1078,7 @@ class MakerViewController: UIViewController,
             """
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
-        activityController.popoverPresentationController?.sourceView = view // for iPads not to crash
+        activityController.popoverPresentationController?.barButtonItem = shareBarButtonItem
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
@@ -1096,13 +1089,13 @@ class MakerViewController: UIViewController,
             }
         }
         if let presenter = activityController.popoverPresentationController {
-            presenter.sourceView = myToolbar
-            presenter.sourceRect = myToolbar.bounds
+            presenter.barButtonItem = shareBarButtonItem
         }
 
         present(activityController, animated: true)
 
     }
+
 
     func toggleUI(enable: Bool) {
         DispatchQueue.main.async {
