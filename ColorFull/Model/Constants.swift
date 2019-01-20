@@ -34,7 +34,10 @@ struct Constants {
         static let showAppsButtonTitle = "More by Daniel Springer"
         static let appsLink = "https://itunes.apple.com/developer/id1402417666"
         static let creditMessage = """
-        \n\nCreated using:\nColorFull - Find Your Color by Daniel Springer
+        \n\nCreated using:
+        ColorFull: Share Your Color
+        by
+        Daniel Springer
         Available exclusively on the iOS App Store\n
         """
     }

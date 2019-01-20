@@ -879,7 +879,7 @@ class MakerViewController: UIViewController,
         let greenValue = Int(hexString[2...3], radix: 16)!
         let blueValue = Int(hexString[4...5], radix: 16)!
 
-        let rgbString = "\(redValue),\(greenValue),\(blueValue)"
+        let rgbString = "\(redValue), \(greenValue), \(blueValue)"
 
         let attributedMessageJumboRGB = NSAttributedString(string: rgbString, attributes: jumboAttributes)
 
@@ -1050,20 +1050,17 @@ class MakerViewController: UIViewController,
     }
 
 
-    // TODO: optimize
     func updateTheme() {
         let darkMode = UserDefaults.standard.bool(forKey: Constants.UserDef.darkModeIsOn)
 
         myToolbar.barTintColor = darkMode ? .black : .white
-        hexPicker.backgroundColor = darkMode ? .black : .white
-        rgbPicker.backgroundColor = darkMode ? .black : .white
+        for picker in [hexPicker, rgbPicker] {
+            picker?.backgroundColor = darkMode ? .black : .white
+            picker?.reloadAllComponents()
+        }
         view.backgroundColor = darkMode ? .black : .white
         separatorView.backgroundColor = darkMode ? .darkGray : .lightGray
         textColor = darkMode ? .white : .black
-
-
-        rgbPicker.reloadAllComponents()
-        hexPicker.reloadAllComponents()
     }
 
 
