@@ -1,4 +1,3 @@
-- improve for ipad
 - Add back screenshots in README.
 - Notifications: random color
 - add in-app gallery of favorites
@@ -6,13 +5,9 @@
 - add store media
 - add in-app history of randomly generated colors
 - Add Multiple options for languages.
-- AR
-- Re-enable rules
-- Weak/unowned self in apps: CP, PF, GF, ST.
-- test splash screen not showing after first launch
 - add history button to view history of randomly generated colors
 - checkout other color picker apps and websites
-- bug: toolbar border flickers on launch if darkModeEnabled.
+- bug(?): toolbar border flickers on launch if darkModeEnabled.
 - [?] add preset colors list? Maybe add default colors to library, with option to delete. Maybe add option to name each color, aside from color, hex, and rgb.
 
 ###### App Store Description
