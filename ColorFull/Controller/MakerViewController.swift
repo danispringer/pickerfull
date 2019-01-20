@@ -36,6 +36,7 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var mySwitchButton: UIBarButtonItem!
     @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var themeButton: UIBarButtonItem!
+    @IBOutlet weak var separatorView: UIView!
 
     // MARK: properties
 
@@ -935,6 +936,7 @@ class MakerViewController: UIViewController,
                 picker?.isHidden = hide
             }
         }
+        separatorView.isHidden = hide
 
     }
 
@@ -1048,20 +1050,18 @@ class MakerViewController: UIViewController,
     }
 
 
+    // TODO: optimize
     func updateTheme() {
-        if UserDefaults.standard.bool(forKey: Constants.UserDef.darkModeIsOn) {
-            myToolbar.barTintColor = .black
-            hexPicker.backgroundColor = .black
-            rgbPicker.backgroundColor = .black
-            view.backgroundColor = .black
-            textColor = .white
-        } else {
-            myToolbar.barTintColor = .white
-            hexPicker.backgroundColor = .white
-            rgbPicker.backgroundColor = .white
-            view.backgroundColor = .white
-            textColor = .black
-        }
+        let darkMode = UserDefaults.standard.bool(forKey: Constants.UserDef.darkModeIsOn)
+
+        myToolbar.barTintColor = darkMode ? .black : .white
+        hexPicker.backgroundColor = darkMode ? .black : .white
+        rgbPicker.backgroundColor = darkMode ? .black : .white
+        view.backgroundColor = darkMode ? .black : .white
+        separatorView.backgroundColor = darkMode ? .darkGray : .lightGray
+        textColor = darkMode ? .white : .black
+
+
         rgbPicker.reloadAllComponents()
         hexPicker.reloadAllComponents()
     }
