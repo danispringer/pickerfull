@@ -1,4 +1,4 @@
-# ColorFull Picker (iOS)
+# ColorFull (iOS)
 - Looking to create your perfect color real fast? This app is for you.
 - ColorFull lets you intuitively generate your perfect color from millions of combinations, using just 3 sliders, or 3 spinners in either HEX or RGB values for max precision.
 - ColorFull lets you also directly paste a HEX or RGB code so you can instantly preview, edit, and share it as a customized screenshot (simply tap on the share icon on the bottom right, then choose 'Paste text' to paste, preview and edit the pasted color, then tap on 'Share' and 'Share as image' to create a customized screenshot with your newly created color).
