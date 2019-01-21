@@ -1,6 +1,7 @@
 - Add back screenshots in README.
 - checkout other color picker apps and websites
 - "Remove UIImagePickerControllerDelegate so status bar can be hidden"
+- https://stackoverflow.com/questions/25146557/how-do-i-get-the-color-of-a-pixel-in-a-uiimage-with-swift
 
 ###### App Store Description
 • Looking to create colors fast? This app is for you.
