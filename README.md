@@ -9,7 +9,7 @@
 - Love the app? Please consider leaving a review. It would mean a ColorFull lot to us!
 - Get it here: https://itunes.apple.com/app/id1410565176
 
-![Screenshot](https://raw.githubusercontent.com/DaniSpringer/prime/master/sc/s1.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/prime/master/sc/s2.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/prime/master/sc/s3.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/prime/master/sc/s4.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/prime/master/sc/s5.png)
+![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/sc/s1.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/sc/s2.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/sc/s3.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/sc/s4.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/sc/s5.png)
 
 # Contributing
 Want to help? You can:
