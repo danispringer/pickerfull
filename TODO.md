@@ -1,14 +1,6 @@
 - Add back screenshots in README.
-- Notifications: random color
-- add in-app gallery of favorites
-- add reviewkit
-- add store media
-- add in-app history of randomly generated colors
-- Add Multiple options for languages.
-- add history button to view history of randomly generated colors
 - checkout other color picker apps and websites
-- bug(?): toolbar border flickers on launch if darkModeEnabled.
-- [?] add preset colors list? Maybe add default colors to library, with option to delete. Maybe add option to name each color, aside from color, hex, and rgb.
+- "Remove UIImagePickerControllerDelegate so status bar can be hidden"
 
 ###### App Store Description
 • Looking to create your perfect color real fast? This app is for you.
