@@ -9,7 +9,9 @@
 - Love the app? Please consider leaving a review. It would mean a ColorFull lot to us!
 - Get it here: https://itunes.apple.com/app/id1410565176
 
-![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s1.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s2.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s3.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s4.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s5.png)
+![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s1.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s2.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s3.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s4.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s5.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s6.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s7.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s8.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s9.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s10.jpg)
+
+
 
 # Contributing
 Want to help? You can:
