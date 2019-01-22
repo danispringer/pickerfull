@@ -1,7 +1,5 @@
-- Add back screenshots in README.
-- "Remove UIImagePickerControllerDelegate so status bar can be hidden"
-- https://stackoverflow.com/questions/25146557/how-do-i-get-the-color-of-a-pixel-in-a-uiimage-with-swift
 - make font accessibilitable everywhere
+- https://stackoverflow.com/questions/25146557/how-do-i-get-the-color-of-a-pixel-in-a-uiimage-with-swift ("Remove UIImagePickerControllerDelegate so status bar can be hidden")
 
 ###### App Store Description
 • Are you a designer looking to share your colors with your customers?
