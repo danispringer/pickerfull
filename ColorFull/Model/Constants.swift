@@ -35,7 +35,7 @@ struct Constants {
         static let appsLink = "https://itunes.apple.com/developer/id1402417666"
         static let creditMessage = """
         \n\nCreated using:
-        ColorFull: Share Your Color
+        ColorFull: Find Your Color
         by
         Daniel Springer
         Available exclusively on the iOS App Store\n
