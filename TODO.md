@@ -28,7 +28,8 @@ Meet ColorFull, a simple yet powerful app that lets you easily and precisely sha
 
 ##### Update
 
-• Version N.N.N brings some bug fixes.
+• Lorem
 
-• Is there a feature you'd like to see? A bug you'd like to go away? Let us know by opening the app and tapping on the share icon on the top right, selecting 'Contact Us', then selecting 'Send feedback or question'.
-• Love the app? Please consider leaving a review. It would mean a ColorFull lot to us!
+• What feature is missing? What bug have you found? Tell us: tap on the top right share icon, tap on 'Contact and info', then tap on 'Contact Us'.
+
+• Love it? Please consider leaving a review. It would mean a ColorFull lot to us!
