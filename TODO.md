@@ -6,7 +6,7 @@
 • Are you a designer looking to share your colors with your customers?
 • Are you a consumer looking to share your colors with your designer?
 
-You, meet ColorFull. It lets you:
+Meet ColorFull, a simple yet powerful app that lets you easily and precisely share your colors - or find your next favorite using Siri.
 
 • Generate your perfect color from millions of combinations, using 3 sliders, or 3 spinners for max precision - in either HEX or RGB values.
 
