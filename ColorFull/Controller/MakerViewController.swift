@@ -704,14 +704,9 @@ class MakerViewController: UIViewController,
         let activity = NSUserActivity(activityType: Constants.AppInfo.bundleAndRandom)
         activity.title = "Create random color"
         activity.isEligibleForSearch = true
-
-        if #available(iOS 12.0, *) {
-            activity.isEligibleForPrediction = true
-            activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Constants.AppInfo.bundleAndRandom)
-            activity.suggestedInvocationPhrase = "Show me a Random Color"
-        } else {
-            print("not ios 12")
-        }
+        activity.isEligibleForPrediction = true
+        activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Constants.AppInfo.bundleAndRandom)
+        activity.suggestedInvocationPhrase = "Show me a Random Color"
         view.userActivity = activity
         activity.becomeCurrent()
 
