@@ -125,9 +125,9 @@ class MakerViewController: UIViewController,
         let greenHex = hexString![2...3]
         let blueHex = hexString![4...5]
 
-        let redIndexHex = hexArray.index(of: String(redHex))
-        let greenIndexHex = hexArray.index(of: String(greenHex))
-        let blueIndexHex = hexArray.index(of: String(blueHex))
+        let redIndexHex = hexArray.firstIndex(of: String(redHex))
+        let greenIndexHex = hexArray.firstIndex(of: String(greenHex))
+        let blueIndexHex = hexArray.firstIndex(of: String(blueHex))
 
         hexPicker.selectRow(redIndexHex!, inComponent: 0, animated: false)
         hexPicker.selectRow(greenIndexHex!, inComponent: 1, animated: false)
@@ -195,9 +195,9 @@ class MakerViewController: UIViewController,
                 let greenHex = String(format: Constants.Values.numToHexFormatter, gBase255)
                 let blueHex = String(format: Constants.Values.numToHexFormatter, bBase255)
 
-                let redIndex = hexArray.index(of: redHex)
-                let greenIndex = hexArray.index(of: greenHex)
-                let blueIndex = hexArray.index(of: blueHex)
+                let redIndex = hexArray.firstIndex(of: redHex)
+                let greenIndex = hexArray.firstIndex(of: greenHex)
+                let blueIndex = hexArray.firstIndex(of: blueHex)
 
                 hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
                 hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
@@ -272,9 +272,9 @@ class MakerViewController: UIViewController,
                 let greenString = hexStringParam![2...3]
                 let blueString = hexStringParam![4...5]
 
-                let redIndex = hexArray.index(of: redString)
-                let greenIndex = hexArray.index(of: greenString)
-                let blueIndex = hexArray.index(of: blueString)
+                let redIndex = hexArray.firstIndex(of: redString)
+                let greenIndex = hexArray.firstIndex(of: greenString)
+                let blueIndex = hexArray.firstIndex(of: blueString)
 
                     hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
                     hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
@@ -318,9 +318,9 @@ class MakerViewController: UIViewController,
 
                 let hexString = redHex + greenHex + blueHex
 
-                let redIndex = hexArray.index(of: redHex)
-                let greenIndex = hexArray.index(of: greenHex)
-                let blueIndex = hexArray.index(of: blueHex)
+                let redIndex = hexArray.firstIndex(of: redHex)
+                let greenIndex = hexArray.firstIndex(of: greenHex)
+                let blueIndex = hexArray.firstIndex(of: blueHex)
 
                 hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
                 hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
