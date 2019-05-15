@@ -56,7 +56,7 @@ extension UIViewController {
             """
         case .messageSent:
             alertTitle = "Success!"
-            alertMessage = "Your message has been sent. You should hear from us within 24 working hours."
+            alertMessage = "Your message has been sent. You should hear from us within 24 hours."
         case .imageSaved:
             alertTitle = "Success!"
             alertMessage = "Your image has been saved to your library."
