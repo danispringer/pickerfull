@@ -14,5 +14,6 @@ class MyCell: UITableViewCell {
     // MARK: Outlets
 
     @IBOutlet weak var myImageView: UIImageView!
+    @IBOutlet weak var myLabel: UILabel!
 
 }
