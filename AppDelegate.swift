@@ -27,7 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.register(defaults: [
             Constants.UserDef.colorKey: Constants.UserDef.defaultColor,
             Constants.UserDef.hexPickerSelected: true,
-            Constants.UserDef.darkModeIsOn: false])
+            Constants.UserDef.darkModeIsOn: false,
+            Constants.UserDef.selectedIcon: 12])
         return true
     }
 
