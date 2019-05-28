@@ -456,11 +456,16 @@ class MakerViewController: UIViewController,
             self.showPasteMainMenu()
         }
 
+        let appIconAction = UIAlertAction(title: "Update app icon", style: .default) { _ in
+            self.showUpdateIconMenu()
+        }
+
         let infoAction = UIAlertAction(title: "Contact and info", style: .default) { _ in
             self.showInfoMainMenu()
         }
 
-        for action in [downloadImageAction, copyMainAction, shareAction, pasteTextAction, infoAction, cancelAction] {
+        for action in [downloadImageAction, copyMainAction, shareAction, pasteTextAction,
+                       appIconAction, infoAction, cancelAction] {
             mainMenuAlert.addAction(action)
         }
 
@@ -469,6 +474,16 @@ class MakerViewController: UIViewController,
         }
 
             present(mainMenuAlert, animated: true)
+    }
+
+    func showUpdateIconMenu() {
+        let storyboard = UIStoryboard(name: Constants.StoryboardID.main, bundle: nil)
+        let controller = storyboard.instantiateViewController(
+            withIdentifier: Constants.StoryboardID.appIconViewController)
+            as? AppIconViewController
+        if let toPresent = controller {
+            self.present(toPresent, animated: true)
+        }
     }
 
 
@@ -916,9 +931,7 @@ class MakerViewController: UIViewController,
         for slider in [redSlider, greenSlider, blueSlider] {
             slider?.isHidden = hide
         }
-        for toolbar in [myToolbar] {
-            toolbar?.isHidden = hide
-        }
+        myToolbar.isHidden = hide
 
         messageLabel.isHidden = !hide
 
