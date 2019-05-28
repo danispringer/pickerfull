@@ -24,6 +24,10 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
     var textColor: UIColor! = nil
     var backgroundColor: UIColor! = nil
     let myDataSource = Array(0...13).map { "\($0)" }
+    let colorNames = ["Green on White", "White on Lime", "Black on Lime", "Lime on Black",
+                      "White on Green", "Black on Purple", "White on Purple", "Purple on White",
+                      "Purple on Black", "Blue on Black", "White on Blue", "Blue on White",
+                      "Black on White", "White on Black"]
 
 
     // MARK: Life Cycle
@@ -80,13 +84,14 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let darkMode = UserDefaults.standard.bool(forKey: Constants.UserDef.darkModeIsOn)
-        tableView.backgroundColor = darkMode ? .black : .white
+        tableView.backgroundColor = backgroundColor
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellID.cellID) as? MyCell
         cell?.selectionStyle = .none
         cell?.myImageView?.image = UIImage(named: "\(indexPath.row)")
-        cell?.backgroundColor = darkMode ? .black : .white
-        cell?.contentView.backgroundColor = darkMode ? .black : .white
-        cell?.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        cell?.backgroundColor = backgroundColor
+        cell?.contentView.backgroundColor = backgroundColor
+        cell?.myLabel.textColor = textColor
+        cell?.myLabel.text = colorNames[indexPath.row]
         cell?.accessoryType = .none
 
         let myIndexPath = IndexPath(
@@ -108,7 +113,7 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
         UserDefaults.standard.set(indexPath.row, forKey: Constants.UserDef.selectedIcon)
         print("Constants...selectedIcon): \(UserDefaults.standard.integer(forKey: Constants.UserDef.selectedIcon))")
         updateIcon()
-        tableView.reloadData() // TODO: to remove previous checkmark. any cleaner way?
+        tableView.reloadData() // to remove previous checkmark. any cleaner way?
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
 
