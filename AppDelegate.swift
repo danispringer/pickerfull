@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Constants.UserDef.colorKey: Constants.UserDef.defaultColor,
             Constants.UserDef.hexPickerSelected: true,
             Constants.UserDef.darkModeIsOn: false,
-            Constants.UserDef.selectedIcon: 12])
+            Constants.UserDef.selectedIcon: 11])
         return true
     }
 
