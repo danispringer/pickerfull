@@ -57,7 +57,7 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         UIApplication.shared.setAlternateIconName("\(newIconNumberValue)") { error in
             if let error = error {
-                print("App icon failed to change due to \(error.localizedDescription)")
+                print("App icon failed to change name to \(newIconNumberValue) due to \(error.localizedDescription)")
             } else {
                 print("app icon should now be updated")
             }
