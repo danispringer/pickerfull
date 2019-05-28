@@ -1,4 +1,4 @@
 - add alternate icons for ipad
-- CP: iMessage?
+- iMessage?
 - https://stackoverflow.com/questions/25146557/how-do-i-get-the-color-of-a-pixel-in-a-uiimage-with-swift ("Remove UIImagePickerControllerDelegate so status bar can be hidden")
 - https://itunes.apple.com/app/id930804327
