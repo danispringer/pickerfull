@@ -23,11 +23,8 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var textColor: UIColor! = nil
     var backgroundColor: UIColor! = nil
-    let myDataSource = Array(0...13).map { "\($0)" }
-    let colorNames = ["Green on White", "White on Lime", "Black on Lime", "Lime on Black",
-                      "White on Green", "Black on Purple", "White on Purple", "Purple on White",
-                      "Purple on Black", "Blue on Black", "White on Blue", "Blue on White",
-                      "Black on White", "White on Black"]
+    let myDataSource = Array(0...1).map { "\($0)" }
+    let colorNames = ["Purple on White", "White on Purple"]
 
 
     // MARK: Life Cycle
@@ -35,19 +32,24 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let darkMode = UserDefaults.standard.bool(forKey: Constants.UserDef.darkModeIsOn)
-
-        myToolbar.barTintColor = darkMode ? .black : .white
-        view.backgroundColor = darkMode ? .black : .white
-        textColor = darkMode ? .white : .black
-        backgroundColor = darkMode ? .black : .white
-        myLabel.textColor = textColor
-
-
+        updateTheme()
     }
 
 
     // MARK: Helpers
+
+    func updateTheme() {
+
+        let darkMode = traitCollection.userInterfaceStyle == .dark
+
+        backgroundColor = darkMode ? .black : .white
+        textColor = darkMode ? .white : .black
+
+        myLabel.textColor = textColor
+        myToolbar.barTintColor = darkMode ? .black : .white
+        view.backgroundColor = darkMode ? .black : .white
+        myTableView.reloadData()
+    }
 
 
     func updateIcon() {
@@ -74,6 +76,13 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        updateTheme()
+    }
+
+
     // MARK: TableView
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,7 +92,8 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let darkMode = UserDefaults.standard.bool(forKey: Constants.UserDef.darkModeIsOn)
+        let darkMode = traitCollection.userInterfaceStyle == .dark
+
         tableView.backgroundColor = backgroundColor
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellID.cellID) as? MyCell
         cell?.selectionStyle = .none
