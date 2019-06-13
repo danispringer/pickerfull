@@ -35,7 +35,6 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var randomBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var mySwitchButton: UIBarButtonItem!
     @IBOutlet weak var resultView: UIView!
-    @IBOutlet weak var themeButton: UIBarButtonItem!
     @IBOutlet weak var separatorView: UIView!
 
     // MARK: properties
@@ -63,6 +62,7 @@ class MakerViewController: UIViewController,
     var hexImage: UIImage!
 
     var textColor = UIColor.black
+    var backgroundColor = UIColor.white
 
 
     // MARK: Life Cycle
@@ -1049,26 +1049,21 @@ class MakerViewController: UIViewController,
 
     // MARK: Theme
 
-    @IBAction func themeToggled(_ sender: Any) {
-
-        let darkModeIsOn = UserDefaults.standard.bool(forKey: Constants.UserDef.darkModeIsOn)
-        UserDefaults.standard.set(!darkModeIsOn, forKey: Constants.UserDef.darkModeIsOn)
-
-        updateTheme()
-    }
-
 
     func updateTheme() {
-        let darkMode = UserDefaults.standard.bool(forKey: Constants.UserDef.darkModeIsOn)
+
+        let darkMode = traitCollection.userInterfaceStyle == .dark
+        textColor = darkMode ? .white : .black
+        backgroundColor = darkMode ? .black : .white
 
         myToolbar.barTintColor = darkMode ? .black : .white
         for picker in [hexPicker, rgbPicker] {
-            picker?.backgroundColor = darkMode ? .black : .white
+            picker?.backgroundColor = backgroundColor
             picker?.reloadAllComponents()
         }
-        view.backgroundColor = darkMode ? .black : .white
+        view.backgroundColor = backgroundColor
         separatorView.backgroundColor = darkMode ? .darkGray : .lightGray
-        textColor = darkMode ? .white : .black
+
     }
 
 
@@ -1106,6 +1101,13 @@ class MakerViewController: UIViewController,
         DispatchQueue.main.async {
             self.randomBarButtonItem.isEnabled = enable
         }
+    }
+
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        updateTheme()
     }
 
 
