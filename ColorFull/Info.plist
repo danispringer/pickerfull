@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>ColorFull</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIcons</key>
 	<dict>
 		<key>CFBundleAlternateIcons</key>
@@ -20,90 +26,6 @@
 					<string>1</string>
 				</array>
 			</dict>
-			<key>2</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>2</string>
-				</array>
-			</dict>
-			<key>3</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>3</string>
-				</array>
-			</dict>
-			<key>4</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>4</string>
-				</array>
-			</dict>
-			<key>5</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>5</string>
-				</array>
-			</dict>
-			<key>6</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>6</string>
-				</array>
-			</dict>
-			<key>7</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>7</string>
-				</array>
-			</dict>
-			<key>8</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>8</string>
-				</array>
-			</dict>
-			<key>9</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>9</string>
-				</array>
-			</dict>
-			<key>10</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>10</string>
-				</array>
-			</dict>
-			<key>11</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>11</string>
-				</array>
-			</dict>
-			<key>12</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>12</string>
-				</array>
-			</dict>
-			<key>13</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>13</string>
-				</array>
-			</dict>
 		</dict>
 		<key>CFBundlePrimaryIcon</key>
 		<dict>
@@ -115,12 +37,6 @@
 			<false/>
 		</dict>
 	</dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>CFBundleDisplayName</key>
-	<string>ColorFull</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -130,7 +46,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0.5</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
