@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -80,7 +79,7 @@
                             <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFq-en-Umf" userLabel="Main Toolbar">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="search" id="ZMN-hO-xxK">
+                                    <barButtonItem image="magnifyingglass" catalog="system" id="ZMN-hO-xxK">
                                         <connections>
                                             <action selector="randomPressed:" destination="BYZ-38-t0r" id="Xj9-SA-kz6"/>
                                         </connections>
@@ -92,7 +91,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="nXe-8m-eRY"/>
-                                    <barButtonItem systemItem="action" id="7Tf-R1-A8S">
+                                    <barButtonItem image="square.and.arrow.up" catalog="system" id="7Tf-R1-A8S">
                                         <connections>
                                             <action selector="showMainMenu" destination="BYZ-38-t0r" id="Pbl-sA-2kN"/>
                                         </connections>
@@ -168,7 +167,7 @@
                             <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eU8-oP-8bA">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="reply" id="BVr-VP-Zyi">
+                                    <barButtonItem image="chevron.left.circle" catalog="system" id="BVr-VP-Zyi">
                                         <connections>
                                             <action selector="doneButtonPressed:" destination="4W0-95-KLj" id="8oD-D2-J5L"/>
                                         </connections>
@@ -260,4 +259,9 @@
             <point key="canvasLocation" x="905.79710144927549" y="131.91964285714286"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="chevron.left.circle" catalog="system" width="64" height="62"/>
+        <image name="magnifyingglass" catalog="system" width="64" height="60"/>
+        <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
+    </resources>
 </document>
