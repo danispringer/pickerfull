@@ -103,12 +103,6 @@ class MakerViewController: UIViewController,
         rgbPicker.isHidden = hexPickerSelected
 
         mySwitchButton.title = hexPickerSelected ? "RGB" : "HEX"
-        //updateTheme()
-    }
-
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
 
         let hexString = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)
 
@@ -141,9 +135,14 @@ class MakerViewController: UIViewController,
         rgbPicker.selectRow(blueIndexRGB!, inComponent: 2, animated: false)
 
         resultView.backgroundColor = UIColor(red: CGFloat(redSlider.value),
-                                                  green: CGFloat(greenSlider.value),
-                                                  blue: CGFloat(blueSlider.value),
-                                                  alpha: 1)
+                                             green: CGFloat(greenSlider.value),
+                                             blue: CGFloat(blueSlider.value),
+                                             alpha: 1)
+    }
+
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
     }
 
