@@ -141,15 +141,7 @@ class MakerViewController: UIViewController,
     }
 
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-    }
-
-
     // MARK: Helpers
-
-    // MARK: Show Apps
 
     func showApps() {
 
