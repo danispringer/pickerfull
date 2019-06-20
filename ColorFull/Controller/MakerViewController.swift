@@ -433,9 +433,7 @@ class MakerViewController: UIViewController,
         mainMenuAlert.modalPresentationStyle = .popover
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true, completion: {
-                SKStoreReviewController.requestReview()
-            })
+            self.dismiss(animated: true, completion: nil)
         }
 
         let downloadImageAction = UIAlertAction(title: "Download as image", style: .default, handler: { _ in
