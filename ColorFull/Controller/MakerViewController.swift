@@ -93,9 +93,8 @@ class MakerViewController: UIViewController,
         greenSlider.minimumTrackTintColor = UIColor.green
         blueSlider.minimumTrackTintColor = UIColor.blue
 
-        messageLabel.layer.cornerRadius = 10
+        messageLabel.layer.cornerRadius = 20
         messageLabel.layer.masksToBounds = true
-
 
         let hexPickerSelected = UserDefaults.standard.bool(
             forKey: Constants.UserDef.hexPickerSelected)
@@ -748,7 +747,7 @@ class MakerViewController: UIViewController,
 
     func downloadAsImage() {
 
-        let image = generateHexImage()
+        let image = generateImage()
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
     }
 
@@ -804,7 +803,7 @@ class MakerViewController: UIViewController,
 
     func copyAsImage() {
 
-        let image = generateHexImage()
+        let image = generateImage()
         let pasteboard = UIPasteboard.general
         pasteboard.image = image
 
@@ -850,7 +849,7 @@ class MakerViewController: UIViewController,
 
     func shareAsImage() {
 
-        let image = generateHexImage()
+        let image = generateImage()
 
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         activityController.popoverPresentationController?.barButtonItem = shareBarButtonItem
@@ -868,21 +867,23 @@ class MakerViewController: UIViewController,
     }
 
 
-    func generateHexImage() -> UIImage {
+    func generateImage() -> UIImage {
 
         elementsShould(hide: true)
 
         let regularAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 16)]
+            .font: UIFont.systemFont(ofSize: 16),
+            .foregroundColor: UIColor.white]
         let jumboAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 50)]
+            .font: UIFont.systemFont(ofSize: 40),
+            .foregroundColor: UIColor.white]
         let attributedMessagePreHex = NSAttributedString(
-            string: "\nThe HEX value for your color is:\n",
+            string: "\nHEX\n",
             attributes: regularAttributes)
         let hexString = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) ?? "<error>"
         let attributedMessageJumboHex = NSAttributedString(string: hexString, attributes: jumboAttributes)
         let attributedMessagePreRGB = NSAttributedString(
-            string: "\n\nThe RGB value for your color is:\n",
+            string: "\n\nRGB\n",
             attributes: regularAttributes)
 
         let redValue = Int(hexString[0...1], radix: 16)!
