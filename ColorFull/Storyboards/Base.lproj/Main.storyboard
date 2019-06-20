@@ -69,12 +69,11 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="j2U-iL-XpD"/>
                                 </connections>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKY-HB-wIv" userLabel="Message Label">
-                                <rect key="frame" x="16" y="357.5" width="382" height="142.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKY-HB-wIv" userLabel="Message Label">
+                                <rect key="frame" x="32" y="760" width="350" height="21"/>
                                 <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="calibratedRGB"/>
-                                <string key="text">lorem ipsum dorem ipsum  lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum  lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum lorem ipsum dorem ipsum</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFCompactRounded-Regular" family="SF Compact Rounded" pointSize="18"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFq-en-Umf" userLabel="Main Toolbar">
@@ -105,13 +104,11 @@
                         <constraints>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="013-pC-knr"/>
                             <constraint firstItem="uKU-jx-ct7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5FD-Jd-or1"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BKY-HB-wIv" secondAttribute="trailing" constant="16" id="6b1-xL-Gcm"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="top" secondItem="NXx-mh-U48" secondAttribute="bottom" constant="16" id="6qI-iq-hbb"/>
                             <constraint firstItem="cFq-en-Umf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="C2N-0I-AIh"/>
                             <constraint firstItem="HXV-dr-Y0G" firstAttribute="top" secondItem="AHi-t1-Uyy" secondAttribute="bottom" id="CpD-zH-56x"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IFv-3Q-Sqx"/>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="top" secondItem="HXV-dr-Y0G" secondAttribute="bottom" constant="32" id="KqJ-qJ-BPL"/>
-                            <constraint firstItem="BKY-HB-wIv" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="KwL-8V-RXH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="KHn-Oj-ley" secondAttribute="bottom" constant="32" id="MGH-Rr-91V"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Mbm-WL-1UH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KHn-Oj-ley" secondAttribute="trailing" constant="57" id="NGl-FL-h6B"/>
@@ -120,6 +117,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AHi-t1-Uyy" secondAttribute="trailing" id="Sej-Vz-6BR"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="top" secondItem="POM-4Y-HHd" secondAttribute="bottom" constant="16" id="Vju-WH-3s4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NXx-mh-U48" secondAttribute="trailing" constant="57" id="XJF-a8-MC6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BKY-HB-wIv" secondAttribute="bottom" constant="32" id="Zdq-nc-oiG"/>
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aDE-se-Dgi"/>
                             <constraint firstItem="HXV-dr-Y0G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="aFj-mf-lCw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="POM-4Y-HHd" secondAttribute="trailing" constant="57" id="aPa-ir-rqz"/>
@@ -127,10 +125,11 @@
                             <constraint firstItem="KHn-Oj-ley" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="cvz-d1-liM"/>
                             <constraint firstItem="POM-4Y-HHd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="fwg-iU-5sh"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mw9-bO-m8F"/>
-                            <constraint firstItem="BKY-HB-wIv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="n95-Oy-Pzb"/>
+                            <constraint firstItem="BKY-HB-wIv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="n95-Oy-Pzb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cFq-en-Umf" secondAttribute="trailing" id="pzy-Cm-C7f"/>
                             <constraint firstItem="NXx-mh-U48" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="qn9-TN-yAf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uKU-jx-ct7" secondAttribute="trailing" id="rQ4-8Y-l9n"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BKY-HB-wIv" secondAttribute="trailing" constant="32" id="sW6-xr-tSj"/>
                             <constraint firstItem="cFq-en-Umf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vm5-sZ-pcg"/>
                             <constraint firstItem="AHi-t1-Uyy" firstAttribute="bottom" secondItem="7iT-jJ-EaV" secondAttribute="bottom" id="xah-G3-YHT"/>
                             <constraint firstItem="HXV-dr-Y0G" firstAttribute="top" secondItem="uKU-jx-ct7" secondAttribute="bottom" id="zPL-GN-BLb"/>
