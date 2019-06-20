@@ -61,8 +61,8 @@ class MakerViewController: UIViewController,
 
     var hexImage: UIImage!
 
-    var textColor = UIColor.black
-    var backgroundColor = UIColor.white
+    var textColor = UIColor.label
+    var backgroundColor = UIColor.systemBackground
 
 
     // MARK: Life Cycle
@@ -104,7 +104,7 @@ class MakerViewController: UIViewController,
         rgbPicker.isHidden = hexPickerSelected
 
         mySwitchButton.title = hexPickerSelected ? "RGB" : "HEX"
-        updateTheme()
+        //updateTheme()
     }
 
 
@@ -1050,21 +1050,10 @@ class MakerViewController: UIViewController,
     // MARK: Theme
 
 
-    func updateTheme() {
-
-        let darkMode = traitCollection.userInterfaceStyle == .dark
-        textColor = darkMode ? .white : .black
-        backgroundColor = darkMode ? .black : .white
-
-        myToolbar.barTintColor = darkMode ? .black : .white
-        for picker in [hexPicker, rgbPicker] {
-            picker?.backgroundColor = backgroundColor
-            picker?.reloadAllComponents()
-        }
-        view.backgroundColor = backgroundColor
-        separatorView.backgroundColor = darkMode ? .darkGray : .lightGray
-
-    }
+//    func updateTheme() {
+//        let darkMode = traitCollection.userInterfaceStyle == .dark
+//
+//    }
 
 
     // MARK: Share app
@@ -1104,11 +1093,11 @@ class MakerViewController: UIViewController,
     }
 
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-        updateTheme()
-    }
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        super.traitCollectionDidChange(previousTraitCollection)
+//
+//        updateTheme()
+//    }
 
 
 }

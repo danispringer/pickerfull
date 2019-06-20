@@ -29,27 +29,18 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     // MARK: Life Cycle
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        updateTheme()
-    }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        updateTheme()
+//    }
 
 
     // MARK: Helpers
 
-    func updateTheme() {
-
-        let darkMode = traitCollection.userInterfaceStyle == .dark
-
-        backgroundColor = darkMode ? .black : .white
-        textColor = darkMode ? .white : .black
-
-        myLabel.textColor = textColor
-        myToolbar.barTintColor = darkMode ? .black : .white
-        view.backgroundColor = darkMode ? .black : .white
-        myTableView.reloadData()
-    }
+//    func updateTheme() {
+//        let darkMode = traitCollection.userInterfaceStyle == .dark
+//    }
 
 
     func updateIcon() {
@@ -76,11 +67,11 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-        updateTheme()
-    }
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        super.traitCollectionDidChange(previousTraitCollection)
+//
+//        updateTheme()
+//    }
 
 
     // MARK: TableView
@@ -92,15 +83,9 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let darkMode = traitCollection.userInterfaceStyle == .dark
-
-        tableView.backgroundColor = backgroundColor
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellID.cellID) as? MyCell
         cell?.selectionStyle = .none
         cell?.myImageView?.image = UIImage(named: "\(indexPath.row)")
-        cell?.backgroundColor = backgroundColor
-        cell?.contentView.backgroundColor = backgroundColor
-        cell?.myLabel.textColor = textColor
         cell?.myLabel.text = colorNames[indexPath.row]
         cell?.accessoryType = .none
 
@@ -110,10 +95,6 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
         if indexPath == myIndexPath {
             cell?.accessoryType = .checkmark
         }
-
-        tableView.separatorColor = darkMode ? .darkGray : .lightGray
-        tableView.indicatorStyle = darkMode ? .white : .black
-
 
         return cell ?? UITableViewCell()
     }
