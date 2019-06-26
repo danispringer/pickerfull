@@ -26,21 +26,7 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
     let myDataSource = Array(0...1).map { "\($0)" }
     let colorNames = ["Purple on White", "White on Purple"]
 
-
-    // MARK: Life Cycle
-
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        updateTheme()
-//    }
-
-
     // MARK: Helpers
-
-//    func updateTheme() {
-//        let darkMode = traitCollection.userInterfaceStyle == .dark
-//    }
 
 
     func updateIcon() {
@@ -65,13 +51,6 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func doneButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-
-
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        super.traitCollectionDidChange(previousTraitCollection)
-//
-//        updateTheme()
-//    }
 
 
     // MARK: TableView
@@ -104,13 +83,13 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
         UserDefaults.standard.set(indexPath.row, forKey: Constants.UserDef.selectedIcon)
         print("Constants...selectedIcon): \(UserDefaults.standard.integer(forKey: Constants.UserDef.selectedIcon))")
         updateIcon()
-        tableView.reloadData() // to remove previous checkmark. any cleaner way?
+        tableView.reloadData() // TODO: to remove previous checkmark. any cleaner way?
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
 
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 60 // TODO: needed?
     }
 
 

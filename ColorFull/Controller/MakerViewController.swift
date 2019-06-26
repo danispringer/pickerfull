@@ -1037,15 +1037,6 @@ class MakerViewController: UIViewController,
     }
 
 
-    // MARK: Theme
-
-
-//    func updateTheme() {
-//        let darkMode = traitCollection.userInterfaceStyle == .dark
-//
-//    }
-
-
     // MARK: Share app
 
     func shareApp() {
@@ -1081,13 +1072,6 @@ class MakerViewController: UIViewController,
             self.randomBarButtonItem.isEnabled = enable
         }
     }
-
-
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        super.traitCollectionDidChange(previousTraitCollection)
-//
-//        updateTheme()
-//    }
 
 
 }
