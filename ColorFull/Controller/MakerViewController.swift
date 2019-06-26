@@ -448,7 +448,7 @@ class MakerViewController: UIViewController,
             self.showUpdateIconMenu()
         }
 
-        let infoAction = UIAlertAction(title: "Contact And Info", style: .default) { _ in
+        let infoAction = UIAlertAction(title: "Contact and Info", style: .default) { _ in
             self.showInfoMainMenu()
         }
 
