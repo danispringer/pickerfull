@@ -427,7 +427,7 @@ class MakerViewController: UIViewController,
             self.dismiss(animated: true, completion: nil)
         }
 
-        let downloadImageAction = UIAlertAction(title: "Download as image", style: .default, handler: { _ in
+        let downloadImageAction = UIAlertAction(title: "Download as Image", style: .default, handler: { _ in
 
             self.downloadAsImage()
         })
@@ -440,15 +440,15 @@ class MakerViewController: UIViewController,
             self.showShareMainMenu()
         }
 
-        let pasteTextAction = UIAlertAction(title: "Paste text", style: .default) { _ in
+        let pasteTextAction = UIAlertAction(title: "Paste Text", style: .default) { _ in
             self.showPasteMainMenu()
         }
 
-        let appIconAction = UIAlertAction(title: "Update app icon", style: .default) { _ in
+        let appIconAction = UIAlertAction(title: "Update App Icon", style: .default) { _ in
             self.showUpdateIconMenu()
         }
 
-        let infoAction = UIAlertAction(title: "Contact and info", style: .default) { _ in
+        let infoAction = UIAlertAction(title: "Contact And Info", style: .default) { _ in
             self.showInfoMainMenu()
         }
 
@@ -484,11 +484,11 @@ class MakerViewController: UIViewController,
             self.showMainMenu()
         }
 
-        let copyTextMainAction = UIAlertAction(title: "Copy as text", style: .default, handler: { _ in
+        let copyTextMainAction = UIAlertAction(title: "Copy as Text", style: .default, handler: { _ in
             self.showCopyTextMenu()
         })
 
-        let copyImageAction = UIAlertAction(title: "Copy as image", style: .default) { _ in
+        let copyImageAction = UIAlertAction(title: "Copy as Image", style: .default) { _ in
             self.copyAsImage()
         }
 
@@ -515,11 +515,11 @@ class MakerViewController: UIViewController,
 
         copyTextMenuAlert.modalPresentationStyle = .popover
 
-        let copyTextHexAction = UIAlertAction(title: "Copy as HEX text", style: .default) { _ in
+        let copyTextHexAction = UIAlertAction(title: "Copy as HEX Text", style: .default) { _ in
             self.copyAsText(format: .hex)
         }
 
-        let copyTextRGBAction = UIAlertAction(title: "Copy as RGB text", style: .default) { _ in
+        let copyTextRGBAction = UIAlertAction(title: "Copy as RGB Text", style: .default) { _ in
             self.copyAsText(format: .rgb)
         }
 
@@ -560,11 +560,11 @@ class MakerViewController: UIViewController,
             self.showMainMenu()
         }
 
-        let shareTextMainAction = UIAlertAction(title: "Share as text", style: .default) { _ in
+        let shareTextMainAction = UIAlertAction(title: "Share as Text", style: .default) { _ in
             self.showShareTextMenu()
         }
 
-        let shareImageAction = UIAlertAction(title: "Share as image", style: .default) { _ in
+        let shareImageAction = UIAlertAction(title: "Share as Image", style: .default) { _ in
             self.shareAsImage()
         }
 
@@ -584,11 +584,11 @@ class MakerViewController: UIViewController,
         let pasteMainMenuAlert = UIAlertController(title: "Paste Menu", message: nil, preferredStyle: .actionSheet)
         pasteMainMenuAlert.modalPresentationStyle = .popover
 
-        let pasteTextHexAction = UIAlertAction(title: "Paste HEX text", style: .default) { _ in
+        let pasteTextHexAction = UIAlertAction(title: "Paste HEX Text", style: .default) { _ in
             self.pasteHexText()
         }
 
-        let pasteTextRGBAction = UIAlertAction(title: "Paste RGB text", style: .default) { _ in
+        let pasteTextRGBAction = UIAlertAction(title: "Paste RGB Text", style: .default) { _ in
             self.pasteRGBText()
         }
 
@@ -617,17 +617,17 @@ class MakerViewController: UIViewController,
 
     func showShareTextMenu() {
         let shareTextMenuAlert = UIAlertController(
-            title: "Share as Text Menu",
+            title: "Share As Text Menu",
             message: nil,
             preferredStyle: .actionSheet)
 
         shareTextMenuAlert.modalPresentationStyle = .popover
 
-        let shareTextHexAction = UIAlertAction(title: "Share as HEX text", style: .default) { _ in
+        let shareTextHexAction = UIAlertAction(title: "Share as HEX Text", style: .default) { _ in
             self.shareAsText(format: .hex)
         }
 
-        let shareTextRGBAction = UIAlertAction(title: "Share as RGB text", style: .default) { _ in
+        let shareTextRGBAction = UIAlertAction(title: "Share as RGB Text", style: .default) { _ in
             self.shareAsText(format: .rgb)
         }
 
@@ -665,7 +665,7 @@ class MakerViewController: UIViewController,
             self.launchEmail()
         }
 
-        let reviewAction = UIAlertAction(title: "Leave a review", style: .default) { _ in
+        let reviewAction = UIAlertAction(title: "Leave a Review", style: .default) { _ in
             self.requestReviewManually()
         }
 
@@ -705,11 +705,11 @@ class MakerViewController: UIViewController,
 
     @IBAction func randomPressed(_ sender: Any) {
         let activity = NSUserActivity(activityType: Constants.AppInfo.bundleAndRandom)
-        activity.title = "Create random color"
+        activity.title = "Create Random Color"
         activity.isEligibleForSearch = true
         activity.isEligibleForPrediction = true
         activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Constants.AppInfo.bundleAndRandom)
-        activity.suggestedInvocationPhrase = "Show me a Random Color"
+        activity.suggestedInvocationPhrase = "Show Me a Random Color"
         view.userActivity = activity
         activity.becomeCurrent()
 
@@ -989,30 +989,20 @@ class MakerViewController: UIViewController,
 
 
     func isValidHex(hex: String) -> (Bool, String) {
-
-        print("hex: \(hex)")
         let uppercasedDirtyHex = hex.uppercased()
-        print("uppercasedDirtyHex: \(uppercasedDirtyHex)")
-
         let cleanedHex = uppercasedDirtyHex.filter {
             "ABCDEF0123456789".contains($0)
         }
-        print(cleanedHex)
         guard !(cleanedHex.count < 6) else {
             return (false, hex)
         }
 
         let firstSixChars = cleanedHex[0...5]
-        print(firstSixChars)
 
         return (true, firstSixChars)
     }
 
 
-    // n,n,n
-    // then, if practical, more formats: spaces, letters, percentages, dots
-    // if more are added, update filter
-    // return values that are more similar to input
     func isValidRGB(rgb: String) -> RGBResult {
 
         let cleanedRGB = rgb.filter {
@@ -1042,9 +1032,8 @@ class MakerViewController: UIViewController,
     func shareApp() {
 
         let message = """
-            This app lets you create a color from millions of choices \
-            using sliders, HEX or RGB code, and save or share your color: \
-            https://itunes.apple.com/app/id1410565176
+            Create a color from millions of choices using sliders, HEX or RGB values, then save \
+            or share your color as a text or image: https://itunes.apple.com/app/id1410565176
             """
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
