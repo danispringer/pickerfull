@@ -48,11 +48,6 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
 
-    @IBAction func doneButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-
-
     // MARK: TableView
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,11 +81,5 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.reloadData() // TODO: to remove previous checkmark. any cleaner way?
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
-
-
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 60 // TODO: needed?
-//    }
-
 
 }
