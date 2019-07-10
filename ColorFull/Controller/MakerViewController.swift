@@ -96,13 +96,15 @@ class MakerViewController: UIViewController,
         messageLabel.layer.cornerRadius = 20
         messageLabel.layer.masksToBounds = true
 
-        let hexPickerSelected = UserDefaults.standard.bool(
+        let hexPickerIsSelected = UserDefaults.standard.bool(
             forKey: Constants.UserDef.hexPickerSelected)
 
-        hexPicker.isHidden = !hexPickerSelected
-        rgbPicker.isHidden = hexPickerSelected
+        hexPicker.isHidden = !hexPickerIsSelected
+        rgbPicker.isHidden = hexPickerIsSelected
 
-        mySwitchButton.title = hexPickerSelected ? "RGB" : "HEX"
+        let prefixMessage = "Switch to "
+
+        mySwitchButton.title = prefixMessage + (hexPickerIsSelected ? "RGB" : "HEX")
 
         let hexString = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)
 
@@ -350,13 +352,15 @@ class MakerViewController: UIViewController,
     // MARK: HEX and RGB Toggled
 
     @IBAction func hexAndRGBToggled() {
-        let hexPickerSelected = UserDefaults.standard.bool(forKey: Constants.UserDef.hexPickerSelected)
-        UserDefaults.standard.set(!hexPickerSelected, forKey: Constants.UserDef.hexPickerSelected)
+        let hexPickerWasSelected = UserDefaults.standard.bool(forKey: Constants.UserDef.hexPickerSelected)
+        UserDefaults.standard.set(!hexPickerWasSelected, forKey: Constants.UserDef.hexPickerSelected)
 
-        hexPicker.isHidden = hexPickerSelected
-        rgbPicker.isHidden = !hexPickerSelected
+        hexPicker.isHidden = hexPickerWasSelected
+        rgbPicker.isHidden = !hexPickerWasSelected
 
-        mySwitchButton.title = hexPickerSelected ? "HEX" : "RGB"
+        let prefixMessage = "Switch to "
+
+        mySwitchButton.title = prefixMessage + (hexPickerWasSelected ? "HEX" : "RGB")
 
     }
 
