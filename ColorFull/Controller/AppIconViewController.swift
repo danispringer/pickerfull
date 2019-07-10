@@ -75,10 +75,12 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let oldRow = UserDefaults.standard.integer(forKey: Constants.UserDef.selectedIcon)
         UserDefaults.standard.set(indexPath.row, forKey: Constants.UserDef.selectedIcon)
         print("Constants...selectedIcon): \(UserDefaults.standard.integer(forKey: Constants.UserDef.selectedIcon))")
         updateIcon()
-        tableView.reloadData() // TODO: to remove previous checkmark. any cleaner way?
+        let oldIndexPath = IndexPath(row: oldRow, section: 0)
+        tableView.reloadRows(at: [oldIndexPath], with: .none) // TODO: test
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
 
