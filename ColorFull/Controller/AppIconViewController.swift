@@ -80,7 +80,7 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("Constants...selectedIcon): \(UserDefaults.standard.integer(forKey: Constants.UserDef.selectedIcon))")
         updateIcon()
         let oldIndexPath = IndexPath(row: oldRow, section: 0)
-        tableView.reloadRows(at: [oldIndexPath], with: .none) // TODO: test
+        tableView.reloadRows(at: [oldIndexPath], with: .none)
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
 
