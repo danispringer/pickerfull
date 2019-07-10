@@ -79,7 +79,7 @@
                             <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFq-en-Umf" userLabel="Main Toolbar">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" image="wand.and.stars" catalog="system" id="ZMN-hO-xxK">
+                                    <barButtonItem title="Make Random Color" image="wand.and.stars" catalog="system" id="ZMN-hO-xxK">
                                         <connections>
                                             <action selector="randomPressed:" destination="BYZ-38-t0r" id="Xj9-SA-kz6"/>
                                         </connections>
@@ -91,7 +91,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="nXe-8m-eRY"/>
-                                    <barButtonItem title="Item" image="ellipsis.circle" catalog="system" id="7Tf-R1-A8S">
+                                    <barButtonItem title="Main Menu" image="ellipsis.circle" catalog="system" id="7Tf-R1-A8S">
                                         <connections>
                                             <action selector="showMainMenu" destination="BYZ-38-t0r" id="Pbl-sA-2kN"/>
                                         </connections>
