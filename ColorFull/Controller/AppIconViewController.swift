@@ -23,7 +23,7 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var textColor: UIColor! = nil
     var backgroundColor: UIColor! = nil
-    let myDataSource = Array(0...1).map { "\($0)" }
+    let myDataSource = ["0", "1"]
     let colorNames = ["Purple on White", "White on Purple"]
 
     // MARK: Helpers
@@ -45,6 +45,10 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("app icon should now be updated")
             }
         }
+    }
+
+    @IBAction func donePressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 
 
