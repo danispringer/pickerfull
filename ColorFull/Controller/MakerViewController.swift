@@ -33,6 +33,7 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
 
     @IBOutlet weak var randomBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var randomHistoryBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var mySwitchButton: UIBarButtonItem!
     @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var separatorView: UIView!
@@ -419,7 +420,10 @@ class MakerViewController: UIViewController,
     }
 
 
-    // MARK: Share Toolbar Options
+    // MARK: Toolbar
+
+
+    // MARK: Share
 
     @IBAction func showMainMenu() {
 
@@ -702,39 +706,6 @@ class MakerViewController: UIViewController,
 
             present(infoAlert, animated: true)
 
-    }
-
-
-    // MARK: Random Toolbar
-
-    @IBAction func randomPressed(_ sender: Any) {
-        let activity = NSUserActivity(activityType: Constants.AppInfo.bundleAndRandom)
-        activity.title = "Create Random Color"
-        activity.isEligibleForSearch = true
-        activity.isEligibleForPrediction = true
-        activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Constants.AppInfo.bundleAndRandom)
-        activity.suggestedInvocationPhrase = "Show Me a Random Color"
-        view.userActivity = activity
-        activity.becomeCurrent()
-
-        makeRandomColor()
-    }
-
-
-    public func makeRandomColor() {
-            toggleUI(enable: false)
-            var randomHex = ""
-            let randomRed = hexArray.randomElement()!
-            let randomGreen = hexArray.randomElement()!
-            let randomBlue = hexArray.randomElement()!
-
-            randomHex = randomRed + randomGreen + randomBlue
-
-            updateColor(control: .pasteHexOrRandomHex, hexStringParam: randomHex) { completed in
-                if completed {
-                    self.toggleUI(enable: true)
-                }
-            }
     }
 
 
@@ -1031,8 +1002,6 @@ class MakerViewController: UIViewController,
     }
 
 
-    // MARK: Share app
-
     func shareApp() {
 
         let message = """
@@ -1060,9 +1029,58 @@ class MakerViewController: UIViewController,
     }
 
 
+    // MARK: Random
+
+    @IBAction func randomPressed(_ sender: Any) {
+        let activity = NSUserActivity(activityType: Constants.AppInfo.bundleAndRandom)
+        activity.title = "Create Random Color"
+        activity.isEligibleForSearch = true
+        activity.isEligibleForPrediction = true
+        activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Constants.AppInfo.bundleAndRandom)
+        activity.suggestedInvocationPhrase = "Show Me a Random Color"
+        view.userActivity = activity
+        activity.becomeCurrent()
+
+        makeRandomColor()
+    }
+
+
+    public func makeRandomColor() {
+            toggleUI(enable: false)
+            var randomHex = ""
+            let randomRed = hexArray.randomElement()!
+            let randomGreen = hexArray.randomElement()!
+            let randomBlue = hexArray.randomElement()!
+
+            randomHex = randomRed + randomGreen + randomBlue
+
+            updateColor(control: .pasteHexOrRandomHex, hexStringParam: randomHex) { completed in
+                if completed {
+                    self.toggleUI(enable: true)
+                }
+            }
+    }
+
+
+    @IBAction func randomHistoryPressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: Constants.StoryboardID.main, bundle: nil)
+        let controller = storyboard.instantiateViewController(
+            withIdentifier: Constants.StoryboardID.randomHistoryViewController)
+            as? RandomHistoryViewController
+        if let toPresent = controller {
+            self.present(toPresent, animated: true)
+        }
+    }
+
+
+    // MARK: Toogle UI
+
     func toggleUI(enable: Bool) {
         DispatchQueue.main.async {
-            self.randomBarButtonItem.isEnabled = enable
+
+            for item in [self.randomBarButtonItem, self.randomHistoryBarButtonItem] {
+                item?.isEnabled = enable
+            }
         }
     }
 
