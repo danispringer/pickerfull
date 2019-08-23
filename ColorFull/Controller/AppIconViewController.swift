@@ -15,8 +15,6 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: Outlets
 
     @IBOutlet weak var myTableView: UITableView!
-    @IBOutlet weak var myToolbar: UIToolbar!
-    @IBOutlet weak var myLabel: UILabel!
 
 
     // MARK: Properties
@@ -25,6 +23,7 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
     var backgroundColor: UIColor! = nil
     let myDataSource = ["0", "1"]
     let colorNames = ["Purple on White", "White on Purple"]
+
 
     // MARK: Helpers
 
@@ -47,6 +46,7 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
 
+
     @IBAction func donePressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -61,7 +61,7 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellID.cellID) as? MyCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellID.appIconCell) as? AppIconCell
         cell?.selectionStyle = .none
         cell?.myImageView?.image = UIImage(named: "\(indexPath.row)")
         cell?.myLabel.text = colorNames[indexPath.row]
@@ -87,5 +87,6 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.reloadRows(at: [oldIndexPath], with: .none)
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
+
 
 }

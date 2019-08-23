@@ -14,11 +14,13 @@ struct Constants {
 
     struct StoryboardID {
         static let appIconViewController = "AppIconViewController"
+        static let randomHistoryViewController = "RandomHistoryViewController"
         static let main = "Main"
     }
 
     struct CellID {
-        static let cellID = "cell"
+        static let appIconCell = "AppIconCell"
+        static let randomHistoryCell = "randomHistoryCell"
     }
 
     struct UserDef {
