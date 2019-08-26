@@ -21,10 +21,18 @@ UITableViewDataSource {
 
     // MARK: Properties
 
-    let myDataSource = ["ff0000", "00ff00", "0000ff"]
+    let myDataSource: [String] = UserDefaults.standard.array(
+        forKey: Constants.UserDef.colorsArray) as? [String] ?? ["5f5f5f"]
 
 
     // MARK: Life Cycle
+
+
+    // MARK: Helpers
+
+    @IBAction func donePressed(_ sender: Any) {
+        dismiss(animated: true)
+    }
 
 
     // MARK: TableView
@@ -35,15 +43,18 @@ UITableViewDataSource {
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: Constants.CellID.randomHistoryCell) as? RandomHistoryCell
-        cell?.selectionStyle = .none
-        cell?.hexValueLabel.text = myDataSource[indexPath.row]
-        cell?.rgbValueLabel.text = rgbFrom(hex: myDataSource[indexPath.row])
-        cell?.colorView.backgroundColor = uiColorFrom(hex: myDataSource[indexPath.row])
-        cell?.accessoryType = .none
 
-        return cell ?? UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: Constants.CellID.randomHistoryCell) as? RandomHistoryCell else {
+                return UITableViewCell()
+        }
+        cell.selectionStyle = .none
+        cell.hexValueLabel.text = myDataSource[indexPath.row]
+        cell.rgbValueLabel.text = rgbFrom(hex: myDataSource[indexPath.row])
+        cell.colorView.backgroundColor = uiColorFrom(hex: myDataSource[indexPath.row])
+        cell.accessoryType = .none
+
+        return cell
 
     }
 

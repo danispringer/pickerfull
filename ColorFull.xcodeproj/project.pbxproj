@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		330768962310211E00B7991E /* ConversionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330768952310211E00B7991E /* ConversionHelper.swift */; };
+		330768962310211E00B7991E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330768952310211E00B7991E /* Helpers.swift */; };
 		330F747821ABBA9300F420B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330F746B21ABBA9300F420B0 /* LaunchScreen.storyboard */; };
 		330F747921ABBA9300F420B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330F746D21ABBA9300F420B0 /* Main.storyboard */; };
 		330F747A21ABBA9300F420B0 /* MakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F747021ABBA9300F420B0 /* MakerViewController.swift */; };
@@ -42,7 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		330768952310211E00B7991E /* ConversionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionHelper.swift; sourceTree = "<group>"; };
+		330768952310211E00B7991E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		330F746C21ABBA9300F420B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		330F746E21ABBA9300F420B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		330F747021ABBA9300F420B0 /* MakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakerViewController.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 				330F747321ABBA9300F420B0 /* String+subscript.swift */,
 				3373980921ABBC1E000529EF /* UIImage+Extensions.swift */,
 				33D2213E21AFDF0900FBFEA7 /* Constants.swift */,
-				330768952310211E00B7991E /* ConversionHelper.swift */,
+				330768952310211E00B7991E /* Helpers.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -285,7 +285,7 @@
 				33DB541E230F01D400588FD1 /* RandomHistoryViewController.swift in Sources */,
 				330F747C21ABBA9300F420B0 /* String+subscript.swift in Sources */,
 				33E5B4FE229C92D500CB49FD /* AppIconViewController.swift in Sources */,
-				330768962310211E00B7991E /* ConversionHelper.swift in Sources */,
+				330768962310211E00B7991E /* Helpers.swift in Sources */,
 				330F747D21ABBA9300F420B0 /* AppDelegate.swift in Sources */,
 				3373980A21ABBC1E000529EF /* UIImage+Extensions.swift in Sources */,
 				330F747A21ABBA9300F420B0 /* MakerViewController.swift in Sources */,
