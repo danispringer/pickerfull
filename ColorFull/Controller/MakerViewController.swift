@@ -40,17 +40,12 @@ class MakerViewController: UIViewController,
 
     // MARK: properties
 
-    struct RGBResult {
-        let isValid: Bool
-        let invalidRgbValue: String
-        let validRgbValue: [Int]
-    }
-
     enum Controls {
         case slider
         case hexPicker
         case rgbPicker
-        case pasteHexOrRandomHex
+        case pasteHex
+        case randomHex
         case pasteRGB
     }
 
@@ -259,7 +254,7 @@ class MakerViewController: UIViewController,
                 })
 
 
-            } else if control == .pasteHexOrRandomHex {
+            } else if control == .pasteHex {
 
                 let redString = hexStringParam![0...1]
                 let greenString = hexStringParam![2...3]
@@ -269,21 +264,21 @@ class MakerViewController: UIViewController,
                 let greenIndex = hexArray.firstIndex(of: greenString)
                 let blueIndex = hexArray.firstIndex(of: blueString)
 
-                    hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
-                    hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
-                    hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
+                hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
+                hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
+                hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
 
-                    rgbPicker.selectRow(Int(redString, radix: 16)!, inComponent: 0, animated: true)
-                    rgbPicker.selectRow(Int(greenString, radix: 16)!, inComponent: 1, animated: true)
-                    rgbPicker.selectRow(Int(blueString, radix: 16)!, inComponent: 2, animated: true)
+                rgbPicker.selectRow(Int(redString, radix: 16)!, inComponent: 0, animated: true)
+                rgbPicker.selectRow(Int(greenString, radix: 16)!, inComponent: 1, animated: true)
+                rgbPicker.selectRow(Int(blueString, radix: 16)!, inComponent: 2, animated: true)
 
                 var redValue: Double = 0
                 var greenValue: Double = 0
                 var blueValue: Double = 0
 
-                    redValue = Double(hexPicker.selectedRow(inComponent: 0))
-                    greenValue = Double(hexPicker.selectedRow(inComponent: 1))
-                    blueValue = Double(hexPicker.selectedRow(inComponent: 2))
+                redValue = Double(hexPicker.selectedRow(inComponent: 0))
+                greenValue = Double(hexPicker.selectedRow(inComponent: 1))
+                blueValue = Double(hexPicker.selectedRow(inComponent: 2))
 
                 UIView.animate(withDuration: 0.5, animations: {
                     self.redSlider.setValue(Float(redValue / Constants.Values.rgbMax), animated: true)
@@ -335,6 +330,56 @@ class MakerViewController: UIViewController,
                     UserDefaults.standard.set(hexString, forKey: Constants.UserDef.colorKey)
                     completionHandler(true)
                 })
+
+            } else if control == .randomHex {
+
+                let redString = hexStringParam![0...1]
+                let greenString = hexStringParam![2...3]
+                let blueString = hexStringParam![4...5]
+
+                let redIndex = hexArray.firstIndex(of: redString)
+                let greenIndex = hexArray.firstIndex(of: greenString)
+                let blueIndex = hexArray.firstIndex(of: blueString)
+
+                hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
+                hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
+                hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
+
+                rgbPicker.selectRow(Int(redString, radix: 16)!, inComponent: 0, animated: true)
+                rgbPicker.selectRow(Int(greenString, radix: 16)!, inComponent: 1, animated: true)
+                rgbPicker.selectRow(Int(blueString, radix: 16)!, inComponent: 2, animated: true)
+
+                var redValue: Double = 0
+                var greenValue: Double = 0
+                var blueValue: Double = 0
+
+                redValue = Double(hexPicker.selectedRow(inComponent: 0))
+                greenValue = Double(hexPicker.selectedRow(inComponent: 1))
+                blueValue = Double(hexPicker.selectedRow(inComponent: 2))
+
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.redSlider.setValue(Float(redValue / Constants.Values.rgbMax), animated: true)
+                    self.greenSlider.setValue(Float(greenValue / Constants.Values.rgbMax), animated: true)
+                    self.blueSlider.setValue(Float(blueValue / Constants.Values.rgbMax), animated: true)
+                    self.resultView.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
+                                                         green: CGFloat(self.greenSlider.value),
+                                                         blue: CGFloat(self.blueSlider.value),
+                                                                  alpha: 1)
+
+                }, completion: { _ in
+                    UserDefaults.standard.set(hexStringParam, forKey: Constants.UserDef.colorKey)
+                    completionHandler(true)
+                })
+
+
+                guard hexStringParam != nil else {
+                    return
+                }
+
+                var myColorsArray = UserDefaults.standard.array(
+                    forKey: Constants.UserDef.colorsArray)
+                myColorsArray?.append(hexStringParam!)
+                UserDefaults.standard.set(myColorsArray, forKey: Constants.UserDef.colorsArray)
 
             } else {
                 fatalError()
@@ -924,14 +969,14 @@ class MakerViewController: UIViewController,
 
         let results = isValidHex(hex: pastedString)
 
-        guard results.0 else {
-            let alert = createAlert(alertReasonParam: AlertReason.invalidHex, invalidCode: results.1)
+        guard results.isValid else {
+            let alert = createAlert(alertReasonParam: AlertReason.invalidHex, invalidCode: results.invalidHexValue)
                 present(alert, animated: true)
 
             return
         }
 
-        updateColor(control: Controls.pasteHexOrRandomHex, hexStringParam: results.1)
+        updateColor(control: Controls.pasteHex, hexStringParam: results.validHexValue)
         let alert = createAlert(alertReasonParam: AlertReason.hexPasted)
             present(alert, animated: true)
 
@@ -960,45 +1005,6 @@ class MakerViewController: UIViewController,
         let alert = createAlert(alertReasonParam: AlertReason.RGBPasted)
             present(alert, animated: true)
 
-    }
-
-
-    func isValidHex(hex: String) -> (Bool, String) {
-        let uppercasedDirtyHex = hex.uppercased()
-        let cleanedHex = uppercasedDirtyHex.filter {
-            "ABCDEF0123456789".contains($0)
-        }
-        guard !(cleanedHex.count < 6) else {
-            return (false, hex)
-        }
-
-        let firstSixChars = cleanedHex[0...5]
-
-        return (true, firstSixChars)
-    }
-
-
-    func isValidRGB(rgb: String) -> RGBResult {
-
-        let cleanedRGB = rgb.filter {
-            "0123456789,".contains($0)
-        }
-
-        let stringsArray = cleanedRGB.split(separator: ",")
-        let intsArray: [Int] = stringsArray.map { Int($0)!}
-
-        guard Array(intsArray).count >= 3 else {
-            return RGBResult(isValid: false, invalidRgbValue: rgb, validRgbValue: Array(intsArray))
-        }
-
-        let firstThreeValues = Array(intsArray[0...2])
-        print(firstThreeValues)
-
-        guard firstThreeValues.allSatisfy({ (0...Int(Constants.Values.rgbMax)).contains($0) }) else {
-            return RGBResult(isValid: false, invalidRgbValue: rgb, validRgbValue: firstThreeValues)
-        }
-
-        return RGBResult(isValid: true, invalidRgbValue: "", validRgbValue: firstThreeValues)
     }
 
 
@@ -1054,7 +1060,7 @@ class MakerViewController: UIViewController,
 
             randomHex = randomRed + randomGreen + randomBlue
 
-            updateColor(control: .pasteHexOrRandomHex, hexStringParam: randomHex) { completed in
+            updateColor(control: .randomHex, hexStringParam: randomHex) { completed in
                 if completed {
                     self.toggleUI(enable: true)
                 }
