@@ -30,10 +30,8 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func updateIcon() {
         let newIconNumberValue = UserDefaults.standard.integer(forKey: Constants.UserDef.selectedIcon)
-        print("newIconNumberValue: \(newIconNumberValue)")
 
         guard UIApplication.shared.supportsAlternateIcons else {
-            print("NOTE: alternate icons not supported")
             return
         }
 
