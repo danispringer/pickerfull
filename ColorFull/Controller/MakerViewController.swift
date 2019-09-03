@@ -136,6 +136,7 @@ class MakerViewController: UIViewController,
                                              green: CGFloat(greenSlider.value),
                                              blue: CGFloat(blueSlider.value),
                                              alpha: 1)
+
     }
 
 
@@ -371,15 +372,12 @@ class MakerViewController: UIViewController,
                     completionHandler(true)
                 })
 
-
-                guard hexStringParam != nil else {
+                guard let hexString = hexStringParam else {
+                    // TODO: alert user?
+                    print("hexStringParam seems to be nil")
                     return
                 }
-
-                var myColorsArray = UserDefaults.standard.array(
-                    forKey: Constants.UserDef.colorsArray)
-                myColorsArray?.append(hexStringParam!)
-                UserDefaults.standard.set(myColorsArray, forKey: Constants.UserDef.colorsArray)
+                addToDocuments(newColor: hexString)
 
             } else {
                 fatalError()
@@ -1065,6 +1063,47 @@ class MakerViewController: UIViewController,
                     self.toggleUI(enable: true)
                 }
             }
+        addToDocuments(newColor: randomHex)
+    }
+
+
+    func addToDocuments(newColor: String) {
+
+        let fileManager = FileManager.default
+
+        var gottenArray = [""]
+
+        // read
+        do {
+            let documentDirectory = try fileManager.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: false)
+            let fileURL = documentDirectory.appendingPathComponent(Constants.Values.colorsFilename)
+            let gottenString = try String(contentsOf: fileURL, encoding: .utf8)
+            gottenArray = gottenString.components(separatedBy: "\n")
+            print("before: \(gottenArray)")
+            gottenArray.append(newColor)
+            print("after: \(gottenArray)")
+        } catch {
+            print(error)
+        }
+
+        // write
+        do {
+            let documentDirectory = try fileManager.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: false)
+            let fileURL = documentDirectory.appendingPathComponent(Constants.Values.colorsFilename)
+            let colorsString = gottenArray.joined(separator: "\n")
+            try colorsString.write(to: fileURL, atomically: false, encoding: .utf8)
+
+        } catch {
+            print(error)
+        }
     }
 
 

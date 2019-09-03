@@ -28,13 +28,13 @@ struct Constants {
         static let colorKey = "color"
         static let defaultColor = "E57BF2"
         static let selectedIcon = "selectedIcon"
-        static let colorsArray = "colorsArray"
     }
 
     struct Values {
         static let numToHexFormatter = "%02X"
         static let hexToNumFormatter = "0x"
         static let rgbMax = 255.0
+        static let colorsFilename = "colors.txt"
     }
 
     struct AppInfo {
