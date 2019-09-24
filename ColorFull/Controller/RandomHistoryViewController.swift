@@ -50,7 +50,7 @@ UITableViewDataSource {
             myNewDataSource = gottenString.components(separatedBy: "\n")
             print(myNewDataSource)
         } catch {
-            print(error)
+            print("error reading: \(error)")
         }
 
         // add user generated random color to array
@@ -70,7 +70,7 @@ UITableViewDataSource {
 //            try colorsString.write(to: fileURL, atomically: false, encoding: .utf8)
 //
 //        } catch {
-//            print(error)
+//            print("error writing: \(error)")
 //        }
         }
 
@@ -83,7 +83,11 @@ UITableViewDataSource {
     // MARK: TableView
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO: if empty, show "nothing here yet, tap random button to start"
+
+        if myNewDataSource.count == 0 {
+        // TODO: update UI to reflect that table is empty
+        }
+        // TODO: update UI to reflect that table is NOT empty
         return myNewDataSource.count
     }
 
@@ -102,6 +106,11 @@ UITableViewDataSource {
 
         return cell
 
+    }
+
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
 
 }

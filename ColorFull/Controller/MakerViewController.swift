@@ -137,6 +137,22 @@ class MakerViewController: UIViewController,
                                              blue: CGFloat(blueSlider.value),
                                              alpha: 1)
 
+        // TODO: run once, creates empty file
+
+        if !UserDefaults.standard.bool(forKey: Constants.UserDef.fileWasCreated) {
+            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let dataPath = documentsDirectory.appendingPathComponent(Constants.Values.colorsFilename)
+
+            do {
+                try FileManager.default.createDirectory(
+                    atPath: dataPath.path,
+                    withIntermediateDirectories: true,
+                    attributes: nil)
+                UserDefaults.standard.set(true, forKey: Constants.UserDef.fileWasCreated)
+            } catch let error as NSError {
+                print("Error creating directory: \(error.localizedDescription)")
+            }
+        }
     }
 
 
@@ -358,6 +374,15 @@ class MakerViewController: UIViewController,
                 greenValue = Double(hexPicker.selectedRow(inComponent: 1))
                 blueValue = Double(hexPicker.selectedRow(inComponent: 2))
 
+
+                if let hexString = hexStringParam {
+                    addToDocuments(newColor: hexString)
+                } else {
+                    print("hexStringParam seems nil")
+                    // TODO: Alert user?
+                }
+
+
                 UIView.animate(withDuration: 0.5, animations: {
                     self.redSlider.setValue(Float(redValue / Constants.Values.rgbMax), animated: true)
                     self.greenSlider.setValue(Float(greenValue / Constants.Values.rgbMax), animated: true)
@@ -371,13 +396,6 @@ class MakerViewController: UIViewController,
                     UserDefaults.standard.set(hexStringParam, forKey: Constants.UserDef.colorKey)
                     completionHandler(true)
                 })
-
-                guard let hexString = hexStringParam else {
-                    // TODO: alert user?
-                    print("hexStringParam seems to be nil")
-                    return
-                }
-                addToDocuments(newColor: hexString)
 
             } else {
                 fatalError()
@@ -1063,7 +1081,6 @@ class MakerViewController: UIViewController,
                     self.toggleUI(enable: true)
                 }
             }
-        addToDocuments(newColor: randomHex)
     }
 
 
@@ -1087,7 +1104,7 @@ class MakerViewController: UIViewController,
             gottenArray.append(newColor)
             print("after: \(gottenArray)")
         } catch {
-            print(error)
+            print("error reading: \(error)")
         }
 
         // write
@@ -1102,7 +1119,7 @@ class MakerViewController: UIViewController,
             try colorsString.write(to: fileURL, atomically: false, encoding: .utf8)
 
         } catch {
-            print(error)
+            print("error writing: \(error)")
         }
     }
 
