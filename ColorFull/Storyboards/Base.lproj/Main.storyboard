@@ -282,7 +282,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSv-G0-aEQ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="52.5"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="60.5"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1eh-ty-CmQ"/>
                                     <barButtonItem systemItem="done" id="Z3Y-hj-Xcd">
@@ -294,7 +294,7 @@
                                 <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g3J-0x-qmo">
-                                <rect key="frame" x="0.0" y="149" width="414" height="664"/>
+                                <rect key="frame" x="0.0" y="165" width="414" height="648"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="separatorColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -357,19 +357,19 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Random History" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3n1-69-gVM" userLabel="Random History Title Label">
-                                <rect key="frame" x="20" y="60" width="374" height="20.5"/>
+                                <rect key="frame" x="20" y="64" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HEX" textAlignment="center" lineBreakMode="headTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRZ-Fe-g5F">
-                                <rect key="frame" x="16" y="112.5" width="34.5" height="20.5"/>
+                                <rect key="frame" x="20" y="124.5" width="34.5" height="20.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RGB" textAlignment="center" lineBreakMode="headTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2L-zA-Loh">
-                                <rect key="frame" x="363" y="112.5" width="35" height="20.5"/>
+                                <rect key="frame" x="359" y="124.5" width="35" height="20.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -380,17 +380,17 @@
                             <constraint firstItem="0Xo-VX-Doy" firstAttribute="trailing" secondItem="ZSv-G0-aEQ" secondAttribute="trailing" id="2WW-aI-mK0"/>
                             <constraint firstItem="0Xo-VX-Doy" firstAttribute="trailing" secondItem="3n1-69-gVM" secondAttribute="trailing" constant="20" id="5iA-Tc-XJz"/>
                             <constraint firstItem="0Xo-VX-Doy" firstAttribute="trailing" secondItem="g3J-0x-qmo" secondAttribute="trailing" id="7po-t9-HKJ"/>
-                            <constraint firstItem="m2L-zA-Loh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0Xo-VX-Doy" secondAttribute="centerX" constant="16" id="8gE-X6-Wj1"/>
-                            <constraint firstItem="wRZ-Fe-g5F" firstAttribute="leading" secondItem="0Xo-VX-Doy" secondAttribute="leading" constant="16" id="Eyu-fN-LGz"/>
+                            <constraint firstItem="m2L-zA-Loh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0Xo-VX-Doy" secondAttribute="centerX" constant="20" id="8gE-X6-Wj1"/>
+                            <constraint firstItem="wRZ-Fe-g5F" firstAttribute="leading" secondItem="0Xo-VX-Doy" secondAttribute="leading" constant="20" id="Eyu-fN-LGz"/>
                             <constraint firstItem="3n1-69-gVM" firstAttribute="leading" secondItem="0Xo-VX-Doy" secondAttribute="leading" constant="20" id="Iic-we-WdT"/>
-                            <constraint firstItem="0Xo-VX-Doy" firstAttribute="centerX" relation="greaterThanOrEqual" secondItem="wRZ-Fe-g5F" secondAttribute="trailing" constant="16" id="Jcl-9Q-EYp"/>
-                            <constraint firstItem="wRZ-Fe-g5F" firstAttribute="top" secondItem="ZSv-G0-aEQ" secondAttribute="bottom" constant="16" id="LCK-oH-tyl"/>
+                            <constraint firstItem="0Xo-VX-Doy" firstAttribute="centerX" relation="greaterThanOrEqual" secondItem="wRZ-Fe-g5F" secondAttribute="trailing" constant="20" id="Jcl-9Q-EYp"/>
+                            <constraint firstItem="wRZ-Fe-g5F" firstAttribute="top" secondItem="ZSv-G0-aEQ" secondAttribute="bottom" constant="20" id="LCK-oH-tyl"/>
                             <constraint firstItem="ZSv-G0-aEQ" firstAttribute="top" secondItem="0Xo-VX-Doy" secondAttribute="top" id="Vbs-9Y-8ww"/>
-                            <constraint firstItem="g3J-0x-qmo" firstAttribute="top" secondItem="wRZ-Fe-g5F" secondAttribute="bottom" constant="16" id="a63-q0-8Jk"/>
+                            <constraint firstItem="g3J-0x-qmo" firstAttribute="top" secondItem="wRZ-Fe-g5F" secondAttribute="bottom" constant="20" id="a63-q0-8Jk"/>
                             <constraint firstItem="0Xo-VX-Doy" firstAttribute="bottom" secondItem="g3J-0x-qmo" secondAttribute="bottom" id="arK-ZV-16M"/>
                             <constraint firstItem="ZSv-G0-aEQ" firstAttribute="leading" secondItem="0Xo-VX-Doy" secondAttribute="leading" id="bl4-Mw-kGu"/>
-                            <constraint firstItem="0Xo-VX-Doy" firstAttribute="trailing" secondItem="m2L-zA-Loh" secondAttribute="trailing" constant="16" id="hQp-k9-JpS"/>
-                            <constraint firstItem="wRZ-Fe-g5F" firstAttribute="top" secondItem="3n1-69-gVM" secondAttribute="bottom" constant="32" id="nOu-G5-Cra"/>
+                            <constraint firstItem="0Xo-VX-Doy" firstAttribute="trailing" secondItem="m2L-zA-Loh" secondAttribute="trailing" constant="20" id="hQp-k9-JpS"/>
+                            <constraint firstItem="wRZ-Fe-g5F" firstAttribute="top" secondItem="3n1-69-gVM" secondAttribute="bottom" constant="40" id="nOu-G5-Cra"/>
                             <constraint firstItem="g3J-0x-qmo" firstAttribute="leading" secondItem="0Xo-VX-Doy" secondAttribute="leading" id="nia-ws-clJ"/>
                             <constraint firstItem="m2L-zA-Loh" firstAttribute="centerY" secondItem="wRZ-Fe-g5F" secondAttribute="centerY" id="uaK-Eh-iun"/>
                             <constraint firstItem="3n1-69-gVM" firstAttribute="centerY" secondItem="ZSv-G0-aEQ" secondAttribute="centerY" id="wJY-7H-I22"/>
