@@ -137,22 +137,6 @@ class MakerViewController: UIViewController,
                                              blue: CGFloat(blueSlider.value),
                                              alpha: 1)
 
-        // TODO: run once, creates empty file
-
-        if !UserDefaults.standard.bool(forKey: Constants.UserDef.fileWasCreated) {
-            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let dataPath = documentsDirectory.appendingPathComponent(Constants.Values.colorsFilename)
-
-            do {
-                try FileManager.default.createDirectory(
-                    atPath: dataPath.path,
-                    withIntermediateDirectories: true,
-                    attributes: nil)
-                UserDefaults.standard.set(true, forKey: Constants.UserDef.fileWasCreated)
-            } catch let error as NSError {
-                print("Error creating directory: \(error.localizedDescription)")
-            }
-        }
     }
 
 
@@ -1086,41 +1070,8 @@ class MakerViewController: UIViewController,
 
     func addToDocuments(newColor: String) {
 
-        let fileManager = FileManager.default
+        // TODO: fill
 
-        var gottenArray = [""]
-
-        // read
-        do {
-            let documentDirectory = try fileManager.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: false)
-            let fileURL = documentDirectory.appendingPathComponent(Constants.Values.colorsFilename)
-            let gottenString = try String(contentsOf: fileURL, encoding: .utf8)
-            gottenArray = gottenString.components(separatedBy: "\n")
-            print("before: \(gottenArray)")
-            gottenArray.append(newColor)
-            print("after: \(gottenArray)")
-        } catch {
-            print("error reading: \(error)")
-        }
-
-        // write
-        do {
-            let documentDirectory = try fileManager.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: false)
-            let fileURL = documentDirectory.appendingPathComponent(Constants.Values.colorsFilename)
-            let colorsString = gottenArray.joined(separator: "\n")
-            try colorsString.write(to: fileURL, atomically: false, encoding: .utf8)
-
-        } catch {
-            print("error writing: \(error)")
-        }
     }
 
 
