@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 
 class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -23,6 +24,15 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
     var backgroundColor: UIColor! = nil
     let myDataSource = ["0", "1"]
     let colorNames = ["Purple on White", "White on Purple"]
+
+
+    // MARK: Life Cycle
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        SKStoreReviewController.requestReview()
+    }
 
 
     // MARK: Helpers

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 
 class RandomHistoryViewController: UIViewController,
@@ -31,6 +32,13 @@ UITableViewDataSource {
 
         readFromDocuments()
 
+    }
+
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        SKStoreReviewController.requestReview()
     }
 
 

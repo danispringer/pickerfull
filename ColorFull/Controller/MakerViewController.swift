@@ -546,9 +546,7 @@ class MakerViewController: UIViewController,
         }
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true, completion: {
-                SKStoreReviewController.requestReview()
-            })
+            self.dismiss(animated: true)
         }
 
         for action in [backAction, copyImageAction, copyTextMainAction, cancelAction] {
@@ -581,9 +579,7 @@ class MakerViewController: UIViewController,
         }
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true, completion: {
-                SKStoreReviewController.requestReview()
-            })
+            self.dismiss(animated: true)
         }
 
         for action in [backAction, copyTextHexAction, copyTextRGBAction, cancelAction] {
@@ -604,9 +600,7 @@ class MakerViewController: UIViewController,
         shareMainMenuAlert.modalPresentationStyle = .popover
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true, completion: {
-                SKStoreReviewController.requestReview()
-            })
+            self.dismiss(animated: true)
         }
 
         let backAction = UIAlertAction(title: "Back to Main Menu", style: .default) { _ in
@@ -646,9 +640,7 @@ class MakerViewController: UIViewController,
         }
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true, completion: {
-                SKStoreReviewController.requestReview()
-            })
+            self.dismiss(animated: true)
         }
 
         let backAction = UIAlertAction(title: "Back to Main Menu", style: .default) { _ in
@@ -685,9 +677,7 @@ class MakerViewController: UIViewController,
         }
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true, completion: {
-                SKStoreReviewController.requestReview()
-            })
+            self.dismiss(animated: true)
         }
 
         let backAction = UIAlertAction(title: "Back to Share Menu", style: .default) { _ in
