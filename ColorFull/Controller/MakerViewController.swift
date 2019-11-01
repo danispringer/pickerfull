@@ -153,6 +153,9 @@ class MakerViewController: UIViewController,
 
         guard let safeURL = myURL else {
             let alert = createAlert(alertReasonParam: .unknown)
+            if let presenter = alert.popoverPresentationController {
+                presenter.barButtonItem = aboutBarButtonItem
+            }
                 present(alert, animated: true)
             return
         }
@@ -268,6 +271,9 @@ class MakerViewController: UIViewController,
                 if hexStringParam == UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) {
                     completionHandler(true)
                     let alert = createAlert(alertReasonParam: .pastedIsSame)
+                    if let presenter = alert.popoverPresentationController {
+                        presenter.barButtonItem = aboutBarButtonItem
+                    }
                     present(alert, animated: true)
                     return
                 }
@@ -325,6 +331,9 @@ class MakerViewController: UIViewController,
                 if hexString == UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) {
                     completionHandler(true)
                     let alert = createAlert(alertReasonParam: .pastedIsSame)
+                    if let presenter = alert.popoverPresentationController {
+                        presenter.barButtonItem = aboutBarButtonItem
+                    }
                     present(alert, animated: true)
                     return
                 }
@@ -385,6 +394,9 @@ class MakerViewController: UIViewController,
                     addToDocuments(newColor: hexString)
                 } else {
                     let alert = createAlert(alertReasonParam: .unknown)
+                    if let presenter = alert.popoverPresentationController {
+                        presenter.barButtonItem = aboutBarButtonItem
+                    }
                     present(alert, animated: true)
                 }
 
@@ -791,9 +803,13 @@ class MakerViewController: UIViewController,
                         UIApplication.shared.open(url)
 
                 }
+
             })
             alert.addAction(goToSettingsButton)
-                present(alert, animated: true)
+            if let presenter = alert.popoverPresentationController {
+                presenter.barButtonItem = aboutBarButtonItem
+            }
+            present(alert, animated: true)
             return
         }
         let alert = createAlert(alertReasonParam: AlertReason.imageSaved)
@@ -802,6 +818,9 @@ class MakerViewController: UIViewController,
 
         })
         alert.addAction(goToLibraryButton)
+        if let presenter = alert.popoverPresentationController {
+            presenter.barButtonItem = aboutBarButtonItem
+        }
             present(alert, animated: true)
 
     }
@@ -827,7 +846,10 @@ class MakerViewController: UIViewController,
         }
 
         let alert = createAlert(alertReasonParam: AlertReason.textCopied, format: format)
-            present(alert, animated: true)
+        if let presenter = alert.popoverPresentationController {
+            presenter.barButtonItem = aboutBarButtonItem
+        }
+        present(alert, animated: true)
 
     }
 
@@ -839,7 +861,10 @@ class MakerViewController: UIViewController,
         pasteboard.image = image
 
         let alert = createAlert(alertReasonParam: AlertReason.imageCopied)
-            present(alert, animated: true)
+        if let presenter = alert.popoverPresentationController {
+            presenter.barButtonItem = aboutBarButtonItem
+        }
+        present(alert, animated: true)
 
     }
 
@@ -867,7 +892,11 @@ class MakerViewController: UIViewController,
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
-                    self.present(alert, animated: true)
+                if let presenter = alert.popoverPresentationController {
+                    presenter.barButtonItem = self.aboutBarButtonItem
+
+                }
+                self.present(alert, animated: true)
 
                 return
             }
@@ -888,7 +917,10 @@ class MakerViewController: UIViewController,
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
-                    self.present(alert, animated: true)
+                if let presenter = alert.popoverPresentationController {
+                    presenter.barButtonItem = self.aboutBarButtonItem
+                }
+                self.present(alert, animated: true)
 
                 return
             }
@@ -985,7 +1017,10 @@ class MakerViewController: UIViewController,
 
         guard let pastedString = UIPasteboard.general.string else {
             let alert = createAlert(alertReasonParam: AlertReason.emptyPasteHex)
-                present(alert, animated: true)
+            if let presenter = alert.popoverPresentationController {
+                presenter.barButtonItem = aboutBarButtonItem
+            }
+            present(alert, animated: true)
             return
         }
 
@@ -993,7 +1028,10 @@ class MakerViewController: UIViewController,
 
         guard results.isValid else {
             let alert = createAlert(alertReasonParam: AlertReason.invalidHex, invalidCode: results.invalidHexValue)
-                present(alert, animated: true)
+            if let presenter = alert.popoverPresentationController {
+                presenter.barButtonItem = aboutBarButtonItem
+            }
+            present(alert, animated: true)
 
             return
         }
@@ -1014,7 +1052,10 @@ class MakerViewController: UIViewController,
         guard let pastedString = UIPasteboard.general.string else {
             toggleUI(enable: true)
             let alert = createAlert(alertReasonParam: AlertReason.emptyPasteRGB)
-                present(alert, animated: true)
+            if let presenter = alert.popoverPresentationController {
+                presenter.barButtonItem = aboutBarButtonItem
+            }
+            present(alert, animated: true)
 
             return
         }
@@ -1023,8 +1064,13 @@ class MakerViewController: UIViewController,
 
         guard results.isValid else {
             toggleUI(enable: true)
-            let alert = createAlert(alertReasonParam: AlertReason.invalidRGB, invalidCode: results.invalidRgbValue)
-                present(alert, animated: true)
+            let alert = createAlert(
+                alertReasonParam: AlertReason.invalidRGB,
+                invalidCode: results.invalidRgbValue)
+            if let presenter = alert.popoverPresentationController {
+                presenter.barButtonItem = aboutBarButtonItem
+            }
+            present(alert, animated: true)
 
             return
         }
@@ -1042,8 +1088,10 @@ class MakerViewController: UIViewController,
     func shareApp() {
 
         let message = """
-            Create a color from millions of choices using sliders, HEX or RGB values, then save \
-            or share your color as a text or image: https://itunes.apple.com/app/id1410565176
+            Create amazing colors. Share with friends. Done.
+
+            Download now:
+            https://itunes.apple.com/app/id1410565176
             """
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
@@ -1052,7 +1100,10 @@ class MakerViewController: UIViewController,
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
-                    self.present(alert, animated: true)
+                if let presenter = alert.popoverPresentationController {
+                    presenter.barButtonItem = self.aboutBarButtonItem
+                }
+                self.present(alert, animated: true)
 
                 return
             }
@@ -1092,6 +1143,9 @@ class MakerViewController: UIViewController,
 
             UserDefaults.standard.set(false, forKey: Constants.UserDef.isFirstTapOnRandomButton)
 
+            if let presenter = alert.popoverPresentationController {
+                presenter.barButtonItem = randomBarButtonItem
+            }
             present(alert, animated: true)
         } else {
             makeRandomColor()
@@ -1195,7 +1249,10 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
                 break
             }
             if alert.title != nil {
-                    self.present(alert, animated: true)
+                if let presenter = alert.popoverPresentationController {
+                    presenter.barButtonItem = self.aboutBarButtonItem
+                }
+                self.present(alert, animated: true)
 
             }
         })
