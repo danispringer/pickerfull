@@ -60,7 +60,7 @@ class MakerViewController: UIViewController,
     var textColor = UIColor.label
     var backgroundColor = UIColor.systemBackground
 
-    let animationDuration = 0.3 // TODO: put back to 0.3 - 5.0 is for testing
+    let animationDuration = 0.3
 
 
     // MARK: Life Cycle
@@ -1179,7 +1179,7 @@ class MakerViewController: UIViewController,
 
 
     @IBAction func randomHistoryPressed(_ sender: Any) {
-        
+
         let storyboard = UIStoryboard(name: Constants.StoryboardID.main, bundle: nil)
         let controller = storyboard.instantiateViewController(
             withIdentifier: Constants.StoryboardID.randomHistoryViewController)
