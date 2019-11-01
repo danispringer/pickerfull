@@ -26,9 +26,8 @@ extension UIViewController {
         case emptyPasteRGB
         case invalidHex
         case invalidRGB
-        case hexPasted
-        case RGBPasted
         case firstRandom
+        case pastedIsSame
     }
 
 
@@ -83,9 +82,6 @@ extension UIViewController {
         case .emptyPasteHex:
             alertTitle = "Pasteboard empty"
             alertMessage = "There's nothing to paste. Please copy a HEX code and try again."
-        case .hexPasted:
-            alertTitle = "Success!"
-            alertMessage = "The app's sliders and spinners have been updated with your pasted HEX code."
         case .invalidRGB:
             alertTitle = "Invalid RGB"
             alertMessage = """
@@ -95,9 +91,6 @@ extension UIViewController {
         case .emptyPasteRGB:
             alertTitle = "Pasteboard emtpy"
             alertMessage = "There's nothing to paste. Please copy a RGB code and try again."
-        case .RGBPasted:
-            alertTitle = "Success!"
-            alertMessage = "The app's sliders and spinners have been updated with your pasted HEX code."
         case .firstRandom:
             addOkButton = false
             alertTitle = "Replacing Color"
@@ -110,6 +103,9 @@ extension UIViewController {
             - Then tap this magical button again.
             This message will only be shown once. Future taps will immediately replace the current color.
             """
+        case .pastedIsSame:
+            alertTitle = "Same color pasted"
+            alertMessage = "The color you are trying to paste is the same as the current color."
 
         default:
             alertTitle = "Unknown Error"

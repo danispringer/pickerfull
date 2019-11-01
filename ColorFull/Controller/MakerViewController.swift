@@ -209,16 +209,6 @@ class MakerViewController: UIViewController,
                 let greenValue: Float = Float(hexPicker.selectedRow(inComponent: 1))
                 let blueValue: Float = Float(hexPicker.selectedRow(inComponent: 2))
 
-                UIView.animate(withDuration: animationDuration, animations: {
-                    self.redSlider.setValue(redValue / Float(Constants.Values.rgbMax), animated: true)
-                    self.greenSlider.setValue(greenValue / Float(Constants.Values.rgbMax), animated: true)
-                    self.blueSlider.setValue(blueValue / Float(Constants.Values.rgbMax), animated: true)
-                    self.resultView.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
-                                                              green: CGFloat(self.greenSlider.value),
-                                                              blue: CGFloat(self.blueSlider.value),
-                                                              alpha: 1)
-                })
-
                 let redHex = hexArray[hexPicker.selectedRow(inComponent: 0)]
                 let greenHex = hexArray[hexPicker.selectedRow(inComponent: 1)]
                 let blueHex = hexArray[hexPicker.selectedRow(inComponent: 2)]
@@ -228,7 +218,20 @@ class MakerViewController: UIViewController,
                 rgbPicker.selectRow(Int(blueValue), inComponent: 2, animated: true)
 
                 let hexCode = redHex + greenHex + blueHex
-                UserDefaults.standard.set(hexCode, forKey: Constants.UserDef.colorKey)
+
+                UIView.animate(withDuration: animationDuration, animations: {
+                    self.redSlider.setValue(redValue / Float(Constants.Values.rgbMax), animated: true)
+                    self.greenSlider.setValue(greenValue / Float(Constants.Values.rgbMax), animated: true)
+                    self.blueSlider.setValue(blueValue / Float(Constants.Values.rgbMax), animated: true)
+                    self.resultView.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
+                                                              green: CGFloat(self.greenSlider.value),
+                                                              blue: CGFloat(self.blueSlider.value),
+                                                              alpha: 1)
+                }, completion: { _ in
+                    UserDefaults.standard.set(hexCode, forKey: Constants.UserDef.colorKey)
+                    completionHandler(true)
+                })
+
 
             } else if control == .rgbPicker {
 
@@ -257,10 +260,17 @@ class MakerViewController: UIViewController,
 
                 }, completion: { _ in
                     UserDefaults.standard.set(hexCode, forKey: Constants.UserDef.colorKey)
+                    completionHandler(true)
                 })
 
 
             } else if control == .pasteHex {
+                if hexStringParam == UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) {
+                    completionHandler(true)
+                    let alert = createAlert(alertReasonParam: .pastedIsSame)
+                    present(alert, animated: true)
+                    return
+                }
 
                 let redString = hexStringParam![0...1]
                 let greenString = hexStringParam![2...3]
@@ -311,6 +321,13 @@ class MakerViewController: UIViewController,
                 let blueHex = String(format: Constants.Values.numToHexFormatter, blueValue)
 
                 let hexString = redHex + greenHex + blueHex
+
+                if hexString == UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) {
+                    completionHandler(true)
+                    let alert = createAlert(alertReasonParam: .pastedIsSame)
+                    present(alert, animated: true)
+                    return
+                }
 
                 let redIndex = hexArray.firstIndex(of: redHex)
                 let greenIndex = hexArray.firstIndex(of: greenHex)
@@ -367,8 +384,8 @@ class MakerViewController: UIViewController,
                 if let hexString = hexStringParam {
                     addToDocuments(newColor: hexString)
                 } else {
-                    print("hexStringParam seems nil")
-                    // TODO: Alert user?
+                    let alert = createAlert(alertReasonParam: .unknown)
+                    present(alert, animated: true)
                 }
 
 
@@ -396,7 +413,7 @@ class MakerViewController: UIViewController,
     // MARK: Sliders
 
     @IBAction func sliderChanged(_ sender: AnyObject) {
-        updateColor(control: Controls.slider)
+        updateColor(control: .slider)
     }
 
 
@@ -460,9 +477,19 @@ class MakerViewController: UIViewController,
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 0 {
-            updateColor(control: .hexPicker)
+            toggleUI(enable: false)
+            updateColor(control: .hexPicker) { completed in
+                if completed {
+                    self.toggleUI(enable: true)
+                }
+            }
         } else if pickerView.tag == 1 {
-            updateColor(control: .rgbPicker)
+            toggleUI(enable: false)
+            updateColor(control: .rgbPicker) { completed in
+                if completed {
+                    self.toggleUI(enable: true)
+                }
+            }
         } else {
             fatalError()
         }
@@ -971,34 +998,43 @@ class MakerViewController: UIViewController,
             return
         }
 
-        updateColor(control: Controls.pasteHex, hexStringParam: results.validHexValue)
-        let alert = createAlert(alertReasonParam: AlertReason.hexPasted)
-            present(alert, animated: true)
-
+        toggleUI(enable: false)
+        updateColor(control: .pasteHex, hexStringParam: results.validHexValue) { completed in
+            if completed {
+                self.toggleUI(enable: true)
+            }
+        }
 
     }
 
 
     func pasteRGBText() {
+        toggleUI(enable: false)
 
         guard let pastedString = UIPasteboard.general.string else {
+            toggleUI(enable: true)
             let alert = createAlert(alertReasonParam: AlertReason.emptyPasteRGB)
                 present(alert, animated: true)
 
             return
         }
+
         let results = isValidRGB(rgb: pastedString)
 
         guard results.isValid else {
+            toggleUI(enable: true)
             let alert = createAlert(alertReasonParam: AlertReason.invalidRGB, invalidCode: results.invalidRgbValue)
                 present(alert, animated: true)
 
             return
         }
 
-        updateColor(control: Controls.pasteRGB, rgbArray: results.validRgbValue)
-        let alert = createAlert(alertReasonParam: AlertReason.RGBPasted)
-            present(alert, animated: true)
+
+        updateColor(control: .pasteRGB, rgbArray: results.validRgbValue) { completed in
+            if completed {
+                self.toggleUI(enable: true)
+            }
+        }
 
     }
 
