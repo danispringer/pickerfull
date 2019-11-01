@@ -60,6 +60,8 @@ class MakerViewController: UIViewController,
     var textColor = UIColor.label
     var backgroundColor = UIColor.systemBackground
 
+    let animationDuration = 0.3
+
 
     // MARK: Life Cycle
 
@@ -204,7 +206,7 @@ class MakerViewController: UIViewController,
                 let greenValue: Float = Float(hexPicker.selectedRow(inComponent: 1))
                 let blueValue: Float = Float(hexPicker.selectedRow(inComponent: 2))
 
-                UIView.animate(withDuration: 0.5, animations: {
+                UIView.animate(withDuration: animationDuration, animations: {
                     self.redSlider.setValue(redValue / Float(Constants.Values.rgbMax), animated: true)
                     self.greenSlider.setValue(greenValue / Float(Constants.Values.rgbMax), animated: true)
                     self.blueSlider.setValue(blueValue / Float(Constants.Values.rgbMax), animated: true)
@@ -241,7 +243,7 @@ class MakerViewController: UIViewController,
 
                 let hexCode = redHex + greenHex + blueHex
 
-                UIView.animate(withDuration: 0.5, animations: {
+                UIView.animate(withDuration: animationDuration, animations: {
                     self.redSlider.setValue(Float(redValue / Constants.Values.rgbMax), animated: true)
                     self.greenSlider.setValue(Float(greenValue / Constants.Values.rgbMax), animated: true)
                     self.blueSlider.setValue(Float(blueValue / Constants.Values.rgbMax), animated: true)
@@ -281,7 +283,7 @@ class MakerViewController: UIViewController,
                 greenValue = Double(hexPicker.selectedRow(inComponent: 1))
                 blueValue = Double(hexPicker.selectedRow(inComponent: 2))
 
-                UIView.animate(withDuration: 0.5, animations: {
+                UIView.animate(withDuration: animationDuration, animations: {
                     self.redSlider.setValue(Float(redValue / Constants.Values.rgbMax), animated: true)
                     self.greenSlider.setValue(Float(greenValue / Constants.Values.rgbMax), animated: true)
                     self.blueSlider.setValue(Float(blueValue / Constants.Values.rgbMax), animated: true)
@@ -319,7 +321,7 @@ class MakerViewController: UIViewController,
                 rgbPicker.selectRow(greenValue, inComponent: 1, animated: true)
                 rgbPicker.selectRow(blueValue, inComponent: 2, animated: true)
 
-                UIView.animate(withDuration: 0.5, animations: {
+                UIView.animate(withDuration: animationDuration, animations: {
                     self.redSlider.setValue(Float(Double(redValue) / Constants.Values.rgbMax), animated: true)
                     self.greenSlider.setValue(Float(Double(greenValue) / Constants.Values.rgbMax), animated: true)
                     self.blueSlider.setValue(Float(Double(blueValue) / Constants.Values.rgbMax), animated: true)
@@ -367,7 +369,7 @@ class MakerViewController: UIViewController,
                 }
 
 
-                UIView.animate(withDuration: 0.5, animations: {
+                UIView.animate(withDuration: animationDuration, animations: {
                     self.redSlider.setValue(Float(redValue / Constants.Values.rgbMax), animated: true)
                     self.greenSlider.setValue(Float(greenValue / Constants.Values.rgbMax), animated: true)
                     self.blueSlider.setValue(Float(blueValue / Constants.Values.rgbMax), animated: true)
