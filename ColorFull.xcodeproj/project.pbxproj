@@ -437,6 +437,7 @@
 				CODE_SIGN_ENTITLEMENTS = ColorFull/ColorFull.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JMVGHP3288;
 				INFOPLIST_FILE = "$(SRCROOT)/ColorFull/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -460,6 +461,7 @@
 				CODE_SIGN_ENTITLEMENTS = ColorFull/ColorFull.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JMVGHP3288;
 				INFOPLIST_FILE = "$(SRCROOT)/ColorFull/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
