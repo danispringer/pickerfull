@@ -1028,6 +1028,7 @@ class MakerViewController: UIViewController,
     // MARK: Random
 
     @IBAction func randomPressed(_ sender: Any) {
+
         let activity = NSUserActivity(activityType: Constants.AppInfo.bundleAndRandom)
         activity.title = "Create Random Color"
         activity.isEligibleForSearch = true
@@ -1037,7 +1038,24 @@ class MakerViewController: UIViewController,
         view.userActivity = activity
         activity.becomeCurrent()
 
-        makeRandomColor()
+        if UserDefaults.standard.bool(forKey: Constants.UserDef.isFirstTapOnRandomButton) {
+            // show warning, only continue if user says yes
+            let alert = createAlert(alertReasonParam: .firstRandom)
+            let okDestructiveAction = UIAlertAction(title: "OK", style: .destructive) { _ in
+                self.makeRandomColor()
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            for action in [okDestructiveAction, cancelAction] {
+                alert.addAction(action)
+            }
+
+            UserDefaults.standard.set(false, forKey: Constants.UserDef.isFirstTapOnRandomButton)
+
+            present(alert, animated: true)
+        } else {
+            makeRandomColor()
+        }
+
     }
 
 

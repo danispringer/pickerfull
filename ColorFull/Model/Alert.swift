@@ -28,6 +28,7 @@ extension UIViewController {
         case invalidRGB
         case hexPasted
         case RGBPasted
+        case firstRandom
     }
 
 
@@ -39,6 +40,8 @@ extension UIViewController {
 
     func createAlert(alertReasonParam: AlertReason, invalidCode: String = "",
                      format: Format = .hex) -> UIAlertController {
+
+        var addOkButton = true
 
         var alertTitle = ""
         var alertMessage = ""
@@ -95,17 +98,32 @@ extension UIViewController {
         case .RGBPasted:
             alertTitle = "Success!"
             alertMessage = "The app's sliders and spinners have been updated with your pasted HEX code."
+        case .firstRandom:
+            addOkButton = false
+            alertTitle = "Replacing Color"
+            alertMessage = """
+            This magical button generates a new random color, which will replace your current one \
+            (#\(UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) ?? "NO COLOR FOUND")).
+            If you would like to save your current color first:
+            - Tap "Cancel"
+            - Save your color (using the "About" button on the top right of your screen)
+            - Then tap this magical button again.
+            This message will only be shown once. Future taps will immediately replace the current color.
+            """
 
         default:
-            alertTitle = "Unknown error"
+            alertTitle = "Unknown Error"
             alertMessage = """
-            An unknown error occurred. Please try again later, or contact us by leaving a review.
+            An unknown error occurred. Please try again later, or contact us at ***REMOVED***
             """
         }
 
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(alertAction)
+
+        if addOkButton {
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(alertAction)
+        }
 
         return alert
     }
