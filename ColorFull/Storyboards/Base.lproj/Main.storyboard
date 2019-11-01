@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -86,7 +86,7 @@
                                             <action selector="randomPressed:" destination="BYZ-38-t0r" id="Xj9-SA-kz6"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem systemItem="bookmarks" id="phI-fy-aJM">
+                                    <barButtonItem title="Random History (feature not available yet)" image="book" catalog="system" id="phI-fy-aJM">
                                         <connections>
                                             <action selector="randomHistoryPressed:" destination="BYZ-38-t0r" id="4kb-HB-ycp"/>
                                         </connections>
@@ -146,6 +146,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="aboutBarButtonItem" destination="7Tf-R1-A8S" id="k9H-aY-adi"/>
                         <outlet property="blueSlider" destination="KHn-Oj-ley" id="r47-vM-wFZ"/>
                         <outlet property="greenSlider" destination="NXx-mh-U48" id="ooP-rR-vQe"/>
                         <outlet property="hexPicker" destination="AHi-t1-Uyy" id="SpF-Mr-oMX"/>
@@ -158,7 +159,6 @@
                         <outlet property="resultView" destination="7iT-jJ-EaV" id="fu8-S3-1HE"/>
                         <outlet property="rgbPicker" destination="uKU-jx-ct7" id="YF6-Xd-WQH"/>
                         <outlet property="separatorView" destination="HXV-dr-Y0G" id="SFF-lh-Z7d"/>
-                        <outlet property="shareBarButtonItem" destination="7Tf-R1-A8S" id="k9H-aY-adi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -409,6 +409,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="book" catalog="system" width="64" height="50"/>
         <image name="ellipsis.circle" catalog="system" width="64" height="60"/>
         <image name="wand.and.stars" catalog="system" width="64" height="56"/>
     </resources>
