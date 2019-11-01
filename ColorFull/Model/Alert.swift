@@ -13,7 +13,6 @@ extension UIViewController {
 
 
     enum AlertReason {
-        case network
         case messageSaved
         case messageFailed
         case messageSent
@@ -37,18 +36,19 @@ extension UIViewController {
     }
 
 
-    func createAlert(alertReasonParam: AlertReason, invalidCode: String = "",
-                     format: Format = .hex) -> UIAlertController {
+    func createAlert(
+        alertReasonParam: AlertReason,
+        invalidCode: String = "",
+        format: Format = .hex) -> UIAlertController {
 
         var addOkButton = true
+        var alertPreferredStyle = UIAlertController.Style.alert
 
         var alertTitle = ""
         var alertMessage = ""
         switch alertReasonParam {
-        case .network:
-            alertTitle = "Network error"
-            alertMessage = "Please check your network connection and try again."
         case .messageSaved:
+            alertPreferredStyle = UIAlertController.Style.actionSheet
             alertTitle = "Message saved"
             alertMessage = "Your message has been saved to drafts."
         case .messageFailed:
@@ -57,18 +57,22 @@ extension UIViewController {
             Your message has not been sent. Please try again later, or contact us by leaving a review.
             """
         case .messageSent:
+            alertPreferredStyle = UIAlertController.Style.actionSheet
             alertTitle = "Success!"
             alertMessage = "Your message has been sent. You should hear from us within 24 hours."
         case .imageSaved:
+            alertPreferredStyle = UIAlertController.Style.actionSheet
             alertTitle = "Success!"
             alertMessage = "Your image has been saved to your library."
         case .textCopied:
+            alertPreferredStyle = UIAlertController.Style.actionSheet
             alertTitle = "Success!"
             alertMessage = """
             Your color has been copied as text in \(format) format.\nDon't forget to paste \
             it somewhere!
             """
         case .imageCopied:
+            alertPreferredStyle = UIAlertController.Style.actionSheet
             alertTitle = "Success!"
             alertMessage = "Your image has been copied.\nDon't forget to paste it somewhere!"
         case .permissionDenied:
@@ -93,17 +97,21 @@ extension UIViewController {
             alertMessage = "There's nothing to paste. Please copy a RGB code and try again."
         case .firstRandom:
             addOkButton = false
+            alertPreferredStyle = UIAlertController.Style.actionSheet
             alertTitle = "Replacing Color"
             alertMessage = """
             This magical button generates a new random color, which will replace your current one \
             (#\(UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) ?? "NO COLOR FOUND")).
+
             If you would like to save your current color first:
-            - Tap "Cancel"
-            - Save your color (using the "About" button on the top right of your screen)
-            - Then tap this magical button again.
-            This message will only be shown once. Future taps will immediately replace the current color.
+            • Tap "Cancel" (or anywhere outside this alert on iPad)
+            • Save your color (using the "About" button on the top right of your screen)
+            • Then tap this magical button again.
+
+            This message won't be shown again.
             """
         case .pastedIsSame:
+            alertPreferredStyle = UIAlertController.Style.actionSheet
             alertTitle = "Same color pasted"
             alertMessage = "The color you are trying to paste is the same as the current color."
 
@@ -114,10 +122,16 @@ extension UIViewController {
             """
         }
 
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: alertTitle,
+            message: alertMessage,
+            preferredStyle: alertPreferredStyle)
 
         if addOkButton {
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            let alertAction = UIAlertAction(
+                title: "OK",
+                style: .default,
+                handler: nil)
             alert.addAction(alertAction)
         }
 
