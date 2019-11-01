@@ -30,7 +30,7 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var messageLabel: UILabel!
 
     @IBOutlet weak var myToolbar: UIToolbar!
-    @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var aboutBarButtonItem: UIBarButtonItem!
 
     @IBOutlet weak var randomBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var randomHistoryBarButtonItem: UIBarButtonItem!
@@ -60,7 +60,7 @@ class MakerViewController: UIViewController,
     var textColor = UIColor.label
     var backgroundColor = UIColor.systemBackground
 
-    let animationDuration = 0.3
+    let animationDuration = 0.3 // TODO: put back to 0.3 - 5.0 is for testing
 
 
     // MARK: Life Cycle
@@ -138,6 +138,9 @@ class MakerViewController: UIViewController,
                                              green: CGFloat(greenSlider.value),
                                              blue: CGFloat(blueSlider.value),
                                              alpha: 1)
+
+        // add to toggle UI func when removing
+        randomHistoryBarButtonItem.isEnabled = false
 
     }
 
@@ -513,7 +516,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = mainMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = shareBarButtonItem
+            presenter.barButtonItem = aboutBarButtonItem
         }
 
             present(mainMenuAlert, animated: true)
@@ -556,7 +559,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = copyMainMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = shareBarButtonItem
+            presenter.barButtonItem = aboutBarButtonItem
         }
             present(copyMainMenuAlert, animated: true)
     }
@@ -589,7 +592,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = copyTextMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = shareBarButtonItem
+            presenter.barButtonItem = aboutBarButtonItem
         }
 
             present(copyTextMenuAlert, animated: true)
@@ -622,7 +625,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = shareMainMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = shareBarButtonItem
+            presenter.barButtonItem = aboutBarButtonItem
         }
             present(shareMainMenuAlert, animated: true)
 
@@ -654,7 +657,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = pasteMainMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = shareBarButtonItem
+            presenter.barButtonItem = aboutBarButtonItem
         }
 
             present(pasteMainMenuAlert, animated: true)
@@ -691,7 +694,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = shareTextMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = shareBarButtonItem
+            presenter.barButtonItem = aboutBarButtonItem
         }
             present(shareTextMenuAlert, animated: true)
     }
@@ -738,7 +741,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = infoAlert.popoverPresentationController {
-            presenter.barButtonItem = shareBarButtonItem
+            presenter.barButtonItem = aboutBarButtonItem
         }
 
             present(infoAlert, animated: true)
@@ -832,7 +835,7 @@ class MakerViewController: UIViewController,
         }
 
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = shareBarButtonItem
+        activityController.popoverPresentationController?.barButtonItem = aboutBarButtonItem
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
@@ -853,7 +856,7 @@ class MakerViewController: UIViewController,
         let image = generateImage()
 
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = shareBarButtonItem
+        activityController.popoverPresentationController?.barButtonItem = aboutBarButtonItem
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
@@ -1008,7 +1011,7 @@ class MakerViewController: UIViewController,
             """
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
-        activityController.popoverPresentationController?.barButtonItem = shareBarButtonItem
+        activityController.popoverPresentationController?.barButtonItem = aboutBarButtonItem
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
@@ -1019,7 +1022,7 @@ class MakerViewController: UIViewController,
             }
         }
         if let presenter = activityController.popoverPresentationController {
-            presenter.barButtonItem = shareBarButtonItem
+            presenter.barButtonItem = aboutBarButtonItem
         }
 
         present(activityController, animated: true)
@@ -1086,6 +1089,7 @@ class MakerViewController: UIViewController,
 
 
     @IBAction func randomHistoryPressed(_ sender: Any) {
+        
         let storyboard = UIStoryboard(name: Constants.StoryboardID.main, bundle: nil)
         let controller = storyboard.instantiateViewController(
             withIdentifier: Constants.StoryboardID.randomHistoryViewController)
@@ -1101,8 +1105,14 @@ class MakerViewController: UIViewController,
     func toggleUI(enable: Bool) {
         DispatchQueue.main.async {
 
-            for item in [self.randomBarButtonItem, self.randomHistoryBarButtonItem] {
+            for item in [self.randomBarButtonItem, self.mySwitchButton, self.aboutBarButtonItem] {
                 item?.isEnabled = enable
+            }
+            for slider in [self.redSlider, self.greenSlider, self.blueSlider] {
+                slider?.isEnabled = enable
+            }
+            for picker in [self.hexPicker, self.rgbPicker] {
+                picker?.isUserInteractionEnabled = enable
             }
         }
     }
