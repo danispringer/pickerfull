@@ -3,7 +3,7 @@
 //  ColorFull
 //
 //  Created by Daniel Springer on 06/03/2018.
-//  Copyright © 2019 Daniel Springer. All rights reserved.
+//  Copyright © 2020 Daniel Springer. All rights reserved.
 //
 
 import UIKit
