@@ -22,8 +22,8 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var myToolbar: UIToolbar!
     @IBOutlet weak var menuButton: UIBarButtonItem!
-
-
+    @IBOutlet weak var downloadButton: UIBarButtonItem!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     // MARK: properties
 
     enum Controls {
@@ -217,7 +217,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = shareMainMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = menuButton
+            presenter.barButtonItem = shareButton
         }
             present(shareMainMenuAlert, animated: true)
 
@@ -241,7 +241,7 @@ class MakerViewController: UIViewController,
             })
             alert.addAction(goToSettingsButton)
             if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = menuButton
+                presenter.barButtonItem = downloadButton
             }
             present(alert, animated: true)
             return
@@ -253,7 +253,7 @@ class MakerViewController: UIViewController,
         })
         alert.addAction(goToLibraryButton)
         if let presenter = alert.popoverPresentationController {
-            presenter.barButtonItem = menuButton
+            presenter.barButtonItem = downloadButton
         }
             present(alert, animated: true)
     }
@@ -281,7 +281,7 @@ class MakerViewController: UIViewController,
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.menuButton
+                    presenter.barButtonItem = self.shareButton
 
                 }
                 self.present(alert, animated: true)
@@ -303,7 +303,7 @@ class MakerViewController: UIViewController,
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.menuButton
+                    presenter.barButtonItem = self.shareButton
                 }
                 self.present(alert, animated: true)
 
@@ -391,7 +391,7 @@ class MakerViewController: UIViewController,
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.menuButton
+                    presenter.barButtonItem = self.shareButton
                 }
                 self.present(alert, animated: true)
 
@@ -399,7 +399,7 @@ class MakerViewController: UIViewController,
             }
         }
         if let presenter = activityController.popoverPresentationController {
-            presenter.barButtonItem = menuButton
+            presenter.barButtonItem = shareButton
         }
 
         present(activityController, animated: true)
