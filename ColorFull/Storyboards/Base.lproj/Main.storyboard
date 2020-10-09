@@ -81,10 +81,12 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="menuButton" destination="0Q6-6C-Hay" id="rnI-c8-rRD"/>
+                        <outlet property="downloadButton" destination="nNY-PH-3tH" id="KRk-Ka-L5Y"/>
+                        <outlet property="menuButton" destination="0Q6-6C-Hay" id="t68-rq-mVO"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="nVb-Od-V3R"/>
                         <outlet property="myToolbar" destination="NK4-FQ-SOv" id="BC0-eL-Mjb"/>
                         <outlet property="resultView" destination="7iT-jJ-EaV" id="fu8-S3-1HE"/>
+                        <outlet property="shareButton" destination="Wrr-2c-byl" id="kGV-nO-fmf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
