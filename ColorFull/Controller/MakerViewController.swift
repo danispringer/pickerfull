@@ -509,30 +509,11 @@ class MakerViewController: UIViewController,
         activity.isEligibleForSearch = true
         activity.isEligibleForPrediction = true
         activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Constants.AppInfo.bundleAndRandom)
-        activity.suggestedInvocationPhrase = "Show Me a Random Color"
+        activity.suggestedInvocationPhrase = "ColorFull Random Color"
         view.userActivity = activity
         activity.becomeCurrent()
 
-        if UserDefaults.standard.bool(forKey: Constants.UserDef.isFirstTapOnRandomButton) {
-            // show warning, only continue if user says yes
-            let alert = createAlert(alertReasonParam: .firstRandom)
-            let okDestructiveAction = UIAlertAction(title: "OK", style: .destructive) { _ in
-                self.makeRandomColor()
-            }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-            for action in [okDestructiveAction, cancelAction] {
-                alert.addAction(action)
-            }
-
-            UserDefaults.standard.set(false, forKey: Constants.UserDef.isFirstTapOnRandomButton)
-
-            if let presenter = alert.popoverPresentationController {
-                presenter.sourceView = aboutButton
-            }
-            present(alert, animated: true)
-        } else {
-            makeRandomColor()
-        }
+        makeRandomColor()
 
     }
 

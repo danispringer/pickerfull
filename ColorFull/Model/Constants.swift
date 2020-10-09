@@ -26,7 +26,6 @@ struct Constants {
         static let colorKey = "color"
         static let defaultColor = "E57BF2"
         static let selectedIcon = "selectedIcon"
-        static let isFirstTapOnRandomButton = "isFirstTapOnRandomButton"
     }
 
     struct Values {
