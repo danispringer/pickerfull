@@ -391,7 +391,7 @@ class MakerViewController: UIViewController,
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.shareButton
+                    presenter.barButtonItem = self.menuButton
                 }
                 self.present(alert, animated: true)
 
@@ -399,7 +399,7 @@ class MakerViewController: UIViewController,
             }
         }
         if let presenter = activityController.popoverPresentationController {
-            presenter.barButtonItem = shareButton
+            presenter.barButtonItem = menuButton
         }
 
         present(activityController, animated: true)
