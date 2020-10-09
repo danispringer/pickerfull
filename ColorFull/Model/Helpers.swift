@@ -122,7 +122,6 @@ extension UIViewController {
                                     lroundf(Float(red * 255)),
                                     lroundf(Float(green * 255)),
                                     lroundf(Float(blue * 255)))
-        print(hexString)
         return hexString
      }
 
