@@ -26,8 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UserDefaults.standard.register(defaults: [
             Constants.UserDef.colorKey: Constants.UserDef.defaultColor,
-            Constants.UserDef.selectedIcon: 0,
-            Constants.UserDef.isFirstTapOnRandomButton: true
+            Constants.UserDef.selectedIcon: 0
         ])
 
         return true
