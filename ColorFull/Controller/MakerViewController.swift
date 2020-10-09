@@ -769,9 +769,7 @@ class MakerViewController: UIViewController,
         }
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true, completion: {
-                SKStoreReviewController.requestReview()
-            })
+            self.dismiss(animated: true)
         }
 
         for action in [backAction, mailAction, reviewAction, shareAppAction,
