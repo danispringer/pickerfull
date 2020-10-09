@@ -1,25 +1,18 @@
-Create amazing colors. Share with friends. Done.
-
-*ColorFull now supports iOS 13's new dark mode!
-
+We believe life should be ColorFull. Do you?
 
 Hello,
 
-• Meet ColorFull, a simple yet powerful app that lets you easily and precisely create and share your colors - or find your next favorite one – with the tap of a button or using Siri.
+• Meet ColorFull, a simple yet powerFull app that lets you easily and precisely create and share your colors - or find your next favorite one – with the tap of a button or using Siri.
 
-• Generate your perfect color from millions of combinations using 3 sliders – or 3 spinners for max precision.
+• Generate your perfect color from millions of options
 
-• Paste (import) a color to immediately preview, edit, and share it.
+• Save (export) your color by copying or sharing it, in HEX or RGB values, or...
 
-• Save (export) your color by copying or sharing it.
-
-• All actions (paste, copy, edit, and share) support both HEX and RGB values as text, and the copying and sharing actions support exporting the color as an image.
-
-• Generate beautiful images which include the color and its HEX and RGB values with the tap of a button.
+• Generate beautiful images which include the color and its HEX and RGB values with the tap of a button
 
 • Battery died? Your last selected color will automatically display when you launch the app again. ColorFull has got your back – and favorite color!
 
-• Create gorgeous new colors with the tap of a button or using Siri.
+• Create gorgeous new colors with the tap of a button or using Siri
 
 
 • Ask us anything: musicbyds@icloud.com

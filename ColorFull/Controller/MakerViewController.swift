@@ -19,13 +19,9 @@ class MakerViewController: UIViewController,
     // MARK: Outlets
 
     @IBOutlet weak var messageLabel: UILabel!
-
-    @IBOutlet weak var aboutButton: UIButton!
-    @IBOutlet weak var aboutView: UIView!
-    @IBOutlet weak var randomView: UIView!
-
-    @IBOutlet weak var randomButton: UIButton!
     @IBOutlet weak var resultView: UIView!
+    @IBOutlet weak var myToolbar: UIToolbar!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
 
 
     // MARK: properties
@@ -63,8 +59,8 @@ class MakerViewController: UIViewController,
 
         resultView.backgroundColor = selectedColor
 
-        aboutView.layer.cornerRadius = aboutView.bounds.size.width * 0.5
-        randomView.layer.cornerRadius = 16
+        myToolbar.layer.cornerRadius = myToolbar.bounds.height * 0.5
+        myToolbar.layer.masksToBounds = true
 
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
@@ -107,7 +103,7 @@ class MakerViewController: UIViewController,
         guard let safeURL = myURL else {
             let alert = createAlert(alertReasonParam: .unknown)
             if let presenter = alert.popoverPresentationController {
-                presenter.sourceView = aboutButton
+                presenter.barButtonItem = menuButton
             }
                 present(alert, animated: true)
             return
@@ -137,135 +133,22 @@ class MakerViewController: UIViewController,
 
     @IBAction func showMainMenu() {
 
-        let mainMenuAlert = UIAlertController(title: "Main Menu", message: nil, preferredStyle: .actionSheet)
+        let mainMenuAlert = UIAlertController(title: "Main menu", message: nil, preferredStyle: .actionSheet)
 
+        let version: String? = Bundle.main.infoDictionary![Constants.AppInfo.bundleShort] as? String
+        if let version = version {
+            mainMenuAlert.message = "Version \(version)"
+            mainMenuAlert.title = Constants.AppInfo.appName
+        }
         mainMenuAlert.modalPresentationStyle = .popover
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             self.dismiss(animated: true, completion: nil)
         }
 
-        let downloadImageAction = UIAlertAction(title: "Download as Image", style: .default, handler: { _ in
-
-            self.downloadAsImage()
-        })
-
-        let showPickerAction = UIAlertAction(title: "Open color picker", style: .default, handler: { _ in
-
-            self.showColorPicker()
-        })
-
-
-        let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
-            self.showShareMainMenu()
-        }
-
-        let appIconAction = UIAlertAction(title: "Update App Icon", style: .default) { _ in
+        let appIconAction = UIAlertAction(title: "Change app icon", style: .default) { _ in
             self.showUpdateIconMenu()
         }
-
-        let infoAction = UIAlertAction(title: "Contact and Info", style: .default) { _ in
-            self.showInfoMainMenu()
-        }
-
-        for action in [downloadImageAction, showPickerAction, shareAction,
-                       appIconAction, infoAction, cancelAction] {
-            mainMenuAlert.addAction(action)
-        }
-
-        if let presenter = mainMenuAlert.popoverPresentationController {
-            presenter.sourceView = aboutButton
-        }
-
-            present(mainMenuAlert, animated: true)
-    }
-
-    func showUpdateIconMenu() {
-        let storyboard = UIStoryboard(name: Constants.StoryboardID.main, bundle: nil)
-        let controller = storyboard.instantiateViewController(
-            withIdentifier: Constants.StoryboardID.appIconViewController)
-            as? AppIconViewController
-        if let toPresent = controller {
-            self.present(toPresent, animated: true)
-        }
-    }
-
-
-    func showShareMainMenu() {
-        let shareMainMenuAlert = UIAlertController(title: "Share Menu", message: nil, preferredStyle: .actionSheet)
-        shareMainMenuAlert.modalPresentationStyle = .popover
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true)
-        }
-
-        let backAction = UIAlertAction(title: "Back to Main Menu", style: .default) { _ in
-            self.showMainMenu()
-        }
-
-        let shareTextMainAction = UIAlertAction(title: "Share as Text", style: .default) { _ in
-            self.showShareTextMenu()
-        }
-
-        let shareImageAction = UIAlertAction(title: "Share as Image", style: .default) { _ in
-            self.shareAsImage()
-        }
-
-        for action in [backAction, shareImageAction, shareTextMainAction, cancelAction] {
-            shareMainMenuAlert.addAction(action)
-        }
-
-        if let presenter = shareMainMenuAlert.popoverPresentationController {
-            presenter.sourceView = aboutButton
-        }
-            present(shareMainMenuAlert, animated: true)
-
-    }
-
-
-    func showShareTextMenu() {
-        let shareTextMenuAlert = UIAlertController(
-            title: "Share As Text Menu",
-            message: nil,
-            preferredStyle: .actionSheet)
-
-        shareTextMenuAlert.modalPresentationStyle = .popover
-
-        let shareTextHexAction = UIAlertAction(title: "Share as HEX Text", style: .default) { _ in
-            self.shareAsText(format: .hex)
-        }
-
-        let shareTextRGBAction = UIAlertAction(title: "Share as RGB Text", style: .default) { _ in
-            self.shareAsText(format: .rgb)
-        }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true)
-        }
-
-        let backAction = UIAlertAction(title: "Back to Share Menu", style: .default) { _ in
-            self.showShareMainMenu()
-        }
-
-        for action in [backAction, shareTextHexAction, shareTextRGBAction, cancelAction] {
-            shareTextMenuAlert.addAction(action)
-        }
-
-        if let presenter = shareTextMenuAlert.popoverPresentationController {
-            presenter.sourceView = aboutButton
-        }
-            present(shareTextMenuAlert, animated: true)
-    }
-
-
-    func showInfoMainMenu() {
-        let version: String? = Bundle.main.infoDictionary![Constants.AppInfo.bundleShort] as? String
-        let infoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        if let version = version {
-            infoAlert.message = "Version \(version)"
-            infoAlert.title = Constants.AppInfo.appName
-        }
-        infoAlert.modalPresentationStyle = .popover
 
         let mailAction = UIAlertAction(title: "Contact Us", style: .default) { _ in
             self.launchEmail()
@@ -279,34 +162,69 @@ class MakerViewController: UIViewController,
             self.shareApp()
         }
 
-        let backAction = UIAlertAction(title: "Back to Main Menu", style: .default) { _ in
-            self.showMainMenu()
-        }
-
         let showAppsAction = UIAlertAction(title: Constants.AppInfo.showAppsButtonTitle, style: .default) { _ in
             self.showApps()
         }
+
+
+        for action in [mailAction, reviewAction, shareAppAction, appIconAction,
+                       showAppsAction, cancelAction] {
+            mainMenuAlert.addAction(action)
+        }
+
+        if let presenter = mainMenuAlert.popoverPresentationController {
+            presenter.barButtonItem = menuButton
+        }
+
+            present(mainMenuAlert, animated: true)
+    }
+
+
+    func showUpdateIconMenu() {
+        let storyboard = UIStoryboard(name: Constants.StoryboardID.main, bundle: nil)
+        let controller = storyboard.instantiateViewController(
+            withIdentifier: Constants.StoryboardID.appIconViewController)
+            as? AppIconViewController
+        if let toPresent = controller {
+            self.present(toPresent, animated: true)
+        }
+    }
+
+
+    @IBAction func shareMenu() {
+        let shareMainMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        shareMainMenuAlert.modalPresentationStyle = .popover
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             self.dismiss(animated: true)
         }
 
-        for action in [backAction, mailAction, reviewAction, shareAppAction,
-                       showAppsAction, cancelAction] {
-            infoAlert.addAction(action)
+        let shareTextHexAction = UIAlertAction(title: "Share color as HEX text", style: .default) { _ in
+            self.shareAsText(format: .hex)
         }
 
-        if let presenter = infoAlert.popoverPresentationController {
-            presenter.sourceView = aboutButton
+        let shareTextRGBAction = UIAlertAction(title: "Share color as RGB text", style: .default) { _ in
+            self.shareAsText(format: .rgb)
         }
 
-            present(infoAlert, animated: true)
+        let shareImageAction = UIAlertAction(title: "Share color as image", style: .default) { _ in
+            self.shareAsImage()
+        }
+
+
+        for action in [shareTextHexAction, shareTextRGBAction, shareImageAction, cancelAction] {
+            shareMainMenuAlert.addAction(action)
+        }
+
+        if let presenter = shareMainMenuAlert.popoverPresentationController {
+            presenter.barButtonItem = menuButton
+        }
+            present(shareMainMenuAlert, animated: true)
 
     }
 
 
-    func downloadAsImage() {
-
+    @IBAction func downloadAsImage() {
         let image = generateImage()
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
     }
@@ -318,50 +236,31 @@ class MakerViewController: UIViewController,
             let goToSettingsButton = UIAlertAction(title: "Open Settings", style: .default, handler: { _ in
                 if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
                         UIApplication.shared.open(url)
-
                 }
 
             })
             alert.addAction(goToSettingsButton)
             if let presenter = alert.popoverPresentationController {
-                presenter.sourceView = aboutButton
+                presenter.barButtonItem = menuButton
             }
             present(alert, animated: true)
             return
         }
         let alert = createAlert(alertReasonParam: AlertReason.imageSaved)
-        let goToLibraryButton = UIAlertAction(title: "Open Gallery", style: .default, handler: { _ in
+        let goToLibraryButton = UIAlertAction(title: "Open gallery", style: .default, handler: { _ in
                 UIApplication.shared.open(URL(string: Constants.AppInfo.galleryLink)!)
 
         })
         alert.addAction(goToLibraryButton)
         if let presenter = alert.popoverPresentationController {
-            presenter.sourceView = aboutButton
+            presenter.barButtonItem = menuButton
         }
             present(alert, animated: true)
-
-    }
-
-
-    func copyAsImage() {
-
-        let image = generateImage()
-        let pasteboard = UIPasteboard.general
-        pasteboard.image = image
-
-        let alert = createAlert(alertReasonParam: AlertReason.imageCopied)
-        if let presenter = alert.popoverPresentationController {
-            presenter.sourceView = aboutButton
-        }
-        present(alert, animated: true)
-
     }
 
 
     func shareAsText(format: Format) {
-
         var myText = ""
-
         switch format {
         case .hex:
             myText = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)!
@@ -376,13 +275,13 @@ class MakerViewController: UIViewController,
         }
 
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
-        activityController.popoverPresentationController?.sourceView = aboutButton
+        activityController.popoverPresentationController?.barButtonItem = menuButton
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.sourceView = self.aboutButton
+                    presenter.barButtonItem = self.menuButton
 
                 }
                 self.present(alert, animated: true)
@@ -391,23 +290,20 @@ class MakerViewController: UIViewController,
             }
         }
             present(activityController, animated: true)
-
-
     }
 
 
     func shareAsImage() {
-
         let image = generateImage()
 
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        activityController.popoverPresentationController?.sourceView = aboutButton
+        activityController.popoverPresentationController?.barButtonItem = menuButton
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.sourceView = self.aboutButton
+                    presenter.barButtonItem = self.menuButton
                 }
                 self.present(alert, animated: true)
 
@@ -432,17 +328,14 @@ class MakerViewController: UIViewController,
         let attributedMessagePreHex = NSAttributedString(
             string: "\nHEX\n",
             attributes: regularAttributes)
-        let hexString = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) ?? "<error>"
+        let hexString = getSafeHexFromUD()
         let attributedMessageJumboHex = NSAttributedString(string: hexString, attributes: jumboAttributes)
         let attributedMessagePreRGB = NSAttributedString(
             string: "\n\nRGB\n",
             attributes: regularAttributes)
 
-        let redValue = Int(hexString[0...1], radix: 16)!
-        let greenValue = Int(hexString[2...3], radix: 16)!
-        let blueValue = Int(hexString[4...5], radix: 16)!
-
-        let rgbString = "\(redValue), \(greenValue), \(blueValue)"
+        let rgbString: String = rgbFrom(hex: hexString)!
+        let myUIColor = uiColorFrom(hex: hexString)
 
         let attributedMessageJumboRGB = NSAttributedString(string: rgbString, attributes: jumboAttributes)
 
@@ -460,11 +353,7 @@ class MakerViewController: UIViewController,
 
         messageLabel.attributedText = myAttributedText
         let viewColorWas = view.backgroundColor
-        view.backgroundColor = UIColor(
-            red: CGFloat(Double(redValue)/255),
-            green: CGFloat(Double(greenValue)/255),
-            blue: CGFloat(Double(blueValue)/255),
-            alpha: 1.0)
+        view.backgroundColor = myUIColor
 
         UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
         view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
@@ -483,9 +372,7 @@ class MakerViewController: UIViewController,
 
         messageLabel.isHidden = !hide
 
-        for view in [aboutView, randomView, aboutButton, randomButton] {
-            view?.isHidden = hide
-        }
+        myToolbar.isHidden = hide
 
     }
 
@@ -493,20 +380,18 @@ class MakerViewController: UIViewController,
     func shareApp() {
 
         let message = """
-            Create amazing colors. Share with friends. Done.
-
-            Download now:
+            We believe life should be ColorFull. Do you?
             https://itunes.apple.com/app/id1410565176
             """
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
-        activityController.popoverPresentationController?.sourceView = aboutButton
+        activityController.popoverPresentationController?.barButtonItem = menuButton
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.sourceView = self.aboutButton
+                    presenter.barButtonItem = self.menuButton
                 }
                 self.present(alert, animated: true)
 
@@ -514,7 +399,7 @@ class MakerViewController: UIViewController,
             }
         }
         if let presenter = activityController.popoverPresentationController {
-            presenter.sourceView = aboutButton
+            presenter.barButtonItem = menuButton
         }
 
         present(activityController, animated: true)
@@ -522,15 +407,9 @@ class MakerViewController: UIViewController,
     }
 
 
-    func showColorPicker() {
+    @IBAction func showColorPicker() {
         present(colorPicker, animated: true)
     }
-
-
-    // Optional delegate functions
-//    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
-//
-//    }
 
 
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
@@ -567,8 +446,6 @@ class MakerViewController: UIViewController,
 
             updateColor(hexStringParam: randomHex)
     }
-
-
 }
 
 
@@ -611,7 +488,7 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
             }
             if alert.title != nil {
                 if let presenter = alert.popoverPresentationController {
-                    presenter.sourceView = self.aboutButton
+                    presenter.barButtonItem = self.menuButton
                 }
                 self.present(alert, animated: true)
 

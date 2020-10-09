@@ -20,51 +20,41 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djy-q9-byu">
-                                <rect key="frame" x="318" y="396.5" width="64" height="64"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SkQ-yW-cnd">
-                                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
-                                        <state key="normal" image="ellipsis.circle" catalog="system"/>
-                                        <connections>
-                                            <action selector="showMainMenu" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZyR-08-aB1"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NK4-FQ-SOv">
+                                <rect key="frame" x="32" y="737" width="350" height="44"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="SkQ-yW-cnd" firstAttribute="top" secondItem="djy-q9-byu" secondAttribute="top" id="2F9-Ir-C3f"/>
-                                    <constraint firstAttribute="height" constant="64" id="4pz-pb-wcq"/>
-                                    <constraint firstAttribute="width" secondItem="djy-q9-byu" secondAttribute="height" multiplier="1:1" id="Imk-CN-nUc"/>
-                                    <constraint firstItem="SkQ-yW-cnd" firstAttribute="leading" secondItem="djy-q9-byu" secondAttribute="leading" id="d76-SI-QpZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="SkQ-yW-cnd" secondAttribute="trailing" id="jPJ-Sc-FdP"/>
-                                    <constraint firstAttribute="bottom" secondItem="SkQ-yW-cnd" secondAttribute="bottom" id="sW3-ai-Ijg"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ot6-gi-Jgu">
-                                <rect key="frame" x="32" y="396.5" width="64" height="64"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKC-wP-14a">
-                                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
-                                        <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
-                                        <state key="normal" image="wand.and.stars" catalog="system"/>
+                                <items>
+                                    <barButtonItem title="Item" image="wand.and.stars" catalog="system" id="qNl-rx-Hux">
                                         <connections>
-                                            <action selector="randomPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eb1-lb-Sie"/>
+                                            <action selector="randomPressed:" destination="BYZ-38-t0r" id="sY8-h7-FcE"/>
                                         </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="xKC-wP-14a" secondAttribute="bottom" id="6G9-gW-8ce"/>
-                                    <constraint firstAttribute="width" secondItem="Ot6-gi-Jgu" secondAttribute="height" multiplier="1:1" id="JYN-Df-kkH"/>
-                                    <constraint firstItem="xKC-wP-14a" firstAttribute="top" secondItem="Ot6-gi-Jgu" secondAttribute="top" id="UuI-Ad-Hyi"/>
-                                    <constraint firstItem="xKC-wP-14a" firstAttribute="leading" secondItem="Ot6-gi-Jgu" secondAttribute="leading" id="fUf-uj-dwt"/>
-                                    <constraint firstAttribute="height" constant="64" id="tru-mz-gCP"/>
-                                    <constraint firstAttribute="trailing" secondItem="xKC-wP-14a" secondAttribute="trailing" id="y12-jU-dIs"/>
-                                </constraints>
-                            </view>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="uXV-rF-nYe"/>
+                                    <barButtonItem title="Item" image="ellipsis.rectangle" catalog="system" id="0Q6-6C-Hay">
+                                        <connections>
+                                            <action selector="showMainMenu" destination="BYZ-38-t0r" id="WpZ-zl-tWG"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hTx-gE-eea"/>
+                                    <barButtonItem title="Item" image="square.and.arrow.down" catalog="system" id="nNY-PH-3tH">
+                                        <connections>
+                                            <action selector="downloadAsImage" destination="BYZ-38-t0r" id="NtD-J6-Mpg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="pl9-Re-fzD"/>
+                                    <barButtonItem title="Item" image="square.and.arrow.up" catalog="system" id="Wrr-2c-byl">
+                                        <connections>
+                                            <action selector="shareMenu" destination="BYZ-38-t0r" id="9BR-Lo-6Qq"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="RPZ-st-54x"/>
+                                    <barButtonItem title="Item" image="paintpalette" catalog="system" id="erP-Sp-GGj">
+                                        <connections>
+                                            <action selector="showColorPicker" destination="BYZ-38-t0r" id="01T-Rb-lpX"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKY-HB-wIv" userLabel="Message Label">
                                 <rect key="frame" x="40" y="752.5" width="334" height="20.5"/>
                                 <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="calibratedRGB"/>
@@ -77,13 +67,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="7iT-jJ-EaV" secondAttribute="bottom" id="0hc-S8-bD4"/>
-                            <constraint firstItem="Ot6-gi-Jgu" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="2Fu-hf-wzp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="djy-q9-byu" secondAttribute="trailing" constant="32" id="Ka7-9G-rqF"/>
-                            <constraint firstItem="djy-q9-byu" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="LVo-rW-Sgz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NK4-FQ-SOv" secondAttribute="bottom" constant="32" id="27l-b0-3kv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NK4-FQ-SOv" secondAttribute="trailing" constant="32" id="Ggp-3G-aa2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7iT-jJ-EaV" secondAttribute="trailing" id="P5C-FX-5bk"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="SYy-T5-Xpr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BKY-HB-wIv" secondAttribute="bottom" constant="40" id="Zdq-nc-oiG"/>
-                            <constraint firstItem="Ot6-gi-Jgu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="k51-CX-vQb"/>
+                            <constraint firstItem="NK4-FQ-SOv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="gm1-pF-Jv6"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mw9-bO-m8F"/>
                             <constraint firstItem="BKY-HB-wIv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="n95-Oy-Pzb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BKY-HB-wIv" secondAttribute="trailing" constant="40" id="sW6-xr-tSj"/>
@@ -92,11 +81,9 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="aboutButton" destination="SkQ-yW-cnd" id="xdL-qt-Z2s"/>
-                        <outlet property="aboutView" destination="djy-q9-byu" id="DSO-D5-cQe"/>
+                        <outlet property="menuButton" destination="0Q6-6C-Hay" id="rnI-c8-rRD"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="nVb-Od-V3R"/>
-                        <outlet property="randomButton" destination="xKC-wP-14a" id="jEf-FZ-zrd"/>
-                        <outlet property="randomView" destination="Ot6-gi-Jgu" id="Bae-yC-cYu"/>
+                        <outlet property="myToolbar" destination="NK4-FQ-SOv" id="BC0-eL-Mjb"/>
                         <outlet property="resultView" destination="7iT-jJ-EaV" id="fu8-S3-1HE"/>
                     </connections>
                 </viewController>
@@ -180,7 +167,7 @@
                                     <outlet property="delegate" destination="4W0-95-KLj" id="d7a-r7-JI5"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Icon" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O82-3z-lVW" userLabel="App Icon Title Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Your App Icon" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O82-3z-lVW" userLabel="App Icon Title Label">
                                 <rect key="frame" x="20" y="56" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
@@ -214,7 +201,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
+        <image name="ellipsis.rectangle" catalog="system" width="128" height="81"/>
+        <image name="paintpalette" catalog="system" width="128" height="105"/>
+        <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="wand.and.stars" catalog="system" width="128" height="113"/>
         <systemColor name="separatorColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
