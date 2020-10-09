@@ -28,7 +28,7 @@ Hello,
 * Enjoying ColorFull? Please consider leaving a 5-star review. It would mean the world to us!
 - Get it here: https://itunes.apple.com/app/id1410565176
 
-![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s1.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s2.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s3.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s4.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s5.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s6.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s7.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s8.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s9.jpg) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s10.jpg)
+![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s1.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s2.png) ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s3.png)
 
 
 
