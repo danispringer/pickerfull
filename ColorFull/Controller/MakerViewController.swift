@@ -20,10 +20,11 @@ class MakerViewController: UIViewController,
 
     @IBOutlet weak var messageLabel: UILabel!
 
-    @IBOutlet weak var myToolbar: UIToolbar!
-    @IBOutlet weak var aboutBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var aboutButton: UIButton!
+    @IBOutlet weak var aboutView: UIView!
+    @IBOutlet weak var randomView: UIView!
 
-    @IBOutlet weak var randomBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var randomButton: UIButton!
     @IBOutlet weak var resultView: UIView!
 
 
@@ -59,6 +60,9 @@ class MakerViewController: UIViewController,
 
         resultView.backgroundColor = uiColorFrom(hex: getSafeHexFromUD())
 
+        aboutView.layer.cornerRadius = aboutView.bounds.size.width * 0.5
+        randomView.layer.cornerRadius = 16
+
     }
 
 
@@ -87,7 +91,7 @@ class MakerViewController: UIViewController,
         guard let safeURL = myURL else {
             let alert = createAlert(alertReasonParam: .unknown)
             if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = aboutBarButtonItem
+                presenter.sourceView = aboutButton
             }
                 present(alert, animated: true)
             return
@@ -148,7 +152,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = mainMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = aboutBarButtonItem
+            presenter.sourceView = aboutButton
         }
 
             present(mainMenuAlert, animated: true)
@@ -190,7 +194,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = shareMainMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = aboutBarButtonItem
+            presenter.sourceView = aboutButton
         }
             present(shareMainMenuAlert, animated: true)
 
@@ -226,7 +230,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = shareTextMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = aboutBarButtonItem
+            presenter.sourceView = aboutButton
         }
             present(shareTextMenuAlert, animated: true)
     }
@@ -271,7 +275,7 @@ class MakerViewController: UIViewController,
         }
 
         if let presenter = infoAlert.popoverPresentationController {
-            presenter.barButtonItem = aboutBarButtonItem
+            presenter.sourceView = aboutButton
         }
 
             present(infoAlert, animated: true)
@@ -298,7 +302,7 @@ class MakerViewController: UIViewController,
             })
             alert.addAction(goToSettingsButton)
             if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = aboutBarButtonItem
+                presenter.sourceView = aboutButton
             }
             present(alert, animated: true)
             return
@@ -310,7 +314,7 @@ class MakerViewController: UIViewController,
         })
         alert.addAction(goToLibraryButton)
         if let presenter = alert.popoverPresentationController {
-            presenter.barButtonItem = aboutBarButtonItem
+            presenter.sourceView = aboutButton
         }
             present(alert, animated: true)
 
@@ -325,7 +329,7 @@ class MakerViewController: UIViewController,
 
         let alert = createAlert(alertReasonParam: AlertReason.imageCopied)
         if let presenter = alert.popoverPresentationController {
-            presenter.barButtonItem = aboutBarButtonItem
+            presenter.sourceView = aboutButton
         }
         present(alert, animated: true)
 
@@ -350,13 +354,13 @@ class MakerViewController: UIViewController,
         }
 
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = aboutBarButtonItem
+        activityController.popoverPresentationController?.sourceView = aboutButton
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.aboutBarButtonItem
+                    presenter.sourceView = self.aboutButton
 
                 }
                 self.present(alert, animated: true)
@@ -375,13 +379,13 @@ class MakerViewController: UIViewController,
         let image = generateImage()
 
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = aboutBarButtonItem
+        activityController.popoverPresentationController?.sourceView = aboutButton
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.aboutBarButtonItem
+                    presenter.sourceView = self.aboutButton
                 }
                 self.present(alert, animated: true)
 
@@ -455,9 +459,11 @@ class MakerViewController: UIViewController,
 
     func elementsShould(hide: Bool) {
 
-        myToolbar.isHidden = hide
-
         messageLabel.isHidden = !hide
+
+        for view in [aboutView, randomView, aboutButton, randomButton] {
+            view?.isHidden = hide
+        }
 
     }
 
@@ -472,13 +478,13 @@ class MakerViewController: UIViewController,
             """
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
-        activityController.popoverPresentationController?.barButtonItem = aboutBarButtonItem
+        activityController.popoverPresentationController?.sourceView = aboutButton
         activityController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.aboutBarButtonItem
+                    presenter.sourceView = self.aboutButton
                 }
                 self.present(alert, animated: true)
 
@@ -486,7 +492,7 @@ class MakerViewController: UIViewController,
             }
         }
         if let presenter = activityController.popoverPresentationController {
-            presenter.barButtonItem = aboutBarButtonItem
+            presenter.sourceView = aboutButton
         }
 
         present(activityController, animated: true)
@@ -521,7 +527,7 @@ class MakerViewController: UIViewController,
             UserDefaults.standard.set(false, forKey: Constants.UserDef.isFirstTapOnRandomButton)
 
             if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = randomBarButtonItem
+                presenter.sourceView = aboutButton
             }
             present(alert, animated: true)
         } else {
@@ -585,7 +591,7 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
             }
             if alert.title != nil {
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.aboutBarButtonItem
+                    presenter.sourceView = self.aboutButton
                 }
                 self.present(alert, animated: true)
 

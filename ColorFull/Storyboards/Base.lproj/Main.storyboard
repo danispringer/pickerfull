@@ -17,8 +17,53 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7iT-jJ-EaV" userLabel="Result View">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djy-q9-byu">
+                                <rect key="frame" x="318" y="396.5" width="64" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SkQ-yW-cnd">
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
+                                        <state key="normal" image="ellipsis.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="showMainMenu" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZyR-08-aB1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="SkQ-yW-cnd" firstAttribute="top" secondItem="djy-q9-byu" secondAttribute="top" id="2F9-Ir-C3f"/>
+                                    <constraint firstAttribute="height" constant="64" id="4pz-pb-wcq"/>
+                                    <constraint firstAttribute="width" secondItem="djy-q9-byu" secondAttribute="height" multiplier="1:1" id="Imk-CN-nUc"/>
+                                    <constraint firstItem="SkQ-yW-cnd" firstAttribute="leading" secondItem="djy-q9-byu" secondAttribute="leading" id="d76-SI-QpZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="SkQ-yW-cnd" secondAttribute="trailing" id="jPJ-Sc-FdP"/>
+                                    <constraint firstAttribute="bottom" secondItem="SkQ-yW-cnd" secondAttribute="bottom" id="sW3-ai-Ijg"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ot6-gi-Jgu">
+                                <rect key="frame" x="32" y="396.5" width="64" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKC-wP-14a">
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                        <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
+                                        <state key="normal" image="wand.and.stars" catalog="system"/>
+                                        <connections>
+                                            <action selector="randomPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eb1-lb-Sie"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="xKC-wP-14a" secondAttribute="bottom" id="6G9-gW-8ce"/>
+                                    <constraint firstAttribute="width" secondItem="Ot6-gi-Jgu" secondAttribute="height" multiplier="1:1" id="JYN-Df-kkH"/>
+                                    <constraint firstItem="xKC-wP-14a" firstAttribute="top" secondItem="Ot6-gi-Jgu" secondAttribute="top" id="UuI-Ad-Hyi"/>
+                                    <constraint firstItem="xKC-wP-14a" firstAttribute="leading" secondItem="Ot6-gi-Jgu" secondAttribute="leading" id="fUf-uj-dwt"/>
+                                    <constraint firstAttribute="height" constant="64" id="tru-mz-gCP"/>
+                                    <constraint firstAttribute="trailing" secondItem="xKC-wP-14a" secondAttribute="trailing" id="y12-jU-dIs"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKY-HB-wIv" userLabel="Message Label">
                                 <rect key="frame" x="40" y="752.5" width="334" height="20.5"/>
@@ -27,46 +72,31 @@
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFq-en-Umf" userLabel="Main Toolbar">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <items>
-                                    <barButtonItem title="Make Random Color" image="wand.and.stars" catalog="system" id="ZMN-hO-xxK">
-                                        <connections>
-                                            <action selector="randomPressed:" destination="BYZ-38-t0r" id="Xj9-SA-kz6"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nXe-8m-eRY"/>
-                                    <barButtonItem title="Main Menu" image="ellipsis.circle" catalog="system" id="7Tf-R1-A8S">
-                                        <connections>
-                                            <action selector="showMainMenu" destination="BYZ-38-t0r" id="Pbl-sA-2kN"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <color key="barTintColor" systemColor="systemBackgroundColor"/>
-                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="7iT-jJ-EaV" secondAttribute="bottom" id="0hc-S8-bD4"/>
-                            <constraint firstItem="cFq-en-Umf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="C2N-0I-AIh"/>
+                            <constraint firstItem="Ot6-gi-Jgu" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="2Fu-hf-wzp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="djy-q9-byu" secondAttribute="trailing" constant="32" id="Ka7-9G-rqF"/>
+                            <constraint firstItem="djy-q9-byu" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="LVo-rW-Sgz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7iT-jJ-EaV" secondAttribute="trailing" id="P5C-FX-5bk"/>
-                            <constraint firstItem="7iT-jJ-EaV" firstAttribute="top" secondItem="cFq-en-Umf" secondAttribute="bottom" id="PoT-Vz-lVE"/>
+                            <constraint firstItem="7iT-jJ-EaV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="SYy-T5-Xpr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BKY-HB-wIv" secondAttribute="bottom" constant="40" id="Zdq-nc-oiG"/>
+                            <constraint firstItem="Ot6-gi-Jgu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="k51-CX-vQb"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mw9-bO-m8F"/>
                             <constraint firstItem="BKY-HB-wIv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="n95-Oy-Pzb"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cFq-en-Umf" secondAttribute="trailing" id="pzy-Cm-C7f"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BKY-HB-wIv" secondAttribute="trailing" constant="40" id="sW6-xr-tSj"/>
-                            <constraint firstItem="cFq-en-Umf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vm5-sZ-pcg"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="aboutBarButtonItem" destination="7Tf-R1-A8S" id="k9H-aY-adi"/>
+                        <outlet property="aboutButton" destination="SkQ-yW-cnd" id="xdL-qt-Z2s"/>
+                        <outlet property="aboutView" destination="djy-q9-byu" id="DSO-D5-cQe"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="nVb-Od-V3R"/>
-                        <outlet property="myToolbar" destination="cFq-en-Umf" id="SUR-uE-5gn"/>
-                        <outlet property="randomBarButtonItem" destination="ZMN-hO-xxK" id="KMr-YG-SlC"/>
+                        <outlet property="randomButton" destination="xKC-wP-14a" id="jEf-FZ-zrd"/>
+                        <outlet property="randomView" destination="Ot6-gi-Jgu" id="Bae-yC-cYu"/>
                         <outlet property="resultView" destination="7iT-jJ-EaV" id="fu8-S3-1HE"/>
                     </connections>
                 </viewController>
