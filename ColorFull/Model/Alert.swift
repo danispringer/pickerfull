@@ -21,12 +21,6 @@ extension UIViewController {
         case textCopied
         case imageCopied
         case permissionDenied
-        case emptyPasteHex
-        case emptyPasteRGB
-        case invalidHex
-        case invalidRGB
-        case firstRandom
-        case pastedIsSame
     }
 
 
@@ -41,7 +35,6 @@ extension UIViewController {
         invalidCode: String = "",
         format: Format = .hex) -> UIAlertController {
 
-        var addOkButton = true
         var alertPreferredStyle = UIAlertController.Style.alert
 
         var alertTitle = ""
@@ -54,7 +47,7 @@ extension UIViewController {
         case .messageFailed:
             alertTitle = "Action failed"
             alertMessage = """
-            Your message has not been sent. Please try again later, or contact us by leaving a review.
+            Your message has not been sent. Please try again, or contact us: ***REMOVED***
             """
         case .messageSent:
             alertPreferredStyle = UIAlertController.Style.actionSheet
@@ -80,41 +73,6 @@ extension UIViewController {
             alertMessage = """
             Access was previously denied. Please grant access from Settings so ColorFull can save your image.
             """
-        case .invalidHex:
-            alertTitle = "Invalid HEX"
-            alertMessage = "The pasted text\n\"\(invalidCode)\"\nis not a valid HEX."
-        case .emptyPasteHex:
-            alertTitle = "Pasteboard empty"
-            alertMessage = "There's nothing to paste. Please copy a HEX code and try again."
-        case .invalidRGB:
-            alertTitle = "Invalid RGB"
-            alertMessage = """
-            The pasted text\n\"\(invalidCode)\"\nis not a valid RGB.\nPaste numbers only, \
-            separated by commas.\nFor example: 255,12,90
-            """
-        case .emptyPasteRGB:
-            alertTitle = "Pasteboard emtpy"
-            alertMessage = "There's nothing to paste. Please copy a RGB code and try again."
-        case .firstRandom:
-            addOkButton = false
-            alertPreferredStyle = UIAlertController.Style.actionSheet
-            alertTitle = "Replacing Color"
-            alertMessage = """
-            This magical button generates a new random color, which will replace your current one \
-            (#\(UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) ?? "NO COLOR FOUND")).
-
-            If you would like to save your current color first:
-            • Tap "Cancel" (or anywhere outside this alert on iPad)
-            • Save your color (using the "About" button on the top right of your screen)
-            • Then tap this magical button again.
-
-            This message won't be shown again.
-            """
-        case .pastedIsSame:
-            alertPreferredStyle = UIAlertController.Style.actionSheet
-            alertTitle = "Same color pasted"
-            alertMessage = "The color you are trying to paste is the same as the current color."
-
         default:
             alertTitle = "Unknown Error"
             alertMessage = """
@@ -127,13 +85,11 @@ extension UIViewController {
             message: alertMessage,
             preferredStyle: alertPreferredStyle)
 
-        if addOkButton {
-            let alertAction = UIAlertAction(
-                title: "OK",
-                style: .default,
-                handler: nil)
-            alert.addAction(alertAction)
-        }
+        let alertAction = UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: nil)
+        alert.addAction(alertAction)
 
         return alert
     }
