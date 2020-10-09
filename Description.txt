@@ -1,18 +1,12 @@
 We believe life should be ColorFull. Do you?
 
-Hello,
+• Meet ColorFull, a simple yet "PowerFull" app that lets you easily and precisely create and share your colors - or find your next favorite one – with the tap of a button or using Siri.
 
-• Meet ColorFull, a simple yet powerFull app that lets you easily and precisely create and share your colors - or find your next favorite one – with the tap of a button or using Siri.
+• Export in HEX, RGB, or..
 
-• Generate your perfect color from millions of options
+• Generate beautiful images (which include the color's HEX and RGB values, and of course the color itself) with just a tap
 
-• Save (export) your color by copying or sharing it, in HEX or RGB values, or...
-
-• Generate beautiful images which include the color and its HEX and RGB values with the tap of a button
-
-• Battery died? Your last selected color will automatically display when you launch the app again. ColorFull has got your back – and favorite color!
-
-• Create gorgeous new colors with the tap of a button or using Siri
+• Battery died? No worries. Your last selected color will automatically display when you launch the app again. ColorFull has got your back – and favorite color!
 
 
 • Ask us anything: musicbyds@icloud.com
