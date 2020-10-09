@@ -35,13 +35,6 @@ UITableViewDataSource {
     }
 
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-
-        SKStoreReviewController.requestReview()
-    }
-
-
     // MARK: Helpers
 
     func readFromDocuments() {
