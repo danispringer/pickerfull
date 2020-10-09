@@ -13,19 +13,10 @@ import Intents
 
 
 class MakerViewController: UIViewController,
-                           UIPickerViewDelegate,
-                           UIPickerViewDataSource,
                            UINavigationControllerDelegate {
 
 
     // MARK: Outlets
-
-    @IBOutlet weak var redSlider: UISlider!
-    @IBOutlet weak var greenSlider: UISlider!
-    @IBOutlet weak var blueSlider: UISlider!
-
-    @IBOutlet weak var hexPicker: UIPickerView!
-    @IBOutlet weak var rgbPicker: UIPickerView!
 
     @IBOutlet weak var messageLabel: UILabel!
 
@@ -33,34 +24,24 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var aboutBarButtonItem: UIBarButtonItem!
 
     @IBOutlet weak var randomBarButtonItem: UIBarButtonItem!
-    @IBOutlet weak var randomHistoryBarButtonItem: UIBarButtonItem!
-    @IBOutlet weak var mySwitchButton: UIBarButtonItem!
     @IBOutlet weak var resultView: UIView!
-    @IBOutlet weak var separatorView: UIView!
+
 
     // MARK: properties
 
     enum Controls {
-        case slider
-        case hexPicker
-        case rgbPicker
-        case pasteHex
         case randomHex
-        case pasteRGB
     }
 
     var currentUIColor: UIColor!
     var currentHexColor: String!
 
-    var hexArray: [String] = []
-    var rgbArray: [String] = []
+    var hexArrayForRandom: [String] = []
 
     var hexImage: UIImage!
 
     var textColor = UIColor.label
     var backgroundColor = UIColor.systemBackground
-
-    let animationDuration = 0.3
 
 
     // MARK: Life Cycle
@@ -69,83 +50,35 @@ class MakerViewController: UIViewController,
         super.viewDidLoad()
 
         for number in 0...Int(Constants.Values.rgbMax) {
-            hexArray.append(String(format: Constants.Values.numToHexFormatter, number))
-        }
-
-        for number in 0...Int(Constants.Values.rgbMax) {
-            rgbArray.append(String(number))
-        }
-
-        for picker in [hexPicker, rgbPicker] {
-            picker?.delegate = self
-            picker?.layer.masksToBounds = true
-
+            hexArrayForRandom.append(String(format: Constants.Values.numToHexFormatter, number))
         }
 
         messageLabel.isHidden = true
-        redSlider.thumbTintColor = .red
-        greenSlider.thumbTintColor = .green
-        blueSlider.thumbTintColor = .blue
-
-        redSlider.minimumTrackTintColor = UIColor.red
-        greenSlider.minimumTrackTintColor = UIColor.green
-        blueSlider.minimumTrackTintColor = UIColor.blue
-
         messageLabel.layer.cornerRadius = 20
         messageLabel.layer.masksToBounds = true
 
-        let hexPickerIsSelected = UserDefaults.standard.bool(
-            forKey: Constants.UserDef.hexPickerSelected)
-
-        hexPicker.isHidden = !hexPickerIsSelected
-        rgbPicker.isHidden = hexPickerIsSelected
-
-        let prefixMessage = "Switch to "
-
-        mySwitchButton.title = prefixMessage + (hexPickerIsSelected ? "RGB" : "HEX")
-
-        let hexString = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)
-
-        redSlider.setValue(Float(Constants.Values.hexToNumFormatter +
-            hexString![0...1])! /
-            Float(Constants.Values.rgbMax), animated: false)
-        greenSlider.setValue(Float(Constants.Values.hexToNumFormatter +
-            hexString![2...3])! / Float(Constants.Values.rgbMax), animated: false)
-        blueSlider.setValue(Float(Constants.Values.hexToNumFormatter +
-            hexString![4...5])! / Float(Constants.Values.rgbMax), animated: false)
-
-        let redHex = hexString![0...1]
-        let greenHex = hexString![2...3]
-        let blueHex = hexString![4...5]
-
-        let redIndexHex = hexArray.firstIndex(of: String(redHex))
-        let greenIndexHex = hexArray.firstIndex(of: String(greenHex))
-        let blueIndexHex = hexArray.firstIndex(of: String(blueHex))
-
-        hexPicker.selectRow(redIndexHex!, inComponent: 0, animated: false)
-        hexPicker.selectRow(greenIndexHex!, inComponent: 1, animated: false)
-        hexPicker.selectRow(blueIndexHex!, inComponent: 2, animated: false)
-
-        let redIndexRGB = Int(hexString![0...1], radix: 16)
-        let greenIndexRGB = Int(hexString![2...3], radix: 16)
-        let blueIndexRGB = Int(hexString![4...5], radix: 16)
-
-        rgbPicker.selectRow(redIndexRGB!, inComponent: 0, animated: false)
-        rgbPicker.selectRow(greenIndexRGB!, inComponent: 1, animated: false)
-        rgbPicker.selectRow(blueIndexRGB!, inComponent: 2, animated: false)
-
-        resultView.backgroundColor = UIColor(red: CGFloat(redSlider.value),
-                                             green: CGFloat(greenSlider.value),
-                                             blue: CGFloat(blueSlider.value),
-                                             alpha: 1)
-
-        // add to toggle UI func when removing
-        randomHistoryBarButtonItem.isEnabled = false
+        resultView.backgroundColor = uiColorFrom(hex: getSafeHexFromUD())
 
     }
 
 
     // MARK: Helpers
+
+    func getSafeHexFromUD() -> String {
+        let hexString: String = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) ??
+            getFallbackColorString()
+
+        return hexString
+    }
+
+
+    func getFallbackColorString() -> String {
+        let isDarkModeOn = backgroundColor == UIColor.white
+        let fallbackString = isDarkModeOn ? "000000" : "ffffff"
+
+        return fallbackString
+    }
+
 
     func showApps() {
 
@@ -159,352 +92,19 @@ class MakerViewController: UIViewController,
                 present(alert, animated: true)
             return
         }
-
             UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
-
     }
 
 
     // MARK: Update Color
 
-    func updateColor(control: Controls,
-                     hexStringParam: String? = nil,
-                     rgbArray: [Int] = [],
-                     completionHandler: @escaping (Bool) -> Void = {_ in return }) {
+    func updateColor(hexStringParam: String? = nil,
+                     rgbArray: [Int] = []) {
 
-        var red: CGFloat = 0
-        var green: CGFloat = 0
-        var blue: CGFloat = 0
+        let mySafeString: String = hexStringParam ?? getFallbackColorString()
+        self.resultView.backgroundColor = uiColorFrom(hex: mySafeString)
 
-            if control == .slider {
-
-                red = CGFloat(redSlider.value)
-                green = CGFloat(greenSlider.value)
-                blue = CGFloat(blueSlider.value)
-
-                resultView.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
-
-                let rBase255 = Int(red * CGFloat(Constants.Values.rgbMax))
-                let gBase255 = Int(green * CGFloat(Constants.Values.rgbMax))
-                let bBase255 = Int(blue * CGFloat(Constants.Values.rgbMax))
-
-                let redHex = String(format: Constants.Values.numToHexFormatter, rBase255)
-                let greenHex = String(format: Constants.Values.numToHexFormatter, gBase255)
-                let blueHex = String(format: Constants.Values.numToHexFormatter, bBase255)
-
-                let redIndex = hexArray.firstIndex(of: redHex)
-                let greenIndex = hexArray.firstIndex(of: greenHex)
-                let blueIndex = hexArray.firstIndex(of: blueHex)
-
-                hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
-                hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
-                hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
-
-                rgbPicker.selectRow(rBase255, inComponent: 0, animated: true)
-                rgbPicker.selectRow(gBase255, inComponent: 1, animated: true)
-                rgbPicker.selectRow(bBase255, inComponent: 2, animated: true)
-
-                let hexCode = redHex + greenHex + blueHex
-                UserDefaults.standard.set(hexCode, forKey: Constants.UserDef.colorKey)
-
-            } else if control == .hexPicker {
-                let redValue: Float = Float(hexPicker.selectedRow(inComponent: 0))
-                let greenValue: Float = Float(hexPicker.selectedRow(inComponent: 1))
-                let blueValue: Float = Float(hexPicker.selectedRow(inComponent: 2))
-
-                let redHex = hexArray[hexPicker.selectedRow(inComponent: 0)]
-                let greenHex = hexArray[hexPicker.selectedRow(inComponent: 1)]
-                let blueHex = hexArray[hexPicker.selectedRow(inComponent: 2)]
-
-                rgbPicker.selectRow(Int(redValue), inComponent: 0, animated: true)
-                rgbPicker.selectRow(Int(greenValue), inComponent: 1, animated: true)
-                rgbPicker.selectRow(Int(blueValue), inComponent: 2, animated: true)
-
-                let hexCode = redHex + greenHex + blueHex
-
-                UIView.animate(withDuration: animationDuration, animations: {
-                    self.redSlider.setValue(redValue / Float(Constants.Values.rgbMax), animated: true)
-                    self.greenSlider.setValue(greenValue / Float(Constants.Values.rgbMax), animated: true)
-                    self.blueSlider.setValue(blueValue / Float(Constants.Values.rgbMax), animated: true)
-                    self.resultView.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
-                                                              green: CGFloat(self.greenSlider.value),
-                                                              blue: CGFloat(self.blueSlider.value),
-                                                              alpha: 1)
-                }, completion: { _ in
-                    UserDefaults.standard.set(hexCode, forKey: Constants.UserDef.colorKey)
-                    completionHandler(true)
-                })
-
-
-            } else if control == .rgbPicker {
-
-                let redValue = Double(rgbPicker.selectedRow(inComponent: 0))
-                let greenValue = Double(rgbPicker.selectedRow(inComponent: 1))
-                let blueValue = Double(rgbPicker.selectedRow(inComponent: 2))
-
-                hexPicker.selectRow(Int(redValue), inComponent: 0, animated: true)
-                hexPicker.selectRow(Int(greenValue), inComponent: 1, animated: true)
-                hexPicker.selectRow(Int(blueValue), inComponent: 2, animated: true)
-
-                let redHex = String(format: Constants.Values.numToHexFormatter, Int(redValue))
-                let greenHex = String(format: Constants.Values.numToHexFormatter, Int(greenValue))
-                let blueHex = String(format: Constants.Values.numToHexFormatter, Int(blueValue))
-
-                let hexCode = redHex + greenHex + blueHex
-
-                UIView.animate(withDuration: animationDuration, animations: {
-                    self.redSlider.setValue(Float(redValue / Constants.Values.rgbMax), animated: true)
-                    self.greenSlider.setValue(Float(greenValue / Constants.Values.rgbMax), animated: true)
-                    self.blueSlider.setValue(Float(blueValue / Constants.Values.rgbMax), animated: true)
-                    self.resultView.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
-                                                         green: CGFloat(self.greenSlider.value),
-                                                         blue: CGFloat(self.blueSlider.value),
-                                                              alpha: 1)
-
-                }, completion: { _ in
-                    UserDefaults.standard.set(hexCode, forKey: Constants.UserDef.colorKey)
-                    completionHandler(true)
-                })
-
-
-            } else if control == .pasteHex {
-                if hexStringParam == UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) {
-                    completionHandler(true)
-                    let alert = createAlert(alertReasonParam: .pastedIsSame)
-                    if let presenter = alert.popoverPresentationController {
-                        presenter.barButtonItem = aboutBarButtonItem
-                    }
-                    present(alert, animated: true)
-                    return
-                }
-
-                let redString = hexStringParam![0...1]
-                let greenString = hexStringParam![2...3]
-                let blueString = hexStringParam![4...5]
-
-                let redIndex = hexArray.firstIndex(of: redString)
-                let greenIndex = hexArray.firstIndex(of: greenString)
-                let blueIndex = hexArray.firstIndex(of: blueString)
-
-                hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
-                hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
-                hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
-
-                rgbPicker.selectRow(Int(redString, radix: 16)!, inComponent: 0, animated: true)
-                rgbPicker.selectRow(Int(greenString, radix: 16)!, inComponent: 1, animated: true)
-                rgbPicker.selectRow(Int(blueString, radix: 16)!, inComponent: 2, animated: true)
-
-                var redValue: Double = 0
-                var greenValue: Double = 0
-                var blueValue: Double = 0
-
-                redValue = Double(hexPicker.selectedRow(inComponent: 0))
-                greenValue = Double(hexPicker.selectedRow(inComponent: 1))
-                blueValue = Double(hexPicker.selectedRow(inComponent: 2))
-
-                UIView.animate(withDuration: animationDuration, animations: {
-                    self.redSlider.setValue(Float(redValue / Constants.Values.rgbMax), animated: true)
-                    self.greenSlider.setValue(Float(greenValue / Constants.Values.rgbMax), animated: true)
-                    self.blueSlider.setValue(Float(blueValue / Constants.Values.rgbMax), animated: true)
-                    self.resultView.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
-                                                         green: CGFloat(self.greenSlider.value),
-                                                         blue: CGFloat(self.blueSlider.value),
-                                                                  alpha: 1)
-
-                }, completion: { _ in
-                    UserDefaults.standard.set(hexStringParam, forKey: Constants.UserDef.colorKey)
-                    completionHandler(true)
-                })
-
-            } else if control == .pasteRGB {
-
-                let redValue = rgbArray[0]
-                let greenValue = rgbArray[1]
-                let blueValue = rgbArray[2]
-
-                let redHex = String(format: Constants.Values.numToHexFormatter, redValue)
-                let greenHex = String(format: Constants.Values.numToHexFormatter, greenValue)
-                let blueHex = String(format: Constants.Values.numToHexFormatter, blueValue)
-
-                let hexString = redHex + greenHex + blueHex
-
-                if hexString == UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) {
-                    completionHandler(true)
-                    let alert = createAlert(alertReasonParam: .pastedIsSame)
-                    if let presenter = alert.popoverPresentationController {
-                        presenter.barButtonItem = aboutBarButtonItem
-                    }
-                    present(alert, animated: true)
-                    return
-                }
-
-                let redIndex = hexArray.firstIndex(of: redHex)
-                let greenIndex = hexArray.firstIndex(of: greenHex)
-                let blueIndex = hexArray.firstIndex(of: blueHex)
-
-                hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
-                hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
-                hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
-
-                rgbPicker.selectRow(redValue, inComponent: 0, animated: true)
-                rgbPicker.selectRow(greenValue, inComponent: 1, animated: true)
-                rgbPicker.selectRow(blueValue, inComponent: 2, animated: true)
-
-                UIView.animate(withDuration: animationDuration, animations: {
-                    self.redSlider.setValue(Float(Double(redValue) / Constants.Values.rgbMax), animated: true)
-                    self.greenSlider.setValue(Float(Double(greenValue) / Constants.Values.rgbMax), animated: true)
-                    self.blueSlider.setValue(Float(Double(blueValue) / Constants.Values.rgbMax), animated: true)
-                    self.resultView.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
-                                                         green: CGFloat(self.greenSlider.value),
-                                                         blue: CGFloat(self.blueSlider.value),
-                                                              alpha: 1)
-                }, completion: { _ in
-                    UserDefaults.standard.set(hexString, forKey: Constants.UserDef.colorKey)
-                    completionHandler(true)
-                })
-
-            } else if control == .randomHex {
-
-                let redString = hexStringParam![0...1]
-                let greenString = hexStringParam![2...3]
-                let blueString = hexStringParam![4...5]
-
-                let redIndex = hexArray.firstIndex(of: redString)
-                let greenIndex = hexArray.firstIndex(of: greenString)
-                let blueIndex = hexArray.firstIndex(of: blueString)
-
-                hexPicker.selectRow(redIndex!, inComponent: 0, animated: true)
-                hexPicker.selectRow(greenIndex!, inComponent: 1, animated: true)
-                hexPicker.selectRow(blueIndex!, inComponent: 2, animated: true)
-
-                rgbPicker.selectRow(Int(redString, radix: 16)!, inComponent: 0, animated: true)
-                rgbPicker.selectRow(Int(greenString, radix: 16)!, inComponent: 1, animated: true)
-                rgbPicker.selectRow(Int(blueString, radix: 16)!, inComponent: 2, animated: true)
-
-                var redValue: Double = 0
-                var greenValue: Double = 0
-                var blueValue: Double = 0
-
-                redValue = Double(hexPicker.selectedRow(inComponent: 0))
-                greenValue = Double(hexPicker.selectedRow(inComponent: 1))
-                blueValue = Double(hexPicker.selectedRow(inComponent: 2))
-
-
-                if let hexString = hexStringParam {
-                    addToDocuments(newColor: hexString)
-                } else {
-                    let alert = createAlert(alertReasonParam: .unknown)
-                    if let presenter = alert.popoverPresentationController {
-                        presenter.barButtonItem = aboutBarButtonItem
-                    }
-                    present(alert, animated: true)
-                }
-
-
-                UIView.animate(withDuration: animationDuration, animations: {
-                    self.redSlider.setValue(Float(redValue / Constants.Values.rgbMax), animated: true)
-                    self.greenSlider.setValue(Float(greenValue / Constants.Values.rgbMax), animated: true)
-                    self.blueSlider.setValue(Float(blueValue / Constants.Values.rgbMax), animated: true)
-                    self.resultView.backgroundColor = UIColor(red: CGFloat(self.redSlider.value),
-                                                         green: CGFloat(self.greenSlider.value),
-                                                         blue: CGFloat(self.blueSlider.value),
-                                                                  alpha: 1)
-
-                }, completion: { _ in
-                    UserDefaults.standard.set(hexStringParam, forKey: Constants.UserDef.colorKey)
-                    completionHandler(true)
-                })
-
-            } else {
-                fatalError()
-            }
-
-    }
-
-
-    // MARK: Sliders
-
-    @IBAction func sliderChanged(_ sender: AnyObject) {
-        updateColor(control: .slider)
-    }
-
-
-    // MARK: HEX and RGB Toggled
-
-    @IBAction func hexAndRGBToggled() {
-        let hexPickerWasSelected = UserDefaults.standard.bool(forKey: Constants.UserDef.hexPickerSelected)
-        UserDefaults.standard.set(!hexPickerWasSelected, forKey: Constants.UserDef.hexPickerSelected)
-
-        hexPicker.isHidden = hexPickerWasSelected
-        rgbPicker.isHidden = !hexPickerWasSelected
-
-        let prefixMessage = "Switch to "
-
-        mySwitchButton.title = prefixMessage + (hexPickerWasSelected ? "HEX" : "RGB")
-
-    }
-
-
-    // MARK: Pickers
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        if pickerView.tag == 0 || pickerView.tag == 1 {
-            return 3
-        } else {
-            fatalError()
-        }
-    }
-
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == 0 {
-            return hexArray.count
-        } else if pickerView.tag == 1 {
-            return rgbArray.count
-        } else {
-            fatalError()
-        }
-    }
-
-
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int,
-                    forComponent component: Int) -> NSAttributedString? {
-
-        var string = ""
-
-        if pickerView.tag == 0 {
-            string = hexArray[row]
-            return NSAttributedString(string: string,
-                                      attributes: [NSAttributedString.Key.foregroundColor: textColor])
-
-        } else if pickerView.tag == 1 {
-            string = rgbArray[row]
-        } else {
-            fatalError()
-        }
-
-        return NSAttributedString(string: string, attributes: [NSAttributedString.Key.foregroundColor: textColor])
-    }
-
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.tag == 0 {
-            toggleUI(enable: false)
-            updateColor(control: .hexPicker) { completed in
-                if completed {
-                    self.toggleUI(enable: true)
-                }
-            }
-        } else if pickerView.tag == 1 {
-            toggleUI(enable: false)
-            updateColor(control: .rgbPicker) { completed in
-                if completed {
-                    self.toggleUI(enable: true)
-                }
-            }
-        } else {
-            fatalError()
-        }
+        UserDefaults.standard.set(mySafeString, forKey: Constants.UserDef.colorKey)
 
     }
 
@@ -529,16 +129,9 @@ class MakerViewController: UIViewController,
             self.downloadAsImage()
         })
 
-        let copyMainAction = UIAlertAction(title: "Copy", style: .default) { _ in
-            self.showCopyMainMenu()
-        }
 
         let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
             self.showShareMainMenu()
-        }
-
-        let pasteTextAction = UIAlertAction(title: "Paste Text", style: .default) { _ in
-            self.showPasteMainMenu()
         }
 
         let appIconAction = UIAlertAction(title: "Update App Icon", style: .default) { _ in
@@ -549,7 +142,7 @@ class MakerViewController: UIViewController,
             self.showInfoMainMenu()
         }
 
-        for action in [downloadImageAction, copyMainAction, shareAction, pasteTextAction,
+        for action in [downloadImageAction, shareAction,
                        appIconAction, infoAction, cancelAction] {
             mainMenuAlert.addAction(action)
         }
@@ -569,73 +162,6 @@ class MakerViewController: UIViewController,
         if let toPresent = controller {
             self.present(toPresent, animated: true)
         }
-    }
-
-
-    func showCopyMainMenu() {
-        let copyMainMenuAlert = UIAlertController(title: "Copy Menu", message: nil, preferredStyle: .actionSheet)
-
-        copyMainMenuAlert.modalPresentationStyle = .popover
-
-        let backAction = UIAlertAction(title: "Back to Main Menu", style: .default) { _ in
-            self.showMainMenu()
-        }
-
-        let copyTextMainAction = UIAlertAction(title: "Copy as Text", style: .default, handler: { _ in
-            self.showCopyTextMenu()
-        })
-
-        let copyImageAction = UIAlertAction(title: "Copy as Image", style: .default) { _ in
-            self.copyAsImage()
-        }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true)
-        }
-
-        for action in [backAction, copyImageAction, copyTextMainAction, cancelAction] {
-            copyMainMenuAlert.addAction(action)
-        }
-
-        if let presenter = copyMainMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = aboutBarButtonItem
-        }
-            present(copyMainMenuAlert, animated: true)
-    }
-
-
-    func showCopyTextMenu() {
-        let copyTextMenuAlert = UIAlertController(title: "Copy as Text Menu",
-                                                  message: nil, preferredStyle: .actionSheet)
-
-        copyTextMenuAlert.modalPresentationStyle = .popover
-
-        let copyTextHexAction = UIAlertAction(title: "Copy as HEX Text", style: .default) { _ in
-            self.copyAsText(format: .hex)
-        }
-
-        let copyTextRGBAction = UIAlertAction(title: "Copy as RGB Text", style: .default) { _ in
-            self.copyAsText(format: .rgb)
-        }
-
-        let backAction = UIAlertAction(title: "Back to Copy Menu", style: .default) { _ in
-            self.showCopyMainMenu()
-        }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true)
-        }
-
-        for action in [backAction, copyTextHexAction, copyTextRGBAction, cancelAction] {
-            copyTextMenuAlert.addAction(action)
-        }
-
-        if let presenter = copyTextMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = aboutBarButtonItem
-        }
-
-            present(copyTextMenuAlert, animated: true)
-
     }
 
 
@@ -667,39 +193,6 @@ class MakerViewController: UIViewController,
             presenter.barButtonItem = aboutBarButtonItem
         }
             present(shareMainMenuAlert, animated: true)
-
-    }
-
-
-    func showPasteMainMenu() {
-        let pasteMainMenuAlert = UIAlertController(title: "Paste Menu", message: nil, preferredStyle: .actionSheet)
-        pasteMainMenuAlert.modalPresentationStyle = .popover
-
-        let pasteTextHexAction = UIAlertAction(title: "Paste HEX Text", style: .default) { _ in
-            self.pasteHexText()
-        }
-
-        let pasteTextRGBAction = UIAlertAction(title: "Paste RGB Text", style: .default) { _ in
-            self.pasteRGBText()
-        }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true)
-        }
-
-        let backAction = UIAlertAction(title: "Back to Main Menu", style: .default) { _ in
-            self.showMainMenu()
-        }
-
-        for action in [backAction, pasteTextHexAction, pasteTextRGBAction, cancelAction] {
-            pasteMainMenuAlert.addAction(action)
-        }
-
-        if let presenter = pasteMainMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = aboutBarButtonItem
-        }
-
-            present(pasteMainMenuAlert, animated: true)
 
     }
 
@@ -820,34 +313,6 @@ class MakerViewController: UIViewController,
             presenter.barButtonItem = aboutBarButtonItem
         }
             present(alert, animated: true)
-
-    }
-
-
-    func copyAsText(format: Format) {
-
-        let pasteboard = UIPasteboard.general
-
-        switch format {
-        case .hex:
-            pasteboard.string = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)
-        case .rgb:
-
-            let hexString = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)
-
-            let redValue = Int(hexString![0...1], radix: 16)!
-            let greenValue = Int(hexString![2...3], radix: 16)!
-            let blueValue = Int(hexString![4...5], radix: 16)!
-
-            pasteboard.string = "\(redValue),\(greenValue),\(blueValue)"
-
-        }
-
-        let alert = createAlert(alertReasonParam: AlertReason.textCopied, format: format)
-        if let presenter = alert.popoverPresentationController {
-            presenter.barButtonItem = aboutBarButtonItem
-        }
-        present(alert, animated: true)
 
     }
 
@@ -990,95 +455,9 @@ class MakerViewController: UIViewController,
 
     func elementsShould(hide: Bool) {
 
-        for slider in [redSlider, greenSlider, blueSlider] {
-            slider?.isHidden = hide
-        }
         myToolbar.isHidden = hide
 
         messageLabel.isHidden = !hide
-
-        if !hide {
-            _ = UserDefaults.standard.bool(
-                forKey: Constants.UserDef.hexPickerSelected)
-                ? (hexPicker.isHidden = false) : (rgbPicker.isHidden = false)
-        } else {
-            for picker in [hexPicker, rgbPicker] {
-                picker?.isHidden = hide
-            }
-        }
-        separatorView.isHidden = hide
-
-    }
-
-
-    func pasteHexText() {
-
-        guard let pastedString = UIPasteboard.general.string else {
-            let alert = createAlert(alertReasonParam: AlertReason.emptyPasteHex)
-            if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = aboutBarButtonItem
-            }
-            present(alert, animated: true)
-            return
-        }
-
-        let results = isValidHex(hex: pastedString)
-
-        guard results.isValid else {
-            let alert = createAlert(alertReasonParam: AlertReason.invalidHex, invalidCode: results.invalidHexValue)
-            if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = aboutBarButtonItem
-            }
-            present(alert, animated: true)
-
-            return
-        }
-
-        toggleUI(enable: false)
-        updateColor(control: .pasteHex, hexStringParam: results.validHexValue) { completed in
-            if completed {
-                self.toggleUI(enable: true)
-            }
-        }
-
-    }
-
-
-    func pasteRGBText() {
-        toggleUI(enable: false)
-
-        guard let pastedString = UIPasteboard.general.string else {
-            toggleUI(enable: true)
-            let alert = createAlert(alertReasonParam: AlertReason.emptyPasteRGB)
-            if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = aboutBarButtonItem
-            }
-            present(alert, animated: true)
-
-            return
-        }
-
-        let results = isValidRGB(rgb: pastedString)
-
-        guard results.isValid else {
-            toggleUI(enable: true)
-            let alert = createAlert(
-                alertReasonParam: AlertReason.invalidRGB,
-                invalidCode: results.invalidRgbValue)
-            if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = aboutBarButtonItem
-            }
-            present(alert, animated: true)
-
-            return
-        }
-
-
-        updateColor(control: .pasteRGB, rgbArray: results.validRgbValue) { completed in
-            if completed {
-                self.toggleUI(enable: true)
-            }
-        }
 
     }
 
@@ -1153,56 +532,14 @@ class MakerViewController: UIViewController,
 
 
     public func makeRandomColor() {
-            toggleUI(enable: false)
             var randomHex = ""
-            let randomRed = hexArray.randomElement()!
-            let randomGreen = hexArray.randomElement()!
-            let randomBlue = hexArray.randomElement()!
+            let randomRed = hexArrayForRandom.randomElement()!
+            let randomGreen = hexArrayForRandom.randomElement()!
+            let randomBlue = hexArrayForRandom.randomElement()!
 
             randomHex = randomRed + randomGreen + randomBlue
 
-            updateColor(control: .randomHex, hexStringParam: randomHex) { completed in
-                if completed {
-                    self.toggleUI(enable: true)
-                }
-            }
-    }
-
-
-    func addToDocuments(newColor: String) {
-
-        // TODO: fill
-
-    }
-
-
-    @IBAction func randomHistoryPressed(_ sender: Any) {
-
-        let storyboard = UIStoryboard(name: Constants.StoryboardID.main, bundle: nil)
-        let controller = storyboard.instantiateViewController(
-            withIdentifier: Constants.StoryboardID.randomHistoryViewController)
-            as? RandomHistoryViewController
-        if let toPresent = controller {
-            self.present(toPresent, animated: true)
-        }
-    }
-
-
-    // MARK: Toogle UI
-
-    func toggleUI(enable: Bool) {
-        DispatchQueue.main.async {
-
-            for item in [self.randomBarButtonItem, self.mySwitchButton, self.aboutBarButtonItem] {
-                item?.isEnabled = enable
-            }
-            for slider in [self.redSlider, self.greenSlider, self.blueSlider] {
-                slider?.isEnabled = enable
-            }
-            for picker in [self.hexPicker, self.rgbPicker] {
-                picker?.isUserInteractionEnabled = enable
-            }
-        }
+            updateColor(hexStringParam: randomHex)
     }
 
 
