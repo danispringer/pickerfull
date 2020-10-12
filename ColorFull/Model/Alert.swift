@@ -18,8 +18,6 @@ extension UIViewController {
         case messageSent
         case unknown
         case imageSaved
-        case textCopied
-        case imageCopied
         case permissionDenied
     }
 
@@ -57,17 +55,6 @@ extension UIViewController {
             alertPreferredStyle = UIAlertController.Style.actionSheet
             alertTitle = "Success!"
             alertMessage = "Your image has been saved to your library."
-        case .textCopied:
-            alertPreferredStyle = UIAlertController.Style.actionSheet
-            alertTitle = "Success!"
-            alertMessage = """
-            Your color has been copied as text in \(format) format.\nDon't forget to paste \
-            it somewhere!
-            """
-        case .imageCopied:
-            alertPreferredStyle = UIAlertController.Style.actionSheet
-            alertTitle = "Success!"
-            alertMessage = "Your image has been copied.\nDon't forget to paste it somewhere!"
         case .permissionDenied:
             alertTitle = "Allow ColorFull access to your gallery"
             alertMessage = """
