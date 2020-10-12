@@ -114,7 +114,7 @@
                                 <color key="barTintColor" systemColor="systemBackgroundColor"/>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oUy-n8-r8y">
-                                <rect key="frame" x="0.0" y="108" width="414" height="705"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="709"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" systemColor="separatorColor"/>
                                 <inset key="separatorInset" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -170,7 +170,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Your App Icon" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O82-3z-lVW" userLabel="App Icon Title Label">
-                                <rect key="frame" x="20" y="56" width="374" height="20.5"/>
+                                <rect key="frame" x="16" y="56" width="382" height="20.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -181,14 +181,14 @@
                         <constraints>
                             <constraint firstItem="mo8-eg-uBt" firstAttribute="trailing" secondItem="oUy-n8-r8y" secondAttribute="trailing" id="0aD-aE-1df"/>
                             <constraint firstItem="oUy-n8-r8y" firstAttribute="leading" secondItem="mo8-eg-uBt" secondAttribute="leading" id="9sG-1T-Agx"/>
-                            <constraint firstItem="mo8-eg-uBt" firstAttribute="trailing" secondItem="O82-3z-lVW" secondAttribute="trailing" constant="20" id="ANA-iO-3IY"/>
+                            <constraint firstItem="mo8-eg-uBt" firstAttribute="trailing" secondItem="O82-3z-lVW" secondAttribute="trailing" constant="16" id="ANA-iO-3IY"/>
                             <constraint firstItem="O82-3z-lVW" firstAttribute="centerY" secondItem="eU8-oP-8bA" secondAttribute="centerY" id="EUZ-mD-bBs"/>
                             <constraint firstItem="mo8-eg-uBt" firstAttribute="trailing" secondItem="eU8-oP-8bA" secondAttribute="trailing" id="Hzs-bG-jux"/>
-                            <constraint firstItem="oUy-n8-r8y" firstAttribute="top" secondItem="eU8-oP-8bA" secondAttribute="bottom" constant="20" id="Kpa-nj-CL4"/>
+                            <constraint firstItem="oUy-n8-r8y" firstAttribute="top" secondItem="eU8-oP-8bA" secondAttribute="bottom" constant="16" id="Kpa-nj-CL4"/>
                             <constraint firstItem="eU8-oP-8bA" firstAttribute="top" secondItem="mo8-eg-uBt" secondAttribute="top" id="hEg-cZ-zyp"/>
                             <constraint firstItem="mo8-eg-uBt" firstAttribute="bottom" secondItem="oUy-n8-r8y" secondAttribute="bottom" id="hZt-6U-5fT"/>
                             <constraint firstItem="eU8-oP-8bA" firstAttribute="leading" secondItem="mo8-eg-uBt" secondAttribute="leading" id="nKW-ru-YYJ"/>
-                            <constraint firstItem="O82-3z-lVW" firstAttribute="leading" secondItem="mo8-eg-uBt" secondAttribute="leading" constant="20" id="x1K-mD-yze"/>
+                            <constraint firstItem="O82-3z-lVW" firstAttribute="leading" secondItem="mo8-eg-uBt" secondAttribute="leading" constant="16" id="x1K-mD-yze"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
