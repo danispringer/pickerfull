@@ -65,7 +65,7 @@ class MakerViewController: UIViewController,
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
-        colorPicker.title = "ColorFull: Find Your Color"
+        colorPicker.title = "ColorFull: Your Color Awaits"
 
     }
 

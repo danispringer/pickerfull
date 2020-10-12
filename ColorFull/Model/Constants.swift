@@ -47,7 +47,7 @@ struct Constants {
 
 
         Screenshot created with
-        ColorFull: Find Your Color
+        ColorFull: Your Color Awaits
         by
         Daniel Springer
 
