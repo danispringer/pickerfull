@@ -12,9 +12,6 @@ We believe life should be ColorFull. Do you?
 
 • Ask us anything: ***REMOVED***
 
-• Enjoying ColorFull? Please consider leaving a 5-star review. It would mean the world to us!
-- Get it here: https://itunes.apple.com/app/id1410565176
-
 ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s1.png)
 
 ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s2.png)
