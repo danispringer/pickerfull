@@ -276,8 +276,7 @@ class MakerViewController: UIViewController,
 
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
         activityController.popoverPresentationController?.barButtonItem = menuButton
-        activityController.completionWithItemsHandler = {
-            (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
+        activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
@@ -298,8 +297,7 @@ class MakerViewController: UIViewController,
 
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         activityController.popoverPresentationController?.barButtonItem = menuButton
-        activityController.completionWithItemsHandler = {
-            (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
+        activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
@@ -386,8 +384,7 @@ class MakerViewController: UIViewController,
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
         activityController.popoverPresentationController?.barButtonItem = menuButton
-        activityController.completionWithItemsHandler = {
-            (activityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
+        activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
