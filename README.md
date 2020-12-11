@@ -10,7 +10,7 @@ We believe life should be ColorFull. Do you?
 • Battery died? No worries. Your last selected color will automatically display when you launch the app again. ColorFull has got your back – and favorite color!
 
 
-• Ask us anything: ***REMOVED***
+• Ask us anything: dani.springer@icloud.com
 
 ![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s1.png)
 
