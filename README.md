@@ -1,5 +1,5 @@
 # ColorFull (iOS)
-Life should be ColorFull.
+We believe life should be ColorFull.
 
 • Meet ColorFull, a simple yet _"PowerFull"_ app that lets you easily and precisely create and share your colors - or find your next favorite one – with the tap of a button or using Siri.
 
