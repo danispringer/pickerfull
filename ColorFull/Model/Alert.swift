@@ -45,7 +45,7 @@ extension UIViewController {
         case .messageFailed:
             alertTitle = "Action failed"
             alertMessage = """
-            Your message has not been sent. Please try again, or contact us: musicbyds@icloud.com
+            Your message has not been sent. Please try again, or contact us: dani.springer@icloud.com
             """
         case .messageSent:
             alertPreferredStyle = UIAlertController.Style.actionSheet
@@ -63,7 +63,7 @@ extension UIViewController {
         default:
             alertTitle = "Unknown Error"
             alertMessage = """
-            An unknown error occurred. Please try again later, or contact us at musicbyds@icloud.com
+            An unknown error occurred. Please try again later, or contact us at dani.springer@icloud.com
             """
         }
 
