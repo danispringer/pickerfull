@@ -1,7 +1,7 @@
 # ColorFull (iOS)
-We believe life should be ColorFull. Do you?
+Life should be ColorFull.
 
-• Meet ColorFull, a simple yet "PowerFull" app that lets you easily and precisely create and share your colors - or find your next favorite one – with the tap of a button or using Siri.
+• Meet ColorFull, a simple yet _"PowerFull"_ app that lets you easily and precisely create and share your colors - or find your next favorite one – with the tap of a button or using Siri.
 
 • Export in HEX, RGB, or..
 
@@ -11,21 +11,6 @@ We believe life should be ColorFull. Do you?
 
 
 • Ask us anything: dani.springer@icloud.com
-
-![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s1.png)
-
-![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s2.png)
-
-![Screenshot](https://raw.githubusercontent.com/DaniSpringer/colorfull/master/s/s3.png)
-
-
-
-# Contributing
-Want to help? You can:
-- Suggest changes by creating an Issue.
-- Submit your own fix or improvements by creating a Pull Request.
-- Share this project to spread the word.
-- Contact: https://github.com/DaniSpringer/docs/blob/master/README.md
 
 # License
 Copyright © 2020 Daniel Springer. All rights reserved.
