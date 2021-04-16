@@ -405,6 +405,8 @@ class MakerViewController: UIViewController,
 
 
     @IBAction func showColorPicker() {
+        let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD()) ?? getFallbackColor()
+        colorPicker.selectedColor = selectedColor
         present(colorPicker, animated: true)
     }
 
