@@ -38,11 +38,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="pl9-Re-fzD"/>
-                                    <barButtonItem title="Item" image="square.and.arrow.up" catalog="system" id="Wrr-2c-byl">
-                                        <connections>
-                                            <action selector="shareMenu" destination="BYZ-38-t0r" id="9BR-Lo-6Qq"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem title="Item" image="square.and.arrow.up" catalog="system" id="Wrr-2c-byl"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="RPZ-st-54x"/>
                                     <barButtonItem title="Item" image="paintpalette" catalog="system" id="erP-Sp-GGj">
                                         <connections>
