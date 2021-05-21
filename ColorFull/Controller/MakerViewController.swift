@@ -69,7 +69,8 @@ class MakerViewController: UIViewController,
         colorPicker.selectedColor = selectedColor
         colorPicker.title = "ColorFull: Your Color Awaits"
 
-        menuButton.menu = showMainMenu()
+        menuButton.menu = getMainMenu()
+        shareButton.menu = getShareMenu()
 
     }
 
@@ -135,7 +136,7 @@ class MakerViewController: UIViewController,
 
     // MARK: Share
 
-    func showMainMenu() -> UIMenu {
+    func getMainMenu() -> UIMenu {
 
         let version: String? = Bundle.main.infoDictionary![Const.AppInfo.bundleShort] as? String
 
@@ -182,35 +183,23 @@ class MakerViewController: UIViewController,
     }
 
 
-    @IBAction func shareMenu() {
-        let shareMainMenuAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        shareMainMenuAlert.modalPresentationStyle = .popover
+    func getShareMenu() -> UIMenu {
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true)
-        }
-
-        let shareTextHexAction = UIAlertAction(title: "Share color as HEX text", style: .default) { _ in
+        let shareTextHexAction = UIAction(title: "Share color as HEX text", image: UIImage(systemName: "heart")) { _ in
             self.shareAsText(format: .hex)
         }
 
-        let shareTextRGBAction = UIAlertAction(title: "Share color as RGB text", style: .default) { _ in
+        let shareTextRGBAction = UIAction(title: "Share color as RGB text", image: UIImage(systemName: "heart")) { _ in
             self.shareAsText(format: .rgb)
         }
 
-        let shareImageAction = UIAlertAction(title: "Share color as image", style: .default) { _ in
+        let shareImageAction = UIAction(title: "Share color as image", image: UIImage(systemName: "heart")) { _ in
             self.shareAsImage()
         }
 
+        let shareMenu = UIMenu(options: .displayInline, children: [shareTextHexAction, shareTextRGBAction, shareImageAction])
 
-        for action in [shareTextHexAction, shareTextRGBAction, shareImageAction, cancelAction] {
-            shareMainMenuAlert.addAction(action)
-        }
-
-        if let presenter = shareMainMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = shareButton
-        }
-            present(shareMainMenuAlert, animated: true)
+        return shareMenu
 
     }
 
@@ -238,11 +227,11 @@ class MakerViewController: UIViewController,
             return
         }
         let alert = createAlert(alertReasonParam: AlertReason.imageSaved)
-        let goToLibraryButton = UIAlertAction(title: "Open gallery", style: .default, handler: { _ in
+        let openLibraryButton = UIAlertAction(title: "View Your Image", style: .default, handler: { _ in
                 UIApplication.shared.open(URL(string: Const.AppInfo.galleryLink)!)
 
         })
-        alert.addAction(goToLibraryButton)
+        alert.addAction(openLibraryButton)
         if let presenter = alert.popoverPresentationController {
             presenter.barButtonItem = downloadButton
         }

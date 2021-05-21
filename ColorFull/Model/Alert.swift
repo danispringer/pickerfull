@@ -49,11 +49,11 @@ extension UIViewController {
             """
         case .messageSent:
             alertPreferredStyle = UIAlertController.Style.actionSheet
-            alertTitle = "Success!"
+            alertTitle = "Success"
             alertMessage = "Your message has been sent. You should hear from us within 24 hours."
         case .imageSaved:
             alertPreferredStyle = UIAlertController.Style.actionSheet
-            alertTitle = "Success!"
+            alertTitle = "Success"
             alertMessage = "Your image has been saved to your library."
         case .permissionDenied:
             alertTitle = "Allow ColorFull access to your gallery"
