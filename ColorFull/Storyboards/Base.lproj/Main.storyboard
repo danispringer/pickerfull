@@ -24,23 +24,23 @@
                                 <rect key="frame" x="32" y="737" width="350" height="44"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <items>
-                                    <barButtonItem title="Item" image="wand.and.stars" catalog="system" id="qNl-rx-Hux">
+                                    <barButtonItem title="Create random color" image="wand.and.stars" catalog="system" id="qNl-rx-Hux">
                                         <connections>
                                             <action selector="randomPressed:" destination="BYZ-38-t0r" id="sY8-h7-FcE"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="uXV-rF-nYe"/>
-                                    <barButtonItem title="Item" image="info.circle" catalog="system" id="0Q6-6C-Hay"/>
+                                    <barButtonItem title="Info menu" image="info.circle" catalog="system" id="0Q6-6C-Hay"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="hTx-gE-eea"/>
-                                    <barButtonItem title="Item" image="square.and.arrow.down" catalog="system" id="nNY-PH-3tH">
+                                    <barButtonItem title="Dowload as image" image="square.and.arrow.down" catalog="system" id="nNY-PH-3tH">
                                         <connections>
                                             <action selector="downloadAsImage" destination="BYZ-38-t0r" id="NtD-J6-Mpg"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="pl9-Re-fzD"/>
-                                    <barButtonItem title="Item" image="square.and.arrow.up" catalog="system" id="Wrr-2c-byl"/>
+                                    <barButtonItem title="Share color" image="square.and.arrow.up" catalog="system" id="Wrr-2c-byl"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="RPZ-st-54x"/>
-                                    <barButtonItem title="Item" image="paintpalette" catalog="system" id="erP-Sp-GGj">
+                                    <barButtonItem title="Advanced picker" image="paintpalette" catalog="system" id="erP-Sp-GGj">
                                         <connections>
                                             <action selector="showColorPicker" destination="BYZ-38-t0r" id="01T-Rb-lpX"/>
                                         </connections>
