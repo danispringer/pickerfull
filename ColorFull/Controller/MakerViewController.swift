@@ -24,6 +24,8 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var downloadButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+
+
     // MARK: properties
 
     enum Controls {
@@ -48,8 +50,8 @@ class MakerViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        for number in 0...Int(Constants.Values.rgbMax) {
-            hexArrayForRandom.append(String(format: Constants.Values.numToHexFormatter, number))
+        for number in 0...Int(Const.Values.rgbMax) {
+            hexArrayForRandom.append(String(format: Const.Values.numToHexFormatter, number))
         }
 
         messageLabel.isHidden = true
@@ -67,13 +69,15 @@ class MakerViewController: UIViewController,
         colorPicker.selectedColor = selectedColor
         colorPicker.title = "ColorFull: Your Color Awaits"
 
+        menuButton.menu = showMainMenu()
+
     }
 
 
     // MARK: Helpers
 
     func getSafeHexFromUD() -> String {
-        let hexString: String = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey) ??
+        let hexString: String = UserDefaults.standard.string(forKey: Const.UserDef.colorKey) ??
             getFallbackColorString()
 
         return hexString
@@ -98,7 +102,7 @@ class MakerViewController: UIViewController,
 
     func showApps() {
 
-        let myURL = URL(string: Constants.AppInfo.appsLink)
+        let myURL = URL(string: Const.AppInfo.appsLink)
 
         guard let safeURL = myURL else {
             let alert = createAlert(alertReasonParam: .unknown)
@@ -121,7 +125,7 @@ class MakerViewController: UIViewController,
         self.resultView.backgroundColor = selectedColor
         colorPicker.selectedColor = selectedColor
 
-        UserDefaults.standard.set(mySafeString, forKey: Constants.UserDef.colorKey)
+        UserDefaults.standard.set(mySafeString, forKey: Const.UserDef.colorKey)
 
     }
 
@@ -131,59 +135,46 @@ class MakerViewController: UIViewController,
 
     // MARK: Share
 
-    @IBAction func showMainMenu() {
+    func showMainMenu() -> UIMenu {
 
-        let mainMenuAlert = UIAlertController(title: "Main menu", message: nil, preferredStyle: .actionSheet)
+        let version: String? = Bundle.main.infoDictionary![Const.AppInfo.bundleShort] as? String
 
-        let version: String? = Bundle.main.infoDictionary![Constants.AppInfo.bundleShort] as? String
-        if let version = version {
-            mainMenuAlert.message = "Version \(version)"
-            mainMenuAlert.title = Constants.AppInfo.appName
-        }
-        mainMenuAlert.modalPresentationStyle = .popover
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true, completion: nil)
-        }
-
-        let appIconAction = UIAlertAction(title: "Change app icon", style: .default) { _ in
-            self.showUpdateIconMenu()
-        }
-
-        let mailAction = UIAlertAction(title: "Contact Us", style: .default) { _ in
-            self.launchEmail()
-        }
-
-        let reviewAction = UIAlertAction(title: "Leave a Review", style: .default) { _ in
-            self.requestReviewManually()
-        }
-
-        let shareAppAction = UIAlertAction(title: "Tell a Friend", style: .default) { _ in
+        let shareApp = UIAction(title: Const.AppInfo.shareApp, image: UIImage(systemName: "heart"),
+                                state: .off) { _ in
             self.shareApp()
         }
-
-        let showAppsAction = UIAlertAction(title: Constants.AppInfo.showAppsButtonTitle, style: .default) { _ in
+        let contact = UIAction(title: Const.AppInfo.sendFeedback, image: UIImage(systemName: "envelope"),
+                               state: .off) { _ in
+            self.launchEmail()
+        }
+        let review = UIAction(title: Const.AppInfo.leaveReview,
+                              image: UIImage(systemName: "hand.thumbsup"), state: .off) { _ in
+            self.requestReviewManually()
+        }
+        let moreApps = UIAction(title: Const.AppInfo.showAppsButtonTitle, image: UIImage(systemName: "apps.iphone"),
+                                state: .off) { _ in
             self.showApps()
         }
-
-
-        for action in [mailAction, reviewAction, shareAppAction, appIconAction,
-                       showAppsAction, cancelAction] {
-            mainMenuAlert.addAction(action)
+        let settings = UIAction(title: Const.AppInfo.settings,
+                                  image: UIImage(systemName: "gearshape"), state: .off) { _ in
+            self.settingsVC()
         }
 
-        if let presenter = mainMenuAlert.popoverPresentationController {
-            presenter.barButtonItem = menuButton
+        var myTitle = Const.AppInfo.appName
+        if let safeVersion = version {
+            myTitle += " \(Const.AppInfo.version) \(safeVersion)"
         }
 
-            present(mainMenuAlert, animated: true)
+        let aboutMenu = UIMenu(title: myTitle, image: nil, options: .displayInline,
+                              children: [settings, contact, review, shareApp, moreApps])
+        return aboutMenu
     }
 
 
-    func showUpdateIconMenu() {
-        let storyboard = UIStoryboard(name: Constants.StoryboardID.main, bundle: nil)
+    func settingsVC() {
+        let storyboard = UIStoryboard(name: Const.StoryboardIDIB.main, bundle: nil)
         let controller = storyboard.instantiateViewController(
-            withIdentifier: Constants.StoryboardID.appIconViewController)
+            withIdentifier: Const.StoryboardIDIB.appIconViewController)
             as? AppIconViewController
         if let toPresent = controller {
             self.present(toPresent, animated: true)
@@ -248,7 +239,7 @@ class MakerViewController: UIViewController,
         }
         let alert = createAlert(alertReasonParam: AlertReason.imageSaved)
         let goToLibraryButton = UIAlertAction(title: "Open gallery", style: .default, handler: { _ in
-                UIApplication.shared.open(URL(string: Constants.AppInfo.galleryLink)!)
+                UIApplication.shared.open(URL(string: Const.AppInfo.galleryLink)!)
 
         })
         alert.addAction(goToLibraryButton)
@@ -263,9 +254,9 @@ class MakerViewController: UIViewController,
         var myText = ""
         switch format {
         case .hex:
-            myText = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)!
+            myText = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)!
         case .rgb:
-            let hexString = UserDefaults.standard.string(forKey: Constants.UserDef.colorKey)
+            let hexString = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)
 
             let redValue = Int(hexString![0...1], radix: 16)!
             let greenValue = Int(hexString![2...3], radix: 16)!
@@ -338,7 +329,7 @@ class MakerViewController: UIViewController,
         let attributedMessageJumboRGB = NSAttributedString(string: rgbString, attributes: jumboAttributes)
 
         let attributedMessagePost = NSAttributedString(
-            string: Constants.AppInfo.creditMessage,
+            string: Const.AppInfo.creditMessage,
             attributes: regularAttributes)
 
         let myAttributedText = NSMutableAttributedString()
@@ -421,11 +412,11 @@ class MakerViewController: UIViewController,
 
     @IBAction func randomPressed(_ sender: Any) {
 
-        let activity = NSUserActivity(activityType: Constants.AppInfo.bundleAndRandom)
+        let activity = NSUserActivity(activityType: Const.AppInfo.bundleAndRandom)
         activity.title = "Create Random Color"
         activity.isEligibleForSearch = true
         activity.isEligibleForPrediction = true
-        activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Constants.AppInfo.bundleAndRandom)
+        activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Const.AppInfo.bundleAndRandom)
         activity.suggestedInvocationPhrase = "ColorFull Random Color"
         view.userActivity = activity
         activity.becomeCurrent()
@@ -452,13 +443,13 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
 
     func launchEmail() {
 
-        var emailTitle = Constants.AppInfo.appName
-        if let version = Bundle.main.infoDictionary![Constants.AppInfo.bundleShort] {
+        var emailTitle = Const.AppInfo.appName
+        if let version = Bundle.main.infoDictionary![Const.AppInfo.bundleShort] {
             emailTitle += " \(version)"
         }
 
         let messageBody = "Hi. I have a question..."
-        let toRecipents = [Constants.AppInfo.email]
+        let toRecipents = [Const.AppInfo.email]
         let mailComposer: MFMailComposeViewController = MFMailComposeViewController()
         mailComposer.mailComposeDelegate = self
         mailComposer.setSubject(emailTitle)
@@ -505,7 +496,7 @@ extension MakerViewController {
         // Note: Replace the XXXXXXXXXX below with the App Store ID for your app
         //       You can find the App Store ID in your app's product URL
 
-        guard let writeReviewURL = URL(string: Constants.AppInfo.reviewLink)
+        guard let writeReviewURL = URL(string: Const.AppInfo.reviewLink)
             else {
                 fatalError("Expected a valid URL")
         }
