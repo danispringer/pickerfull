@@ -32,7 +32,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="uXV-rF-nYe"/>
                                     <barButtonItem title="Info menu" image="info.circle" catalog="system" id="0Q6-6C-Hay"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="hTx-gE-eea"/>
-                                    <barButtonItem title="Dowload as image" image="square.and.arrow.down" catalog="system" id="nNY-PH-3tH">
+                                    <barButtonItem title="Download as image" image="square.and.arrow.down" catalog="system" id="nNY-PH-3tH">
                                         <connections>
                                             <action selector="downloadAsImage" destination="BYZ-38-t0r" id="NtD-J6-Mpg"/>
                                         </connections>
