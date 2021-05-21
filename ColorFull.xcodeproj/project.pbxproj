@@ -22,7 +22,7 @@
 		3347256D229CB494004BC5C5 /* AppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3347256C229CB494004BC5C5 /* AppIconCell.swift */; };
 		337055CB21CC77F6001B253C /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337055CA21CC77F6001B253C /* Intents.framework */; };
 		3373980A21ABBC1E000529EF /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373980921ABBC1E000529EF /* UIImage+Extensions.swift */; };
-		33D2213F21AFDF0900FBFEA7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D2213E21AFDF0900FBFEA7 /* Constants.swift */; };
+		33D2213F21AFDF0900FBFEA7 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D2213E21AFDF0900FBFEA7 /* Const.swift */; };
 		33E5B4FE229C92D500CB49FD /* AppIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E5B4FD229C92D500CB49FD /* AppIconViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +58,7 @@
 		337055CA21CC77F6001B253C /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		3373980921ABBC1E000529EF /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		33CF3A84204F084B000823BF /* ColorFull.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorFull.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		33D2213E21AFDF0900FBFEA7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		33D2213E21AFDF0900FBFEA7 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		33E5B4FD229C92D500CB49FD /* AppIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,7 +113,7 @@
 				330F747221ABBA9300F420B0 /* Alert.swift */,
 				330F747321ABBA9300F420B0 /* String+subscript.swift */,
 				3373980921ABBC1E000529EF /* UIImage+Extensions.swift */,
-				33D2213E21AFDF0900FBFEA7 /* Constants.swift */,
+				33D2213E21AFDF0900FBFEA7 /* Const.swift */,
 				330768952310211E00B7991E /* Helpers.swift */,
 			);
 			path = Model;
@@ -283,7 +283,7 @@
 				330F747A21ABBA9300F420B0 /* MakerViewController.swift in Sources */,
 				3347256D229CB494004BC5C5 /* AppIconCell.swift in Sources */,
 				330F747B21ABBA9300F420B0 /* Alert.swift in Sources */,
-				33D2213F21AFDF0900FBFEA7 /* Constants.swift in Sources */,
+				33D2213F21AFDF0900FBFEA7 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

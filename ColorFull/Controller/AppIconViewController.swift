@@ -33,7 +33,7 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 
     func updateIcon() {
-        let newIconNumberValue = UserDefaults.standard.integer(forKey: Constants.UserDef.selectedIcon)
+        let newIconNumberValue = UserDefaults.standard.integer(forKey: Const.UserDef.selectedIcon)
 
         guard UIApplication.shared.supportsAlternateIcons else {
             return
@@ -63,14 +63,14 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellID.appIconCell) as? AppIconCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Const.CellID.appIconCell) as? AppIconCell
         cell?.selectionStyle = .none
         cell?.myImageView?.image = UIImage(named: "\(indexPath.row)")
         cell?.myLabel.text = colorNames[indexPath.row]
         cell?.accessoryType = .none
 
         let myIndexPath = IndexPath(
-            row: UserDefaults.standard.integer(forKey: Constants.UserDef.selectedIcon),
+            row: UserDefaults.standard.integer(forKey: Const.UserDef.selectedIcon),
             section: 0)
         if indexPath == myIndexPath {
             cell?.accessoryType = .checkmark
@@ -81,9 +81,9 @@ class AppIconViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let oldRow = UserDefaults.standard.integer(forKey: Constants.UserDef.selectedIcon)
-        UserDefaults.standard.set(indexPath.row, forKey: Constants.UserDef.selectedIcon)
-        print("Constants...selectedIcon): \(UserDefaults.standard.integer(forKey: Constants.UserDef.selectedIcon))")
+        let oldRow = UserDefaults.standard.integer(forKey: Const.UserDef.selectedIcon)
+        UserDefaults.standard.set(indexPath.row, forKey: Const.UserDef.selectedIcon)
+        print("Constants...selectedIcon): \(UserDefaults.standard.integer(forKey: Const.UserDef.selectedIcon))")
         updateIcon()
         let oldIndexPath = IndexPath(row: oldRow, section: 0)
         tableView.reloadRows(at: [oldIndexPath], with: .none)

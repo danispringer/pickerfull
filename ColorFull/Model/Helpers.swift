@@ -104,7 +104,7 @@ extension UIViewController {
 
         let firstThreeValues = Array(intsArray[0...2])
 
-        guard firstThreeValues.allSatisfy({ (0...Int(Constants.Values.rgbMax)).contains($0) }) else {
+        guard firstThreeValues.allSatisfy({ (0...Int(Const.Values.rgbMax)).contains($0) }) else {
             return RGBResult(isValid: false, invalidRgbValue: rgb, validRgbValue: firstThreeValues)
         }
 
