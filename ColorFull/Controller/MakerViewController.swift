@@ -185,19 +185,22 @@ class MakerViewController: UIViewController,
 
     func getShareMenu() -> UIMenu {
 
-        let shareTextHexAction = UIAction(title: "Share color as HEX text", image: UIImage(systemName: "heart")) { _ in
+        let shareTextHexAction = UIAction(title: "Share color as HEX text",
+                                          image: UIImage(systemName: "doc.text")) { _ in
             self.shareAsText(format: .hex)
         }
 
-        let shareTextRGBAction = UIAction(title: "Share color as RGB text", image: UIImage(systemName: "heart")) { _ in
+        let shareTextRGBAction = UIAction(title: "Share color as RGB text",
+                                          image: UIImage(systemName: "doc.text")) { _ in
             self.shareAsText(format: .rgb)
         }
 
-        let shareImageAction = UIAction(title: "Share color as image", image: UIImage(systemName: "heart")) { _ in
+        let shareImageAction = UIAction(title: "Share color as image", image: UIImage(systemName: "photo")) { _ in
             self.shareAsImage()
         }
 
-        let shareMenu = UIMenu(options: .displayInline, children: [shareTextHexAction, shareTextRGBAction, shareImageAction])
+        let shareMenu = UIMenu(options: .displayInline, children: [shareTextHexAction, shareTextRGBAction,
+                                                                   shareImageAction])
 
         return shareMenu
 
@@ -227,7 +230,7 @@ class MakerViewController: UIViewController,
             return
         }
         let alert = createAlert(alertReasonParam: AlertReason.imageSaved)
-        let openLibraryButton = UIAlertAction(title: "View Your Image", style: .default, handler: { _ in
+        let openLibraryButton = UIAlertAction(title: "Open Gallery", style: .default, handler: { _ in
                 UIApplication.shared.open(URL(string: Const.AppInfo.galleryLink)!)
 
         })
