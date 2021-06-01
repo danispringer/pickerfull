@@ -67,7 +67,7 @@ class MakerViewController: UIViewController,
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
-        colorPicker.title = "Tap 'x' to apply, swipe down to cancel"
+        colorPicker.title = "Tap 'x' to apply changes"
 
         menuButton.menu = getMainMenu()
         shareButton.menu = getShareMenu()
