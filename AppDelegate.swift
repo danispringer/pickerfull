@@ -25,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         UserDefaults.standard.register(defaults: [
-            Const.UserDef.colorKey: Const.UserDef.defaultColor,
-            Const.UserDef.selectedIcon: 0
+            Const.UserDef.colorKey: Const.UserDef.defaultColor
         ])
 
         return true

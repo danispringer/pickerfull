@@ -156,10 +156,6 @@ class MakerViewController: UIViewController,
                                 state: .off) { _ in
             self.showApps()
         }
-        let settings = UIAction(title: Const.AppInfo.settings,
-                                  image: UIImage(systemName: "gearshape"), state: .off) { _ in
-            self.settingsVC()
-        }
 
         var myTitle = Const.AppInfo.appName
         if let safeVersion = version {
@@ -167,19 +163,8 @@ class MakerViewController: UIViewController,
         }
 
         let aboutMenu = UIMenu(title: myTitle, image: nil, options: .displayInline,
-                              children: [settings, contact, review, shareApp, moreApps])
+                              children: [contact, review, shareApp, moreApps])
         return aboutMenu
-    }
-
-
-    func settingsVC() {
-        let storyboard = UIStoryboard(name: Const.StoryboardIDIB.main, bundle: nil)
-        let controller = storyboard.instantiateViewController(
-            withIdentifier: Const.StoryboardIDIB.appIconViewController)
-            as? AppIconViewController
-        if let toPresent = controller {
-            self.present(toPresent, animated: true)
-        }
     }
 
 
