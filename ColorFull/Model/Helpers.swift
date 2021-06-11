@@ -3,7 +3,7 @@
 //  ColorFull
 //
 //  Created by Daniel Springer on 8/23/19.
-//  Copyright © 2020 Dani Springer. All rights reserved.
+//  Copyright © 2021 Dani Springer. All rights reserved.
 //
 
 
