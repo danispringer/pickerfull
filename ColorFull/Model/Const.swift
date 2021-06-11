@@ -13,19 +13,13 @@ struct Const {
 
 
     struct StoryboardIDIB {
-        static let appIconViewController = "AppIconViewController"
         static let main = "Main"
     }
 
-    struct CellID {
-        static let appIconCell = "AppIconCell"
-
-    }
 
     struct UserDef {
         static let colorKey = "color"
         static let defaultColor = "E57BF2"
-        static let selectedIcon = "selectedIcon"
     }
 
     struct Values {
@@ -36,7 +30,6 @@ struct Const {
 
     struct AppInfo {
         static let version = "v."
-        static let settings = "Settings"
         static let leaveReview = "Leave a Review"
         static let sendFeedback = "Contact Us"
         static let shareApp = "Tell a Friend"

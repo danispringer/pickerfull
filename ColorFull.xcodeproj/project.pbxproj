@@ -15,15 +15,10 @@
 		330F747C21ABBA9300F420B0 /* String+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F747321ABBA9300F420B0 /* String+subscript.swift */; };
 		330F747D21ABBA9300F420B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F747421ABBA9300F420B0 /* AppDelegate.swift */; };
 		330F747E21ABBA9300F420B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 330F747621ABBA9300F420B0 /* Assets.xcassets */; };
-		3316E9BE229CC5060001268E /* 1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3316E9A2229CC5040001268E /* 1@2x.png */; };
-		3316E9BF229CC5060001268E /* 0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3316E9A3229CC5040001268E /* 0@2x.png */; };
-		3316E9C2229CC5060001268E /* 1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3316E9A6229CC5050001268E /* 1@3x.png */; };
-		3316E9CA229CC5060001268E /* 0@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3316E9AE229CC5050001268E /* 0@3x.png */; };
 		3347256D229CB494004BC5C5 /* AppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3347256C229CB494004BC5C5 /* AppIconCell.swift */; };
 		337055CB21CC77F6001B253C /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337055CA21CC77F6001B253C /* Intents.framework */; };
 		3373980A21ABBC1E000529EF /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373980921ABBC1E000529EF /* UIImage+Extensions.swift */; };
 		33D2213F21AFDF0900FBFEA7 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D2213E21AFDF0900FBFEA7 /* Const.swift */; };
-		33E5B4FE229C92D500CB49FD /* AppIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E5B4FD229C92D500CB49FD /* AppIconViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,17 +44,12 @@
 		330F747421ABBA9300F420B0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		330F747621ABBA9300F420B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		330F747721ABBA9300F420B0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3316E9A2229CC5040001268E /* 1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1@2x.png"; sourceTree = "<group>"; };
-		3316E9A3229CC5040001268E /* 0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "0@2x.png"; sourceTree = "<group>"; };
-		3316E9A6229CC5050001268E /* 1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1@3x.png"; sourceTree = "<group>"; };
-		3316E9AE229CC5050001268E /* 0@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "0@3x.png"; sourceTree = "<group>"; };
 		3347256C229CB494004BC5C5 /* AppIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconCell.swift; sourceTree = "<group>"; };
 		337055C821CC7798001B253C /* ColorFull.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ColorFull.entitlements; sourceTree = "<group>"; };
 		337055CA21CC77F6001B253C /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		3373980921ABBC1E000529EF /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		33CF3A84204F084B000823BF /* ColorFull.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorFull.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33D2213E21AFDF0900FBFEA7 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
-		33E5B4FD229C92D500CB49FD /* AppIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +67,6 @@
 		330F746921ABBA9300F420B0 /* ColorFull */ = {
 			isa = PBXGroup;
 			children = (
-				33E5B4C4229C903C00CB49FD /* AlternateIcons */,
 				337055C821CC7798001B253C /* ColorFull.entitlements */,
 				330F747121ABBA9300F420B0 /* Model */,
 				3347256B229CB47F004BC5C5 /* View */,
@@ -102,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				330F747021ABBA9300F420B0 /* MakerViewController.swift */,
-				33E5B4FD229C92D500CB49FD /* AppIconViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -159,17 +147,6 @@
 				33CF3A84204F084B000823BF /* ColorFull.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		33E5B4C4229C903C00CB49FD /* AlternateIcons */ = {
-			isa = PBXGroup;
-			children = (
-				3316E9A3229CC5040001268E /* 0@2x.png */,
-				3316E9AE229CC5050001268E /* 0@3x.png */,
-				3316E9A2229CC5040001268E /* 1@2x.png */,
-				3316E9A6229CC5050001268E /* 1@3x.png */,
-			);
-			path = AlternateIcons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,12 +215,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3316E9C2229CC5060001268E /* 1@3x.png in Resources */,
 				330F747921ABBA9300F420B0 /* Main.storyboard in Resources */,
-				3316E9CA229CC5060001268E /* 0@3x.png in Resources */,
-				3316E9BE229CC5060001268E /* 1@2x.png in Resources */,
 				330F747821ABBA9300F420B0 /* LaunchScreen.storyboard in Resources */,
-				3316E9BF229CC5060001268E /* 0@2x.png in Resources */,
 				330F747E21ABBA9300F420B0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +249,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				330F747C21ABBA9300F420B0 /* String+subscript.swift in Sources */,
-				33E5B4FE229C92D500CB49FD /* AppIconViewController.swift in Sources */,
 				330768962310211E00B7991E /* Helpers.swift in Sources */,
 				330F747D21ABBA9300F420B0 /* AppDelegate.swift in Sources */,
 				3373980A21ABBC1E000529EF /* UIImage+Extensions.swift in Sources */,
