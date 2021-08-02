@@ -22,26 +22,19 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var myToolbar: UIToolbar!
     @IBOutlet weak var menuButton: UIBarButtonItem!
-    @IBOutlet weak var downloadButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var dropperButton: UIBarButtonItem!
+    @IBOutlet weak var myImageView: UIImageView!
 
 
     // MARK: properties
 
-    enum Controls {
-        case randomHex
-    }
-
     var currentUIColor: UIColor!
     var currentHexColor: String!
-
     var hexArrayForRandom: [String] = []
-
     var hexImage: UIImage!
-
     var textColor = UIColor.label
     var backgroundColor = UIColor.systemBackground
-
     let colorPicker = UIColorPickerViewController()
 
 
@@ -71,6 +64,7 @@ class MakerViewController: UIViewController,
 
         menuButton.menu = getMainMenu()
         shareButton.menu = getShareMenu()
+        dropperButton.menu = getDropperMenu()
 
     }
 
@@ -78,9 +72,8 @@ class MakerViewController: UIViewController,
     // MARK: Helpers
 
     func getSafeHexFromUD() -> String {
-        let hexString: String = UserDefaults.standard.string(forKey: Const.UserDef.colorKey) ??
+        let hexString: String = UD.string(forKey: Const.UserDef.colorKey) ??
             getFallbackColorString()
-
         return hexString
     }
 
@@ -88,7 +81,6 @@ class MakerViewController: UIViewController,
     func getFallbackColorString() -> String {
         let isDarkModeOn = backgroundColor == UIColor.white
         let fallbackString = isDarkModeOn ? "000000" : "ffffff"
-
         return fallbackString
     }
 
@@ -96,7 +88,6 @@ class MakerViewController: UIViewController,
     func getFallbackColor() -> UIColor {
         let isDarkModeOn = backgroundColor == UIColor.white
         let fallbackColor = isDarkModeOn ? UIColor.black : UIColor.white
-
         return fallbackColor
     }
 
@@ -104,7 +95,6 @@ class MakerViewController: UIViewController,
     func showApps() {
 
         let myURL = URL(string: Const.AppInfo.appsLink)
-
         guard let safeURL = myURL else {
             let alert = createAlert(alertReasonParam: .unknown)
             if let presenter = alert.popoverPresentationController {
@@ -120,14 +110,11 @@ class MakerViewController: UIViewController,
     // MARK: Update Color
 
     func updateColor(hexStringParam: String? = nil) {
-
         let mySafeString: String = hexStringParam ?? getFallbackColorString()
         let selectedColor: UIColor = uiColorFrom(hex: mySafeString) ?? getFallbackColor()
         self.resultView.backgroundColor = selectedColor
         colorPicker.selectedColor = selectedColor
-
-        UserDefaults.standard.set(mySafeString, forKey: Const.UserDef.colorKey)
-
+        UD.set(mySafeString, forKey: Const.UserDef.colorKey)
     }
 
 
@@ -180,19 +167,45 @@ class MakerViewController: UIViewController,
             self.shareAsText(format: .rgb)
         }
 
-        let shareImageAction = UIAction(title: "Share color as image", image: UIImage(systemName: "photo")) { _ in
+        let shareImageAction = UIAction(title: "Share color as image",
+                                        image: UIImage(systemName: "photo")) { _ in
             self.shareAsImage()
         }
 
+        let downloadImageAction = UIAction(title: "Download as image",
+                                           image: UIImage(systemName: "square.and.arrow.down")) { _ in
+            self.downloadAsImage()
+        }
+
         let shareMenu = UIMenu(options: .displayInline, children: [shareTextHexAction, shareTextRGBAction,
-                                                                   shareImageAction])
+                                                                   shareImageAction, downloadImageAction])
 
         return shareMenu
 
     }
 
 
-    @IBAction func downloadAsImage() {
+    func getDropperMenu() -> UIMenu {
+
+        let cameraAction = UIAction(title: "Camera", image: UIImage(systemName: "camera")) { _ in
+            // TODO: open camera
+        }
+
+        let libraryAction = UIAction(title: "Library", image: UIImage(systemName: "photos")) { _ in
+            // TODO: open library a la ios 14
+        }
+
+        let clearAction = UIAction(title: "Remove Image", image: UIImage(systemName: "x")) { _ in
+            // TODO: clear image (hide?)
+        }
+
+        let dropperMenu = UIMenu(options: .displayInline, children: [cameraAction, libraryAction, clearAction])
+
+        return dropperMenu
+    }
+
+
+    func downloadAsImage() {
         let image = generateImage()
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
     }
@@ -209,7 +222,7 @@ class MakerViewController: UIViewController,
             })
             alert.addAction(goToSettingsButton)
             if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = downloadButton
+                presenter.barButtonItem = shareButton
             }
             present(alert, animated: true)
             return
@@ -221,7 +234,7 @@ class MakerViewController: UIViewController,
         })
         alert.addAction(openLibraryButton)
         if let presenter = alert.popoverPresentationController {
-            presenter.barButtonItem = downloadButton
+            presenter.barButtonItem = shareButton
         }
             present(alert, animated: true)
     }
@@ -231,9 +244,9 @@ class MakerViewController: UIViewController,
         var myText = ""
         switch format {
         case .hex:
-            myText = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)!
+            myText = UD.string(forKey: Const.UserDef.colorKey)!
         case .rgb:
-            let hexString = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)
+            let hexString = UD.string(forKey: Const.UserDef.colorKey)
 
             let redValue = Int(hexString![0...1], radix: 16)!
             let greenValue = Int(hexString![2...3], radix: 16)!
