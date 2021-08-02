@@ -8,6 +8,8 @@
 
 import UIKit
 
+// swiftlint:disable:next identifier_name
+let UD = UserDefaults.standard
 
 struct Const {
 
