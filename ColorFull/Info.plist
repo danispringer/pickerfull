@@ -24,8 +24,6 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>...so app can let you pick a color from taken photo.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>...to save your chosen color.</string>
 	<key>NSUserActivityTypes</key>
