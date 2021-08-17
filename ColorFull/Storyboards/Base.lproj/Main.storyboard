@@ -31,12 +31,6 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="uXV-rF-nYe"/>
                                     <barButtonItem title="Info menu" image="info.circle" catalog="system" id="0Q6-6C-Hay"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hTx-gE-eea"/>
-                                    <barButtonItem title="Download as image" image="square.and.arrow.down" catalog="system" id="nNY-PH-3tH">
-                                        <connections>
-                                            <action selector="downloadAsImage" destination="BYZ-38-t0r" id="NtD-J6-Mpg"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="pl9-Re-fzD"/>
                                     <barButtonItem title="Share color" image="square.and.arrow.up" catalog="system" id="Wrr-2c-byl"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="RPZ-st-54x"/>
@@ -73,7 +67,6 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="downloadButton" destination="nNY-PH-3tH" id="KRk-Ka-L5Y"/>
                         <outlet property="menuButton" destination="0Q6-6C-Hay" id="t68-rq-mVO"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="nVb-Od-V3R"/>
                         <outlet property="myToolbar" destination="NK4-FQ-SOv" id="BC0-eL-Mjb"/>
@@ -89,7 +82,6 @@
     <resources>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="paintpalette" catalog="system" width="128" height="105"/>
-        <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="wand.and.stars" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

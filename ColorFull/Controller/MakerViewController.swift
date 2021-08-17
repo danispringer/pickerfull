@@ -22,7 +22,6 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var myToolbar: UIToolbar!
     @IBOutlet weak var menuButton: UIBarButtonItem!
-    @IBOutlet weak var downloadButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
 
 
@@ -170,29 +169,35 @@ class MakerViewController: UIViewController,
 
     func getShareMenu() -> UIMenu {
 
-        let shareTextHexAction = UIAction(title: "Share color as HEX text",
+        let shareTextHexAction = UIAction(title: "Share as HEX",
                                           image: UIImage(systemName: "doc.text")) { _ in
             self.shareAsText(format: .hex)
         }
 
-        let shareTextRGBAction = UIAction(title: "Share color as RGB text",
+        let shareTextRGBAction = UIAction(title: "Share as RGB",
                                           image: UIImage(systemName: "doc.text")) { _ in
             self.shareAsText(format: .rgb)
         }
 
-        let shareImageAction = UIAction(title: "Share color as image", image: UIImage(systemName: "photo")) { _ in
+        let shareImageAction = UIAction(title: "Share as image", image: UIImage(systemName: "photo")) { _ in
             self.shareAsImage()
         }
 
-        let shareMenu = UIMenu(options: .displayInline, children: [shareTextHexAction, shareTextRGBAction,
-                                                                   shareImageAction])
+        let downloadImageAction = UIAction(title: "Download as image",
+                                           image: UIImage(systemName: "square.and.arrow.down")) { _ in
+            self.downloadAsImage()
+        }
+
+        let shareMenu = UIMenu(options: .displayInline, children: [
+                                downloadImageAction, shareImageAction,
+                                shareTextRGBAction, shareTextHexAction])
 
         return shareMenu
 
     }
 
 
-    @IBAction func downloadAsImage() {
+    func downloadAsImage() {
         let image = generateImage()
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
     }
@@ -209,7 +214,7 @@ class MakerViewController: UIViewController,
             })
             alert.addAction(goToSettingsButton)
             if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = downloadButton
+                presenter.barButtonItem = shareButton
             }
             present(alert, animated: true)
             return
@@ -221,7 +226,7 @@ class MakerViewController: UIViewController,
         })
         alert.addAction(openLibraryButton)
         if let presenter = alert.popoverPresentationController {
-            presenter.barButtonItem = downloadButton
+            presenter.barButtonItem = shareButton
         }
             present(alert, animated: true)
     }
