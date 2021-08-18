@@ -27,20 +27,12 @@ class MakerViewController: UIViewController,
 
     // MARK: properties
 
-    enum Controls {
-        case randomHex
-    }
-
     var currentUIColor: UIColor!
     var currentHexColor: String!
-
     var hexArrayForRandom: [String] = []
-
     var hexImage: UIImage!
-
     var textColor = UIColor.label
     var backgroundColor = UIColor.systemBackground
-
     let colorPicker = UIColorPickerViewController()
 
 
@@ -52,25 +44,19 @@ class MakerViewController: UIViewController,
         for number in 0...Int(Const.Values.rgbMax) {
             hexArrayForRandom.append(String(format: Const.Values.numToHexFormatter, number))
         }
-
         messageLabel.isHidden = true
         messageLabel.layer.cornerRadius = 20
         messageLabel.layer.masksToBounds = true
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD()) ?? getFallbackColor()
-
         resultView.backgroundColor = selectedColor
-
-        myToolbar.layer.cornerRadius = myToolbar.bounds.height * 0.5
-        myToolbar.layer.masksToBounds = true
-
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
         colorPicker.title = "Tap 'x' to apply changes"
-
         menuButton.menu = getMainMenu()
         shareButton.menu = getShareMenu()
-
+        myToolbar.layer.cornerRadius = myToolbar.bounds.height * 0.4
+        myToolbar.layer.masksToBounds = true
     }
 
 
@@ -109,10 +95,10 @@ class MakerViewController: UIViewController,
             if let presenter = alert.popoverPresentationController {
                 presenter.barButtonItem = menuButton
             }
-                present(alert, animated: true)
+            present(alert, animated: true)
             return
         }
-            UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
+        UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
     }
 
 
@@ -162,7 +148,7 @@ class MakerViewController: UIViewController,
         }
 
         let aboutMenu = UIMenu(title: myTitle, image: nil, options: .displayInline,
-                              children: [contact, review, shareApp, moreApps])
+                               children: [contact, review, shareApp, moreApps])
         return aboutMenu
     }
 
@@ -208,7 +194,7 @@ class MakerViewController: UIViewController,
             let alert = createAlert(alertReasonParam: AlertReason.permissionDenied)
             let goToSettingsButton = UIAlertAction(title: "Open Settings", style: .default, handler: { _ in
                 if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
-                        UIApplication.shared.open(url)
+                    UIApplication.shared.open(url)
                 }
 
             })
@@ -221,14 +207,14 @@ class MakerViewController: UIViewController,
         }
         let alert = createAlert(alertReasonParam: AlertReason.imageSaved)
         let openLibraryButton = UIAlertAction(title: "Open Gallery", style: .default, handler: { _ in
-                UIApplication.shared.open(URL(string: Const.AppInfo.galleryLink)!)
+            UIApplication.shared.open(URL(string: Const.AppInfo.galleryLink)!)
 
         })
         alert.addAction(openLibraryButton)
         if let presenter = alert.popoverPresentationController {
             presenter.barButtonItem = shareButton
         }
-            present(alert, animated: true)
+        present(alert, animated: true)
     }
 
 
@@ -261,7 +247,7 @@ class MakerViewController: UIViewController,
                 return
             }
         }
-            present(activityController, animated: true)
+        present(activityController, animated: true)
     }
 
 
@@ -281,7 +267,7 @@ class MakerViewController: UIViewController,
                 return
             }
         }
-            present(activityController, animated: true)
+        present(activityController, animated: true)
 
     }
 
@@ -409,14 +395,14 @@ class MakerViewController: UIViewController,
 
 
     public func makeRandomColor() {
-            var randomHex = ""
-            let randomRed = hexArrayForRandom.randomElement()!
-            let randomGreen = hexArrayForRandom.randomElement()!
-            let randomBlue = hexArrayForRandom.randomElement()!
+        var randomHex = ""
+        let randomRed = hexArrayForRandom.randomElement()!
+        let randomGreen = hexArrayForRandom.randomElement()!
+        let randomBlue = hexArrayForRandom.randomElement()!
 
-            randomHex = randomRed + randomGreen + randomBlue
+        randomHex = randomRed + randomGreen + randomBlue
 
-            updateColor(hexStringParam: randomHex)
+        updateColor(hexStringParam: randomHex)
     }
 }
 
@@ -438,7 +424,7 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
         mailComposer.setMessageBody(messageBody, isHTML: false)
         mailComposer.setToRecipients(toRecipents)
 
-            present(mailComposer, animated: true, completion: nil)
+        present(mailComposer, animated: true, completion: nil)
 
     }
 
@@ -479,13 +465,13 @@ extension MakerViewController {
         //       You can find the App Store ID in your app's product URL
 
         guard let writeReviewURL = URL(string: Const.AppInfo.reviewLink)
-            else {
-                fatalError("Expected a valid URL")
+        else {
+            fatalError("Expected a valid URL")
         }
 
-            UIApplication.shared.open(writeReviewURL,
-                                      options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
-                                      completionHandler: nil)
+        UIApplication.shared.open(writeReviewURL,
+                                  options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
+                                  completionHandler: nil)
 
     }
 
@@ -497,7 +483,7 @@ extension MakerViewController {
 private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(
     _ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
     return Dictionary(uniqueKeysWithValues: input.map { key, value in
-        (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+                        (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
 
 
