@@ -52,7 +52,7 @@ class MakerViewController: UIViewController,
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
-        colorPicker.title = "Tap 'x' to apply changes"
+        colorPicker.title = "ColorFull: Your Color Awaits"
         menuButton.menu = getMainMenu()
         shareButton.menu = getShareMenu()
         myToolbar.layer.cornerRadius = myToolbar.bounds.height * 0.4
@@ -63,7 +63,7 @@ class MakerViewController: UIViewController,
     // MARK: Helpers
 
     func getSafeHexFromUD() -> String {
-        let hexString: String = UserDefaults.standard.string(forKey: Const.UserDef.colorKey) ??
+        let hexString: String = UDstan.string(forKey: Const.UserDef.colorKey) ??
             getFallbackColorString()
 
         return hexString
@@ -111,7 +111,7 @@ class MakerViewController: UIViewController,
         self.resultView.backgroundColor = selectedColor
         colorPicker.selectedColor = selectedColor
 
-        UserDefaults.standard.set(mySafeString, forKey: Const.UserDef.colorKey)
+        UDstan.set(mySafeString, forKey: Const.UserDef.colorKey)
 
     }
 
@@ -222,7 +222,7 @@ class MakerViewController: UIViewController,
         var myText = ""
         switch format {
         case .hex:
-            myText = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)!
+            myText = UDstan.string(forKey: Const.UserDef.colorKey)!
         case .rgb:
             let hexString = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)
 
@@ -370,7 +370,8 @@ class MakerViewController: UIViewController,
     }
 
 
-    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+    func colorPickerViewController(_ viewController: UIColorPickerViewController,
+                                   didSelect color: UIColor, continuously: Bool) {
         let hexString = hexStringFromColor(color: colorPicker.selectedColor)
         updateColor(hexStringParam: hexString)
     }
