@@ -8,6 +8,7 @@
 
 import UIKit
 
+let UDstan = UserDefaults.standard
 
 struct Const {
 
