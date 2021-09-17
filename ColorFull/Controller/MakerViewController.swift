@@ -24,7 +24,7 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var pickerButton: UIButton!
-    @IBOutlet weak var randomButtom: UIButton!
+    @IBOutlet weak var randomButton: UIButton!
 
 
     // MARK: properties
@@ -51,7 +51,6 @@ class MakerViewController: UIViewController,
         messageLabel.layer.masksToBounds = true
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD()) ?? getFallbackColor()
         resultView.backgroundColor = selectedColor
-        setThemeColorTo(myThemeColor: selectedColor)
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
@@ -63,7 +62,12 @@ class MakerViewController: UIViewController,
         menuButton.setTitle("", for: .normal)
         shareButton.setTitle("", for: .normal)
         pickerButton.setTitle("", for: .normal)
-        randomButtom.setTitle("", for: .normal)
+        randomButton.setTitle("", for: .normal)
+        randomButton.accessibilityLabel = "Random color"
+        menuButton.accessibilityLabel = "Menu"
+        shareButton.accessibilityLabel = "Share"
+        pickerButton.accessibilityLabel = "Advanced picker"
+
         buttonsFakeContainer.layer.cornerRadius = buttonsFakeContainer.bounds.height * 0.4
         buttonsFakeContainer.layer.masksToBounds = true
         buttonsFakeContainer.backgroundColor = .systemBackground
@@ -117,32 +121,9 @@ class MakerViewController: UIViewController,
     func updateColor(hexStringParam: String? = nil) {
         let mySafeString: String = hexStringParam ?? self.self.getFallbackColorString()
         let selectedColor: UIColor = self.uiColorFrom(hex: mySafeString) ?? self.getFallbackColor()
-        self.setThemeColorTo(myThemeColor: selectedColor)
         self.resultView.backgroundColor = selectedColor
         self.colorPicker.selectedColor = selectedColor
         UDstan.set(mySafeString, forKey: Const.UserDef.colorKey)
-    }
-
-
-    func setThemeColorTo(myThemeColor: UIColor) {
-        UIView.appearance(
-            whenContainedInInstancesOf: [
-                UIAlertController.self]).tintColor = myThemeColor
-        UIButton.appearance().tintColor = myThemeColor
-        UIBarButtonItem.appearance().tintColor = myThemeColor
-        for button in [randomButtom, menuButton, shareButton, pickerButton] {
-            button!.tintColor = myThemeColor
-        }
-        UIView.appearance(
-            whenContainedInInstancesOf: [
-                UIToolbar.self]).tintColor = myThemeColor
-
-        UISwitch.appearance().onTintColor = myThemeColor
-        for state: UIControl.State in [.application, .highlighted, .normal, .selected] {
-            UIBarButtonItem.appearance().setTitleTextAttributes([
-                NSAttributedString.Key.foregroundColor: myThemeColor
-            ], for: state)
-        }
     }
 
 
@@ -355,7 +336,7 @@ class MakerViewController: UIViewController,
     func elementsShould(hide: Bool) {
         messageLabel.isHidden = !hide
         buttonsFakeContainer.isHidden = hide
-        for button in [randomButtom, menuButton, shareButton, pickerButton] {
+        for button in [randomButton, menuButton, shareButton, pickerButton] {
             button?.isHidden = hide
         }
     }
