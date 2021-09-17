@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,70 +14,92 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MakerViewController" customModule="ColorFull" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7iT-jJ-EaV" userLabel="Result View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NK4-FQ-SOv">
-                                <rect key="frame" x="32" y="737" width="350" height="44"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <items>
-                                    <barButtonItem title="Create random color" image="wand.and.stars" catalog="system" id="qNl-rx-Hux">
-                                        <connections>
-                                            <action selector="randomPressed:" destination="BYZ-38-t0r" id="sY8-h7-FcE"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="uXV-rF-nYe"/>
-                                    <barButtonItem title="Info menu" image="info.circle" catalog="system" id="0Q6-6C-Hay"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="pl9-Re-fzD"/>
-                                    <barButtonItem title="Share color" image="square.and.arrow.up" catalog="system" id="Wrr-2c-byl"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="RPZ-st-54x"/>
-                                    <barButtonItem title="Advanced picker" image="paintpalette" catalog="system" id="erP-Sp-GGj">
-                                        <connections>
-                                            <action selector="showColorPicker" destination="BYZ-38-t0r" id="01T-Rb-lpX"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KX5-0V-0O3">
+                                <rect key="frame" x="57.333333333333343" y="658" width="261.33333333333326" height="47"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKY-HB-wIv" userLabel="Message Label">
-                                <rect key="frame" x="40" y="756" width="334" height="17"/>
+                                <rect key="frame" x="40" y="672" width="295" height="17"/>
                                 <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jgq-DN-xHi" userLabel="random">
+                                <rect key="frame" x="73.333333333333329" y="666" width="45.666666666666671" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="wand.and.stars" catalog="system"/>
+                                <connections>
+                                    <action selector="randomPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VEI-qe-agR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mXF-LY-eP0" userLabel="menu">
+                                <rect key="frame" x="135" y="666" width="44.666666666666657" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZu-Oc-aLL" userLabel="share">
+                                <rect key="frame" x="195.66666666666666" y="666.33333333333337" width="43" height="30.666666666666629"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iho-EZ-Yhx" userLabel="picker">
+                                <rect key="frame" x="254.66666666666663" y="666.33333333333337" width="48" height="30.666666666666629"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="paintpalette" catalog="system"/>
+                                <connections>
+                                    <action selector="showColorPicker" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZWE-Ip-eou"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="7iT-jJ-EaV" secondAttribute="bottom" id="0hc-S8-bD4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NK4-FQ-SOv" secondAttribute="bottom" constant="32" id="27l-b0-3kv"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NK4-FQ-SOv" secondAttribute="trailing" constant="32" id="Ggp-3G-aa2"/>
+                            <constraint firstItem="mXF-LY-eP0" firstAttribute="leading" secondItem="Jgq-DN-xHi" secondAttribute="trailing" constant="16" id="8vo-qV-SH4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="centerX" secondItem="mXF-LY-eP0" secondAttribute="trailing" constant="8" id="G5F-Dt-tLK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7iT-jJ-EaV" secondAttribute="trailing" id="P5C-FX-5bk"/>
+                            <constraint firstItem="iho-EZ-Yhx" firstAttribute="trailing" secondItem="KX5-0V-0O3" secondAttribute="trailing" constant="-16" id="RYG-px-xvI"/>
+                            <constraint firstItem="SZu-Oc-aLL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="centerX" constant="8" id="SYK-Nw-Btz"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="SYy-T5-Xpr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Jgq-DN-xHi" secondAttribute="bottom" constant="32" id="UwF-wd-vey"/>
+                            <constraint firstItem="Jgq-DN-xHi" firstAttribute="bottom" secondItem="KX5-0V-0O3" secondAttribute="bottom" constant="-8" id="X01-PX-RoM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BKY-HB-wIv" secondAttribute="bottom" constant="40" id="Zdq-nc-oiG"/>
-                            <constraint firstItem="NK4-FQ-SOv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="gm1-pF-Jv6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iho-EZ-Yhx" secondAttribute="trailing" constant="32" id="aic-qR-GTJ"/>
+                            <constraint firstItem="KX5-0V-0O3" firstAttribute="top" secondItem="Jgq-DN-xHi" secondAttribute="top" constant="-8" id="fIT-3M-YGQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SZu-Oc-aLL" secondAttribute="bottom" constant="32" id="kaK-EI-hQF"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mw9-bO-m8F"/>
                             <constraint firstItem="BKY-HB-wIv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="n95-Oy-Pzb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mXF-LY-eP0" secondAttribute="bottom" constant="32" id="pyt-Yz-0in"/>
+                            <constraint firstItem="iho-EZ-Yhx" firstAttribute="leading" secondItem="SZu-Oc-aLL" secondAttribute="trailing" constant="16" id="q9x-8R-FWW"/>
+                            <constraint firstItem="Jgq-DN-xHi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="rcA-75-6BK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BKY-HB-wIv" secondAttribute="trailing" constant="40" id="sW6-xr-tSj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="iho-EZ-Yhx" secondAttribute="bottom" constant="32" id="ytL-UH-GlP"/>
+                            <constraint firstItem="KX5-0V-0O3" firstAttribute="leading" secondItem="Jgq-DN-xHi" secondAttribute="leading" constant="-16" id="ziD-Xh-Jle"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="menuButton" destination="0Q6-6C-Hay" id="t68-rq-mVO"/>
+                        <outlet property="buttonsFakeContainer" destination="KX5-0V-0O3" id="YRE-4t-QEu"/>
+                        <outlet property="menuButton" destination="mXF-LY-eP0" id="qXB-b4-L4J"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="nVb-Od-V3R"/>
-                        <outlet property="myToolbar" destination="NK4-FQ-SOv" id="BC0-eL-Mjb"/>
+                        <outlet property="pickerButton" destination="iho-EZ-Yhx" id="8zU-ii-sBI"/>
+                        <outlet property="randomButtom" destination="Jgq-DN-xHi" id="ipL-az-pS9"/>
                         <outlet property="resultView" destination="7iT-jJ-EaV" id="fu8-S3-1HE"/>
-                        <outlet property="shareButton" destination="Wrr-2c-byl" id="kGV-nO-fmf"/>
+                        <outlet property="shareButton" destination="SZu-Oc-aLL" id="t4n-aJ-2D3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="131.91964285714286"/>
+            <point key="canvasLocation" x="130.40000000000001" y="131.52709359605913"/>
         </scene>
     </scenes>
     <resources>
@@ -86,6 +109,9 @@
         <image name="wand.and.stars" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
