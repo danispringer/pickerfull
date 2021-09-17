@@ -92,7 +92,7 @@
                         <outlet property="menuButton" destination="mXF-LY-eP0" id="qXB-b4-L4J"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="nVb-Od-V3R"/>
                         <outlet property="pickerButton" destination="iho-EZ-Yhx" id="8zU-ii-sBI"/>
-                        <outlet property="randomButtom" destination="Jgq-DN-xHi" id="ipL-az-pS9"/>
+                        <outlet property="randomButton" destination="Jgq-DN-xHi" id="ipL-az-pS9"/>
                         <outlet property="resultView" destination="7iT-jJ-EaV" id="fu8-S3-1HE"/>
                         <outlet property="shareButton" destination="SZu-Oc-aLL" id="t4n-aJ-2D3"/>
                     </connections>
