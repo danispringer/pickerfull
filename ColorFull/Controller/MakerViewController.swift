@@ -129,6 +129,7 @@ class MakerViewController: UIViewController,
             whenContainedInInstancesOf: [
                 UIAlertController.self]).tintColor = myThemeColor
         UIButton.appearance().tintColor = myThemeColor
+        UIBarButtonItem.appearance().tintColor = myThemeColor
         for button in [randomButtom, menuButton, shareButton, pickerButton] {
             button!.tintColor = myThemeColor
         }
