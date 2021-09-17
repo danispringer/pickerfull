@@ -20,9 +20,11 @@ class MakerViewController: UIViewController,
 
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var resultView: UIView!
-    @IBOutlet weak var myToolbar: UIToolbar!
-    @IBOutlet weak var menuButton: UIBarButtonItem!
-    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var buttonsFakeContainer: UIView!
+    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var pickerButton: UIButton!
+    @IBOutlet weak var randomButtom: UIButton!
 
 
     // MARK: properties
@@ -49,14 +51,22 @@ class MakerViewController: UIViewController,
         messageLabel.layer.masksToBounds = true
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD()) ?? getFallbackColor()
         resultView.backgroundColor = selectedColor
+        setThemeColorTo(myThemeColor: selectedColor)
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
         colorPicker.title = "ColorFull: Your Color Awaits"
         menuButton.menu = getMainMenu()
+        menuButton.showsMenuAsPrimaryAction = true
+        shareButton.showsMenuAsPrimaryAction = true
         shareButton.menu = getShareMenu()
-        myToolbar.layer.cornerRadius = myToolbar.bounds.height * 0.4
-        myToolbar.layer.masksToBounds = true
+        menuButton.setTitle("", for: .normal)
+        shareButton.setTitle("", for: .normal)
+        pickerButton.setTitle("", for: .normal)
+        randomButtom.setTitle("", for: .normal)
+        buttonsFakeContainer.layer.cornerRadius = buttonsFakeContainer.bounds.height * 0.4
+        buttonsFakeContainer.layer.masksToBounds = true
+        buttonsFakeContainer.backgroundColor = .systemBackground
     }
 
 
@@ -93,7 +103,7 @@ class MakerViewController: UIViewController,
         guard let safeURL = myURL else {
             let alert = createAlert(alertReasonParam: .unknown)
             if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = menuButton
+                presenter.sourceView = menuButton
             }
             present(alert, animated: true)
             return
@@ -105,18 +115,34 @@ class MakerViewController: UIViewController,
     // MARK: Update Color
 
     func updateColor(hexStringParam: String? = nil) {
-
-        let mySafeString: String = hexStringParam ?? getFallbackColorString()
-        let selectedColor: UIColor = uiColorFrom(hex: mySafeString) ?? getFallbackColor()
+        let mySafeString: String = hexStringParam ?? self.self.getFallbackColorString()
+        let selectedColor: UIColor = self.uiColorFrom(hex: mySafeString) ?? self.getFallbackColor()
+        self.setThemeColorTo(myThemeColor: selectedColor)
         self.resultView.backgroundColor = selectedColor
-        colorPicker.selectedColor = selectedColor
-
+        self.colorPicker.selectedColor = selectedColor
         UDstan.set(mySafeString, forKey: Const.UserDef.colorKey)
-
     }
 
 
-    // MARK: Toolbar
+    func setThemeColorTo(myThemeColor: UIColor) {
+        UIView.appearance(
+            whenContainedInInstancesOf: [
+                UIAlertController.self]).tintColor = myThemeColor
+        UIButton.appearance().tintColor = myThemeColor
+        for button in [randomButtom, menuButton, shareButton, pickerButton] {
+            button!.tintColor = myThemeColor
+        }
+        UIView.appearance(
+            whenContainedInInstancesOf: [
+                UIToolbar.self]).tintColor = myThemeColor
+
+        UISwitch.appearance().onTintColor = myThemeColor
+        for state: UIControl.State in [.application, .highlighted, .normal, .selected] {
+            UIBarButtonItem.appearance().setTitleTextAttributes([
+                NSAttributedString.Key.foregroundColor: myThemeColor
+            ], for: state)
+        }
+    }
 
 
     // MARK: Share
@@ -200,7 +226,7 @@ class MakerViewController: UIViewController,
             })
             alert.addAction(goToSettingsButton)
             if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = shareButton
+                presenter.sourceView = shareButton
             }
             present(alert, animated: true)
             return
@@ -212,7 +238,7 @@ class MakerViewController: UIViewController,
         })
         alert.addAction(openLibraryButton)
         if let presenter = alert.popoverPresentationController {
-            presenter.barButtonItem = shareButton
+            presenter.sourceView = shareButton
         }
         present(alert, animated: true)
     }
@@ -234,12 +260,12 @@ class MakerViewController: UIViewController,
         }
 
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = menuButton
+        activityController.popoverPresentationController?.sourceView = menuButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.shareButton
+                    presenter.sourceView = self.shareButton
 
                 }
                 self.present(alert, animated: true)
@@ -255,12 +281,12 @@ class MakerViewController: UIViewController,
         let image = generateImage()
 
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = menuButton
+        activityController.popoverPresentationController?.sourceView = menuButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.shareButton
+                    presenter.sourceView = self.shareButton
                 }
                 self.present(alert, animated: true)
 
@@ -326,11 +352,11 @@ class MakerViewController: UIViewController,
 
 
     func elementsShould(hide: Bool) {
-
         messageLabel.isHidden = !hide
-
-        myToolbar.isHidden = hide
-
+        buttonsFakeContainer.isHidden = hide
+        for button in [randomButtom, menuButton, shareButton, pickerButton] {
+            button?.isHidden = hide
+        }
     }
 
 
@@ -342,12 +368,12 @@ class MakerViewController: UIViewController,
             """
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
-        activityController.popoverPresentationController?.barButtonItem = menuButton
+        activityController.popoverPresentationController?.sourceView = menuButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.menuButton
+                    presenter.sourceView = self.menuButton
                 }
                 self.present(alert, animated: true)
 
@@ -355,7 +381,7 @@ class MakerViewController: UIViewController,
             }
         }
         if let presenter = activityController.popoverPresentationController {
-            presenter.barButtonItem = menuButton
+            presenter.sourceView = menuButton
         }
 
         present(activityController, animated: true)
@@ -380,7 +406,7 @@ class MakerViewController: UIViewController,
     // MARK: Random
 
     @IBAction func randomPressed(_ sender: Any) {
-
+        makeRandomColor()
         let activity = NSUserActivity(activityType: Const.AppInfo.bundleAndRandom)
         activity.title = "Create Random Color"
         activity.isEligibleForSearch = true
@@ -389,9 +415,6 @@ class MakerViewController: UIViewController,
         activity.suggestedInvocationPhrase = "ColorFull Random Color"
         view.userActivity = activity
         activity.becomeCurrent()
-
-        makeRandomColor()
-
     }
 
 
@@ -447,7 +470,7 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
             }
             if alert.title != nil {
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.menuButton
+                    presenter.sourceView = self.menuButton
                 }
                 self.present(alert, animated: true)
 
