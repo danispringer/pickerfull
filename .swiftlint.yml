@@ -6,3 +6,4 @@ disabled_rules:
   - type_body_length
   - function_body_length
   - cyclomatic_complexity
+  - switch_case_alignment
