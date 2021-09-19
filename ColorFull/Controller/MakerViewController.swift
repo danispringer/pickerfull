@@ -54,7 +54,7 @@ class MakerViewController: UIViewController,
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
-        colorPicker.title = "ColorFull: Your Color Awaits"
+        colorPicker.title = "Tap 'x' to apply changes"
         menuButton.menu = getMainMenu()
         menuButton.showsMenuAsPrimaryAction = true
         shareButton.showsMenuAsPrimaryAction = true
@@ -77,7 +77,7 @@ class MakerViewController: UIViewController,
     // MARK: Helpers
 
     func getSafeHexFromUD() -> String {
-        let hexString: String = UDstan.string(forKey: Const.UserDef.colorKey) ??
+        let hexString: String = UserDefaults.standard.string(forKey: Const.UserDef.colorKey) ??
             getFallbackColorString()
 
         return hexString
@@ -123,7 +123,7 @@ class MakerViewController: UIViewController,
         let selectedColor: UIColor = self.uiColorFrom(hex: mySafeString) ?? self.getFallbackColor()
         self.resultView.backgroundColor = selectedColor
         self.colorPicker.selectedColor = selectedColor
-        UDstan.set(mySafeString, forKey: Const.UserDef.colorKey)
+        UserDefaults.standard.set(mySafeString, forKey: Const.UserDef.colorKey)
     }
 
 
@@ -230,7 +230,7 @@ class MakerViewController: UIViewController,
         var myText = ""
         switch format {
         case .hex:
-            myText = UDstan.string(forKey: Const.UserDef.colorKey)!
+            myText = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)!
         case .rgb:
             let hexString = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)
 
@@ -378,8 +378,7 @@ class MakerViewController: UIViewController,
     }
 
 
-    func colorPickerViewController(_ viewController: UIColorPickerViewController,
-                                   didSelect color: UIColor, continuously: Bool) {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         let hexString = hexStringFromColor(color: colorPicker.selectedColor)
         updateColor(hexStringParam: hexString)
     }
