@@ -27,10 +27,6 @@ class MakerViewController: UIViewController,
 
     // MARK: properties
 
-    enum Controls {
-        case randomHex
-    }
-
     var currentUIColor: UIColor!
     var currentHexColor: String!
 
@@ -60,13 +56,13 @@ class MakerViewController: UIViewController,
 
         resultView.backgroundColor = selectedColor
 
-        myToolbar.layer.cornerRadius = myToolbar.bounds.height * 0.5
+        myToolbar.layer.cornerRadius = myToolbar.bounds.height * 0.4
         myToolbar.layer.masksToBounds = true
 
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
-        colorPicker.title = "Tap 'x' to apply changes"
+        colorPicker.title = "ColorFull: Your Color Awaits"
 
         menuButton.menu = getMainMenu()
         shareButton.menu = getShareMenu()
@@ -78,7 +74,7 @@ class MakerViewController: UIViewController,
 
     func getSafeHexFromUD() -> String {
         let hexString: String = UserDefaults.standard.string(forKey: Const.UserDef.colorKey) ??
-            getFallbackColorString()
+        getFallbackColorString()
 
         return hexString
     }
@@ -109,10 +105,10 @@ class MakerViewController: UIViewController,
             if let presenter = alert.popoverPresentationController {
                 presenter.barButtonItem = menuButton
             }
-                present(alert, animated: true)
+            present(alert, animated: true)
             return
         }
-            UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
+        UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
     }
 
 
@@ -162,7 +158,7 @@ class MakerViewController: UIViewController,
         }
 
         let aboutMenu = UIMenu(title: myTitle, image: nil, options: .displayInline,
-                              children: [contact, review, shareApp, moreApps])
+                               children: [contact, review, shareApp, moreApps])
         return aboutMenu
     }
 
@@ -189,8 +185,8 @@ class MakerViewController: UIViewController,
         }
 
         let shareMenu = UIMenu(options: .displayInline, children: [
-                                downloadImageAction, shareImageAction,
-                                shareTextRGBAction, shareTextHexAction])
+            downloadImageAction, shareImageAction,
+            shareTextRGBAction, shareTextHexAction])
 
         return shareMenu
 
@@ -208,7 +204,7 @@ class MakerViewController: UIViewController,
             let alert = createAlert(alertReasonParam: AlertReason.permissionDenied)
             let goToSettingsButton = UIAlertAction(title: "Open Settings", style: .default, handler: { _ in
                 if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
-                        UIApplication.shared.open(url)
+                    UIApplication.shared.open(url)
                 }
 
             })
@@ -221,30 +217,30 @@ class MakerViewController: UIViewController,
         }
         let alert = createAlert(alertReasonParam: AlertReason.imageSaved)
         let openLibraryButton = UIAlertAction(title: "Open Gallery", style: .default, handler: { _ in
-                UIApplication.shared.open(URL(string: Const.AppInfo.galleryLink)!)
+            UIApplication.shared.open(URL(string: Const.AppInfo.galleryLink)!)
 
         })
         alert.addAction(openLibraryButton)
         if let presenter = alert.popoverPresentationController {
             presenter.barButtonItem = shareButton
         }
-            present(alert, animated: true)
+        present(alert, animated: true)
     }
 
 
     func shareAsText(format: Format) {
         var myText = ""
         switch format {
-        case .hex:
-            myText = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)!
-        case .rgb:
-            let hexString = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)
+            case .hex:
+                myText = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)!
+            case .rgb:
+                let hexString = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)
 
-            let redValue = Int(hexString![0...1], radix: 16)!
-            let greenValue = Int(hexString![2...3], radix: 16)!
-            let blueValue = Int(hexString![4...5], radix: 16)!
+                let redValue = Int(hexString![0...1], radix: 16)!
+                let greenValue = Int(hexString![2...3], radix: 16)!
+                let blueValue = Int(hexString![4...5], radix: 16)!
 
-            myText = "\(redValue),\(greenValue),\(blueValue)"
+                myText = "\(redValue),\(greenValue),\(blueValue)"
         }
 
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
@@ -261,7 +257,7 @@ class MakerViewController: UIViewController,
                 return
             }
         }
-            present(activityController, animated: true)
+        present(activityController, animated: true)
     }
 
 
@@ -281,7 +277,7 @@ class MakerViewController: UIViewController,
                 return
             }
         }
-            present(activityController, animated: true)
+        present(activityController, animated: true)
 
     }
 
@@ -340,9 +336,7 @@ class MakerViewController: UIViewController,
 
 
     func elementsShould(hide: Bool) {
-
         messageLabel.isHidden = !hide
-
         myToolbar.isHidden = hide
 
     }
@@ -351,7 +345,7 @@ class MakerViewController: UIViewController,
     func shareApp() {
 
         let message = """
-            We believe life should be ColorFull. Do you?
+            ColorFull: Your Color Awaits
             https://itunes.apple.com/app/id1410565176
             """
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
@@ -384,7 +378,8 @@ class MakerViewController: UIViewController,
     }
 
 
-    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+    func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor,
+                                   continuously: Bool) {
         let hexString = hexStringFromColor(color: colorPicker.selectedColor)
         updateColor(hexStringParam: hexString)
     }
@@ -409,14 +404,14 @@ class MakerViewController: UIViewController,
 
 
     public func makeRandomColor() {
-            var randomHex = ""
-            let randomRed = hexArrayForRandom.randomElement()!
-            let randomGreen = hexArrayForRandom.randomElement()!
-            let randomBlue = hexArrayForRandom.randomElement()!
+        var randomHex = ""
+        let randomRed = hexArrayForRandom.randomElement()!
+        let randomGreen = hexArrayForRandom.randomElement()!
+        let randomBlue = hexArrayForRandom.randomElement()!
 
-            randomHex = randomRed + randomGreen + randomBlue
+        randomHex = randomRed + randomGreen + randomBlue
 
-            updateColor(hexStringParam: randomHex)
+        updateColor(hexStringParam: randomHex)
     }
 }
 
@@ -438,7 +433,7 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
         mailComposer.setMessageBody(messageBody, isHTML: false)
         mailComposer.setToRecipients(toRecipents)
 
-            present(mailComposer, animated: true, completion: nil)
+        present(mailComposer, animated: true, completion: nil)
 
     }
 
@@ -449,14 +444,14 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
 
         dismiss(animated: true, completion: {
             switch result {
-            case MFMailComposeResult.failed:
-                alert = self.createAlert(alertReasonParam: AlertReason.messageFailed)
-            case MFMailComposeResult.saved:
-                alert = self.createAlert(alertReasonParam: AlertReason.messageSaved)
-            case MFMailComposeResult.sent:
-                alert = self.createAlert(alertReasonParam: AlertReason.messageSent)
-            default:
-                break
+                case MFMailComposeResult.failed:
+                    alert = self.createAlert(alertReasonParam: AlertReason.messageFailed)
+                case MFMailComposeResult.saved:
+                    alert = self.createAlert(alertReasonParam: AlertReason.messageSaved)
+                case MFMailComposeResult.sent:
+                    alert = self.createAlert(alertReasonParam: AlertReason.messageSent)
+                default:
+                    break
             }
             if alert.title != nil {
                 if let presenter = alert.popoverPresentationController {
@@ -468,7 +463,6 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
         })
     }
 
-
 }
 
 
@@ -479,16 +473,15 @@ extension MakerViewController {
         //       You can find the App Store ID in your app's product URL
 
         guard let writeReviewURL = URL(string: Const.AppInfo.reviewLink)
-            else {
-                fatalError("Expected a valid URL")
+        else {
+            fatalError("Expected a valid URL")
         }
 
-            UIApplication.shared.open(writeReviewURL,
-                                      options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
-                                      completionHandler: nil)
+        UIApplication.shared.open(writeReviewURL,
+                                  options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
+                                  completionHandler: nil)
 
     }
-
 
 }
 
@@ -496,9 +489,9 @@ extension MakerViewController {
 // Helper function inserted by Swift 4.2 migrator.
 private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(
     _ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-    return Dictionary(uniqueKeysWithValues: input.map { key, value in
-        (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
-}
+        return Dictionary(uniqueKeysWithValues: input.map { key, value in
+            (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    }
 
 
 // Helper function inserted by Swift 4.2 migrator.
@@ -510,5 +503,5 @@ private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerCon
 // Helper function inserted by Swift 4.2 migrator.
 private func convertFromUIImagePickerControllerInfoKeyDictionary(
     _ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
+        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+    }
