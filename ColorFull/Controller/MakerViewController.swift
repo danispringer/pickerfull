@@ -23,6 +23,7 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var myToolbar: UIToolbar!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var qrImageView: UIImageView!
 
 
     // MARK: properties
@@ -48,8 +49,7 @@ class MakerViewController: UIViewController,
         for number in 0...Int(Const.Values.rgbMax) {
             hexArrayForRandom.append(String(format: Const.Values.numToHexFormatter, number))
         }
-
-        messageLabel.isHidden = true
+        elementsShould(hide: false)
         messageLabel.layer.cornerRadius = 20
         messageLabel.layer.masksToBounds = true
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD()) ?? getFallbackColor()
@@ -337,8 +337,8 @@ class MakerViewController: UIViewController,
 
     func elementsShould(hide: Bool) {
         messageLabel.isHidden = !hide
+        qrImageView.isHidden = !hide
         myToolbar.isHidden = hide
-
     }
 
 
