@@ -62,7 +62,7 @@ class MakerViewController: UIViewController,
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
-        colorPicker.title = "ColorFull: Your Color Awaits"
+        colorPicker.title = "Tap 'x' to apply changes"
 
         menuButton.menu = getMainMenu()
         shareButton.menu = getShareMenu()
@@ -378,8 +378,13 @@ class MakerViewController: UIViewController,
     }
 
 
-    func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor,
-                                   continuously: Bool) {
+//    func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor,
+//                                   continuously: Bool) {
+//
+//    }
+
+
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         let hexString = hexStringFromColor(color: colorPicker.selectedColor)
         updateColor(hexStringParam: hexString)
     }
