@@ -442,32 +442,6 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
 
     }
 
-
-    func mailComposeController(_ controller: MFMailComposeViewController,
-                               didFinishWith result: MFMailComposeResult, error: Error?) {
-        var alert = UIAlertController()
-
-        dismiss(animated: true, completion: {
-            switch result {
-                case MFMailComposeResult.failed:
-                    alert = self.createAlert(alertReasonParam: AlertReason.messageFailed)
-                case MFMailComposeResult.saved:
-                    alert = self.createAlert(alertReasonParam: AlertReason.messageSaved)
-                case MFMailComposeResult.sent:
-                    alert = self.createAlert(alertReasonParam: AlertReason.messageSent)
-                default:
-                    break
-            }
-            if alert.title != nil {
-                if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.menuButton
-                }
-                self.present(alert, animated: true)
-
-            }
-        })
-    }
-
 }
 
 
