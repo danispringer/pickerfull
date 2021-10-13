@@ -424,12 +424,10 @@ class MakerViewController: UIViewController,
 extension MakerViewController: MFMailComposeViewControllerDelegate {
 
     func launchEmail() {
-
         var emailTitle = Const.AppInfo.appName
         if let version = Bundle.main.infoDictionary![Const.AppInfo.bundleShort] {
             emailTitle += " \(version)"
         }
-
         let messageBody = "Hi. I have a question..."
         let toRecipents = [Const.AppInfo.email]
         let mailComposer: MFMailComposeViewController = MFMailComposeViewController()
@@ -437,9 +435,13 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
         mailComposer.setSubject(emailTitle)
         mailComposer.setMessageBody(messageBody, isHTML: false)
         mailComposer.setToRecipients(toRecipents)
-
         present(mailComposer, animated: true, completion: nil)
+    }
 
+
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true)
     }
 
 }
