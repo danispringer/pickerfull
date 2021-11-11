@@ -29,19 +29,19 @@ struct Const {
     }
 
     struct AppInfo {
-        static let version = "v."
-        static let leaveReview = "Leave a Review"
-        static let sendFeedback = "Contact Us"
-        static let shareApp = "Tell a Friend"
+        static let version = NSLocalizedString("v.", comment: "")
+        static let leaveReview = NSLocalizedString("Leave a Review", comment: "")
+        static let sendFeedback = NSLocalizedString("Contact Us", comment: "")
+        static let shareApp = NSLocalizedString("Tell a Friend", comment: "")
         static let bundleShort = "CFBundleShortVersionString"
-        static let appName = "ColorFull"
+        static let appName = NSLocalizedString("ColorFull", comment: "")
         static let galleryLink = "photos-redirect://"
         static let email = "dani.springer@icloud.com"
         static let reviewLink = "https://itunes.apple.com/app/id1410565176?action=write-review"
         static let bundleAndRandom = "io.github.danispringer.Color-Picker.makeRandom"
-        static let showAppsButtonTitle = "More Apps"
+        static let showAppsButtonTitle = NSLocalizedString("More Apps", comment: "")
         static let appsLink = "https://itunes.apple.com/developer/id1402417666"
-        static let creditMessage = """
+        static let creditMessage = NSLocalizedString("""
 
 
         Screenshot created with
@@ -52,7 +52,7 @@ struct Const {
         Create, edit and share your favorite colors
         Get it now on the App Store
 
-        """
+        """, comment: "")
     }
 
 }

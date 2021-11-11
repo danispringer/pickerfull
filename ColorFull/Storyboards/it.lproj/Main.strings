@@ -1,0 +1,15 @@
+
+/* Class = "UIBarButtonItem"; title = "Info menu"; ObjectID = "0Q6-6C-Hay"; */
+"0Q6-6C-Hay.title" = "Menu";
+
+/* Class = "UILabel"; text = "Message Label"; ObjectID = "BKY-HB-wIv"; */
+"BKY-HB-wIv.text" = "Message Label";
+
+/* Class = "UIBarButtonItem"; title = "Share color"; ObjectID = "Wrr-2c-byl"; */
+"Wrr-2c-byl.title" = "Condividi colore";
+
+/* Class = "UIBarButtonItem"; title = "Advanced picker"; ObjectID = "erP-Sp-GGj"; */
+"erP-Sp-GGj.title" = "Opzioni avanzate";
+
+/* Class = "UIBarButtonItem"; title = "Create random color"; ObjectID = "qNl-rx-Hux"; */
+"qNl-rx-Hux.title" = "Crea un nuovo colore";
