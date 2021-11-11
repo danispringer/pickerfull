@@ -62,7 +62,7 @@ class MakerViewController: UIViewController,
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
-        colorPicker.title = "Tap 'x' to apply changes"
+        colorPicker.title = NSLocalizedString("Tap 'x' to apply changes", comment: "")
 
         menuButton.menu = getMainMenu()
         shareButton.menu = getShareMenu()
@@ -165,21 +165,22 @@ class MakerViewController: UIViewController,
 
     func getShareMenu() -> UIMenu {
 
-        let shareTextHexAction = UIAction(title: "Share as HEX",
+        let shareTextHexAction = UIAction(title: NSLocalizedString("Share as HEX", comment: ""),
                                           image: UIImage(systemName: "doc.text")) { _ in
             self.shareAsText(format: .hex)
         }
 
-        let shareTextRGBAction = UIAction(title: "Share as RGB",
+        let shareTextRGBAction = UIAction(title: NSLocalizedString("Share as RGB", comment: ""),
                                           image: UIImage(systemName: "doc.text")) { _ in
             self.shareAsText(format: .rgb)
         }
 
-        let shareImageAction = UIAction(title: "Share as image", image: UIImage(systemName: "photo")) { _ in
+        let shareImageAction = UIAction(title: NSLocalizedString("Share as image", comment: ""),
+                                        image: UIImage(systemName: "photo")) { _ in
             self.shareAsImage()
         }
 
-        let downloadImageAction = UIAction(title: "Download as image",
+        let downloadImageAction = UIAction(title: NSLocalizedString("Download as image", comment: ""),
                                            image: UIImage(systemName: "square.and.arrow.down")) { _ in
             self.downloadAsImage()
         }
@@ -202,7 +203,8 @@ class MakerViewController: UIViewController,
     @objc func saveImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         guard error == nil else {
             let alert = createAlert(alertReasonParam: AlertReason.permissionDenied)
-            let goToSettingsButton = UIAlertAction(title: "Open Settings", style: .default, handler: { _ in
+            let goToSettingsButton = UIAlertAction(title: NSLocalizedString("Open Settings", comment: ""),
+                                                   style: .default, handler: { _ in
                 if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
                     UIApplication.shared.open(url)
                 }
@@ -216,7 +218,8 @@ class MakerViewController: UIViewController,
             return
         }
         let alert = createAlert(alertReasonParam: AlertReason.imageSaved)
-        let openLibraryButton = UIAlertAction(title: "Open Gallery", style: .default, handler: { _ in
+        let openLibraryButton = UIAlertAction(title: NSLocalizedString("Open Gallery", comment: ""),
+                                              style: .default, handler: { _ in
             UIApplication.shared.open(URL(string: Const.AppInfo.galleryLink)!)
 
         })
@@ -344,11 +347,13 @@ class MakerViewController: UIViewController,
 
     func shareApp() {
 
-        let message = """
-            ColorFull: Your Color Awaits
-            https://itunes.apple.com/app/id1410565176
-            """
-        let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
+        let firstHalf = NSLocalizedString("ColorFull: Your Color Awaits", comment: "")
+
+        let message = "https://itunes.apple.com/app/id1410565176"
+
+        let messageToShare = firstHalf + "\n" + message
+
+        let activityController = UIActivityViewController(activityItems: [messageToShare], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
         activityController.popoverPresentationController?.barButtonItem = menuButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
@@ -378,12 +383,6 @@ class MakerViewController: UIViewController,
     }
 
 
-//    func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor,
-//                                   continuously: Bool) {
-//
-//    }
-
-
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         let hexString = hexStringFromColor(color: colorPicker.selectedColor)
         updateColor(hexStringParam: hexString)
@@ -395,11 +394,11 @@ class MakerViewController: UIViewController,
     @IBAction func randomPressed(_ sender: Any) {
 
         let activity = NSUserActivity(activityType: Const.AppInfo.bundleAndRandom)
-        activity.title = "Create Random Color"
+        activity.title = NSLocalizedString("Create Random Color", comment: "")
         activity.isEligibleForSearch = true
         activity.isEligibleForPrediction = true
         activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Const.AppInfo.bundleAndRandom)
-        activity.suggestedInvocationPhrase = "ColorFull Random Color"
+        activity.suggestedInvocationPhrase = NSLocalizedString("ColorFull Random Color", comment: "")
         view.userActivity = activity
         activity.becomeCurrent()
 
@@ -428,7 +427,7 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
         if let version = Bundle.main.infoDictionary![Const.AppInfo.bundleShort] {
             emailTitle += " \(version)"
         }
-        let messageBody = "Hi. I have a question..."
+        let messageBody = NSLocalizedString("Hi. I have a question...", comment: "")
         let toRecipents = [Const.AppInfo.email]
         let mailComposer: MFMailComposeViewController = MFMailComposeViewController()
         mailComposer.mailComposeDelegate = self

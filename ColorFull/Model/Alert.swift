@@ -13,9 +13,6 @@ extension UIViewController {
 
 
     enum AlertReason {
-        case messageSaved
-        case messageFailed
-        case messageSent
         case unknown
         case imageSaved
         case permissionDenied
@@ -38,33 +35,20 @@ extension UIViewController {
         var alertTitle = ""
         var alertMessage = ""
         switch alertReasonParam {
-        case .messageSaved:
-            alertPreferredStyle = UIAlertController.Style.actionSheet
-            alertTitle = "Message saved"
-            alertMessage = "Your message has been saved to drafts."
-        case .messageFailed:
-            alertTitle = "Action failed"
-            alertMessage = """
-            Your message has not been sent. Please try again, or contact us: dani.springer@icloud.com
-            """
-        case .messageSent:
-            alertPreferredStyle = UIAlertController.Style.actionSheet
-            alertTitle = "Success"
-            alertMessage = "Your message has been sent. You should hear from us within 24 hours."
         case .imageSaved:
             alertPreferredStyle = UIAlertController.Style.actionSheet
-            alertTitle = "Image Saved"
-            alertMessage = "View your image in your gallery."
+            alertTitle = NSLocalizedString("Image Saved", comment: "")
+            alertMessage = NSLocalizedString("View your image in your gallery", comment: "")
         case .permissionDenied:
-            alertTitle = "Allow ColorFull access to your gallery"
-            alertMessage = """
+            alertTitle = NSLocalizedString("Allow ColorFull access to your gallery", comment: "")
+            alertMessage = NSLocalizedString("""
             Access was previously denied. Please grant access from Settings so ColorFull can save your image.
-            """
+            """, comment: "")
         default:
-            alertTitle = "Unknown Error"
-            alertMessage = """
+            alertTitle = NSLocalizedString("Unknown Error", comment: "")
+            alertMessage = NSLocalizedString("""
             An unknown error occurred. Please try again later, or contact us at dani.springer@icloud.com
-            """
+            """, comment: "")
         }
 
         let alert = UIAlertController(
@@ -73,7 +57,7 @@ extension UIViewController {
             preferredStyle: alertPreferredStyle)
 
         let alertAction = UIAlertAction(
-            title: "OK",
+            title: NSLocalizedString("OK", comment: ""),
             style: .default,
             handler: nil)
         alert.addAction(alertAction)
