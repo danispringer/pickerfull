@@ -133,7 +133,7 @@ class MakerViewController: UIViewController,
 
     func getMainMenu() -> UIMenu {
 
-        let version: String? = Bundle.main.infoDictionary![Const.AppInfo.bundleShort] as? String
+        let version: String? = Bundle.main.infoDictionary?[Const.AppInfo.bundleShort] as? String
 
         let shareApp = UIAction(title: Const.AppInfo.shareApp, image: UIImage(systemName: "heart"),
                                 state: .off) { _ in
@@ -424,7 +424,7 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
 
     func launchEmail() {
         var emailTitle = Const.AppInfo.appName
-        if let version = Bundle.main.infoDictionary![Const.AppInfo.bundleShort] {
+        if let version = Bundle.main.infoDictionary?[Const.AppInfo.bundleShort] {
             emailTitle += " \(version)"
         }
         let messageBody = NSLocalizedString("Hi. I have a question...", comment: "")
@@ -434,7 +434,9 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
         mailComposer.setSubject(emailTitle)
         mailComposer.setMessageBody(messageBody, isHTML: false)
         mailComposer.setToRecipients(toRecipents)
-        present(mailComposer, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(mailComposer, animated: true, completion: nil)
+        }
     }
 
 
