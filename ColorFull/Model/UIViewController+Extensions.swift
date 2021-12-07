@@ -1,16 +1,70 @@
 //
-//  Helpers.swift
-//  ColorFull
+//  UIViewController+Extensions.swift
+//  Prime
 //
-//  Created by Daniel Springer on 8/23/19.
-//  Copyright © 2021 Dani Springer. All rights reserved.
+//  Created by Daniel Springer on 20/06/2018.
+//  Copyright © 2021 Daniel Springer. All rights reserved.
 //
-
 
 import UIKit
 
 
 extension UIViewController {
+
+    // MARK: Alerts
+
+    enum AlertReason {
+        case unknown
+        case imageSaved
+        case permissionDenied
+    }
+
+
+    func createAlert(
+        alertReasonParam: AlertReason) -> UIAlertController {
+
+            var alertPreferredStyle = UIAlertController.Style.alert
+
+            var alertTitle = ""
+            var alertMessage = ""
+            switch alertReasonParam {
+                case .imageSaved:
+                    alertPreferredStyle = UIAlertController.Style.actionSheet
+                    alertTitle = NSLocalizedString("Image Saved", comment: "")
+                    alertMessage = NSLocalizedString("View your image in your gallery", comment: "")
+                case .permissionDenied:
+                    alertTitle = NSLocalizedString("Allow ColorFull access to your gallery", comment: "")
+                    alertMessage = NSLocalizedString("""
+            Access was previously denied. Please grant access from Settings so ColorFull can save your image.
+            """, comment: "")
+                default:
+                    alertTitle = NSLocalizedString("Unknown Error", comment: "")
+                    alertMessage = NSLocalizedString("""
+            An unknown error occurred. Please try again later, or contact us at dani.springer@icloud.com
+            """, comment: "")
+            }
+
+            let alert = UIAlertController(
+                title: alertTitle,
+                message: alertMessage,
+                preferredStyle: alertPreferredStyle)
+
+            let alertAction = UIAlertAction(
+                title: NSLocalizedString("OK", comment: ""),
+                style: .default,
+                handler: nil)
+            alert.addAction(alertAction)
+
+            return alert
+        }
+
+
+    // MARK: Helpers
+
+    enum Format {
+        case hex
+        case rgb
+    }
 
     struct HEXResult {
         let isValid: Bool
@@ -40,21 +94,21 @@ extension UIViewController {
         let blueString = results.validHexValue[4...5]
 
         rgbString = String(Int(redString, radix: 16)!) +
-                    ", " +
-                    String(Int(greenString, radix: 16)!) +
-                    ", " +
-                    String(Int(blueString, radix: 16)!)
+        ", " +
+        String(Int(greenString, radix: 16)!) +
+        ", " +
+        String(Int(blueString, radix: 16)!)
 
         return rgbString
     }
 
 
-    func uiColorFrom(hex: String) -> UIColor? {
+    func uiColorFrom(hex: String) -> UIColor {
 
         let results = isValidHex(hex: hex)
 
         guard results.isValid else {
-            return nil
+            fatalError()
         }
 
         let redString = results.validHexValue[0...1]
@@ -89,29 +143,6 @@ extension UIViewController {
     }
 
 
-    func isValidRGB(rgb: String) -> RGBResult {
-
-        let cleanedRGB = rgb.filter {
-            "0123456789,".contains($0)
-        }
-
-        let stringsArray = cleanedRGB.split(separator: ",")
-        let intsArray: [Int] = stringsArray.map { Int($0)!}
-
-        guard Array(intsArray).count >= 3 else {
-            return RGBResult(isValid: false, invalidRgbValue: rgb, validRgbValue: Array(intsArray))
-        }
-
-        let firstThreeValues = Array(intsArray[0...2])
-
-        guard firstThreeValues.allSatisfy({ (0...Int(Const.Values.rgbMax)).contains($0) }) else {
-            return RGBResult(isValid: false, invalidRgbValue: rgb, validRgbValue: firstThreeValues)
-        }
-
-        return RGBResult(isValid: true, invalidRgbValue: "", validRgbValue: firstThreeValues)
-    }
-
-
     func hexStringFromColor(color: UIColor) -> String {
         let components = color.cgColor.components
         let red: CGFloat = components?[0] ?? 0.0
@@ -123,6 +154,7 @@ extension UIViewController {
                                     lroundf(Float(green * 255)),
                                     lroundf(Float(blue * 255)))
         return hexString
-     }
+    }
+
 
 }

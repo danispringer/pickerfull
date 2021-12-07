@@ -35,9 +35,6 @@ class MakerViewController: UIViewController,
 
     var hexImage: UIImage!
 
-    var textColor = UIColor.label
-    var backgroundColor = UIColor.systemBackground
-
     let colorPicker = UIColorPickerViewController()
 
 
@@ -52,7 +49,7 @@ class MakerViewController: UIViewController,
         elementsShould(hide: false)
         messageLabel.layer.cornerRadius = 20
         messageLabel.layer.masksToBounds = true
-        let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD()) ?? getFallbackColor()
+        let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD())
 
         resultView.backgroundColor = selectedColor
 
@@ -73,33 +70,13 @@ class MakerViewController: UIViewController,
     // MARK: Helpers
 
     func getSafeHexFromUD() -> String {
-        let hexString: String = UserDefaults.standard.string(forKey: Const.UserDef.colorKey) ??
-        getFallbackColorString()
-
+        let hexString: String = UD.string(forKey: Const.UserDef.colorKey)!
         return hexString
     }
 
 
-    func getFallbackColorString() -> String {
-        let isDarkModeOn = backgroundColor == UIColor.white
-        let fallbackString = isDarkModeOn ? "000000" : "ffffff"
-
-        return fallbackString
-    }
-
-
-    func getFallbackColor() -> UIColor {
-        let isDarkModeOn = backgroundColor == UIColor.white
-        let fallbackColor = isDarkModeOn ? UIColor.black : UIColor.white
-
-        return fallbackColor
-    }
-
-
     func showApps() {
-
         let myURL = URL(string: Const.AppInfo.appsLink)
-
         guard let safeURL = myURL else {
             let alert = createAlert(alertReasonParam: .unknown)
             if let presenter = alert.popoverPresentationController {
@@ -114,19 +91,16 @@ class MakerViewController: UIViewController,
 
     // MARK: Update Color
 
-    func updateColor(hexStringParam: String? = nil) {
+    func updateColor(hexStringParam: String) {
 
-        let mySafeString: String = hexStringParam ?? getFallbackColorString()
-        let selectedColor: UIColor = uiColorFrom(hex: mySafeString) ?? getFallbackColor()
+        let mySafeString: String = hexStringParam
+        let selectedColor: UIColor = uiColorFrom(hex: mySafeString)
         self.resultView.backgroundColor = selectedColor
         colorPicker.selectedColor = selectedColor
 
-        UserDefaults.standard.set(mySafeString, forKey: Const.UserDef.colorKey)
+        UD.set(mySafeString, forKey: Const.UserDef.colorKey)
 
     }
-
-
-    // MARK: Toolbar
 
 
     // MARK: Share
@@ -235,13 +209,13 @@ class MakerViewController: UIViewController,
         var myText = ""
         switch format {
             case .hex:
-                myText = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)!
+                myText = getSafeHexFromUD()
             case .rgb:
-                let hexString = UserDefaults.standard.string(forKey: Const.UserDef.colorKey)
+                let hexString = getSafeHexFromUD()
 
-                let redValue = Int(hexString![0...1], radix: 16)!
-                let greenValue = Int(hexString![2...3], radix: 16)!
-                let blueValue = Int(hexString![4...5], radix: 16)!
+                let redValue = Int(hexString[0...1], radix: 16)!
+                let greenValue = Int(hexString[2...3], radix: 16)!
+                let blueValue = Int(hexString[4...5], radix: 16)!
 
                 myText = "\(redValue),\(greenValue),\(blueValue)"
         }
@@ -333,7 +307,6 @@ class MakerViewController: UIViewController,
         view.backgroundColor = viewColorWas
         elementsShould(hide: false)
 
-
         return hexImage
     }
 
@@ -348,9 +321,7 @@ class MakerViewController: UIViewController,
     func shareApp() {
 
         let firstHalf = NSLocalizedString("ColorFull: Your Color Awaits", comment: "")
-
         let message = "https://itunes.apple.com/app/id1410565176"
-
         let messageToShare = firstHalf + "\n" + message
 
         let activityController = UIActivityViewController(activityItems: [messageToShare], applicationActivities: nil)
@@ -377,7 +348,7 @@ class MakerViewController: UIViewController,
 
 
     @IBAction func showColorPicker() {
-        let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD()) ?? getFallbackColor()
+        let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD())
         colorPicker.selectedColor = selectedColor
         present(colorPicker, animated: true)
     }

@@ -1,5 +1,5 @@
 //
-//  String+subscript.swift
+//  String+Extensions.swift
 //  ColorFull
 //
 //  Created by Daniel Springer on 14/05/2018.
@@ -8,7 +8,6 @@
 
 
 extension String {
-
 
     subscript (bounds: CountableClosedRange<Int>) -> String {
         let start = index(startIndex, offsetBy: bounds.lowerBound)
