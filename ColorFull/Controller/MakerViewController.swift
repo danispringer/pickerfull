@@ -13,7 +13,7 @@ import Intents
 
 
 class MakerViewController: UIViewController,
-                           UINavigationControllerDelegate, UIColorPickerViewControllerDelegate {
+                           UINavigationControllerDelegate, UIColorPickerViewControllerDelegate, UIScrollViewDelegate {
 
 
     // MARK: Outlets
@@ -24,6 +24,8 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var qrImageView: UIImageView!
+    @IBOutlet weak var containerScrollView: UIScrollView!
+    @IBOutlet weak var flowerImageView: UIImageView!
 
 
     // MARK: properties
@@ -43,6 +45,16 @@ class MakerViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        containerScrollView.delegate = self
+        containerScrollView.minimumZoomScale = 1.0
+        containerScrollView.maximumZoomScale = 8.0
+        containerScrollView.bouncesZoom = true
+        containerScrollView.alwaysBounceHorizontal = true
+        containerScrollView.alwaysBounceVertical = true
+        flowerImageView.isUserInteractionEnabled = true
+        let doubleTapGR = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
+        doubleTapGR.numberOfTapsRequired = 2
+        containerScrollView.addGestureRecognizer(doubleTapGR)
         for number in 0...Int(Const.Values.rgbMax) {
             hexArrayForRandom.append(String(format: Const.Values.numToHexFormatter, number))
         }
@@ -68,6 +80,41 @@ class MakerViewController: UIViewController,
 
 
     // MARK: Helpers
+
+    @objc func handleDoubleTap(_ recognizer: UITapGestureRecognizer) {
+
+        if containerScrollView.zoomScale < containerScrollView.maximumZoomScale { // zoom in
+            let point = recognizer.location(in: flowerImageView)
+
+            let scrollSize = containerScrollView.frame.size
+            let size = CGSize(width: scrollSize.width / containerScrollView.maximumZoomScale,
+                              height: scrollSize.height / containerScrollView.maximumZoomScale)
+            let origin = CGPoint(x: point.x - size.width / 2,
+                                 y: point.y - size.height / 2)
+            containerScrollView.zoom(to: CGRect(origin: origin, size: size), animated: true)
+        } else { // zoom out
+            containerScrollView.zoom(
+                to: zoomRectForScale(scale: containerScrollView.maximumZoomScale,
+                                     center: recognizer.location(in: flowerImageView)), animated: true)
+        }
+    }
+
+
+    func zoomRectForScale(scale: CGFloat, center: CGPoint) -> CGRect {
+        var zoomRect = CGRect.zero
+        zoomRect.size.height = flowerImageView.frame.size.height / scale
+        zoomRect.size.width  = flowerImageView.frame.size.width  / scale
+        let newCenter = containerScrollView.convert(center, from: flowerImageView)
+        zoomRect.origin.x = newCenter.x - (zoomRect.size.width / 2.0)
+        zoomRect.origin.y = newCenter.y - (zoomRect.size.height / 2.0)
+        return zoomRect
+    }
+
+
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return flowerImageView
+    }
+
 
     func getSafeHexFromUD() -> String {
         let hexString: String = UD.string(forKey: Const.UserDef.colorKey)!
