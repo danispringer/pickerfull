@@ -28,7 +28,6 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="xQP-48-zh1" firstAttribute="centerX" secondItem="L0L-A8-4Ez" secondAttribute="centerX" id="BrG-nm-9zg"/>
                                     <constraint firstItem="xQP-48-zh1" firstAttribute="leading" secondItem="L0L-A8-4Ez" secondAttribute="leading" id="U9N-kP-HXX"/>
@@ -66,6 +65,8 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="RPZ-st-54x"/>
+                                    <barButtonItem title="Image menu" image="photo" catalog="system" id="bPR-Bo-P4R"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="fD0-xD-hI3"/>
                                     <barButtonItem title="Info menu" image="info.circle" catalog="system" id="0Q6-6C-Hay"/>
                                 </items>
                             </toolbar>
@@ -102,6 +103,7 @@
                     <connections>
                         <outlet property="containerScrollView" destination="L0L-A8-4Ez" id="ixP-pm-NIn"/>
                         <outlet property="flowerImageView" destination="xQP-48-zh1" id="Lh3-tB-FQc"/>
+                        <outlet property="imageMenuButton" destination="bPR-Bo-P4R" id="tNN-JK-Bkb"/>
                         <outlet property="menuButton" destination="0Q6-6C-Hay" id="t68-rq-mVO"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="nVb-Od-V3R"/>
                         <outlet property="myToolbar" destination="NK4-FQ-SOv" id="BC0-eL-Mjb"/>
@@ -117,9 +119,10 @@
     </scenes>
     <resources>
         <image name="colorfull-qr-code" width="350" height="350"/>
-        <image name="flower" width="1920" height="1271"/>
+        <image name="flower" width="2200" height="1467"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="paintpalette" catalog="system" width="128" height="105"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="wand.and.stars" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

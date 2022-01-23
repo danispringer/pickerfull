@@ -10,10 +10,11 @@ import UIKit
 import StoreKit
 import MessageUI
 import Intents
+import AVKit
 
 
-class MakerViewController: UIViewController,
-                           UINavigationControllerDelegate, UIColorPickerViewControllerDelegate, UIScrollViewDelegate {
+class MakerViewController: UIViewController, UINavigationControllerDelegate, UIColorPickerViewControllerDelegate,
+                           UIScrollViewDelegate, UIImagePickerControllerDelegate {
 
 
     // MARK: Outlets
@@ -26,18 +27,17 @@ class MakerViewController: UIViewController,
     @IBOutlet weak var qrImageView: UIImageView!
     @IBOutlet weak var containerScrollView: UIScrollView!
     @IBOutlet weak var flowerImageView: UIImageView!
+    @IBOutlet weak var imageMenuButton: UIBarButtonItem!
 
 
     // MARK: properties
 
     var currentUIColor: UIColor!
     var currentHexColor: String!
-
     var hexArrayForRandom: [String] = []
-
     var hexImage: UIImage!
-
     let colorPicker = UIColorPickerViewController()
+    let imagePicker = UIImagePickerController()
 
 
     // MARK: Life Cycle
@@ -47,7 +47,7 @@ class MakerViewController: UIViewController,
 
         containerScrollView.delegate = self
         containerScrollView.minimumZoomScale = 1.0
-        containerScrollView.maximumZoomScale = 8.0
+        containerScrollView.maximumZoomScale = 20.0
         containerScrollView.bouncesZoom = true
         containerScrollView.alwaysBounceHorizontal = true
         containerScrollView.alwaysBounceVertical = true
@@ -71,18 +71,19 @@ class MakerViewController: UIViewController,
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
-        colorPicker.title = NSLocalizedString("Tap 'x' to apply changes", comment: "")
+        colorPicker.title = NSLocalizedString("Tap 'X' to save changes! ->", comment: "")
+
+        imagePicker.delegate = self
 
         menuButton.menu = getMainMenu()
         shareButton.menu = getShareMenu()
-
+        imageMenuButton.menu = getImageMenu()
     }
 
 
     // MARK: Helpers
 
     @objc func handleDoubleTap(_ recognizer: UITapGestureRecognizer) {
-
         if containerScrollView.zoomScale < containerScrollView.maximumZoomScale { // zoom in
             let point = recognizer.location(in: flowerImageView)
 
@@ -139,7 +140,6 @@ class MakerViewController: UIViewController,
     // MARK: Update Color
 
     func updateColor(hexStringParam: String) {
-
         let mySafeString: String = hexStringParam
         let selectedColor: UIColor = uiColorFrom(hex: mySafeString)
         self.resultView.backgroundColor = selectedColor
@@ -150,7 +150,80 @@ class MakerViewController: UIViewController,
     }
 
 
-    // MARK: Share
+    // MARK: Buttons
+
+    fileprivate func tryShowingCamera() {
+        // already authorized
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            self.imagePicker.sourceType = .camera
+            self.present(self.imagePicker, animated: true, completion: nil)
+        } else {
+            let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
+            self.present(alert, animated: true)
+        }
+    }
+
+
+    func getImageMenu() -> UIMenu {
+        let newImageFromCamera = UIAction(title: Const.AppInfo.addFromCamera, image: UIImage(systemName: "camera"),
+                                          state: .off) { _ in
+            if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
+                self.tryShowingCamera()
+            } else {
+                AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
+                    if granted {
+                        // access allowed
+                        self.tryShowingCamera()
+                    } else {
+                        // access denied
+                        let alert = self.createAlert(alertReasonParam: AlertReason.permissiondeniedCamera)
+                        let goToSettingsButton = UIAlertAction(title: NSLocalizedString("Open Settings", comment: ""),
+                                                               style: .default, handler: { _ in
+                            if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
+                                UIApplication.shared.open(url)
+                            }
+
+                        })
+                        alert.addAction(goToSettingsButton)
+                        if let presenter = alert.popoverPresentationController {
+                            presenter.barButtonItem = self.imageMenuButton
+                        }
+                        DispatchQueue.main.async {
+                            self.present(alert, animated: true)
+                        }
+                    }
+                })
+            }
+        }
+        let newImageFromGallery = UIAction(title: Const.AppInfo.addFromGallery,
+                                           image: UIImage(systemName: "photo.fill.on.rectangle.fill"),
+                                           state: .off) { _ in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                self.imagePicker.sourceType = .photoLibrary
+                self.imagePicker.allowsEditing = false
+
+                self.present(self.imagePicker, animated: true, completion: nil)
+            }
+        }
+        let clearImage = UIAction(title: Const.AppInfo.clearImage,
+                                  image: UIImage(systemName: "trash"), attributes: .destructive, state: .off) { _ in
+            self.flowerImageView.image = nil
+        }
+
+        let imageMenu = UIMenu(title: "", image: nil, options: .displayInline,
+                               children: [newImageFromCamera, newImageFromGallery, clearImage])
+        return imageMenu
+    }
+
+
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        flowerImageView.image = image
+        containerScrollView.zoomScale = containerScrollView.minimumZoomScale
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+
 
     func getMainMenu() -> UIMenu {
 
@@ -223,13 +296,12 @@ class MakerViewController: UIViewController,
 
     @objc func saveImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         guard error == nil else {
-            let alert = createAlert(alertReasonParam: AlertReason.permissionDenied)
+            let alert = createAlert(alertReasonParam: AlertReason.permissionDeniedGallery)
             let goToSettingsButton = UIAlertAction(title: NSLocalizedString("Open Settings", comment: ""),
                                                    style: .default, handler: { _ in
                 if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
                     UIApplication.shared.open(url)
                 }
-
             })
             alert.addAction(goToSettingsButton)
             if let presenter = alert.popoverPresentationController {
@@ -259,22 +331,18 @@ class MakerViewController: UIViewController,
                 myText = getSafeHexFromUD()
             case .rgb:
                 let hexString = getSafeHexFromUD()
-
                 let redValue = Int(hexString[0...1], radix: 16)!
                 let greenValue = Int(hexString[2...3], radix: 16)!
                 let blueValue = Int(hexString[4...5], radix: 16)!
-
                 myText = "\(redValue),\(greenValue),\(blueValue)"
         }
-
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = menuButton
+        activityController.popoverPresentationController?.barButtonItem = shareButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
                     presenter.barButtonItem = self.shareButton
-
                 }
                 self.present(alert, animated: true)
 
@@ -289,7 +357,7 @@ class MakerViewController: UIViewController,
         let image = generateImage()
 
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = menuButton
+        activityController.popoverPresentationController?.barButtonItem = shareButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
@@ -362,6 +430,7 @@ class MakerViewController: UIViewController,
         messageLabel.isHidden = !hide
         qrImageView.isHidden = !hide
         myToolbar.isHidden = hide
+        containerScrollView.isHidden = hide
     }
 
 
@@ -441,6 +510,11 @@ class MakerViewController: UIViewController,
 extension MakerViewController: MFMailComposeViewControllerDelegate {
 
     func launchEmail() {
+        guard MFMailComposeViewController.canSendMail() else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            present(alert, animated: true)
+            return
+        }
         var emailTitle = Const.AppInfo.appName
         if let version = Bundle.main.infoDictionary?[Const.AppInfo.bundleShort] {
             emailTitle += " \(version)"
