@@ -16,7 +16,8 @@ extension UIViewController {
     enum AlertReason {
         case unknown
         case imageSaved
-        case permissionDenied
+        case permissionDeniedGallery
+        case permissiondeniedCamera
     }
 
 
@@ -32,10 +33,15 @@ extension UIViewController {
                     alertPreferredStyle = UIAlertController.Style.actionSheet
                     alertTitle = NSLocalizedString("Image Saved", comment: "")
                     alertMessage = NSLocalizedString("View your image in your gallery", comment: "")
-                case .permissionDenied:
-                    alertTitle = NSLocalizedString("Allow ColorFull access to your gallery", comment: "")
+                case .permissionDeniedGallery:
+                    alertTitle = NSLocalizedString("Allow ColorFull access to your Gallery", comment: "")
                     alertMessage = NSLocalizedString("""
             Access was previously denied. Please grant access from Settings so ColorFull can save your image.
+            """, comment: "")
+                case .permissiondeniedCamera:
+                    alertTitle = NSLocalizedString("Allow ColorFull access to your Camera", comment: "")
+                    alertMessage = NSLocalizedString("""
+            Access was previously denied. Please grant access from Settings to use your Camera from within the app.
             """, comment: "")
                 default:
                     alertTitle = NSLocalizedString("Unknown Error", comment: "")

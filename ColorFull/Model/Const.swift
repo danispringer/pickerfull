@@ -36,6 +36,9 @@ struct Const {
         static let leaveReview = NSLocalizedString("Leave a Review", comment: "")
         static let sendFeedback = NSLocalizedString("Contact Us", comment: "")
         static let shareApp = NSLocalizedString("Tell a Friend", comment: "")
+        static let addFromCamera = NSLocalizedString("Take Photo", comment: "")
+        static let addFromGallery = NSLocalizedString("Choose Photo", comment: "")
+        static let clearImage = NSLocalizedString("Delete Photo", comment: "")
         static let bundleShort = "CFBundleShortVersionString"
         static let appName = NSLocalizedString("ColorFull", comment: "")
         static let galleryLink = "photos-redirect://"
