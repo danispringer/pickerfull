@@ -51,7 +51,7 @@ struct Const {
 
 
         Screenshot created with
-        ColorFull: Your Color Awaits
+        ColorFull - Your Color Awaits
         by
         Daniel Springer
 
