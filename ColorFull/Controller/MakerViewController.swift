@@ -130,7 +130,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             if let presenter = alert.popoverPresentationController {
                 presenter.barButtonItem = menuButton
             }
-            present(alert, animated: true)
+            DispatchQueue.main.async {
+                self.present(alert, animated: true)
+            }
+
             return
         }
         UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
@@ -153,14 +156,17 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     // MARK: Buttons
 
     fileprivate func tryShowingCamera() {
-        // already authorized
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            self.imagePicker.sourceType = .camera
-            self.present(self.imagePicker, animated: true, completion: nil)
-        } else {
-            let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
-            self.present(alert, animated: true)
+        DispatchQueue.main.async {
+            // already authorized
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                self.imagePicker.sourceType = .camera
+                self.present(self.imagePicker, animated: true, completion: nil)
+            } else {
+                let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
+                self.present(alert, animated: true)
+            }
         }
+
     }
 
 
@@ -202,7 +208,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                 self.imagePicker.sourceType = .photoLibrary
                 self.imagePicker.allowsEditing = false
 
-                self.present(self.imagePicker, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.present(self.imagePicker, animated: true, completion: nil)
+                }
+
             }
         }
         let clearImage = UIAction(title: Const.AppInfo.clearImage,
@@ -307,7 +316,9 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             if let presenter = alert.popoverPresentationController {
                 presenter.barButtonItem = shareButton
             }
-            present(alert, animated: true)
+            DispatchQueue.main.async {
+                self.present(alert, animated: true)
+            }
             return
         }
         let alert = createAlert(alertReasonParam: AlertReason.imageSaved)
@@ -320,7 +331,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         if let presenter = alert.popoverPresentationController {
             presenter.barButtonItem = shareButton
         }
-        present(alert, animated: true)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+
     }
 
 
@@ -344,12 +358,17 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                 if let presenter = alert.popoverPresentationController {
                     presenter.barButtonItem = self.shareButton
                 }
-                self.present(alert, animated: true)
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true)
+                }
 
                 return
             }
         }
-        present(activityController, animated: true)
+        DispatchQueue.main.async {
+            self.present(activityController, animated: true)
+        }
+
     }
 
 
@@ -364,12 +383,17 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                 if let presenter = alert.popoverPresentationController {
                     presenter.barButtonItem = self.shareButton
                 }
-                self.present(alert, animated: true)
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true)
+                }
+
 
                 return
             }
         }
-        present(activityController, animated: true)
+        DispatchQueue.main.async {
+            self.present(activityController, animated: true)
+        }
 
     }
 
@@ -449,7 +473,9 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                 if let presenter = alert.popoverPresentationController {
                     presenter.barButtonItem = self.menuButton
                 }
-                self.present(alert, animated: true)
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true)
+                }
 
                 return
             }
@@ -458,7 +484,9 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             presenter.barButtonItem = menuButton
         }
 
-        present(activityController, animated: true)
+        DispatchQueue.main.async {
+            self.present(activityController, animated: true)
+        }
 
     }
 
@@ -466,7 +494,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     @IBAction func showColorPicker() {
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD())
         colorPicker.selectedColor = selectedColor
-        present(colorPicker, animated: true)
+        DispatchQueue.main.async {
+            self.present(self.colorPicker, animated: true)
+        }
+
     }
 
 
@@ -512,7 +543,10 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
     func launchEmail() {
         guard MFMailComposeViewController.canSendMail() else {
             let alert = createAlert(alertReasonParam: .unknown)
-            present(alert, animated: true)
+            DispatchQueue.main.async {
+                self.present(alert, animated: true)
+            }
+
             return
         }
         var emailTitle = Const.AppInfo.appName
