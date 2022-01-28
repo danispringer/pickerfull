@@ -32,8 +32,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     // MARK: properties
 
-    var currentUIColor: UIColor!
-    var currentHexColor: String!
     var hexArrayForRandom: [String] = []
     var hexImage: UIImage!
     let colorPicker = UIColorPickerViewController()
