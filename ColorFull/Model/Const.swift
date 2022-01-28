@@ -23,11 +23,11 @@ struct Const {
     struct UserDef {
         static let colorKey = "color"
         static let defaultColor = "E57BF2"
+        static let magicDictionary = "magicDictionary"
     }
 
     struct Values {
         static let numToHexFormatter = "%02X"
-        static let hexToNumFormatter = "0x"
         static let rgbMax = 255.0
     }
 
