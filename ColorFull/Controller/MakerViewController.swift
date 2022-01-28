@@ -532,7 +532,28 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         randomHex = randomRed + randomGreen + randomBlue
 
         updateColor(hexStringParam: randomHex)
+        saveToUD(color: randomHex)
     }
+
+
+    func saveToUD(color: String) {
+        var savedColors: [String: String] = UD.dictionary(forKey: Const.UserDef.magicDict) as? [String: String] ?? [:]
+        let now: String = "\(Date().timeIntervalSince1970)"
+        if savedColors.count >= 10 { // need to purge oldest color
+            let keys = savedColors.keys
+            var keysAsDoubles = [Double]()
+            for key in keys {
+                keysAsDoubles.append(Double(key)!)
+            }
+            var sorted = keysAsDoubles.sorted { $0 > $1 }
+            let last: String = "\(sorted.popLast()!)"
+            savedColors.removeValue(forKey: last)
+        }
+        savedColors[now] = color
+        UD.setValue(savedColors, forKey: Const.UserDef.magicDict)
+    }
+
+
 }
 
 
