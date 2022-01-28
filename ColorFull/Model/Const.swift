@@ -23,7 +23,7 @@ struct Const {
     struct UserDef {
         static let colorKey = "color"
         static let defaultColor = "E57BF2"
-        static let magicDictionary = "magicDictionary"
+        static let magicDict = "magicDictionary"
     }
 
     struct Values {
