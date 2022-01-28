@@ -69,7 +69,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
-        colorPicker.title = NSLocalizedString("Tap 'X' to save changes! ->", comment: "")
+        colorPicker.title = NSLocalizedString("Down-swipe cancels. 'x' saves.", comment: "")
 
         imagePicker.delegate = self
 
