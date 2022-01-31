@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         UD.register(defaults: [
-            Const.UserDef.colorKey: Const.UserDef.defaultColor,
+            Const.UserDef.colorKey: Const.UserDef.defaultColor
         ])
 
         return true
