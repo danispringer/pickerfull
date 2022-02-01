@@ -34,6 +34,16 @@ class MagicTableViewController: UITableViewController {
     }
 
 
+    // MARK: TableView
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let presenter = presentingViewController as? MakerViewController {
+            presenter.updateColor(hexStringParam: myDataSource[indexPath.row])
+        }
+        dismiss(animated: true)
+    }
+
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Const.StoryboardIDIB.magicCell) as! MagicCell
 
