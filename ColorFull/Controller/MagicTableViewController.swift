@@ -48,7 +48,7 @@ class MagicTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: Const.StoryboardIDIB.magicCell) as! MagicCell
 
         cell.hexLabel.text = "HEX: \(myDataSource[indexPath.row])"
-        cell.rgbLabel.text = "RGB: \(rgbFrom(hex: myDataSource[indexPath.row]) ?? "error")"
+        cell.rgbLabel.text = "RGB: \(rgbFrom(hex: myDataSource[indexPath.row]))"
         cell.colorView.backgroundColor = uiColorFrom(hex: myDataSource[indexPath.row])
         cell.colorView.layer.cornerRadius = 4
 

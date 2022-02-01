@@ -357,10 +357,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                 myText = getSafeHexFromUD()
             case .rgb:
                 let hexString = getSafeHexFromUD()
-                let redValue = Int(hexString[0...1], radix: 16)!
-                let greenValue = Int(hexString[2...3], radix: 16)!
-                let blueValue = Int(hexString[4...5], radix: 16)!
-                myText = "\(redValue),\(greenValue),\(blueValue)"
+                myText = rgbFrom(hex: hexString)
         }
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
         activityController.popoverPresentationController?.barButtonItem = shareButton
@@ -429,7 +426,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             string: "\n\nRGB\n",
             attributes: regularAttributes)
 
-        let rgbString: String = rgbFrom(hex: hexString)!
+        let rgbString = rgbFrom(hex: hexString)
         let myUIColor = uiColorFrom(hex: hexString)
 
         let attributedMessageJumboRGB = NSAttributedString(string: rgbString, attributes: jumboAttributes)
