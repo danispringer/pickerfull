@@ -76,9 +76,9 @@ class MagicTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return """
-        This page displays your 10 most recent magically created colors (meaning colors created using the leftmost \
-        button on the homepage of the app), in case, due to an accidental tap, you lose one before saving it as an \
-        image.
+        This page displays your 10 most recent (newest first) magically created colors (meaning colors created using \
+        the leftmost button on the homepage of the app), in case, due to an accidental tap, you lose one before \
+        saving it as an image.
         """
     }
 
