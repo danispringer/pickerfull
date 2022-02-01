@@ -10,6 +10,7 @@ import UIKit
 
 class MagicTableViewController: UITableViewController {
 
+
     // MARK: Properties
 
     var myDataSource: [String] = []
@@ -24,9 +25,7 @@ class MagicTableViewController: UITableViewController {
             let emptyDict: [String: String] = [:]
             UD.register(defaults: [Const.UserDef.magicDict: emptyDict])
         }
-
         let savedColors = UD.dictionary(forKey: Const.UserDef.magicDict) as! [String: String]
-
         let sortedDict = savedColors.sorted { Double($0.key)! > Double($1.key)! }
         for pair in sortedDict {
             myDataSource.append(pair.value)
@@ -46,14 +45,11 @@ class MagicTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Const.StoryboardIDIB.magicCell) as! MagicCell
-
         cell.hexLabel.text = "HEX: \(myDataSource[indexPath.row])"
         cell.rgbLabel.text = "RGB: \(rgbFrom(hex: myDataSource[indexPath.row]))"
         cell.colorView.backgroundColor = uiColorFrom(hex: myDataSource[indexPath.row])
         cell.colorView.layer.cornerRadius = 4
-
         return cell
-
     }
 
 
