@@ -2,6 +2,7 @@ vertical_whitespace:
   max_empty_lines: 2
 
 disabled_rules:
+  - force_cast
   - file_length
   - type_body_length
   - function_body_length

@@ -31,23 +31,23 @@ extension UIViewController {
             switch alertReasonParam {
                 case .imageSaved:
                     alertPreferredStyle = UIAlertController.Style.actionSheet
-                    alertTitle = NSLocalizedString("Image Saved", comment: "")
-                    alertMessage = NSLocalizedString("View your image in your gallery", comment: "")
+                    alertTitle = "Image Saved"
+                    alertMessage = "View your image in your gallery"
                 case .permissionDeniedGallery:
-                    alertTitle = NSLocalizedString("Allow ColorFull access to your Gallery", comment: "")
-                    alertMessage = NSLocalizedString("""
-            Access was previously denied. Please grant access from Settings so ColorFull can save your image.
-            """, comment: "")
+                    alertTitle = "Allow ColorFull access to your Gallery"
+                    alertMessage = """
+                Access was previously denied. Please grant access from Settings so ColorFull can save your image.
+                """
                 case .permissiondeniedCamera:
-                    alertTitle = NSLocalizedString("Allow ColorFull access to your Camera", comment: "")
-                    alertMessage = NSLocalizedString("""
+                    alertTitle = "Allow ColorFull access to your Camera"
+                    alertMessage = """
             Access was previously denied. Please grant access from Settings to use your Camera from within the app.
-            """, comment: "")
+            """
                 default:
-                    alertTitle = NSLocalizedString("Unknown Error", comment: "")
-                    alertMessage = NSLocalizedString("""
+                    alertTitle = "Unknown Error"
+                    alertMessage = """
             An unknown error occurred. Please try again later, or contact us at dani.springer@icloud.com
-            """, comment: "")
+            """
             }
 
             let alert = UIAlertController(
@@ -56,7 +56,7 @@ extension UIViewController {
                 preferredStyle: alertPreferredStyle)
 
             let alertAction = UIAlertAction(
-                title: NSLocalizedString("OK", comment: ""),
+                title: "OK",
                 style: .default,
                 handler: nil)
             alert.addAction(alertAction)

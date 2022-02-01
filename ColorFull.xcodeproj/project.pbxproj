@@ -15,6 +15,8 @@
 		330F747D21ABBA9300F420B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F747421ABBA9300F420B0 /* AppDelegate.swift */; };
 		330F747E21ABBA9300F420B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 330F747621ABBA9300F420B0 /* Assets.xcassets */; };
 		337055CB21CC77F6001B253C /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337055CA21CC77F6001B253C /* Intents.framework */; };
+		33AE170F27A8B58C00551532 /* MagicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE170E27A8B58C00551532 /* MagicTableViewController.swift */; };
+		33AE171227A8BEC800551532 /* MagicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE171127A8BEC800551532 /* MagicCell.swift */; };
 		33D2213F21AFDF0900FBFEA7 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D2213E21AFDF0900FBFEA7 /* Const.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,8 @@
 		330F747721ABBA9300F420B0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		337055C821CC7798001B253C /* ColorFull.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ColorFull.entitlements; sourceTree = "<group>"; };
 		337055CA21CC77F6001B253C /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		33AE170E27A8B58C00551532 /* MagicTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicTableViewController.swift; sourceTree = "<group>"; };
+		33AE171127A8BEC800551532 /* MagicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicCell.swift; sourceTree = "<group>"; };
 		33CF3A84204F084B000823BF /* ColorFull.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorFull.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33D2213E21AFDF0900FBFEA7 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				337055C821CC7798001B253C /* ColorFull.entitlements */,
+				33AE171027A8BEAA00551532 /* View */,
 				330F747121ABBA9300F420B0 /* Model */,
 				330F746F21ABBA9300F420B0 /* Controller */,
 				330F746A21ABBA9300F420B0 /* Storyboards */,
@@ -84,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				330F747021ABBA9300F420B0 /* MakerViewController.swift */,
+				33AE170E27A8B58C00551532 /* MagicTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -112,6 +118,14 @@
 				337055CA21CC77F6001B253C /* Intents.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33AE171027A8BEAA00551532 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				33AE171127A8BEC800551532 /* MagicCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		33CF3A7B204F084B000823BF = {
@@ -235,7 +249,9 @@
 				330F747D21ABBA9300F420B0 /* AppDelegate.swift in Sources */,
 				330F747A21ABBA9300F420B0 /* MakerViewController.swift in Sources */,
 				330F747B21ABBA9300F420B0 /* UIViewController+Extensions.swift in Sources */,
+				33AE171227A8BEC800551532 /* MagicCell.swift in Sources */,
 				33D2213F21AFDF0900FBFEA7 /* Const.swift in Sources */,
+				33AE170F27A8B58C00551532 /* MagicTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

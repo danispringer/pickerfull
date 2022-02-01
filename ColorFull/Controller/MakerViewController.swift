@@ -69,7 +69,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
-        colorPicker.title = NSLocalizedString("Down-swipe cancels. 'x' saves.", comment: "")
+        colorPicker.title = "Down-swipe cancels. 'x' saves."
 
         imagePicker.delegate = self
 
@@ -181,7 +181,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                     } else {
                         // access denied
                         let alert = self.createAlert(alertReasonParam: AlertReason.permissiondeniedCamera)
-                        let goToSettingsButton = UIAlertAction(title: NSLocalizedString("Open Settings", comment: ""),
+                        let goToSettingsButton = UIAlertAction(title: "Open Settings",
                                                                style: .default, handler: { _ in
                             if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
                                 UIApplication.shared.open(url)
@@ -253,35 +253,49 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             self.showApps()
         }
 
+        let magicHistory = UIAction(title: Const.AppInfo.magicHistory, image: UIImage(systemName: "book"),
+                                                  state: .off) { _ in
+            self.showMagicHistory()
+        }
+
         var myTitle = Const.AppInfo.appName
         if let safeVersion = version {
             myTitle += " \(Const.AppInfo.version) \(safeVersion)"
         }
 
         let aboutMenu = UIMenu(title: myTitle, image: nil, options: .displayInline,
-                               children: [contact, review, shareApp, moreApps])
+                               children: [magicHistory, contact, review, shareApp, moreApps])
         return aboutMenu
+    }
+
+
+    func showMagicHistory() {
+        let magicVC = UIStoryboard(name: Const.StoryboardIDIB.main, bundle: nil)
+            .instantiateViewController(withIdentifier: Const.StoryboardIDIB.magicTableVC)
+
+        present(magicVC, animated: true)
+
     }
 
 
     func getShareMenu() -> UIMenu {
 
-        let shareTextHexAction = UIAction(title: NSLocalizedString("Share as HEX", comment: ""),
+        let shareTextHexAction = UIAction(title: "Share as HEX",
                                           image: UIImage(systemName: "doc.text")) { _ in
             self.shareAsText(format: .hex)
         }
 
-        let shareTextRGBAction = UIAction(title: NSLocalizedString("Share as RGB", comment: ""),
+        let shareTextRGBAction = UIAction(title: "Share as RGB",
                                           image: UIImage(systemName: "doc.text")) { _ in
             self.shareAsText(format: .rgb)
         }
 
-        let shareImageAction = UIAction(title: NSLocalizedString("Share as image", comment: ""),
+        let shareImageAction = UIAction(title: "Share as image",
                                         image: UIImage(systemName: "photo")) { _ in
             self.shareAsImage()
         }
 
-        let downloadImageAction = UIAction(title: NSLocalizedString("Download as image", comment: ""),
+        let downloadImageAction = UIAction(title: "Download as image",
                                            image: UIImage(systemName: "square.and.arrow.down")) { _ in
             self.downloadAsImage()
         }
@@ -304,7 +318,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     @objc func saveImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         guard error == nil else {
             let alert = createAlert(alertReasonParam: AlertReason.permissionDeniedGallery)
-            let goToSettingsButton = UIAlertAction(title: NSLocalizedString("Open Settings", comment: ""),
+            let goToSettingsButton = UIAlertAction(title: "Open Settings",
                                                    style: .default, handler: { _ in
                 if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
                     UIApplication.shared.open(url)
@@ -320,7 +334,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             return
         }
         let alert = createAlert(alertReasonParam: AlertReason.imageSaved)
-        let openLibraryButton = UIAlertAction(title: NSLocalizedString("Open Gallery", comment: ""),
+        let openLibraryButton = UIAlertAction(title: "Open Gallery",
                                               style: .default, handler: { _ in
             UIApplication.shared.open(URL(string: Const.AppInfo.galleryLink)!)
 
@@ -458,7 +472,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     func shareApp() {
 
-        let firstHalf = NSLocalizedString("ColorFull: Your Color Awaits", comment: "")
+        let firstHalf = "ColorFull: Your Color Awaits"
         let message = "https://itunes.apple.com/app/id1410565176"
         let messageToShare = firstHalf + "\n" + message
 
@@ -510,11 +524,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     @IBAction func randomPressed(_ sender: Any) {
 
         let activity = NSUserActivity(activityType: Const.AppInfo.bundleAndRandom)
-        activity.title = NSLocalizedString("Create Random Color", comment: "")
+        activity.title = "Create Random Color"
         activity.isEligibleForSearch = true
         activity.isEligibleForPrediction = true
         activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Const.AppInfo.bundleAndRandom)
-        activity.suggestedInvocationPhrase = NSLocalizedString("ColorFull Random Color", comment: "")
+        activity.suggestedInvocationPhrase = "ColorFull Random Color"
         view.userActivity = activity
         activity.becomeCurrent()
 
@@ -537,17 +551,21 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
 
     func saveToUD(color: String) {
-        var savedColors: [String: String] = UD.dictionary(forKey: Const.UserDef.magicDict) as? [String: String] ?? [:]
-        let now: String = "\(Date().timeIntervalSince1970)"
+
+        if UD.dictionary(forKey: Const.UserDef.magicDict) == nil {
+            let emptyDict: [String: String] = [:]
+            UD.register(defaults: [Const.UserDef.magicDict: emptyDict])
+        }
+
+        var savedColors = UD.dictionary(forKey: Const.UserDef.magicDict) as! [String: String]
+        let now = "\(Date().timeIntervalSince1970)"
         if savedColors.count >= 10 { // need to purge oldest color
-            let keys = savedColors.keys
-            var keysAsDoubles = [Double]()
-            for key in keys {
-                keysAsDoubles.append(Double(key)!)
+
+            var sortedDict = savedColors.sorted {
+                Double($0.key)! > Double($1.key)!
             }
-            var sorted = keysAsDoubles.sorted { $0 > $1 }
-            let last: String = "\(sorted.popLast()!)"
-            savedColors.removeValue(forKey: last)
+            let last = sortedDict.popLast()
+            savedColors[last!.key] = nil
         }
         savedColors[now] = color
         UD.setValue(savedColors, forKey: Const.UserDef.magicDict)
@@ -572,7 +590,7 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
         if let version = Bundle.main.infoDictionary?[Const.AppInfo.bundleShort] {
             emailTitle += " \(version)"
         }
-        let messageBody = NSLocalizedString("Hi. I have a question...", comment: "")
+        let messageBody = "Hi. I have a question..."
         let toRecipents = [Const.AppInfo.email]
         let mailComposer: MFMailComposeViewController = MFMailComposeViewController()
         mailComposer.mailComposeDelegate = self
