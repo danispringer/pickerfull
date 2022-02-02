@@ -26,7 +26,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var qrImageView: UIImageView!
     @IBOutlet weak var containerScrollView: UIScrollView!
-    @IBOutlet weak var flowerImageView: UIImageView!
+    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var imageMenuButton: UIBarButtonItem!
 
 
@@ -49,7 +49,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         containerScrollView.bouncesZoom = true
         containerScrollView.alwaysBounceHorizontal = true
         containerScrollView.alwaysBounceVertical = true
-        flowerImageView.isUserInteractionEnabled = true
+        userImageView.isUserInteractionEnabled = true
         let doubleTapGR = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
         doubleTapGR.numberOfTapsRequired = 2
         containerScrollView.addGestureRecognizer(doubleTapGR)
@@ -83,7 +83,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     @objc func handleDoubleTap(_ recognizer: UITapGestureRecognizer) {
         if containerScrollView.zoomScale < containerScrollView.maximumZoomScale { // zoom in
-            let point = recognizer.location(in: flowerImageView)
+            let point = recognizer.location(in: userImageView)
 
             let scrollSize = containerScrollView.frame.size
             let size = CGSize(width: scrollSize.width / containerScrollView.maximumZoomScale,
@@ -94,16 +94,16 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         } else { // zoom out
             containerScrollView.zoom(
                 to: zoomRectForScale(scale: containerScrollView.maximumZoomScale,
-                                     center: recognizer.location(in: flowerImageView)), animated: true)
+                                     center: recognizer.location(in: userImageView)), animated: true)
         }
     }
 
 
     func zoomRectForScale(scale: CGFloat, center: CGPoint) -> CGRect {
         var zoomRect = CGRect.zero
-        zoomRect.size.height = flowerImageView.frame.size.height / scale
-        zoomRect.size.width  = flowerImageView.frame.size.width  / scale
-        let newCenter = containerScrollView.convert(center, from: flowerImageView)
+        zoomRect.size.height = userImageView.frame.size.height / scale
+        zoomRect.size.width  = userImageView.frame.size.width  / scale
+        let newCenter = containerScrollView.convert(center, from: userImageView)
         zoomRect.origin.x = newCenter.x - (zoomRect.size.width / 2.0)
         zoomRect.origin.y = newCenter.y - (zoomRect.size.height / 2.0)
         return zoomRect
@@ -111,7 +111,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return flowerImageView
+        return userImageView
     }
 
 
@@ -214,7 +214,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         }
         let clearImage = UIAction(title: Const.AppInfo.clearImage,
                                   image: UIImage(systemName: "trash"), attributes: .destructive, state: .off) { _ in
-            self.flowerImageView.image = nil
+            self.userImageView.image = nil
         }
 
         let imageMenu = UIMenu(title: "", image: nil, options: .displayInline,
@@ -226,7 +226,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        flowerImageView.image = image
+        userImageView.image = image
         containerScrollView.zoomScale = containerScrollView.minimumZoomScale
         imagePicker.dismiss(animated: true, completion: nil)
     }
