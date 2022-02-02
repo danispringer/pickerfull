@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var launchedShortcutItem: UIApplicationShortcutItem?
+
 
     // MARK: Life Cycle
 
@@ -28,7 +30,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Const.UserDef.colorKey: Const.UserDef.defaultColor
         ])
 
+        if let shortcutItem = launchOptions?[
+            UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+
+            launchedShortcutItem = shortcutItem
+
+            // Since, the app launch is triggered by QuicAction, block "performActionForShortcutItem:completionHandler"
+            // method from being called.
+            return false
+        }
+
         return true
+    }
+
+
+    // MARK: long press app icon
+
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem,
+                     completionHandler: @escaping (Bool) -> Void) {
+
+        let viewController = window?.rootViewController as? MakerViewController
+        viewController?.makeRandomColor()
+
     }
 
 
