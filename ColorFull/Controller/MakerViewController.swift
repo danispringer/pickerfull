@@ -469,8 +469,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     func shareApp() {
 
-        let firstHalf = "ColorFull: Your Color Awaits"
-        let message = "https://itunes.apple.com/app/id1410565176"
+        let firstHalf = "ColorFull - Your Color Awaits"
+        let message = "https://apps.apple.com/app/id1410565176"
         let messageToShare = firstHalf + "\n" + message
 
         let activityController = UIActivityViewController(activityItems: [messageToShare], applicationActivities: nil)
