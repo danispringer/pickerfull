@@ -46,10 +46,10 @@ struct Const {
         static let appName = "ColorFull"
         static let galleryLink = "photos-redirect://"
         static let email = "dani.springer@icloud.com"
-        static let reviewLink = "https://itunes.apple.com/app/id1410565176?action=write-review"
+        static let reviewLink = "https://apps.apple.com/app/id1410565176?action=write-review"
         static let bundleAndRandom = "io.github.danispringer.Color-Picker.makeRandom"
         static let showAppsButtonTitle = "More Apps"
-        static let appsLink = "https://itunes.apple.com/developer/id1402417666"
+        static let appsLink = "https://apps.apple.com/developer/id1402417666"
         static let creditMessage = """
 
 
