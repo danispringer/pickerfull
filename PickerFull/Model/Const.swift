@@ -1,6 +1,6 @@
 //
 //  Const.swift
-//  ColorFull
+//  PickerFull
 //
 //  Created by Daniel Springer on 11/29/18.
 //  Copyright © 2021 Daniel Springer. All rights reserved.
@@ -43,7 +43,7 @@ struct Const {
         static let clearImage = "Delete Photo"
         static let magicHistory = "Magic History"
         static let bundleShort = "CFBundleShortVersionString"
-        static let appName = "ColorFull"
+        static let appName = "PickerFull"
         static let galleryLink = "photos-redirect://"
         static let email = "dani.springer@icloud.com"
         static let reviewLink = "https://apps.apple.com/app/id1410565176?action=write-review"
@@ -54,7 +54,7 @@ struct Const {
 
 
         Screenshot created with
-        ColorFull - Your Color Awaits
+        PickerFull
         by
         Daniel Springer
 

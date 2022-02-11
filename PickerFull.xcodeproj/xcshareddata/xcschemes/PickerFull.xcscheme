@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "33CF3A83204F084B000823BF"
-               BuildableName = "ColorFull.app"
-               BlueprintName = "ColorFull"
-               ReferencedContainer = "container:ColorFull.xcodeproj">
+               BuildableName = "PickerFull.app"
+               BlueprintName = "PickerFull"
+               ReferencedContainer = "container:PickerFull.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,9 +31,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CF3A83204F084B000823BF"
-            BuildableName = "ColorFull.app"
-            BlueprintName = "ColorFull"
-            ReferencedContainer = "container:ColorFull.xcodeproj">
+            BuildableName = "PickerFull.app"
+            BlueprintName = "PickerFull"
+            ReferencedContainer = "container:PickerFull.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CF3A83204F084B000823BF"
-            BuildableName = "ColorFull.app"
-            BlueprintName = "ColorFull"
-            ReferencedContainer = "container:ColorFull.xcodeproj">
+            BuildableName = "PickerFull.app"
+            BlueprintName = "PickerFull"
+            ReferencedContainer = "container:PickerFull.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CF3A83204F084B000823BF"
-            BuildableName = "ColorFull.app"
-            BlueprintName = "ColorFull"
-            ReferencedContainer = "container:ColorFull.xcodeproj">
+            BuildableName = "PickerFull.app"
+            BlueprintName = "PickerFull"
+            ReferencedContainer = "container:PickerFull.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

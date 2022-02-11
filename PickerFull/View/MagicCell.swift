@@ -1,6 +1,6 @@
 //
 //  MagicCell.swift
-//  ColorFull
+//  PickerFull
 //
 //  Created by dani on 1/31/22.
 //  Copyright © 2022 Dani Springer. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  MakerViewController.swift
-//  ColorFull
+//  PickerFull
 //
 //  Created by Daniel Springer on 06/03/2018.
 //  Copyright © 2021 Daniel Springer. All rights reserved.
@@ -469,7 +469,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     func shareApp() {
 
-        let firstHalf = "ColorFull - Your Color Awaits"
+        let firstHalf = "PickerFull"
         let message = "https://apps.apple.com/app/id1410565176"
         let messageToShare = firstHalf + "\n" + message
 
@@ -525,7 +525,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         activity.isEligibleForSearch = true
         activity.isEligibleForPrediction = true
         activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Const.AppInfo.bundleAndRandom)
-        activity.suggestedInvocationPhrase = "ColorFull Random Color"
+        activity.suggestedInvocationPhrase = "PickerFull Random Color"
         view.userActivity = activity
         activity.becomeCurrent()
 

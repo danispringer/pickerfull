@@ -34,12 +34,12 @@ extension UIViewController {
                     alertTitle = "Image Saved"
                     alertMessage = "View your image in your gallery"
                 case .permissionDeniedGallery:
-                    alertTitle = "Allow ColorFull access to your Gallery"
+                    alertTitle = "Allow PickerFull access to your Gallery"
                     alertMessage = """
-                Access was previously denied. Please grant access from Settings so ColorFull can save your image.
+                Access was previously denied. Please grant access from Settings so PickerFull can save your image.
                 """
                 case .permissiondeniedCamera:
-                    alertTitle = "Allow ColorFull access to your Camera"
+                    alertTitle = "Allow PickerFull access to your Camera"
                     alertMessage = """
             Access was previously denied. Please grant access from Settings to use your Camera from within the app.
             """
