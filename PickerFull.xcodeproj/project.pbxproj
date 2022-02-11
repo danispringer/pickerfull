@@ -46,7 +46,7 @@
 		337055CA21CC77F6001B253C /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		33AE170E27A8B58C00551532 /* MagicTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicTableViewController.swift; sourceTree = "<group>"; };
 		33AE171127A8BEC800551532 /* MagicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicCell.swift; sourceTree = "<group>"; };
-		33CF3A84204F084B000823BF /* ColorFull.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorFull.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		33CF3A84204F084B000823BF /* PickerFull.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickerFull.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33D2213E21AFDF0900FBFEA7 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,7 +62,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		330F746921ABBA9300F420B0 /* ColorFull */ = {
+		330F746921ABBA9300F420B0 /* PickerFull */ = {
 			isa = PBXGroup;
 			children = (
 				337055C821CC7798001B253C /* ColorFull.entitlements */,
@@ -73,7 +73,7 @@
 				330F747521ABBA9300F420B0 /* Assets */,
 				330F747721ABBA9300F420B0 /* Info.plist */,
 			);
-			path = ColorFull;
+			path = PickerFull;
 			sourceTree = "<group>";
 		};
 		330F746A21ABBA9300F420B0 /* Storyboards */ = {
@@ -132,7 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				330F747421ABBA9300F420B0 /* AppDelegate.swift */,
-				330F746921ABBA9300F420B0 /* ColorFull */,
+				330F746921ABBA9300F420B0 /* PickerFull */,
 				33CF3A85204F084B000823BF /* Products */,
 				337055C921CC77F5001B253C /* Frameworks */,
 			);
@@ -141,7 +141,7 @@
 		33CF3A85204F084B000823BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				33CF3A84204F084B000823BF /* ColorFull.app */,
+				33CF3A84204F084B000823BF /* PickerFull.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,9 +149,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		33CF3A83204F084B000823BF /* ColorFull */ = {
+		33CF3A83204F084B000823BF /* PickerFull */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 33CF3A96204F084C000823BF /* Build configuration list for PBXNativeTarget "ColorFull" */;
+			buildConfigurationList = 33CF3A96204F084C000823BF /* Build configuration list for PBXNativeTarget "PickerFull" */;
 			buildPhases = (
 				33CF3A80204F084B000823BF /* Sources */,
 				33CF3A81204F084B000823BF /* Frameworks */,
@@ -163,9 +163,9 @@
 			);
 			dependencies = (
 			);
-			name = ColorFull;
+			name = PickerFull;
 			productName = "Color Maker";
-			productReference = 33CF3A84204F084B000823BF /* ColorFull.app */;
+			productReference = 33CF3A84204F084B000823BF /* PickerFull.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -189,7 +189,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 33CF3A7F204F084B000823BF /* Build configuration list for PBXProject "ColorFull" */;
+			buildConfigurationList = 33CF3A7F204F084B000823BF /* Build configuration list for PBXProject "PickerFull" */;
 			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -202,7 +202,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				33CF3A83204F084B000823BF /* ColorFull */,
+				33CF3A83204F084B000823BF /* PickerFull */,
 			);
 		};
 /* End PBXProject section */
@@ -397,12 +397,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ColorFull/ColorFull.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PickerFull/ColorFull.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JMVGHP3288;
-				INFOPLIST_FILE = "$(SRCROOT)/ColorFull/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/PickerFull/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -421,12 +421,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ColorFull/ColorFull.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PickerFull/ColorFull.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JMVGHP3288;
-				INFOPLIST_FILE = "$(SRCROOT)/ColorFull/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/PickerFull/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -444,7 +444,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		33CF3A7F204F084B000823BF /* Build configuration list for PBXProject "ColorFull" */ = {
+		33CF3A7F204F084B000823BF /* Build configuration list for PBXProject "PickerFull" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33CF3A94204F084C000823BF /* Debug */,
@@ -453,7 +453,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		33CF3A96204F084C000823BF /* Build configuration list for PBXNativeTarget "ColorFull" */ = {
+		33CF3A96204F084C000823BF /* Build configuration list for PBXNativeTarget "PickerFull" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33CF3A97204F084C000823BF /* Debug */,

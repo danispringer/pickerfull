@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  ColorFull
+//  PickerFull
 //
 //  Created by Daniel Springer on 06/03/2018.
 //  Copyright © 2021 Daniel Springer. All rights reserved.
