@@ -2,8 +2,8 @@
 //  MagicTableViewController.swift
 //  PickerFull
 //
-//  Created by dani on 1/31/22.
-//  Copyright © 2022 Dani Springer. All rights reserved.
+//  Created by Daniel Springer on 1/31/22.
+//  Copyright © 2022 Daniel Springer. All rights reserved.
 //
 
 import UIKit
