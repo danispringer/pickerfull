@@ -26,6 +26,7 @@ struct Const {
         static let colorKey = "color"
         static let defaultColor = "E57BF2"
         static let magicDict = "magicDictionary"
+        static let userGotAdvancedWarning = "userGotAdvancedWarning"
     }
 
     struct Values {
