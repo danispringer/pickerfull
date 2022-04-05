@@ -253,7 +253,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         }
 
         let magicHistory = UIAction(title: Const.AppInfo.magicHistory, image: UIImage(systemName: "book"),
-                                                  state: .off) { _ in
+                                    state: .off) { _ in
             self.showMagicHistory()
         }
 
