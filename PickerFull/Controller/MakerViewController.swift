@@ -214,6 +214,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         let clearImage = UIAction(title: Const.AppInfo.clearImage,
                                   image: UIImage(systemName: "trash"), attributes: .destructive, state: .off) { _ in
             self.userImageView.image = nil
+            self.userImageView.accessibilityLabel = ""
         }
 
         let imageMenu = UIMenu(title: "", image: nil, options: .displayInline,
@@ -226,6 +227,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         userImageView.image = image
+        self.userImageView.accessibilityLabel = "Image"
         containerScrollView.zoomScale = containerScrollView.minimumZoomScale
         imagePicker.dismiss(animated: true, completion: nil)
     }
