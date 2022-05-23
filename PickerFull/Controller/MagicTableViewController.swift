@@ -21,6 +21,11 @@ class MagicTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if CommandLine.arguments.contains("--pickerfullScreenshots") {
+            // We are in testing mode, make arrangements if needed
+            UIView.setAnimationsEnabled(false)
+        }
+
         if UD.dictionary(forKey: Const.UserDef.magicDict) == nil {
             let emptyDict: [String: String] = [:]
             UD.register(defaults: [Const.UserDef.magicDict: emptyDict])

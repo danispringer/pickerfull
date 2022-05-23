@@ -72,7 +72,7 @@ extension UIViewController {
 
             let alertAction = UIAlertAction(
                 title: "OK",
-                style: .default,
+                style: .cancel,
                 handler: nil)
             alert.addAction(alertAction)
 

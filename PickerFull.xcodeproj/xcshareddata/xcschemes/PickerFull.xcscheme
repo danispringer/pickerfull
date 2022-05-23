@@ -37,6 +37,16 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "332D7487283A5FDC0039BC68"
+               BuildableName = "PickerFullScreenshots.xctest"
+               BlueprintName = "PickerFullScreenshots"
+               ReferencedContainer = "container:PickerFull.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
