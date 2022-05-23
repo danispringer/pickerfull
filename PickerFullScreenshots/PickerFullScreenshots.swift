@@ -15,7 +15,6 @@ class PickerFullScreenshots: XCTestCase {
     // -destination "platform=iOS Simulator,name=iPhone 11 Pro Max" build test
 
 
-
     var app: XCUIApplication!
 
 
