@@ -26,6 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        if CommandLine.arguments.contains("--pickerfullScreenshots") {
+            // We are in testing mode, make arrangements
+
+        }
+
         UD.register(defaults: [
             Const.UserDef.colorKey: Const.UserDef.defaultColor,
             Const.UserDef.userGotAdvancedWarning: false

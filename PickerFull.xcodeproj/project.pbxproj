@@ -14,11 +14,23 @@
 		330F747C21ABBA9300F420B0 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F747321ABBA9300F420B0 /* String+Extensions.swift */; };
 		330F747D21ABBA9300F420B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F747421ABBA9300F420B0 /* AppDelegate.swift */; };
 		330F747E21ABBA9300F420B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 330F747621ABBA9300F420B0 /* Assets.xcassets */; };
+		332D748B283A5FDC0039BC68 /* PickerFullScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D748A283A5FDC0039BC68 /* PickerFullScreenshots.swift */; };
 		337055CB21CC77F6001B253C /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337055CA21CC77F6001B253C /* Intents.framework */; };
 		33AE170F27A8B58C00551532 /* MagicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE170E27A8B58C00551532 /* MagicTableViewController.swift */; };
 		33AE171227A8BEC800551532 /* MagicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE171127A8BEC800551532 /* MagicCell.swift */; };
 		33D2213F21AFDF0900FBFEA7 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D2213E21AFDF0900FBFEA7 /* Const.swift */; };
+		33DCF99D283B22B7000DB1C8 /* screenshots.sh in Resources */ = {isa = PBXBuildFile; fileRef = 33DCF99C283B22B7000DB1C8 /* screenshots.sh */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		332D748E283A5FDC0039BC68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33CF3A7C204F084B000823BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33CF3A83204F084B000823BF;
+			remoteInfo = PickerFull;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		33CD2A3E20FAE636004A4CB3 /* Embed App Extensions */ = {
@@ -42,15 +54,25 @@
 		330F747421ABBA9300F420B0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		330F747621ABBA9300F420B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		330F747721ABBA9300F420B0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		332D7488283A5FDC0039BC68 /* PickerFullScreenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickerFullScreenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		332D748A283A5FDC0039BC68 /* PickerFullScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerFullScreenshots.swift; sourceTree = "<group>"; };
 		337055C821CC7798001B253C /* ColorFull.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ColorFull.entitlements; sourceTree = "<group>"; };
 		337055CA21CC77F6001B253C /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		33AE170E27A8B58C00551532 /* MagicTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicTableViewController.swift; sourceTree = "<group>"; };
 		33AE171127A8BEC800551532 /* MagicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicCell.swift; sourceTree = "<group>"; };
 		33CF3A84204F084B000823BF /* PickerFull.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickerFull.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33D2213E21AFDF0900FBFEA7 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		33DCF99C283B22B7000DB1C8 /* screenshots.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = screenshots.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		332D7485283A5FDC0039BC68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33CF3A81204F084B000823BF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -112,6 +134,15 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		332D7489283A5FDC0039BC68 /* PickerFullScreenshots */ = {
+			isa = PBXGroup;
+			children = (
+				332D748A283A5FDC0039BC68 /* PickerFullScreenshots.swift */,
+				33DCF99C283B22B7000DB1C8 /* screenshots.sh */,
+			);
+			path = PickerFullScreenshots;
+			sourceTree = "<group>";
+		};
 		337055C921CC77F5001B253C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +164,7 @@
 			children = (
 				330F747421ABBA9300F420B0 /* AppDelegate.swift */,
 				330F746921ABBA9300F420B0 /* PickerFull */,
+				332D7489283A5FDC0039BC68 /* PickerFullScreenshots */,
 				33CF3A85204F084B000823BF /* Products */,
 				337055C921CC77F5001B253C /* Frameworks */,
 			);
@@ -142,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				33CF3A84204F084B000823BF /* PickerFull.app */,
+				332D7488283A5FDC0039BC68 /* PickerFullScreenshots.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,6 +182,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		332D7487283A5FDC0039BC68 /* PickerFullScreenshots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 332D7492283A5FDC0039BC68 /* Build configuration list for PBXNativeTarget "PickerFullScreenshots" */;
+			buildPhases = (
+				332D7484283A5FDC0039BC68 /* Sources */,
+				332D7485283A5FDC0039BC68 /* Frameworks */,
+				332D7486283A5FDC0039BC68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				332D748F283A5FDC0039BC68 /* PBXTargetDependency */,
+			);
+			name = PickerFullScreenshots;
+			productName = PickerFullScreenshots;
+			productReference = 332D7488283A5FDC0039BC68 /* PickerFullScreenshots.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		33CF3A83204F084B000823BF /* PickerFull */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 33CF3A96204F084C000823BF /* Build configuration list for PBXNativeTarget "PickerFull" */;
@@ -174,10 +225,14 @@
 		33CF3A7C204F084B000823BF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Dani Springer";
 				TargetAttributes = {
+					332D7487283A5FDC0039BC68 = {
+						CreatedOnToolsVersion = 13.4;
+						TestTargetID = 33CF3A83204F084B000823BF;
+					};
 					33CF3A83204F084B000823BF = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1020;
@@ -203,11 +258,20 @@
 			projectRoot = "";
 			targets = (
 				33CF3A83204F084B000823BF /* PickerFull */,
+				332D7487283A5FDC0039BC68 /* PickerFullScreenshots */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		332D7486283A5FDC0039BC68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33DCF99D283B22B7000DB1C8 /* screenshots.sh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33CF3A82204F084B000823BF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +305,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		332D7484283A5FDC0039BC68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				332D748B283A5FDC0039BC68 /* PickerFullScreenshots.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33CF3A80204F084B000823BF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -256,6 +328,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		332D748F283A5FDC0039BC68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33CF3A83204F084B000823BF /* PickerFull */;
+			targetProxy = 332D748E283A5FDC0039BC68 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		330F746B21ABBA9300F420B0 /* LaunchScreen.storyboard */ = {
@@ -277,6 +357,49 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		332D7490283A5FDC0039BC68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JMVGHP3288;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = screenshots.PickerFullScreenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PickerFull;
+			};
+			name = Debug;
+		};
+		332D7491283A5FDC0039BC68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JMVGHP3288;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = screenshots.PickerFullScreenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PickerFull;
+			};
+			name = Release;
+		};
 		33CF3A94204F084C000823BF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -444,6 +567,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		332D7492283A5FDC0039BC68 /* Build configuration list for PBXNativeTarget "PickerFullScreenshots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				332D7490283A5FDC0039BC68 /* Debug */,
+				332D7491283A5FDC0039BC68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		33CF3A7F204F084B000823BF /* Build configuration list for PBXProject "PickerFull" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

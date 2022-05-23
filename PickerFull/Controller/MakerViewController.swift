@@ -43,6 +43,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if CommandLine.arguments.contains("--pickerfullScreenshots") {
+            // We are in testing mode, make arrangements if needed
+            UIView.setAnimationsEnabled(false)
+        }
+
         containerScrollView.delegate = self
         containerScrollView.minimumZoomScale = 1.0
         containerScrollView.maximumZoomScale = 20.0
