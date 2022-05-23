@@ -11,10 +11,6 @@ import XCTest
 class PickerFullScreenshots: XCTestCase {
 
 
-    // xcodebuild -testLanguage de -scheme Libi -project ./Libi.xcodeproj -derivedDataPath '/tmp/LibiDerivedData/'
-    // -destination "platform=iOS Simulator,name=iPhone 11 Pro Max" build test
-
-
     var app: XCUIApplication!
 
 
