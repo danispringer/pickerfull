@@ -47,6 +47,23 @@ class PickerFullScreenshots: XCTestCase {
 //        app.scrollViews.otherElements.buttons["close"].tap()
 
 
+// CDO copy paste
+//        for index in 0...13 {
+//
+//            if app.sheets.buttons.firstMatch.exists {
+//
+//                app.sheets.buttons.firstMatch.tap()
+//
+//            } else if app.alerts.buttons.firstMatch.exists {
+//
+//                app.alerts.buttons.firstMatch.tap()
+//
+//            }
+//
+//
+//            _ = app.wait(for: .notRunning, timeout: 7.0)
+
+        
         XCTAssertTrue(toolbar.buttons["Share color"].firstMatch.waitForExistence(timeout: 5))
         toolbar.buttons["Share color"].tap()
 
