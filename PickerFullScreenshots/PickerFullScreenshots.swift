@@ -13,6 +13,7 @@ class PickerFullScreenshots: XCTestCase {
 
     var app: XCUIApplication!
 
+    var spring = XCUIApplication(bundleIdentifier: "com.apple.springboard")
 
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -26,43 +27,37 @@ class PickerFullScreenshots: XCTestCase {
 
     func testMakeScreenshots() {
         app.launch()
-
-        // TODO: screenshot, image with color picker, advanced picker
-
-        takeScreenshot(named: "Home")
+        /*
+         - home: done
+         - screenshot
+         - image with color picker
+         - advanced picker
+         */
 
         let toolbar = XCUIApplication().toolbars["Toolbar"]
 
+        // TODO: uncomment me, successful tests
+//        takeScreenshot(named: "Home")
+//        toolbar.buttons["Advanced picker"].tap()
+//
+//        XCTAssertTrue(app.staticTexts["Colors"].firstMatch.waitForExistence(timeout: 5))
+//        takeScreenshot(named: "Advanced")
+//
+//        XCTAssertTrue(app.scrollViews.otherElements.buttons["close"].firstMatch.waitForExistence(timeout: 5))
+//        app.scrollViews.otherElements.buttons["close"].tap()
+
+
+        XCTAssertTrue(toolbar.buttons["Share color"].firstMatch.waitForExistence(timeout: 5))
         toolbar.buttons["Share color"].tap()
+
         app.buttons["Download as image"].firstMatch.tap()
-        addUIInterruptionMonitor(withDescription: "desc") { _ in
-            self.app.alerts.buttons["OK"].firstMatch.exists
-        }
 
-        var alertPressed = false
-
-        addUIInterruptionMonitor(withDescription: "System Dialog") { (alert) -> Bool in
-            alert.buttons["OK"].tap()
-            alertPressed = true
-            return true
-        }
-
-        XCTAssert(alertPressed)
-
+        XCTAssertTrue(app.sheets["Image Saved"].scrollViews.otherElements
+            .buttons["Open Gallery"].firstMatch.waitForExistence(timeout: 5))
         app.sheets["Image Saved"].scrollViews.otherElements.buttons["Open Gallery"].tap()
 
-        app.tabBars["Tab Bar"].buttons["Albums"].tap()
+        // TODO: export to mac?
 
-        app.otherElements["Recents"].firstMatch.tap()
-        app.images.firstMatch.tap()
-        takeScreenshot(named: "Screenshot")
-
-
-//        toolbar.buttons["Advanced picker"].tap()
-//        let closeButton = app.scrollViews.otherElements.buttons["close"]
-//        closeButton.tap()
-//        toolbar.buttons["Image menu"].tap()
-//        toolbar.buttons["Info menu"].tap()
     }
 
 
