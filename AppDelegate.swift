@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UD.register(defaults: [
             Const.UserDef.colorKey: Const.UserDef.defaultColor,
-            Const.UserDef.userGotAdvancedWarning: false
+            Const.UserDef.userGotAdvancedWarning: true // for now...
         ])
 
         if let shortcutItem = launchOptions?[
