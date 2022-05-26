@@ -34,7 +34,13 @@ class PickerFullScreenshots: XCTestCase {
     func testAdvancedPicker() {
         app.launch()
         toolbar.buttons["Advanced picker"].tap()
-        XCTAssertTrue(app.staticTexts["Colors"].firstMatch.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["Sliders"].waitForExistence(timeout: 5))
+        app.buttons["Sliders"].tap()
+//        XCTAssert(XCUIApplication().scrollViews.otherElements.staticTexts["Display P3 Hex Color #"].waitForExistence(timeout: 5))
+//        XCUIApplication().scrollViews.otherElements.staticTexts["Display P3 Hex Color #"].tap()
+//        XCTAssert(app.buttons["sRGB"].waitForExistence(timeout: 5))
+//        app.buttons["sRGB"].tap()
+//        XCTAssert(app.staticTexts["Colors"].waitForExistence(timeout: 5))
         takeScreenshot(named: "Advanced")
     }
 
@@ -50,10 +56,10 @@ class PickerFullScreenshots: XCTestCase {
         XCTAssert(toolbar.buttons["Advanced picker"].waitForExistence(timeout: 10))
         toolbar.buttons["Advanced picker"].tap()
         app.buttons["Floating color picker"].tap()
-        
+
         takeScreenshot(named: "Floating-picker")
         app.images.firstMatch.tap()
-
+        // TODO: how to show floating picker in screenshot?
     }
 
 
@@ -65,9 +71,11 @@ class PickerFullScreenshots: XCTestCase {
         XCTAssertTrue(app.sheets["Image Saved"].scrollViews.otherElements
             .buttons["Open Gallery"].firstMatch.waitForExistence(timeout: 5))
         app.sheets["Image Saved"].scrollViews.otherElements.buttons["Open Gallery"].tap()
-        // how to continue from photos app? export to mac?
+        // TODO: how to continue from photos app? export to mac?
     }
 
+
+    // MARK: Take Screenshot
 
     func takeScreenshot(named name: String) {
         // Take the screenshot
