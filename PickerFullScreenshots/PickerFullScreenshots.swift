@@ -12,7 +12,7 @@ class PickerFullScreenshots: XCTestCase {
 
 
     var app: XCUIApplication!
-
+    let toolbar = XCUIApplication().toolbars["Toolbar"]
     var spring = XCUIApplication(bundleIdentifier: "com.apple.springboard")
 
     override func setUpWithError() throws {
@@ -25,56 +25,47 @@ class PickerFullScreenshots: XCTestCase {
     }
 
 
-    func testMakeScreenshots() {
+    func testHome() {
         app.launch()
-        /*
-         - home: done
-         - screenshot
-         - image with color picker
-         - advanced picker
-         */
-
-        let toolbar = XCUIApplication().toolbars["Toolbar"]
-
-        // TODO: uncomment me, successful tests
-//        takeScreenshot(named: "Home")
-//        toolbar.buttons["Advanced picker"].tap()
-//
-//        XCTAssertTrue(app.staticTexts["Colors"].firstMatch.waitForExistence(timeout: 5))
-//        takeScreenshot(named: "Advanced")
-//
-//        XCTAssertTrue(app.scrollViews.otherElements.buttons["close"].firstMatch.waitForExistence(timeout: 5))
-//        app.scrollViews.otherElements.buttons["close"].tap()
+        takeScreenshot(named: "Home")
+    }
 
 
-// CDO copy paste
-//        for index in 0...13 {
-//
-//            if app.sheets.buttons.firstMatch.exists {
-//
-//                app.sheets.buttons.firstMatch.tap()
-//
-//            } else if app.alerts.buttons.firstMatch.exists {
-//
-//                app.alerts.buttons.firstMatch.tap()
-//
-//            }
-//
-//
-//            _ = app.wait(for: .notRunning, timeout: 7.0)
+    func testAdvancedPicker() {
+        app.launch()
+        toolbar.buttons["Advanced picker"].tap()
+        XCTAssertTrue(app.staticTexts["Colors"].firstMatch.waitForExistence(timeout: 5))
+        takeScreenshot(named: "Advanced")
+    }
 
+
+    func testFloatingPicker() {
+        app.launch()
+        toolbar.buttons["Image menu"].tap()
+        app.collectionViews.buttons["Choose Photo"].tap()
+        XCTAssert(app.otherElements["Photos"].scrollViews.otherElements
+            .images["Photo, March 30, 2018, 3:14 PM"]
+            .waitForExistence(timeout: 10))
+        app.otherElements["Photos"].scrollViews.otherElements.images["Photo, March 30, 2018, 3:14 PM"].tap()
+        XCTAssert(toolbar.buttons["Advanced picker"].waitForExistence(timeout: 10))
+        toolbar.buttons["Advanced picker"].tap()
+        app.buttons["Floating color picker"].tap()
         
+        takeScreenshot(named: "Floating-picker")
+        app.images.firstMatch.tap()
+
+    }
+
+
+    func testScreenshot() {
+        app.launch()
         XCTAssertTrue(toolbar.buttons["Share color"].firstMatch.waitForExistence(timeout: 5))
         toolbar.buttons["Share color"].tap()
-
         app.buttons["Download as image"].firstMatch.tap()
-
         XCTAssertTrue(app.sheets["Image Saved"].scrollViews.otherElements
             .buttons["Open Gallery"].firstMatch.waitForExistence(timeout: 5))
         app.sheets["Image Saved"].scrollViews.otherElements.buttons["Open Gallery"].tap()
-
-        // TODO: export to mac?
-
+        // how to continue from photos app? export to mac?
     }
 
 
