@@ -15,9 +15,9 @@ schemeName="PickerFull"
 #    "iPhone 13 Pro Max"
 #)
 simulators=(
+    "iPhone 13 Pro Max"
     "iPhone 8 Plus"
     "iPad Pro (12.9-inch) (5th generation)"
-    "iPhone 13 Pro Max"
 )
 
 # All the languages we want to screenshot (ISO 3166-1 codes)
