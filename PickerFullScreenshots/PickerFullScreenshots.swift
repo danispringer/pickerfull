@@ -36,7 +36,8 @@ class PickerFullScreenshots: XCTestCase {
         toolbar.buttons["Advanced picker"].tap()
         XCTAssertTrue(app.buttons["Sliders"].waitForExistence(timeout: 5))
         app.buttons["Sliders"].tap()
-//        XCTAssert(XCUIApplication().scrollViews.otherElements.staticTexts["Display P3 Hex Color #"].waitForExistence(timeout: 5))
+// XCTAssert(XCUIApplication().scrollViews.otherElements.staticTexts["Display P3 Hex Color #"]
+// .waitForExistence(timeout: 5))
 //        XCUIApplication().scrollViews.otherElements.staticTexts["Display P3 Hex Color #"].tap()
 //        XCTAssert(app.buttons["sRGB"].waitForExistence(timeout: 5))
 //        app.buttons["sRGB"].tap()
@@ -72,6 +73,10 @@ class PickerFullScreenshots: XCTestCase {
             .buttons["Open Gallery"].firstMatch.waitForExistence(timeout: 5))
         app.sheets["Image Saved"].scrollViews.otherElements.buttons["Open Gallery"].tap()
         // TODO: how to continue from photos app? export to mac?
+        let lastImage = app.images.allElementsBoundByIndex.last
+        print("START IMAGE")
+        print("\(lastImage)")
+        print("END IMAGE")
     }
 
 

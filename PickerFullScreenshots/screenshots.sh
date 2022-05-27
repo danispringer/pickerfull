@@ -48,10 +48,10 @@ do
             # Boot up the new simulator and set it to
             # the correct appearance
             xcrun simctl boot "$simulator"
-            xcrun simctl ui "$simulator" appearance $appearance
+            xcrun simctl ui "$simulator" appearance "$appearance"
 
             # Build and Test
-            xcodebuild -testLanguage $language -scheme $schemeName -project $projectName -derivedDataPath '/tmp/PickerFullDerivedData/' -destination "platform=iOS Simulator,name=$simulator" build test
+            xcodebuild -testLanguage "$language" -scheme $schemeName -project $projectName -derivedDataPath '/tmp/PickerFullDerivedData/' -destination "platform=iOS Simulator,name=$simulator" build test
             echo "Collecting Results..."
             mkdir -p "$targetFolder/$simulator/"
             find /tmp/PickerFullDerivedData/Logs/Test -maxdepth 1 -type d -exec xcparse screenshots {} "$targetFolder/$simulator/" \;
@@ -59,4 +59,13 @@ do
     done
 
     echo "✅ Done"
+done
+
+#~/Library/Developer/CoreSimulator/Devices/52F442A3-401A-4CC3-BA3B-28E60F86759B/data/Media/DCIM/100APPLE/IMG_0007.JPG
+#xcrun simctl list devices | grep Booted | grep -E  '\w+-\w+-\w+-\w+-\w+' -o
+bootedsimulators=($(xcrun simctl list devices | grep Booted | grep -E  '\w+-\w+-\w+-\w+-\w+' -o))
+
+for bootedsim in "${bootedsimulators[@]}"
+do
+    mv "$HOME/Library/Developer/CoreSimulator/Devices/$bootedsim/data/Media/DCIM/100APPLE/IMG_0007.JPG" "$HOME/Desktop/$bootedsim.JPG"
 done
