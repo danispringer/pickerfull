@@ -64,19 +64,12 @@ class PickerFullScreenshots: XCTestCase {
     }
 
 
-    func testScreenshot() {
+    func testSaveImage() {
         app.launch()
         XCTAssertTrue(toolbar.buttons["Share color"].firstMatch.waitForExistence(timeout: 5))
         toolbar.buttons["Share color"].tap()
         app.buttons["Download as image"].firstMatch.tap()
-        XCTAssertTrue(app.sheets["Image Saved"].scrollViews.otherElements
-            .buttons["Open Gallery"].firstMatch.waitForExistence(timeout: 5))
-        app.sheets["Image Saved"].scrollViews.otherElements.buttons["Open Gallery"].tap()
-        // TODO: how to continue from photos app? export to mac?
-        let lastImage = app.images.allElementsBoundByIndex.last
-        print("START IMAGE")
-        print("\(lastImage)")
-        print("END IMAGE")
+        XCTAssertTrue(app.sheets["Image Saved"].waitForExistence(timeout: 5))
     }
 
 
