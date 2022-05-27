@@ -27,7 +27,7 @@ class PickerFullScreenshots: XCTestCase {
 
     func testHome() {
         app.launch()
-        takeScreenshot(named: "Home")
+        takeScreenshot(name: "Home")
     }
 
 
@@ -42,7 +42,7 @@ class PickerFullScreenshots: XCTestCase {
 //        XCTAssert(app.buttons["sRGB"].waitForExistence(timeout: 5))
 //        app.buttons["sRGB"].tap()
 //        XCTAssert(app.staticTexts["Colors"].waitForExistence(timeout: 5))
-        takeScreenshot(named: "Advanced")
+        takeScreenshot(name: "Advanced")
     }
 
 
@@ -57,8 +57,8 @@ class PickerFullScreenshots: XCTestCase {
         XCTAssert(toolbar.buttons["Advanced picker"].waitForExistence(timeout: 10))
         toolbar.buttons["Advanced picker"].tap()
         app.buttons["Floating color picker"].tap()
-
-        takeScreenshot(named: "Floating-picker")
+        XCTAssert(toolbar.waitForExistence(timeout: 5))
+        takeScreenshot(name: "Floating-picker")
         app.images.firstMatch.tap()
         // TODO: how to show floating picker in screenshot?
     }
@@ -75,7 +75,7 @@ class PickerFullScreenshots: XCTestCase {
 
     // MARK: Take Screenshot
 
-    func takeScreenshot(named name: String) {
+    func takeScreenshot(name: String) {
         // Take the screenshot
         let fullScreenshot = XCUIScreen.main.screenshot()
 

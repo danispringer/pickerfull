@@ -69,5 +69,5 @@ done
 bootedsimulators=($(xcrun simctl list devices | grep Booted | grep -E  '\w+-\w+-\w+-\w+-\w+' -o))
 for bootedsim in "${bootedsimulators[@]}"
 do
-    mv "$HOME/Library/Developer/CoreSimulator/Devices/$bootedsim/data/Media/DCIM/100APPLE/IMG_0007.JPG" "$HOME/Desktop/$bootedsim.JPG"
+    cp "$HOME/Library/Developer/CoreSimulator/Devices/$bootedsim/data/Media/DCIM/100APPLE/IMG_0007.JPG" "$HOME/Desktop/$bootedsim.JPG"
 done
