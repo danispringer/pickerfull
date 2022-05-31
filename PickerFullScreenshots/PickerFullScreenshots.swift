@@ -58,9 +58,11 @@ class PickerFullScreenshots: XCTestCase {
         toolbar.buttons["Advanced picker"].tap()
         app.buttons["Floating color picker"].tap()
         XCTAssert(toolbar.waitForExistence(timeout: 5))
+        _ = XCTWaiter.wait(for: [expectation(description: "Wait for n seconds")], timeout: 10.0)
         takeScreenshot(name: "Floating-picker")
-        // TODO: how to show floating picker in screenshot?
-        app.images.firstMatch.tap() // to hide floating picker
+        // how to show floating picker in screenshot?
+        // how to hide picker?
+        app.toolbars.buttons.firstMatch.tap()
     }
 
 
