@@ -21,15 +21,17 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var resultView: UIView!
-    @IBOutlet weak var myToolbar: UIToolbar!
+    @IBOutlet weak var myToolbarBottom: UIToolbar!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var qrImageView: UIImageView!
     @IBOutlet weak var containerScrollView: UIScrollView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var imageMenuButton: UIBarButtonItem!
+    @IBOutlet weak var makeRandomColorButton: UIBarButtonItem!
 
-
+    @IBOutlet weak var myToolbarTop: UIToolbar!
+    
     // MARK: properties
 
     var hexArrayForRandom: [String] = []
@@ -68,8 +70,13 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
         resultView.backgroundColor = selectedColor
 
-        myToolbar.layer.cornerRadius = myToolbar.bounds.height * 0.4
-        myToolbar.layer.masksToBounds = true
+        myToolbarBottom.layer.cornerRadius = myToolbarBottom.bounds.height * 0.4
+        myToolbarBottom.layer.masksToBounds = true
+        myToolbarBottom.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+
+        myToolbarTop.layer.cornerRadius = myToolbarTop.bounds.height * 0.4
+        myToolbarTop.layer.masksToBounds = true
+        myToolbarTop.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
 
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
@@ -468,7 +475,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     func elementsShould(hide: Bool) {
         messageLabel.isHidden = !hide
         qrImageView.isHidden = !hide
-        myToolbar.isHidden = hide
+        myToolbarBottom.isHidden = hide
+        myToolbarTop.isHidden = hide
         containerScrollView.isHidden = hide
     }
 
