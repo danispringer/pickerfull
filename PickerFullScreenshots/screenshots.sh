@@ -15,10 +15,13 @@ schemeName="PickerFull"
 #    "iPhone 13 Pro Max"
 #)
 simulators=(
-    "iPhone 13 Pro Max"
     "iPhone 8 Plus"
-    "iPad Pro (12.9-inch) (5th generation)"
 )
+# simulators=(
+#     "iPhone 13 Pro Max"
+#     "iPhone 8 Plus"
+#     "iPad Pro (12.9-inch) (5th generation)"
+# )
 
 # All the languages we want to screenshot (ISO 3166-1 codes)
 languages=(
@@ -56,19 +59,22 @@ do
             echo "Collecting Results..."
             mkdir -p "$targetFolder/$simulator/"
             find /tmp/PickerFullDerivedData/Logs/Test -maxdepth 1 -type d -exec xcparse screenshots {} "$targetFolder/$simulator/" \;
+            xcrun simctl shutdown "$simulator"
         done
     done
-
     echo "✅ Done"
 done
 
 #~/Library/Developer/CoreSimulator/Devices/52F442A3-401A-4CC3-BA3B-28E60F86759B/data/Media/DCIM/100APPLE/IMG_0007.JPG
 #xcrun simctl list devices | grep Booted | grep -E  '\w+-\w+-\w+-\w+-\w+' -o
 
-
+for simulator in "${simulators[@]}"
+do
+    xcrun simctl boot "$simulator"
+done
 
 bootedsimulators=($(xcrun simctl list devices | grep Booted | grep -E  '\w+-\w+-\w+-\w+-\w+' -o))
 for bootedsim in "${bootedsimulators[@]}"
 do
-    cp "$HOME/Library/Developer/CoreSimulator/Devices/$bootedsim/data/Media/DCIM/100APPLE/IMG_0001.JPG" "$HOME/Desktop/$bootedsim.JPG"
+    cp -r "$HOME/Library/Developer/CoreSimulator/Devices/$bootedsim/data/Media/DCIM/100APPLE" "$HOME/Desktop/$bootedsim"
 done
