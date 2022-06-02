@@ -10,10 +10,11 @@ import XCTest
 
 class PickerFullScreenshots: XCTestCase {
 
+    // MARK: Properties
 
     var app: XCUIApplication!
     let toolbar = XCUIApplication().toolbars["Toolbar"]
-    var spring = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+
 
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -33,7 +34,7 @@ class PickerFullScreenshots: XCTestCase {
 
     func testAdvancedPicker() {
         app.launch()
-        toolbar.buttons["Advanced picker"].tap()
+        toolbar.buttons["Editor"].tap()
         XCTAssertTrue(app.buttons["Sliders"].waitForExistence(timeout: 5))
         app.buttons["Sliders"].tap()
 // XCTAssert(XCUIApplication().scrollViews.otherElements.staticTexts["Display P3 Hex Color #"]
@@ -46,31 +47,34 @@ class PickerFullScreenshots: XCTestCase {
     }
 
 
-    func testFloatingPicker() {
-        app.launch()
-        toolbar.buttons["Image menu"].tap()
-        app.collectionViews.buttons["Choose Photo"].tap()
-        XCTAssert(app.otherElements["Photos"].scrollViews.otherElements
-            .images["Photo, March 30, 2018, 3:14 PM"]
-            .waitForExistence(timeout: 5))
-        app.otherElements["Photos"].scrollViews.otherElements.images["Photo, March 30, 2018, 3:14 PM"].tap()
-        XCTAssert(toolbar.buttons["Advanced picker"].waitForExistence(timeout: 5))
-        toolbar.buttons["Advanced picker"].tap()
-        app.buttons["Floating color picker"].tap()
-        XCTAssert(toolbar.waitForExistence(timeout: 5))
-        _ = XCTWaiter.wait(for: [expectation(description: "Wait for n seconds")], timeout: 10.0)
-        takeScreenshot(name: "Floating-picker")
-        // how to show floating picker in screenshot?
-
-        // how to hide picker?
-        app.toolbars.buttons.firstMatch.tap()
-    }
+    // TODO: take manually. more needed?
+//    func testFloatingPicker() {
+//        app.launch()
+//        toolbar.buttons["Image menu"].tap()
+//        app.collectionViews.buttons["Choose Photo"].tap()
+//        app.buttons["Albums"].tap()
+//
+//        app.scrollViews.otherElements.images.firstMatch.tap()
+//        XCTAssert(app.otherElements["Photos"].scrollViews.otherElements
+//            .images.firstMatch.waitForExistence(timeout: 5))
+//        app.otherElements["Photos"].scrollViews.otherElements.images.firstMatch.tap()
+//        XCTAssert(toolbar.buttons["Editor"].waitForExistence(timeout: 5))
+//        toolbar.buttons["Editor"].tap()
+//        app.buttons["Floating color picker"].tap()
+//        XCTAssert(toolbar.waitForExistence(timeout: 5))
+//        _ = XCTWaiter.wait(for: [expectation(description: "Wait for n seconds")], timeout: 10.0)
+//        takeScreenshot(name: "Floating-picker")
+//        // how to show floating picker in screenshot?
+//
+//        // how to hide picker?
+//        app.toolbars.buttons.firstMatch.tap()
+//    }
 
 
     func testSaveImage() {
         app.launch()
-        XCTAssertTrue(toolbar.buttons["Share color"].firstMatch.waitForExistence(timeout: 5))
-        toolbar.buttons["Share color"].tap()
+        XCTAssertTrue(toolbar.buttons["Share"].firstMatch.waitForExistence(timeout: 5))
+        toolbar.buttons["Share"].tap()
         app.buttons["Download as image"].firstMatch.tap()
         XCTAssertTrue(app.sheets["Image Saved"].waitForExistence(timeout: 5))
     }
