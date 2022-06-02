@@ -46,7 +46,6 @@ class PickerFullScreenshots: XCTestCase {
     }
 
 
-    // TODO: take manually. more needed?
 //    func testFloatingPicker() {
 //        app.launch()
 //        app.buttons["Image menu"].tap()
