@@ -1,16 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "launch-light.png",
-      "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
       "filename" : "launch-dark.png",
       "idiom" : "universal"
     }
