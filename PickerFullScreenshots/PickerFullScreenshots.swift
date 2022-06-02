@@ -13,7 +13,6 @@ class PickerFullScreenshots: XCTestCase {
     // MARK: Properties
 
     var app: XCUIApplication!
-    let toolbar = XCUIApplication().toolbars["Toolbar"]
 
 
     override func setUpWithError() throws {
@@ -34,7 +33,7 @@ class PickerFullScreenshots: XCTestCase {
 
     func testAdvancedPicker() {
         app.launch()
-        toolbar.buttons["Editor"].tap()
+        app.buttons["Advanced editor"].tap()
         XCTAssertTrue(app.buttons["Sliders"].waitForExistence(timeout: 5))
         app.buttons["Sliders"].tap()
 // XCTAssert(XCUIApplication().scrollViews.otherElements.staticTexts["Display P3 Hex Color #"]
@@ -50,7 +49,7 @@ class PickerFullScreenshots: XCTestCase {
     // TODO: take manually. more needed?
 //    func testFloatingPicker() {
 //        app.launch()
-//        toolbar.buttons["Image menu"].tap()
+//        app.buttons["Image menu"].tap()
 //        app.collectionViews.buttons["Choose Photo"].tap()
 //        app.buttons["Albums"].tap()
 //
@@ -58,23 +57,23 @@ class PickerFullScreenshots: XCTestCase {
 //        XCTAssert(app.otherElements["Photos"].scrollViews.otherElements
 //            .images.firstMatch.waitForExistence(timeout: 5))
 //        app.otherElements["Photos"].scrollViews.otherElements.images.firstMatch.tap()
-//        XCTAssert(toolbar.buttons["Editor"].waitForExistence(timeout: 5))
-//        toolbar.buttons["Editor"].tap()
+//        XCTAssert(app.buttons["Editor"].waitForExistence(timeout: 5))
+//        app.buttons["Editor"].tap()
 //        app.buttons["Floating color picker"].tap()
-//        XCTAssert(toolbar.waitForExistence(timeout: 5))
+//        XCTAssert(app.waitForExistence(timeout: 5))
 //        _ = XCTWaiter.wait(for: [expectation(description: "Wait for n seconds")], timeout: 10.0)
 //        takeScreenshot(name: "Floating-picker")
 //        // how to show floating picker in screenshot?
 //
 //        // how to hide picker?
-//        app.toolbars.buttons.firstMatch.tap()
+//        app.buttons.firstMatch.tap()
 //    }
 
 
     func testSaveImage() {
         app.launch()
-        XCTAssertTrue(toolbar.buttons["Share"].firstMatch.waitForExistence(timeout: 5))
-        toolbar.buttons["Share"].tap()
+        XCTAssertTrue(app.buttons["Share color"].firstMatch.waitForExistence(timeout: 5))
+        app.buttons["Share color"].tap()
         app.buttons["Download as image"].firstMatch.tap()
         XCTAssertTrue(app.sheets["Image Saved"].waitForExistence(timeout: 5))
     }
