@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if CommandLine.arguments.contains("--pickerfullScreenshots") {
             // We are in testing mode, make arrangements
-
+            UD.set(Const.UserDef.defaultColor, forKey: Const.UserDef.colorKey)
         }
 
         UD.register(defaults: [

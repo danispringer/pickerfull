@@ -21,17 +21,17 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var resultView: UIView!
-    @IBOutlet weak var myToolbarBottom: UIToolbar!
-    @IBOutlet weak var menuButton: UIBarButtonItem!
-    @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var qrImageView: UIImageView!
     @IBOutlet weak var containerScrollView: UIScrollView!
     @IBOutlet weak var userImageView: UIImageView!
-    @IBOutlet weak var imageMenuButton: UIBarButtonItem!
-    @IBOutlet weak var makeRandomColorButton: UIBarButtonItem!
 
-    @IBOutlet weak var myToolbarTop: UIToolbar!
-    
+    @IBOutlet weak var aboutButton: UIButton!
+    @IBOutlet weak var advancedButton: UIButton!
+    @IBOutlet weak var imageMenuButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var randomButton: UIButton!
+
+
     // MARK: properties
 
     var hexArrayForRandom: [String] = []
@@ -70,13 +70,9 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
         resultView.backgroundColor = selectedColor
 
-        myToolbarBottom.layer.cornerRadius = myToolbarBottom.bounds.height * 0.4
-        myToolbarBottom.layer.masksToBounds = true
-        myToolbarBottom.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-
-        myToolbarTop.layer.cornerRadius = myToolbarTop.bounds.height * 0.4
-        myToolbarTop.layer.masksToBounds = true
-        myToolbarTop.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        //        myToolbarBottom.layer.cornerRadius = myToolbarBottom.bounds.height * 0.4
+        //        myToolbarBottom.layer.masksToBounds = true
+        //        myToolbarBottom.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
 
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
@@ -84,9 +80,14 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
         imagePicker.delegate = self
 
-        menuButton.menu = getMainMenu()
+        aboutButton.menu = getAboutMenu()
         shareButton.menu = getShareMenu()
         imageMenuButton.menu = getImageMenu()
+
+        for button: UIButton in [aboutButton, advancedButton,
+                                 imageMenuButton, shareButton, randomButton] {
+            button.showsMenuAsPrimaryAction = true
+        }
     }
 
 
@@ -137,7 +138,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         guard let safeURL = myURL else {
             let alert = createAlert(alertReasonParam: .unknown)
             if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = menuButton
+                presenter.sourceView = aboutButton
             }
             DispatchQueue.main.async {
                 self.present(alert, animated: true)
@@ -201,7 +202,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                         })
                         alert.addAction(goToSettingsButton)
                         if let presenter = alert.popoverPresentationController {
-                            presenter.barButtonItem = self.imageMenuButton
+                            presenter.sourceView = self.imageMenuButton
                         }
                         DispatchQueue.main.async {
                             self.present(alert, animated: true)
@@ -245,7 +246,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     }
 
 
-    func getMainMenu() -> UIMenu {
+    func getAboutMenu() -> UIMenu {
 
         let version: String? = Bundle.main.infoDictionary?[Const.AppInfo.bundleShort] as? String
 
@@ -339,7 +340,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             })
             alert.addAction(goToSettingsButton)
             if let presenter = alert.popoverPresentationController {
-                presenter.barButtonItem = shareButton
+                presenter.sourceView = shareButton
             }
             DispatchQueue.main.async {
                 self.present(alert, animated: true)
@@ -354,7 +355,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         })
         alert.addAction(openLibraryButton)
         if let presenter = alert.popoverPresentationController {
-            presenter.barButtonItem = shareButton
+            presenter.sourceView = shareButton
         }
         DispatchQueue.main.async {
             self.present(alert, animated: true)
@@ -373,12 +374,12 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                 myText = rgbFrom(hex: hexString)
         }
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = shareButton
+        activityController.popoverPresentationController?.sourceView = shareButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.shareButton
+                    presenter.sourceView = self.shareButton
                 }
                 DispatchQueue.main.async {
                     self.present(alert, animated: true)
@@ -398,12 +399,12 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         let image = generateImage()
 
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = shareButton
+        activityController.popoverPresentationController?.sourceView = shareButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.shareButton
+                    presenter.sourceView = self.shareButton
                 }
                 DispatchQueue.main.async {
                     self.present(alert, animated: true)
@@ -475,8 +476,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     func elementsShould(hide: Bool) {
         messageLabel.isHidden = !hide
         qrImageView.isHidden = !hide
-        myToolbarBottom.isHidden = hide
-        myToolbarTop.isHidden = hide
+        for button: UIButton in [aboutButton, advancedButton,
+                                 imageMenuButton, shareButton, randomButton] {
+            button.isHidden = hide
+        }
         containerScrollView.isHidden = hide
     }
 
@@ -489,12 +492,12 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
         let activityController = UIActivityViewController(activityItems: [messageToShare], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
-        activityController.popoverPresentationController?.barButtonItem = menuButton
+        activityController.popoverPresentationController?.sourceView = aboutButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.barButtonItem = self.menuButton
+                    presenter.sourceView = self.aboutButton
                 }
                 DispatchQueue.main.async {
                     self.present(alert, animated: true)
@@ -504,7 +507,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             }
         }
         if let presenter = activityController.popoverPresentationController {
-            presenter.barButtonItem = menuButton
+            presenter.sourceView = aboutButton
         }
 
         DispatchQueue.main.async {
