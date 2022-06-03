@@ -11,14 +11,12 @@ schemeName="PickerFull"
 # Copy/Paste new names from Xcode's
 # "Devices and Simulators" window
 # or from `xcrun simctl list`.
+
 simulators=(
-   "iPhone 13 Pro Max"
-)
-# simulators=(
-#     "iPhone 13 Pro Max"
-#     "iPhone 8 Plus"
-#     "iPad Pro (12.9-inch) (5th generation)"
-# )
+    "iPhone 13 Pro Max"
+    "iPhone 8 Plus"
+    "iPad Pro (12.9-inch) (5th generation)"
+    )
 
 # All the languages we want to screenshot (ISO 3166-1 codes)
 languages=(
@@ -68,14 +66,4 @@ done
 
 #~/Library/Developer/CoreSimulator/Devices/52F442A3-401A-4CC3-BA3B-28E60F86759B/data/Media/DCIM/100APPLE/IMG_0007.JPG
 #xcrun simctl list devices | grep Booted | grep -E  '\w+-\w+-\w+-\w+-\w+' -o
-
-for simulator in "${simulators[@]}"
-do
-    xcrun simctl boot "$simulator"
-done
-
-bootedsimulators=("$(xcrun simctl list devices | grep Booted | grep -E  '\w+-\w+-\w+-\w+-\w+' -o)")
-for bootedsim in "${bootedsimulators[@]}"
-do
-    cp -r "$HOME/Library/Developer/CoreSimulator/Devices/$bootedsim/data/Media/DCIM/100APPLE" "$HOME/Desktop/$bootedsim"
-done
+mv -v "$HOME/Library/Developer/CoreSimulator/Devices/*/data/Media/DCIM/100APPLE/*" "$HOME/Desktop"
