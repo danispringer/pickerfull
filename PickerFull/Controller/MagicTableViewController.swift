@@ -26,10 +26,6 @@ class MagicTableViewController: UITableViewController {
             UIView.setAnimationsEnabled(false)
         }
 
-        if UD.dictionary(forKey: Const.UserDef.magicDict) == nil {
-            let emptyDict: [String: String] = [:]
-            UD.register(defaults: [Const.UserDef.magicDict: emptyDict])
-        }
         let savedColors = UD.dictionary(forKey: Const.UserDef.magicDict) as! [String: String]
         let sortedDict = savedColors.sorted { Double($0.key)! > Double($1.key)! }
         for pair in sortedDict {
@@ -53,7 +49,7 @@ class MagicTableViewController: UITableViewController {
         cell.hexLabel.text = "HEX: \(myDataSource[indexPath.row])"
         cell.rgbLabel.text = "RGB: \(rgbFrom(hex: myDataSource[indexPath.row]))"
         cell.colorView.backgroundColor = uiColorFrom(hex: myDataSource[indexPath.row])
-        cell.colorView.layer.cornerRadius = 4
+        cell.colorView.layer.cornerRadius = 6
         return cell
     }
 
@@ -70,17 +66,19 @@ class MagicTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return """
-        Magic History - Tap on a color to restore it (so you can edit and/or save it).
+        Forgot to save a "Random" color?
+        Here are the 10 most recents.
+        Tap one to restore it.
         """
     }
 
 
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return """
-        This page displays your 10 most recent (newest first) magically created colors (meaning colors created using \
-        the leftmost button on the homepage of the app), in case, due to an accidental tap, you lose one before \
-        saving it as an image.
-        """
-    }
+//    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+//        return """
+//        Forgot to save a "Random" color?
+//        Here are the 10 most recents.
+//        Tap one to restore it.
+//        """
+//    }
 
 }
