@@ -71,8 +71,7 @@ class PickerFullScreenshots: XCTestCase {
 
     func testSaveImage() {
         app.launch()
-        XCTAssertTrue(app.buttons["Share color"].firstMatch.waitForExistence(timeout: 5))
-        app.buttons["Share color"].tap()
+        XCTAssertTrue(app.buttons["Download as image"].firstMatch.waitForExistence(timeout: 5))
         app.buttons["Download as image"].firstMatch.tap()
         XCTAssertTrue(app.sheets["Image Saved"].waitForExistence(timeout: 5))
     }

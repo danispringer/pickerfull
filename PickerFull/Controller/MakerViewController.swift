@@ -31,7 +31,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var randomButton: UIButton!
     @IBOutlet weak var historyButton: UIButton!
-
+    @IBOutlet weak var downloadImageButton: UIButton!
 
     // MARK: properties
 
@@ -71,10 +71,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
         resultView.backgroundColor = selectedColor
 
-        //        myToolbarBottom.layer.cornerRadius = myToolbarBottom.bounds.height * 0.4
-        //        myToolbarBottom.layer.masksToBounds = true
-        //        myToolbarBottom.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
@@ -85,8 +81,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         shareButton.menu = getShareMenu()
         imageMenuButton.menu = getImageMenu()
 
-        for button: UIButton in [aboutButton, advancedButton,
-                                 imageMenuButton, shareButton, randomButton] {
+        for button: UIButton in [aboutButton, imageMenuButton, shareButton] {
             button.showsMenuAsPrimaryAction = true
         }
 
@@ -308,13 +303,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             self.shareAsImage()
         }
 
-        let downloadImageAction = UIAction(title: "Download as image",
-                                           image: UIImage(systemName: "square.and.arrow.down")) { _ in
-            self.downloadAsImage()
-        }
-
         let shareMenu = UIMenu(options: .displayInline, children: [
-            downloadImageAction, shareImageAction,
+            shareImageAction,
             shareTextRGBAction, shareTextHexAction])
 
         return shareMenu
@@ -322,7 +312,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     }
 
 
-    func downloadAsImage() {
+    @IBAction func downloadAsImage() {
         let image = generateImage()
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
     }
@@ -476,7 +466,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         messageLabel.isHidden = !hide
         qrImageView.isHidden = !hide
         for button: UIButton in [aboutButton, advancedButton, imageMenuButton, shareButton,
-                                 randomButton, historyButton] {
+                                 randomButton, historyButton, downloadImageButton] {
             button.isHidden = hide
         }
         containerScrollView.isHidden = hide

@@ -100,7 +100,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-hD-fEQ">
-                                <rect key="frame" x="16" y="666" width="98" height="31"/>
+                                <rect key="frame" x="16" y="627" width="98" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Share color">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
@@ -109,7 +109,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-OX-DMb">
-                                <rect key="frame" x="16" y="627" width="146.66666666666666" height="31"/>
+                                <rect key="frame" x="16" y="588" width="146.66666666666666" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Recent &quot;Randoms&quot;">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
@@ -118,6 +118,18 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="showMagicHistory" destination="BYZ-38-t0r" eventType="touchUpInside" id="wSK-PT-oBS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3P7-jg-UrI">
+                                <rect key="frame" x="16" y="666" width="149.66666666666666" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Download as image">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                    <color key="baseForegroundColor" systemColor="tintColor"/>
+                                    <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="downloadAsImage" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rbv-Bc-sP3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -130,6 +142,7 @@
                             <constraint firstItem="BNf-u5-6Xf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2YU-Y3-znz"/>
                             <constraint firstItem="L0L-A8-4Ez" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7Gc-Oh-SJh"/>
                             <constraint firstItem="bEo-KS-B1i" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="9Sj-Kf-EbN"/>
+                            <constraint firstItem="3P7-jg-UrI" firstAttribute="top" secondItem="4cf-hD-fEQ" secondAttribute="bottom" constant="8" id="GUb-UE-Fow"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bEo-KS-B1i" secondAttribute="trailing" constant="16" id="IfV-Yn-5ZJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="i2z-Ue-gCv" secondAttribute="trailing" constant="16" id="Jqg-Iz-C63"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BNf-u5-6Xf" secondAttribute="trailing" constant="16" id="KZY-Hj-du7"/>
@@ -139,18 +152,20 @@
                             <constraint firstItem="Fhb-Dc-Ypx" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="QjK-wW-wex"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="SYy-T5-Xpr"/>
                             <constraint firstItem="4cf-hD-fEQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="TRl-S0-E5a"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3P7-jg-UrI" secondAttribute="bottom" constant="32" id="WxB-hE-McU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BKY-HB-wIv" secondAttribute="bottom" constant="40" id="Zdq-nc-oiG"/>
                             <constraint firstItem="Fhb-Dc-Ypx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="aBU-Qi-PjP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="i2z-Ue-gCv" secondAttribute="bottom" constant="32" id="api-ia-frO"/>
                             <constraint firstItem="BNf-u5-6Xf" firstAttribute="top" secondItem="gXP-06-ffR" secondAttribute="bottom" constant="8" id="bgm-uS-MAo"/>
                             <constraint firstItem="i2z-Ue-gCv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4cf-hD-fEQ" secondAttribute="trailing" constant="8" id="cpp-rz-IGJ"/>
+                            <constraint firstItem="i2z-Ue-gCv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3P7-jg-UrI" secondAttribute="trailing" constant="8" id="dXJ-th-jIe"/>
                             <constraint firstItem="L0L-A8-4Ez" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="duR-7d-c3w"/>
+                            <constraint firstItem="3P7-jg-UrI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="est-l2-3oQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="L0L-A8-4Ez" secondAttribute="trailing" id="i5j-nH-5i5"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mw9-bO-m8F"/>
                             <constraint firstItem="BKY-HB-wIv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="n95-Oy-Pzb"/>
                             <constraint firstItem="bEo-KS-B1i" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="nPC-Z6-e17"/>
                             <constraint firstItem="BNf-u5-6Xf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ldp-OX-DMb" secondAttribute="trailing" constant="8" id="nTz-C8-kd2"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4cf-hD-fEQ" secondAttribute="bottom" constant="32" id="sMH-zY-jmM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BKY-HB-wIv" secondAttribute="trailing" constant="40" id="sW6-xr-tSj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gXP-06-ffR" secondAttribute="trailing" constant="16" id="yY8-cK-1ih"/>
                         </constraints>
@@ -161,6 +176,7 @@
                         <outlet property="aboutButton" destination="bEo-KS-B1i" id="m8F-Sr-n6f"/>
                         <outlet property="advancedButton" destination="gXP-06-ffR" id="hM9-dP-Sul"/>
                         <outlet property="containerScrollView" destination="L0L-A8-4Ez" id="ixP-pm-NIn"/>
+                        <outlet property="downloadImageButton" destination="3P7-jg-UrI" id="xmB-Km-zmq"/>
                         <outlet property="historyButton" destination="Ldp-OX-DMb" id="Fkc-eL-CKG"/>
                         <outlet property="imageMenuButton" destination="BNf-u5-6Xf" id="A9n-8k-GLr"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="nVb-Od-V3R"/>
@@ -185,10 +201,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MagicCell" id="ZFJ-pI-PMh" customClass="MagicCell" customModule="PickerFull" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="49" width="375" height="92"/>
+                                <rect key="frame" x="0.0" y="49" width="375" height="92.333335876464844"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZFJ-pI-PMh" id="hd8-Ze-7gE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="92.333335876464844"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABCDEF" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCe-dH-rNb" userLabel="HEXHEX">
@@ -198,13 +214,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="123,123,123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="939-sv-HEi">
-                                            <rect key="frame" x="16" y="53.666666666666664" width="163.66666666666666" height="22.333333333333336"/>
+                                            <rect key="frame" x="16" y="53.666666666666664" width="163.66666666666666" height="22.666666666666664"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J10-oG-MJg">
-                                            <rect key="frame" x="195.66666666666663" y="16" width="243.33333333333337" height="60"/>
+                                            <rect key="frame" x="195.66666666666663" y="16.000000000000004" width="243.33333333333337" height="60.333333333333343"/>
                                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                                         </view>
                                     </subviews>
