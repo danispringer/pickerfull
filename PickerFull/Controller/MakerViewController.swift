@@ -30,6 +30,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     @IBOutlet weak var imageMenuButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var randomButton: UIButton!
+    @IBOutlet weak var historyButton: UIButton!
 
 
     // MARK: properties
@@ -88,6 +89,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                                  imageMenuButton, shareButton, randomButton] {
             button.showsMenuAsPrimaryAction = true
         }
+
+        saveInitialIfEmpty()
     }
 
 
@@ -267,10 +270,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             self.showApps()
         }
 
-        let magicHistory = UIAction(title: Const.AppInfo.magicHistory, image: UIImage(systemName: "book"),
-                                    state: .off) { _ in
-            self.showMagicHistory()
-        }
 
         var myTitle = Const.AppInfo.appName
         if let safeVersion = version {
@@ -278,12 +277,12 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         }
 
         let aboutMenu = UIMenu(title: myTitle, image: nil, options: .displayInline,
-                               children: [magicHistory, contact, review, shareApp, moreApps])
+                               children: [contact, review, shareApp, moreApps])
         return aboutMenu
     }
 
 
-    func showMagicHistory() {
+    @IBAction func showMagicHistory() {
         let magicVC = UIStoryboard(name: Const.StoryboardIDIB.main, bundle: nil)
             .instantiateViewController(withIdentifier: Const.StoryboardIDIB.magicTableVC)
 
@@ -476,8 +475,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     func elementsShould(hide: Bool) {
         messageLabel.isHidden = !hide
         qrImageView.isHidden = !hide
-        for button: UIButton in [aboutButton, advancedButton,
-                                 imageMenuButton, shareButton, randomButton] {
+        for button: UIButton in [aboutButton, advancedButton, imageMenuButton, shareButton,
+                                 randomButton, historyButton] {
             button.isHidden = hide
         }
         containerScrollView.isHidden = hide
@@ -589,6 +588,18 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         }
         savedColors[now] = color
         UD.setValue(savedColors, forKey: Const.UserDef.magicDict)
+    }
+
+
+    func saveInitialIfEmpty() {
+        if let currentDict = UD.dictionary(forKey: Const.UserDef.magicDict) as? [String: String],
+           !currentDict.isEmpty {
+            return
+        }
+
+        let now = "\(Date().timeIntervalSince1970)"
+        let initialDict: [String: String] = [now: Const.UserDef.defaultColor]
+        UD.register(defaults: [Const.UserDef.magicDict: initialDict])
     }
 
 

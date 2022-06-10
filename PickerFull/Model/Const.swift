@@ -42,7 +42,6 @@ struct Const {
         static let addFromCamera = "Take Photo"
         static let addFromGallery = "Choose Photo"
         static let clearImage = "Delete Photo"
-        static let magicHistory = "Magic History"
         static let bundleShort = "CFBundleShortVersionString"
         static let appName = "PickerFull"
         static let galleryLink = "photos-redirect://"

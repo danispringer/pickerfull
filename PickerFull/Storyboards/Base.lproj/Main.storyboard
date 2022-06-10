@@ -58,9 +58,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEo-KS-B1i">
-                                <rect key="frame" x="268" y="76" width="91" height="31"/>
+                                <rect key="frame" x="274" y="76" width="85" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="About app">
+                                <buttonConfiguration key="configuration" style="filled" title="More info">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                     <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
@@ -108,11 +108,25 @@
                                     <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
                                 </buttonConfiguration>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-OX-DMb">
+                                <rect key="frame" x="16" y="627" width="146.66666666666666" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Recent &quot;Randoms&quot;">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                    <color key="baseForegroundColor" systemColor="tintColor"/>
+                                    <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="showMagicHistory" destination="BYZ-38-t0r" eventType="touchUpInside" id="wSK-PT-oBS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="7iT-jJ-EaV" secondAttribute="bottom" id="0hc-S8-bD4"/>
+                            <constraint firstItem="4cf-hD-fEQ" firstAttribute="top" secondItem="Ldp-OX-DMb" secondAttribute="bottom" constant="8" id="1L7-x5-a5q"/>
+                            <constraint firstItem="Ldp-OX-DMb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="1Tb-W1-HPk"/>
                             <constraint firstItem="BNf-u5-6Xf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2YU-Y3-znz"/>
                             <constraint firstItem="L0L-A8-4Ez" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7Gc-Oh-SJh"/>
                             <constraint firstItem="bEo-KS-B1i" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="9Sj-Kf-EbN"/>
@@ -135,6 +149,7 @@
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mw9-bO-m8F"/>
                             <constraint firstItem="BKY-HB-wIv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="n95-Oy-Pzb"/>
                             <constraint firstItem="bEo-KS-B1i" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="nPC-Z6-e17"/>
+                            <constraint firstItem="BNf-u5-6Xf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ldp-OX-DMb" secondAttribute="trailing" constant="8" id="nTz-C8-kd2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4cf-hD-fEQ" secondAttribute="bottom" constant="32" id="sMH-zY-jmM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BKY-HB-wIv" secondAttribute="trailing" constant="40" id="sW6-xr-tSj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gXP-06-ffR" secondAttribute="trailing" constant="16" id="yY8-cK-1ih"/>
@@ -146,6 +161,7 @@
                         <outlet property="aboutButton" destination="bEo-KS-B1i" id="m8F-Sr-n6f"/>
                         <outlet property="advancedButton" destination="gXP-06-ffR" id="hM9-dP-Sul"/>
                         <outlet property="containerScrollView" destination="L0L-A8-4Ez" id="ixP-pm-NIn"/>
+                        <outlet property="historyButton" destination="Ldp-OX-DMb" id="Fkc-eL-CKG"/>
                         <outlet property="imageMenuButton" destination="BNf-u5-6Xf" id="A9n-8k-GLr"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="nVb-Od-V3R"/>
                         <outlet property="qrImageView" destination="Fhb-Dc-Ypx" id="Fxm-Fy-TXC"/>
