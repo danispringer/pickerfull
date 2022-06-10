@@ -67,8 +67,8 @@ class MagicTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return """
         Forgot to save a "Random" color?
-        Here are the 10 most recents.
-        Tap one to restore it.
+        Here are the 10 most recent ones.
+        Tap a color to restore it.
         """
     }
 
