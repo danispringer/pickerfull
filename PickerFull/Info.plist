@@ -28,17 +28,6 @@
 	<string>...to save your chosen color.</string>
 	<key>NSUserActivityTypes</key>
 	<array/>
-	<key>UIApplicationShortcutItems</key>
-	<array>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>wand</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Create Random Color</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>RandomAction</string>
-		</dict>
-	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
