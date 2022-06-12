@@ -572,18 +572,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     // MARK: Random
 
     @IBAction func randomPressed(_ sender: Any) {
-
-//        let activity = NSUserActivity(activityType: Const.AppInfo.bundleAndRandom)
-//        activity.title = "Create Random Color"
-//        activity.isEligibleForSearch = true
-//        activity.isEligibleForPrediction = true
-//        activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Const.AppInfo.bundleAndRandom)
-//        activity.suggestedInvocationPhrase = "Create Random Color"
-//        view.userActivity = activity
-//        activity.becomeCurrent()
-
         makeRandomColor()
-
     }
 
 
