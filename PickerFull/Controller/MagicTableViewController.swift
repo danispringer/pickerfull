@@ -86,9 +86,9 @@ class MagicTableViewController: UITableViewController {
         Here are the 10 most recent ones.
         Tap one to restore it.
 
-        Swipe left on an item to delete it.
+        Swipe one to delete it.
 
-        Long press an item for more options.
+        Long press one for more options.
         """
     }
 
@@ -100,21 +100,21 @@ class MagicTableViewController: UITableViewController {
     //    }
 
 
-    override func tableView(
-        _ tableView: UITableView,
-        leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            let copyAction = UIContextualAction(
-                style: .normal, title: "Copy HEX",
-                handler: { (_, _, success: (Bool) -> Void) in
-                    let hexToCopy: String = (tableView.cellForRow(at: indexPath) as! MagicCell).hexLabel.text!
-                    UIPasteboard.general.string = String(hexToCopy.suffix(6))
-                    print("copied")
-                    success(true)
-                })
-            copyAction.backgroundColor = .blue
-
-            return UISwipeActionsConfiguration(actions: [copyAction])
-        }
+//    override func tableView(
+//        _ tableView: UITableView,
+//        leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//            let copyAction = UIContextualAction(
+//                style: .normal, title: "Copy HEX",
+//                handler: { (_, _, success: (Bool) -> Void) in
+//                    let hexToCopy: String = (tableView.cellForRow(at: indexPath) as! MagicCell).hexLabel.text!
+//                    UIPasteboard.general.string = String(hexToCopy.suffix(6))
+//                    print("copied")
+//                    success(true)
+//                })
+//            copyAction.backgroundColor = .blue
+//
+//            return UISwipeActionsConfiguration(actions: [copyAction])
+//        }
 
 
     override func tableView(
