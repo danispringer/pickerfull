@@ -12,7 +12,8 @@ class MagicTableViewController: UITableViewController {
 
 
     // MARK: Properties
-
+//
+//    var editButton: UIBarButtonItem!
 
     // MARK: Life cycle
 
@@ -23,6 +24,8 @@ class MagicTableViewController: UITableViewController {
             // We are in testing mode, make arrangements if needed
             UIView.setAnimationsEnabled(false)
         }
+
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
 
@@ -128,5 +131,16 @@ class MagicTableViewController: UITableViewController {
             deleteAction.backgroundColor = .red
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
+
+//    override func tableView(_ tableView: UITableView,
+//    shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//
+//    override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+//        // Replace the Edit button with Done, and put the
+//        // table view into editing mode.
+//        self.setEditing(true, animated: true)
+//    }
 
 }

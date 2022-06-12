@@ -89,6 +89,18 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     }
 
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
+
     // MARK: Helpers
 
     @objc func handleDoubleTap(_ recognizer: UITapGestureRecognizer) {
@@ -281,7 +293,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         let magicVC = UIStoryboard(name: Const.StoryboardIDIB.main, bundle: nil)
             .instantiateViewController(withIdentifier: Const.StoryboardIDIB.magicTableVC)
 
-        present(magicVC, animated: true)
+        self.navigationController?.pushViewController(magicVC, animated: true)
 
     }
 
@@ -671,3 +683,5 @@ private func convertFromUIImagePickerControllerInfoKeyDictionary(
     _ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
         return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
     }
+
+
