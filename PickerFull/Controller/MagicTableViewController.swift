@@ -26,6 +26,7 @@ class MagicTableViewController: UITableViewController {
         }
 
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.title = "Random History"
     }
 
 
@@ -84,6 +85,10 @@ class MagicTableViewController: UITableViewController {
         Forgot to save a "Random" color?
         Here are the 10 most recent ones.
         Tap one to restore it.
+
+        Swipe left on an item to delete it.
+
+        Long press an item for more options.
         """
     }
 
@@ -116,7 +121,7 @@ class MagicTableViewController: UITableViewController {
         _ tableView: UITableView,
         trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
             let deleteAction = UIContextualAction(
-                style: .destructive, title: "Eliminationnnn",
+                style: .destructive, title: "Delete",
                 handler: { (_, _, success: (Bool) -> Void) in
                     print("happened")
                     let sortedKeys = self.getSortedKeys()
@@ -132,15 +137,24 @@ class MagicTableViewController: UITableViewController {
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
 
-//    override func tableView(_ tableView: UITableView,
-//    shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
-//
-//    override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
-//        // Replace the Edit button with Done, and put the
-//        // table view into editing mode.
-//        self.setEditing(true, animated: true)
-//    }
+
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath,
+                            point: CGPoint) -> UIContextMenuConfiguration? {
+//        let item = getSortedKeys()[indexPath.row]
+
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let copyHEXAction = UIAction(title: "Copy HEX", image: UIImage(systemName: "doc.on.doc")) { _ in
+                let hexToCopy: String = (tableView.cellForRow(at: indexPath) as! MagicCell).hexLabel.text!
+                UIPasteboard.general.string = String(hexToCopy.suffix(6))
+            }
+
+            let copyRGBAction = UIAction(title: "Copy RGB", image: UIImage(systemName: "doc.on.doc")) { _ in
+                let rgbToCopy: String = (tableView.cellForRow(at: indexPath) as! MagicCell).rgbLabel.text!
+                UIPasteboard.general.string = String(rgbToCopy[5...rgbToCopy.count-1])
+            }
+
+            return UIMenu(title: "", children: [copyHEXAction, copyRGBAction])
+        }
+    }
 
 }
