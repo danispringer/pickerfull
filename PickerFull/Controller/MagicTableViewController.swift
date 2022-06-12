@@ -13,8 +13,6 @@ class MagicTableViewController: UITableViewController {
 
     // MARK: Properties
 
-    var myDataSource: [String] = []
-
 
     // MARK: Life cycle
 
@@ -25,12 +23,22 @@ class MagicTableViewController: UITableViewController {
             // We are in testing mode, make arrangements if needed
             UIView.setAnimationsEnabled(false)
         }
+    }
 
-        let savedColors = UD.dictionary(forKey: Const.UserDef.magicDict) as! [String: String]
-        let sortedDict = savedColors.sorted { Double($0.key)! > Double($1.key)! }
-        for pair in sortedDict {
-            myDataSource.append(pair.value)
-        }
+
+    // MARK: Helpers
+
+    func getDict() -> [String: String] {
+        return UD.dictionary(forKey: Const.UserDef.magicDict) as! [String: String]
+    }
+
+
+    func getSortedKeys() -> [Double] {
+        let myDict: [String: String] = UD.dictionary(forKey: Const.UserDef.magicDict) as! [String: String]
+        let allKeysAsStrings = Array(myDict.keys)
+        let allKeysAsDoubles: [Double] = allKeysAsStrings.map { Double($0)!}
+        let sortedKeys = allKeysAsDoubles.sorted { $0 > $1 }
+        return sortedKeys
     }
 
 
@@ -38,7 +46,10 @@ class MagicTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let presenter = presentingViewController as? MakerViewController {
-            presenter.updateColor(hexStringParam: myDataSource[indexPath.row])
+            let sortedKeys = getSortedKeys()
+            let theKey: String = "\(sortedKeys[indexPath.row])"
+            let theHexValue: String = getDict()[theKey]!
+            presenter.updateColor(hexStringParam: theHexValue)
         }
         dismiss(animated: true)
     }
@@ -46,9 +57,10 @@ class MagicTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Const.StoryboardIDIB.magicCell) as! MagicCell
-        cell.hexLabel.text = "HEX: \(myDataSource[indexPath.row])"
-        cell.rgbLabel.text = "RGB: \(rgbFrom(hex: myDataSource[indexPath.row]))"
-        cell.colorView.backgroundColor = uiColorFrom(hex: myDataSource[indexPath.row])
+        let sortedKeys = getSortedKeys()
+        cell.hexLabel.text = "HEX: \(getDict()["\(sortedKeys[indexPath.row])"]!)"
+        cell.rgbLabel.text = "RGB: \(rgbFrom(hex: getDict()["\(sortedKeys[indexPath.row])"]!))"
+        cell.colorView.backgroundColor = uiColorFrom(hex: getDict()["\(sortedKeys[indexPath.row])"]!)
         cell.colorView.layer.cornerRadius = 6
         return cell
     }
@@ -60,7 +72,7 @@ class MagicTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myDataSource.count
+        return getSortedKeys().count
     }
 
 
@@ -68,17 +80,53 @@ class MagicTableViewController: UITableViewController {
         return """
         Forgot to save a "Random" color?
         Here are the 10 most recent ones.
-        Tap a color to restore it.
+        Tap one to restore it.
         """
     }
 
 
-//    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-//        return """
-//        Forgot to save a "Random" color?
-//        Here are the 10 most recents.
-//        Tap one to restore it.
-//        """
-//    }
+    //    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    //        return """
+    //        text goes here...
+    //        """
+    //    }
+
+
+    override func tableView(
+        _ tableView: UITableView,
+        leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            let copyAction = UIContextualAction(
+                style: .normal, title: "Copy HEX",
+                handler: { (_, _, success: (Bool) -> Void) in
+                    let hexToCopy: String = (tableView.cellForRow(at: indexPath) as! MagicCell).hexLabel.text!
+                    UIPasteboard.general.string = String(hexToCopy.suffix(6))
+                    print("copied")
+                    success(true)
+                })
+            copyAction.backgroundColor = .blue
+
+            return UISwipeActionsConfiguration(actions: [copyAction])
+        }
+
+
+    override func tableView(
+        _ tableView: UITableView,
+        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            let deleteAction = UIContextualAction(
+                style: .destructive, title: "Eliminationnnn",
+                handler: { (_, _, success: (Bool) -> Void) in
+                    print("happened")
+                    let sortedKeys = self.getSortedKeys()
+                    let hexKeyItem: String = "\(sortedKeys[indexPath.row])"
+                    var myDict = self.getDict()
+                    myDict[hexKeyItem] = nil
+                    UD.set(myDict, forKey: Const.UserDef.magicDict)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    tableView.reloadData()
+                    success(true)
+                })
+            deleteAction.backgroundColor = .red
+            return UISwipeActionsConfiguration(actions: [deleteAction])
+        }
 
 }
