@@ -28,7 +28,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var advancedButton: UIButton!
     @IBOutlet weak var imageMenuButton: UIButton!
-    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var shareOrCopyButton: UIButton!
     @IBOutlet weak var randomButton: UIButton!
     @IBOutlet weak var historyButton: UIButton!
     @IBOutlet weak var downloadImageButton: UIButton!
@@ -78,10 +78,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         imagePicker.delegate = self
 
         aboutButton.menu = getAboutMenu()
-        shareButton.menu = getShareMenu()
+        shareOrCopyButton.menu = getShareOrCopyMenu()
         imageMenuButton.menu = getImageMenu()
 
-        for button: UIButton in [aboutButton, imageMenuButton, shareButton] {
+        for button: UIButton in [aboutButton, imageMenuButton, shareOrCopyButton] {
             button.showsMenuAsPrimaryAction = true
         }
 
@@ -298,7 +298,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     }
 
 
-    func getShareMenu() -> UIMenu {
+    func getShareOrCopyMenu() -> UIMenu {
 
         let shareTextHexAction = UIAction(title: "Share as HEX",
                                           image: UIImage(systemName: "doc.text")) { _ in
@@ -314,10 +314,22 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                                         image: UIImage(systemName: "photo")) { _ in
             self.shareAsImage()
         }
+        let copyTextHexAction = UIAction(title: "Copy as HEX",
+                                         image: UIImage(systemName: "doc.on.doc")) { _ in
+            self.copyAsText(format: .hex)
+        }
+        let copyTextRgbAction = UIAction(title: "Copy as RGB",
+                                         image: UIImage(systemName: "doc.on.doc")) { _ in
+            self.copyAsText(format: .rgb)
+        }
+        let copyImageAction = UIAction(title: "Copy as image",
+                                        image: UIImage(systemName: "photo")) { _ in
+            self.copyAsImage()
+        }
 
         let shareMenu = UIMenu(options: .displayInline, children: [
-            shareImageAction,
-            shareTextRGBAction, shareTextHexAction])
+            shareImageAction, shareTextRGBAction, shareTextHexAction,
+            copyImageAction, copyTextRgbAction, copyTextHexAction])
 
         return shareMenu
 
@@ -341,7 +353,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             })
             alert.addAction(goToSettingsButton)
             if let presenter = alert.popoverPresentationController {
-                presenter.sourceView = shareButton
+                presenter.sourceView = shareOrCopyButton
             }
             DispatchQueue.main.async {
                 self.present(alert, animated: true)
@@ -356,12 +368,25 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         })
         alert.addAction(openLibraryButton)
         if let presenter = alert.popoverPresentationController {
-            presenter.sourceView = shareButton
+            presenter.sourceView = shareOrCopyButton
         }
         DispatchQueue.main.async {
             self.present(alert, animated: true)
         }
 
+    }
+
+
+    func copyAsText(format: Format) {
+        var myText = ""
+        switch format {
+            case .hex:
+                myText = getSafeHexFromUD()
+            case .rgb:
+                let hexString = getSafeHexFromUD()
+                myText = rgbFrom(hex: hexString)
+        }
+        UIPasteboard.general.string = myText
     }
 
 
@@ -375,12 +400,12 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                 myText = rgbFrom(hex: hexString)
         }
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
-        activityController.popoverPresentationController?.sourceView = shareButton
+        activityController.popoverPresentationController?.sourceView = shareOrCopyButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.sourceView = self.shareButton
+                    presenter.sourceView = self.shareOrCopyButton
                 }
                 DispatchQueue.main.async {
                     self.present(alert, animated: true)
@@ -400,12 +425,12 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         let image = generateImage()
 
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        activityController.popoverPresentationController?.sourceView = shareButton
+        activityController.popoverPresentationController?.sourceView = shareOrCopyButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.sourceView = self.shareButton
+                    presenter.sourceView = self.shareOrCopyButton
                 }
                 DispatchQueue.main.async {
                     self.present(alert, animated: true)
@@ -419,6 +444,12 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             self.present(activityController, animated: true)
         }
 
+    }
+
+
+    func copyAsImage() {
+        let image = generateImage()
+        UIPasteboard.general.image = image
     }
 
 
@@ -477,7 +508,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     func elementsShould(hide: Bool) {
         messageLabel.isHidden = !hide
         qrImageView.isHidden = !hide
-        for button: UIButton in [aboutButton, advancedButton, imageMenuButton, shareButton,
+        for button: UIButton in [aboutButton, advancedButton, imageMenuButton, shareOrCopyButton,
                                  randomButton, historyButton, downloadImageButton] {
             button.isHidden = hide
         }
