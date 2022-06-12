@@ -518,11 +518,9 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     func shareApp() {
 
-        let firstHalf = "PickerFull"
         let message = "https://apps.apple.com/app/id1410565176"
-        let messageToShare = firstHalf + "\n" + message
 
-        let activityController = UIActivityViewController(activityItems: [messageToShare], applicationActivities: nil)
+        let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
         activityController.popoverPresentationController?.sourceView = aboutButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
@@ -575,14 +573,14 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     @IBAction func randomPressed(_ sender: Any) {
 
-        let activity = NSUserActivity(activityType: Const.AppInfo.bundleAndRandom)
-        activity.title = "Create Random Color"
-        activity.isEligibleForSearch = true
-        activity.isEligibleForPrediction = true
-        activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Const.AppInfo.bundleAndRandom)
-        activity.suggestedInvocationPhrase = "PickerFull Random Color"
-        view.userActivity = activity
-        activity.becomeCurrent()
+//        let activity = NSUserActivity(activityType: Const.AppInfo.bundleAndRandom)
+//        activity.title = "Create Random Color"
+//        activity.isEligibleForSearch = true
+//        activity.isEligibleForPrediction = true
+//        activity.persistentIdentifier = NSUserActivityPersistentIdentifier(Const.AppInfo.bundleAndRandom)
+//        activity.suggestedInvocationPhrase = "Create Random Color"
+//        view.userActivity = activity
+//        activity.becomeCurrent()
 
         makeRandomColor()
 
