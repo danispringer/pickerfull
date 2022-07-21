@@ -264,10 +264,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                                 state: .off) { _ in
             self.shareApp()
         }
-        let contact = UIAction(title: Const.AppInfo.sendFeedback, image: UIImage(systemName: "envelope"),
-                               state: .off) { _ in
-            self.launchEmail()
-        }
         let review = UIAction(title: Const.AppInfo.leaveReview,
                               image: UIImage(systemName: "hand.thumbsup"), state: .off) { _ in
             self.requestReviewManually()
@@ -284,7 +280,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         }
 
         let aboutMenu = UIMenu(title: myTitle, image: nil, options: .displayInline,
-                               children: [contact, review, shareApp, moreApps])
+                               children: [review, shareApp, moreApps])
         return aboutMenu
     }
 
@@ -622,42 +618,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         UD.register(defaults: [Const.UserDef.magicDict: initialDict])
     }
 
-
-}
-
-
-extension MakerViewController: MFMailComposeViewControllerDelegate {
-
-    func launchEmail() {
-        guard MFMailComposeViewController.canSendMail() else {
-            let alert = createAlert(alertReasonParam: .unknown)
-            DispatchQueue.main.async {
-                self.present(alert, animated: true)
-            }
-
-            return
-        }
-        var emailTitle = Const.AppInfo.appName
-        if let version = Bundle.main.infoDictionary?[Const.AppInfo.bundleShort] {
-            emailTitle += " \(version)"
-        }
-        let messageBody = "Hi. I have a question..."
-        let toRecipents = [Const.AppInfo.email]
-        let mailComposer: MFMailComposeViewController = MFMailComposeViewController()
-        mailComposer.mailComposeDelegate = self
-        mailComposer.setSubject(emailTitle)
-        mailComposer.setMessageBody(messageBody, isHTML: false)
-        mailComposer.setToRecipients(toRecipents)
-        DispatchQueue.main.async {
-            self.present(mailComposer, animated: true, completion: nil)
-        }
-    }
-
-
-    func mailComposeController(_ controller: MFMailComposeViewController,
-                               didFinishWith result: MFMailComposeResult, error: Error?) {
-        dismiss(animated: true)
-    }
 
 }
 

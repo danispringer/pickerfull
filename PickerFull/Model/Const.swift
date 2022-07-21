@@ -45,7 +45,6 @@ struct Const {
         static let bundleShort = "CFBundleShortVersionString"
         static let appName = "PickerFull"
         static let galleryLink = "photos-redirect://"
-        static let email = "00.segue_affix@icloud.com"
         static let reviewLink = "https://apps.apple.com/app/id1410565176?action=write-review"
         static let bundleAndRandom = "io.github.danispringer.Color-Picker.makeRandom"
         static let showAppsButtonTitle = "More Apps"
