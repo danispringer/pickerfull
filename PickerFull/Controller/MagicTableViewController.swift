@@ -49,13 +49,13 @@ class MagicTableViewController: UITableViewController {
     // MARK: TableView
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let presenter = presentingViewController as? MakerViewController {
-            let sortedKeys = getSortedKeys()
-            let theKey: String = "\(sortedKeys[indexPath.row])"
-            let theHexValue: String = getDict()[theKey]!
-            presenter.updateColor(hexStringParam: theHexValue)
-        }
-        dismiss(animated: true)
+        let rootViewController = self.navigationController!.viewControllers.first as! MakerViewController
+        let sortedKeys = getSortedKeys()
+        let theKey: String = "\(sortedKeys[indexPath.row])"
+        let theHexValue: String = getDict()[theKey]!
+        rootViewController.updateColor(hexStringParam: theHexValue)
+
+        self.navigationController!.popToRootViewController(animated: true)
     }
 
 
