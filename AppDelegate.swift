@@ -30,8 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         UD.register(defaults: [
-            Const.UserDef.colorKey: Const.UserDef.defaultColor,
-            Const.UserDef.userGotAdvancedWarning: true // for now...
+            Const.UserDef.colorKey: Const.UserDef.defaultColor
         ])
 
         return true

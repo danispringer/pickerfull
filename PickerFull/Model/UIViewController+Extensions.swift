@@ -18,7 +18,6 @@ extension UIViewController {
         case imageSaved
         case permissionDeniedGallery
         case permissiondeniedCamera
-        case notice
     }
 
 
@@ -32,8 +31,8 @@ extension UIViewController {
             switch alertReasonParam {
                 case .imageSaved:
                     alertPreferredStyle = UIAlertController.Style.actionSheet
-                    alertTitle = "Image Saved"
-                    alertMessage = "View your image in your gallery"
+                    alertTitle = "Screenshot Generated"
+                    alertMessage = "View it now in your gallery"
                 case .permissionDeniedGallery:
                     alertTitle = "Allow PickerFull access to your Gallery"
                     alertMessage = """
@@ -43,20 +42,6 @@ extension UIViewController {
                     alertTitle = "Allow PickerFull access to your Camera"
                     alertMessage = """
             Access was previously denied. Please grant access from Settings to use your Camera from within the app.
-            """
-                case .notice:
-                    alertTitle = "Instructions"
-                    alertMessage = """
-            HOW TO CLOSE THIS PAGE
-            To close this page *preserving* your changes, tap the 'X' at the top right.
-            To close this page *discarding* your changes, swipe downwards from the top of it.
-
-            HOW TO EXTRACT FROM IMAGE
-            To pick a color from an imported image, tap on the top left pen icon (which will temporarily hide this \
-            page), drag the circle over the color you want to extract (you can pinch to zoom in to the image before \
-            tapping on the pen icon, to make it easier to get the right spot), lift your finger off the screen, and \
-            the picked color will be *temporarily* imported to this page. You may then edit it and - when done - tap \
-            on the 'X' to return to the home page of the app, to download/share your color.
             """
                 default:
                     alertTitle = "Unknown Error"

@@ -548,13 +548,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD())
         colorPicker.selectedColor = selectedColor
         DispatchQueue.main.async {
-            self.present(self.colorPicker, animated: true) {
-                if !UD.bool(forKey: Const.UserDef.userGotAdvancedWarning) {
-                    let alert = self.createAlert(alertReasonParam: .notice)
-                    self.colorPicker.present(alert, animated: true)
-                    UD.set(true, forKey: Const.UserDef.userGotAdvancedWarning)
-                }
-            }
+            self.present(self.colorPicker, animated: true)
         }
 
     }

@@ -26,7 +26,7 @@ class MagicTableViewController: UITableViewController {
         }
 
         self.navigationItem.rightBarButtonItem = self.editButtonItem
-        self.title = "Recent \"Randoms\""
+        self.title = "Random History"
     }
 
 
