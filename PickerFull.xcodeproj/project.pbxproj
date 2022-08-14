@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,14 +33,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		33CD2A3E20FAE636004A4CB3 /* Embed App Extensions */ = {
+		33CD2A3E20FAE636004A4CB3 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -207,7 +207,7 @@
 				33CF3A80204F084B000823BF /* Sources */,
 				33CF3A81204F084B000823BF /* Frameworks */,
 				33CF3A82204F084B000823BF /* Resources */,
-				33CD2A3E20FAE636004A4CB3 /* Embed App Extensions */,
+				33CD2A3E20FAE636004A4CB3 /* Embed Foundation Extensions */,
 				33A96D1421B64EAA001809CD /* ShellScript */,
 			);
 			buildRules = (
@@ -226,7 +226,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = "Dani Springer";
 				TargetAttributes = {
 					332D7487283A5FDC0039BC68 = {
@@ -287,6 +287,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		33A96D1421B64EAA001809CD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -531,7 +532,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.18;
+				MARKETING_VERSION = 7.19;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.danispringer.Color-Picker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -555,7 +556,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.18;
+				MARKETING_VERSION = 7.19;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.danispringer.Color-Picker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
