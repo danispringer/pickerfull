@@ -74,6 +74,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
+        colorPicker.title = "Advanced Editors"
 
         imagePicker.delegate = self
 
