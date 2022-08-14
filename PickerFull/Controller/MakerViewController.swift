@@ -286,7 +286,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     }
 
 
-    @IBAction func showMagicHistory() {
+    @IBAction func historyButtonTapped() {
         let magicVC = UIStoryboard(name: Const.StoryboardIDIB.main, bundle: nil)
             .instantiateViewController(withIdentifier: Const.StoryboardIDIB.magicTableVC)
 
@@ -562,7 +562,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     // MARK: Random
 
-    @IBAction func randomPressed(_ sender: Any) {
+    @IBAction func randomTapped(_ sender: Any) {
         makeRandomColor()
     }
 

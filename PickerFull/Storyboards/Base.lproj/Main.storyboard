@@ -113,7 +113,7 @@
                                     <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="showMagicHistory" destination="BYZ-38-t0r" eventType="touchUpInside" id="wSK-PT-oBS"/>
+                                    <action selector="historyButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="wSK-PT-oBS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXP-06-ffR">
@@ -138,7 +138,7 @@
                                     <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="randomPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Whq-SU-3ic"/>
+                                    <action selector="randomTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sI0-fo-rtJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3P7-jg-UrI">
@@ -225,10 +225,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MagicCell" id="ZFJ-pI-PMh" customClass="MagicCell" customModule="PickerFull" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="49" width="375" height="92"/>
+                                <rect key="frame" x="0.0" y="49" width="375" height="92.333335876464844"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZFJ-pI-PMh" id="hd8-Ze-7gE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="92.333335876464844"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABCDEF" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCe-dH-rNb" userLabel="HEXHEX">
@@ -238,13 +238,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="123,123,123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="939-sv-HEi">
-                                            <rect key="frame" x="16" y="53.666666666666664" width="163.66666666666666" height="22.333333333333336"/>
+                                            <rect key="frame" x="16" y="53.666666666666664" width="163.66666666666666" height="22.666666666666664"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J10-oG-MJg">
-                                            <rect key="frame" x="195.66666666666663" y="16" width="243.33333333333337" height="60"/>
+                                            <rect key="frame" x="195.66666666666663" y="16.000000000000004" width="243.33333333333337" height="60.333333333333343"/>
                                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                                         </view>
                                     </subviews>
