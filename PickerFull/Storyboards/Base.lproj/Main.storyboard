@@ -74,20 +74,40 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEo-KS-B1i">
-                                <rect key="frame" x="16" y="448" width="122" height="31"/>
+                                <rect key="frame" x="15.999999999999993" y="448" width="122.33333333333331" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="info.circle" catalog="system" imagePlacement="leading" title="About App" imagePadding="8">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="light"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                    <color key="baseForegroundColor" systemColor="tintColor"/>
+                                    <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-hD-fEQ">
+                                <rect key="frame" x="16" y="487" width="129.33333333333334" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.up" catalog="system" imagePlacement="leading" title="Share Menu" imagePadding="8">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                    <color key="baseForegroundColor" systemColor="tintColor"/>
+                                    <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNf-u5-6Xf">
+                                <rect key="frame" x="16" y="526" width="137.33333333333334" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="camera" catalog="system" imagePlacement="leading" title="Image Menu" imagePadding="8">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                     <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-OX-DMb">
-                                <rect key="frame" x="16" y="487" width="217" height="31"/>
+                                <rect key="frame" x="16" y="565" width="159.66666666666666" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="book" catalog="system" imagePlacement="leading" title="Recent &quot;Random&quot; Colors" imagePadding="8">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="light"/>
+                                <buttonConfiguration key="configuration" style="filled" image="book" catalog="system" imagePlacement="leading" title="Random History" imagePadding="8">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                     <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
@@ -97,9 +117,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXP-06-ffR">
-                                <rect key="frame" x="16" y="526" width="202.66666666666666" height="31"/>
-                                <buttonConfiguration key="configuration" style="filled" image="paintpalette" catalog="system" imagePlacement="leading" title="Advanced Color Picker" imagePadding="8">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="light"/>
+                                <rect key="frame" x="16" y="604" width="169.66666666666666" height="31"/>
+                                <buttonConfiguration key="configuration" style="filled" image="paintpalette" catalog="system" imagePlacement="leading" title="Advanced Editors" imagePadding="8">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                     <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
@@ -108,21 +128,11 @@
                                     <action selector="showColorPicker" destination="BYZ-38-t0r" eventType="touchUpInside" id="rM6-8i-lzr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNf-u5-6Xf">
-                                <rect key="frame" x="16" y="565" width="137.33333333333334" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="camera" catalog="system" imagePlacement="leading" title="Image Menu" imagePadding="8">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="light"/>
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
-                                    <color key="baseForegroundColor" systemColor="tintColor"/>
-                                    <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
-                                </buttonConfiguration>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2z-Ue-gCv">
-                                <rect key="frame" x="16" y="604" width="178.33333333333334" height="31"/>
+                                <rect key="frame" x="16" y="643" width="178.66666666666666" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="wand.and.stars" catalog="system" imagePlacement="leading" title="New Random Color" imagePadding="8">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="light"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                     <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
@@ -131,21 +141,11 @@
                                     <action selector="randomPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Whq-SU-3ic"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-hD-fEQ">
-                                <rect key="frame" x="16" y="643" width="129.33333333333334" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.up" catalog="system" imagePlacement="leading" title="Share Menu" imagePadding="8">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="light"/>
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
-                                    <color key="baseForegroundColor" systemColor="tintColor"/>
-                                    <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
-                                </buttonConfiguration>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3P7-jg-UrI">
-                                <rect key="frame" x="16" y="682" width="189" height="31"/>
+                                <rect key="frame" x="16" y="682" width="189.33333333333334" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.down" catalog="system" imagePlacement="leading" title="Generate Screenshot" imagePadding="8">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="light"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                     <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
@@ -160,37 +160,37 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="7iT-jJ-EaV" secondAttribute="bottom" id="0hc-S8-bD4"/>
                             <constraint firstItem="i2z-Ue-gCv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="1CU-mA-66G"/>
-                            <constraint firstItem="i2z-Ue-gCv" firstAttribute="top" secondItem="BNf-u5-6Xf" secondAttribute="bottom" constant="8" id="5ki-Vy-ppG"/>
                             <constraint firstItem="L0L-A8-4Ez" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7Gc-Oh-SJh"/>
-                            <constraint firstItem="BNf-u5-6Xf" firstAttribute="top" secondItem="gXP-06-ffR" secondAttribute="bottom" constant="8" id="8zW-kd-Hez"/>
-                            <constraint firstItem="Ldp-OX-DMb" firstAttribute="top" secondItem="bEo-KS-B1i" secondAttribute="bottom" constant="8" id="C8P-gc-SJ5"/>
+                            <constraint firstItem="BNf-u5-6Xf" firstAttribute="bottom" secondItem="Ldp-OX-DMb" secondAttribute="top" constant="-8" id="AHd-42-9mr"/>
+                            <constraint firstItem="Ldp-OX-DMb" firstAttribute="bottom" secondItem="gXP-06-ffR" secondAttribute="top" constant="-8" id="C2l-Af-roz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="i2z-Ue-gCv" secondAttribute="trailing" constant="16" id="ET9-Tp-dor"/>
-                            <constraint firstItem="3P7-jg-UrI" firstAttribute="top" secondItem="4cf-hD-fEQ" secondAttribute="bottom" constant="8" id="GUb-UE-Fow"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gXP-06-ffR" secondAttribute="trailing" constant="16" id="HGS-NO-tEV"/>
+                            <constraint firstItem="4cf-hD-fEQ" firstAttribute="bottom" secondItem="BNf-u5-6Xf" secondAttribute="top" constant="-8" id="FFd-5n-Kfu"/>
                             <constraint firstItem="BNf-u5-6Xf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Jo5-t1-1G4"/>
-                            <constraint firstItem="gXP-06-ffR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="MXJ-6J-0kt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7iT-jJ-EaV" secondAttribute="trailing" id="P5C-FX-5bk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3P7-jg-UrI" secondAttribute="bottom" constant="16" id="PMY-Qu-epo"/>
-                            <constraint firstItem="4cf-hD-fEQ" firstAttribute="top" secondItem="i2z-Ue-gCv" secondAttribute="bottom" constant="8" id="Q4m-xa-ZNM"/>
                             <constraint firstItem="Fhb-Dc-Ypx" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="QjK-wW-wex"/>
-                            <constraint firstItem="gXP-06-ffR" firstAttribute="top" secondItem="Ldp-OX-DMb" secondAttribute="bottom" constant="8" id="Qqf-bn-cHS"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="SYy-T5-Xpr"/>
                             <constraint firstItem="Ldp-OX-DMb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="T99-iO-R3z"/>
                             <constraint firstItem="4cf-hD-fEQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="TRl-S0-E5a"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ldp-OX-DMb" secondAttribute="trailing" constant="16" id="Tzo-Mi-BDC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4cf-hD-fEQ" secondAttribute="trailing" constant="16" id="Yas-6Q-iC6"/>
+                            <constraint firstItem="3P7-jg-UrI" firstAttribute="top" secondItem="i2z-Ue-gCv" secondAttribute="bottom" constant="8" id="Yw5-r8-IXl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BNf-u5-6Xf" secondAttribute="trailing" constant="16" id="ZSJ-24-QGI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BKY-HB-wIv" secondAttribute="bottom" constant="40" id="Zdq-nc-oiG"/>
                             <constraint firstItem="Fhb-Dc-Ypx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="aBU-Qi-PjP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bEo-KS-B1i" secondAttribute="trailing" constant="16" id="aJL-XZ-Cjd"/>
                             <constraint firstItem="bEo-KS-B1i" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="egG-3H-S5t"/>
                             <constraint firstItem="3P7-jg-UrI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="est-l2-3oQ"/>
+                            <constraint firstItem="i2z-Ue-gCv" firstAttribute="top" secondItem="gXP-06-ffR" secondAttribute="bottom" constant="8" id="f31-Y3-WFE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="L0L-A8-4Ez" secondAttribute="trailing" id="i5j-nH-5i5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3P7-jg-UrI" secondAttribute="trailing" constant="16" id="j7v-h4-8f4"/>
+                            <constraint firstItem="4cf-hD-fEQ" firstAttribute="top" secondItem="bEo-KS-B1i" secondAttribute="bottom" constant="8" id="mJd-vN-adk"/>
+                            <constraint firstItem="gXP-06-ffR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="mSd-nR-AiE"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mw9-bO-m8F"/>
                             <constraint firstItem="BKY-HB-wIv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="n95-Oy-Pzb"/>
                             <constraint firstItem="L0L-A8-4Ez" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="rVN-Xv-6CT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BKY-HB-wIv" secondAttribute="trailing" constant="40" id="sW6-xr-tSj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gXP-06-ffR" secondAttribute="trailing" constant="16" id="w4B-OH-RbI"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
