@@ -69,6 +69,14 @@ class MagicTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+
+        let stringToAppend = getArray()?.count ?? 0 > 0 ? "" :
+        """
+
+        Colors will appear here as you create them, using the "New Random Color" button on the app's \
+        homepage
+        """
+
         return """
         Forgot to save a "Random" color?
         Here is your "Random" history
@@ -78,6 +86,7 @@ class MagicTableViewController: UITableViewController {
         Long press a color for more options
 
         Swipe a color to remove it from your history
+        \(stringToAppend)
         """
     }
 
@@ -93,7 +102,6 @@ class MagicTableViewController: UITableViewController {
                     currentArray = currentArray.filter { $0 != hexKeyItem }
                     saveToDocs(text: currentArray.joined(separator: ","), withFileName: Const.UserDef.filename)
                     tableView.deleteRows(at: [indexPath], with: .fade)
-                    tableView.reloadData()
                     success(true)
                 })
             deleteAction.backgroundColor = .red
