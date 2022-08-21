@@ -41,7 +41,7 @@ class MagicTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let rootViewController = self.navigationController!.viewControllers.first as! MakerViewController
-        let theHexValue: String = getArray()?[indexPath.row] ?? "oops1"
+        let theHexValue: String = getArray()![indexPath.row]
         rootViewController.updateColor(hexStringParam: theHexValue)
 
         self.navigationController!.popToRootViewController(animated: true)
@@ -71,12 +71,13 @@ class MagicTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return """
         Forgot to save a "Random" color?
-        Here are the 10 most recent ones.
-        Tap one to restore it.
+        Here is your "Random" history
 
-        Swipe one to delete it.
+        Tap a color to set it to the home page color again
 
-        Long press one for more options.
+        Long press a color for more options
+
+        Swipe a color to remove it from your history
         """
     }
 
