@@ -72,13 +72,14 @@ class MagicTableViewController: UITableViewController {
 
         let stringToAppend = getArray()?.count ?? 0 > 0 ? "" :
         """
-
         Colors will appear here as you create them, using the "New Random Color" button on the app's \
         homepage
+
+
         """
 
         return """
-        Forgot to save a "Random" color?
+        \(stringToAppend)Forgot to save a "Random" color?
         Here is your "Random" history
 
         Tap a color to set it to the home page color again
@@ -86,7 +87,6 @@ class MagicTableViewController: UITableViewController {
         Long press a color for more options
 
         Swipe a color to remove it from your history
-        \(stringToAppend)
         """
     }
 
