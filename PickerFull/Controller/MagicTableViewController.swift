@@ -82,37 +82,12 @@ class MagicTableViewController: UITableViewController {
     }
 
 
-    //    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-    //        return """
-    //        text goes here...
-    //        """
-    //    }
-
-
-//    override func tableView(
-//        _ tableView: UITableView,
-//        leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//            let copyAction = UIContextualAction(
-//                style: .normal, title: "Copy HEX",
-//                handler: { (_, _, success: (Bool) -> Void) in
-//                    let hexToCopy: String = (tableView.cellForRow(at: indexPath) as! MagicCell).hexLabel.text!
-//                    UIPasteboard.general.string = String(hexToCopy.suffix(6))
-//                    print("copied")
-//                    success(true)
-//                })
-//            copyAction.backgroundColor = .blue
-//
-//            return UISwipeActionsConfiguration(actions: [copyAction])
-//        }
-
-
     override func tableView(
         _ tableView: UITableView,
         trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
             let deleteAction = UIContextualAction(
                 style: .destructive, title: "Delete",
                 handler: { [self] (_, _, success: (Bool) -> Void) in
-                    print("happened")
                     let hexKeyItem: String = getArray()![indexPath.row]
                     var currentArray: [String] = readFromDocs(fromDocumentsWithFileName: Const.UserDef.filename) ?? []
                     currentArray = currentArray.filter { $0 != hexKeyItem }

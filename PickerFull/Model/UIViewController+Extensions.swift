@@ -151,7 +151,6 @@ extension UIViewController {
         }
         do {
             let savedString = try String(contentsOfFile: filePath)
-            print(savedString)
             let myArray = savedString.components(separatedBy: ",")
             if myArray.isEmpty {
                 return nil
@@ -181,7 +180,7 @@ extension UIViewController {
             return
         }
 
-        print("Save successful")
+        //print("Save successful")
     }
 
 }
