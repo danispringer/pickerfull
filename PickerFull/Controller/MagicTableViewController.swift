@@ -11,10 +11,6 @@ import UIKit
 class MagicTableViewController: UITableViewController {
 
 
-    // MARK: Properties
-//
-//    var editButton: UIBarButtonItem!
-
     // MARK: Life cycle
 
     override func viewDidLoad() {
@@ -109,9 +105,7 @@ class MagicTableViewController: UITableViewController {
         }
 
 
-    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath,
-                            point: CGPoint) -> UIContextMenuConfiguration? {
-//        let item = getSortedKeys()[indexPath.row]
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
 
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
             let copyHEXAction = UIAction(title: "Copy HEX", image: UIImage(systemName: "doc.on.doc")) { _ in
