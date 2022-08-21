@@ -32,17 +32,8 @@ class MagicTableViewController: UITableViewController {
 
     // MARK: Helpers
 
-    func getDict() -> [String: String] {
-        return UD.dictionary(forKey: Const.UserDef.magicDict) as! [String: String]
-    }
-
-
-    func getSortedKeys() -> [Double] {
-        let myDict: [String: String] = UD.dictionary(forKey: Const.UserDef.magicDict) as! [String: String]
-        let allKeysAsStrings = Array(myDict.keys)
-        let allKeysAsDoubles: [Double] = allKeysAsStrings.map { Double($0)!}
-        let sortedKeys = allKeysAsDoubles.sorted { $0 > $1 }
-        return sortedKeys
+    func getArray() -> [String]? {
+        return readFromDocs(fromDocumentsWithFileName: Const.UserDef.filename)
     }
 
 
@@ -50,9 +41,7 @@ class MagicTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let rootViewController = self.navigationController!.viewControllers.first as! MakerViewController
-        let sortedKeys = getSortedKeys()
-        let theKey: String = "\(sortedKeys[indexPath.row])"
-        let theHexValue: String = getDict()[theKey]!
+        let theHexValue: String = getArray()?[indexPath.row] ?? "oops1"
         rootViewController.updateColor(hexStringParam: theHexValue)
 
         self.navigationController!.popToRootViewController(animated: true)
@@ -61,10 +50,9 @@ class MagicTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Const.StoryboardIDIB.magicCell) as! MagicCell
-        let sortedKeys = getSortedKeys()
-        cell.hexLabel.text = "HEX: \(getDict()["\(sortedKeys[indexPath.row])"]!)"
-        cell.rgbLabel.text = "RGB: \(rgbFrom(hex: getDict()["\(sortedKeys[indexPath.row])"]!))"
-        cell.colorView.backgroundColor = uiColorFrom(hex: getDict()["\(sortedKeys[indexPath.row])"]!)
+        cell.hexLabel.text = "HEX: \(getArray()![indexPath.row])"
+        cell.rgbLabel.text = "RGB: \(rgbFrom(hex: getArray()![indexPath.row]))"
+        cell.colorView.backgroundColor = uiColorFrom(hex: getArray()![indexPath.row])
         cell.colorView.layer.cornerRadius = 6
         return cell
     }
@@ -76,7 +64,7 @@ class MagicTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getSortedKeys().count
+        return getArray()?.count ?? 0
     }
 
 
@@ -122,13 +110,12 @@ class MagicTableViewController: UITableViewController {
         trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
             let deleteAction = UIContextualAction(
                 style: .destructive, title: "Delete",
-                handler: { (_, _, success: (Bool) -> Void) in
+                handler: { [self] (_, _, success: (Bool) -> Void) in
                     print("happened")
-                    let sortedKeys = self.getSortedKeys()
-                    let hexKeyItem: String = "\(sortedKeys[indexPath.row])"
-                    var myDict = self.getDict()
-                    myDict[hexKeyItem] = nil
-                    UD.set(myDict, forKey: Const.UserDef.magicDict)
+                    let hexKeyItem: String = getArray()![indexPath.row]
+                    var currentArray: [String] = readFromDocs(fromDocumentsWithFileName: Const.UserDef.filename) ?? []
+                    currentArray = currentArray.filter { $0 != hexKeyItem }
+                    saveToDocs(text: currentArray.joined(separator: ","), withFileName: Const.UserDef.filename)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                     tableView.reloadData()
                     success(true)

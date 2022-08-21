@@ -25,7 +25,7 @@ struct Const {
     struct UserDef {
         static let colorKey = "color"
         static let defaultColor = "E57BF2"
-        static let magicDict = "magicDictionary"
+        static let filename = "colors.txt"
     }
 
     struct Values {

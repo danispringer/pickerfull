@@ -86,7 +86,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             button.showsMenuAsPrimaryAction = true
         }
 
-        saveInitialIfEmpty()
     }
 
 
@@ -582,35 +581,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     func saveToUD(color: String) {
 
-        if UD.dictionary(forKey: Const.UserDef.magicDict) == nil {
-            let emptyDict: [String: String] = [:]
-            UD.register(defaults: [Const.UserDef.magicDict: emptyDict])
-        }
+        var savedColors: [String] = readFromDocs(fromDocumentsWithFileName: Const.UserDef.filename) ?? []
 
-        var savedColors = UD.dictionary(forKey: Const.UserDef.magicDict) as! [String: String]
-        let now = "\(Date().timeIntervalSince1970)"
-        if savedColors.count >= 10 { // need to purge oldest color
+        savedColors.append(color)
 
-            var sortedDict = savedColors.sorted {
-                Double($0.key)! > Double($1.key)!
-            }
-            let last = sortedDict.popLast()
-            savedColors[last!.key] = nil
-        }
-        savedColors[now] = color
-        UD.setValue(savedColors, forKey: Const.UserDef.magicDict)
-    }
-
-
-    func saveInitialIfEmpty() {
-        if let currentDict = UD.dictionary(forKey: Const.UserDef.magicDict) as? [String: String],
-           !currentDict.isEmpty {
-            return
-        }
-
-        let now = "\(Date().timeIntervalSince1970)"
-        let initialDict: [String: String] = [now: Const.UserDef.defaultColor]
-        UD.register(defaults: [Const.UserDef.magicDict: initialDict])
+        saveToDocs(text: savedColors.joined(separator: ","), withFileName: Const.UserDef.filename)
     }
 
 
