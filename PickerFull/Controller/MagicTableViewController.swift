@@ -101,7 +101,7 @@ class MagicTableViewController: UITableViewController {
                     var currentArray: [String] = readFromDocs(fromDocumentsWithFileName: Const.UserDef.filename) ?? []
                     currentArray = currentArray.filter { $0 != hexKeyItem }
                     saveToDocs(text: currentArray.joined(separator: ","), withFileName: Const.UserDef.filename)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
                     success(true)
                 })
             deleteAction.backgroundColor = .red
