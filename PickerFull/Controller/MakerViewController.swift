@@ -319,7 +319,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             self.copyAsText(format: .rgb)
         }
         let copyImageAction = UIAction(title: "Copy as image",
-                                        image: UIImage(systemName: "photo")) { _ in
+                                       image: UIImage(systemName: "photo")) { _ in
             self.copyAsImage()
         }
 
