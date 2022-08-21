@@ -147,7 +147,7 @@ extension UIViewController {
     func readFromDocs(fromDocumentsWithFileName fileName: String) -> [String]? {
         guard let filePath = self.append(toPath: self.documentDirectory(),
                                          withPathComponent: fileName) else {
-            return []
+            return nil
         }
         do {
             let savedString = try String(contentsOfFile: filePath)
@@ -155,11 +155,14 @@ extension UIViewController {
             if myArray.isEmpty {
                 return nil
             } else {
+                if myArray.count == 1 && myArray.first == "" {
+                    return nil
+                }
                 return myArray
             }
         } catch {
             print("Error reading saved file")
-            return []
+            return nil
         }
     }
 
