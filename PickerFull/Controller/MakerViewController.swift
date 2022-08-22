@@ -146,7 +146,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     func showApps() {
         let myURL = URL(string: Const.AppInfo.appsLink)
         guard let safeURL = myURL else {
-            let alert = createAlert(alertReasonParam: .unknown)
+            let alert = createAlert(alertReasonParam: .unknown, okMessage: "OK")
             if let presenter = alert.popoverPresentationController {
                 presenter.sourceView = aboutButton
             }
@@ -182,7 +182,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                 self.imagePicker.sourceType = .camera
                 self.present(self.imagePicker, animated: true, completion: nil)
             } else {
-                let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
+                let alert = self.createAlert(alertReasonParam: AlertReason.unknown, okMessage: "OK")
                 self.present(alert, animated: true)
             }
         }
@@ -196,13 +196,14 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
                 self.tryShowingCamera()
             } else {
-                AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
+                AVCaptureDevice.requestAccess(for: .video, completionHandler: { [self] (granted: Bool) in
                     if granted {
                         // access allowed
-                        self.tryShowingCamera()
+                        tryShowingCamera()
                     } else {
                         // access denied
-                        let alert = self.createAlert(alertReasonParam: AlertReason.permissiondeniedCamera)
+                        let alert = createAlert(alertReasonParam: AlertReason.permissiondeniedCamera,
+                                                     okMessage: "Not now")
                         let goToSettingsButton = UIAlertAction(title: "Open Settings",
                                                                style: .default, handler: { _ in
                             if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
@@ -212,10 +213,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                         })
                         alert.addAction(goToSettingsButton)
                         if let presenter = alert.popoverPresentationController {
-                            presenter.sourceView = self.imageMenuButton
+                            presenter.sourceView = imageMenuButton
                         }
-                        DispatchQueue.main.async {
-                            self.present(alert, animated: true)
+                        DispatchQueue.main.async { [self] in
+                            present(alert, animated: true)
                         }
                     }
                 })
@@ -340,7 +341,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     @objc func saveImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         guard error == nil else {
-            let alert = createAlert(alertReasonParam: AlertReason.permissionDeniedGallery)
+            let alert = createAlert(alertReasonParam: AlertReason.permissionDeniedGallery, okMessage: "Not now")
             let goToSettingsButton = UIAlertAction(title: "Open Settings",
                                                    style: .default, handler: { _ in
                 if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
@@ -356,7 +357,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             }
             return
         }
-        let alert = createAlert(alertReasonParam: AlertReason.imageSaved)
+        let alert = createAlert(alertReasonParam: AlertReason.imageSaved, okMessage: "Not now")
         let openLibraryButton = UIAlertAction(title: "Open Gallery",
                                               style: .default, handler: { _ in
             UIApplication.shared.open(URL(string: Const.AppInfo.galleryLink)!)
@@ -399,7 +400,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         activityController.popoverPresentationController?.sourceView = shareOrCopyButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
-                let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
+                let alert = self.createAlert(alertReasonParam: AlertReason.unknown, okMessage: "OK")
                 if let presenter = alert.popoverPresentationController {
                     presenter.sourceView = self.shareOrCopyButton
                 }
@@ -424,7 +425,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         activityController.popoverPresentationController?.sourceView = shareOrCopyButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
-                let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
+                let alert = self.createAlert(alertReasonParam: AlertReason.unknown, okMessage: "OK")
                 if let presenter = alert.popoverPresentationController {
                     presenter.sourceView = self.shareOrCopyButton
                 }
@@ -521,7 +522,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         activityController.popoverPresentationController?.sourceView = aboutButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
-                let alert = self.createAlert(alertReasonParam: AlertReason.unknown)
+                let alert = self.createAlert(alertReasonParam: AlertReason.unknown, okMessage: "OK")
                 if let presenter = alert.popoverPresentationController {
                     presenter.sourceView = self.aboutButton
                 }

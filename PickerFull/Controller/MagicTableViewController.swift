@@ -30,7 +30,7 @@ class MagicTableViewController: UITableViewController {
 
     func getArray() -> [String]? {
         let myArray = readFromDocs(fromDocumentsWithFileName: Const.UserDef.filename)
-        return myArray?.sorted { $0 < $1 }
+        return myArray?.reversed() // ?.sorted { $0 < $1 }
     }
 
 

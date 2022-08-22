@@ -21,48 +21,47 @@ extension UIViewController {
     }
 
 
-    func createAlert(
-        alertReasonParam: AlertReason) -> UIAlertController {
+    func createAlert(alertReasonParam: AlertReason, okMessage: String) -> UIAlertController {
 
-            var alertPreferredStyle = UIAlertController.Style.alert
+        var alertPreferredStyle = UIAlertController.Style.alert
 
-            var alertTitle = ""
-            var alertMessage = ""
-            switch alertReasonParam {
-                case .imageSaved:
-                    alertPreferredStyle = UIAlertController.Style.actionSheet
-                    alertTitle = "Screenshot Generated"
-                    alertMessage = "View it now in your gallery"
-                case .permissionDeniedGallery:
-                    alertTitle = "Allow PickerFull access to your Gallery"
-                    alertMessage = """
+        var alertTitle = ""
+        var alertMessage = ""
+        switch alertReasonParam {
+            case .imageSaved:
+                alertPreferredStyle = UIAlertController.Style.actionSheet
+                alertTitle = "Screenshot Generated"
+                alertMessage = "View it now in your gallery"
+            case .permissionDeniedGallery:
+                alertTitle = "Allow PickerFull access to your Gallery"
+                alertMessage = """
                 Access was previously denied. Please grant access from Settings so PickerFull can save your image.
                 """
-                case .permissiondeniedCamera:
-                    alertTitle = "Allow PickerFull access to your Camera"
-                    alertMessage = """
+            case .permissiondeniedCamera:
+                alertTitle = "Allow PickerFull access to your Camera"
+                alertMessage = """
             Access was previously denied. Please grant access from Settings to use your Camera from within the app.
             """
-                default:
-                    alertTitle = "Unknown Error"
-                    alertMessage = """
+            default:
+                alertTitle = "Unknown Error"
+                alertMessage = """
             An unknown error occurred. Please try again
             """
-            }
-
-            let alert = UIAlertController(
-                title: alertTitle,
-                message: alertMessage,
-                preferredStyle: alertPreferredStyle)
-
-            let alertAction = UIAlertAction(
-                title: "OK",
-                style: .cancel,
-                handler: nil)
-            alert.addAction(alertAction)
-
-            return alert
         }
+
+        let alert = UIAlertController(
+            title: alertTitle,
+            message: alertMessage,
+            preferredStyle: alertPreferredStyle)
+
+        let alertAction = UIAlertAction(
+            title: okMessage,
+            style: .cancel,
+            handler: nil)
+        alert.addAction(alertAction)
+
+        return alert
+    }
 
 
     // MARK: Helpers
