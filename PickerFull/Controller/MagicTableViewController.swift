@@ -76,14 +76,11 @@ class MagicTableViewController: UITableViewController {
         """
 
         return """
-        \(stringToAppend)Forgot to save a "Random" color?
-        Here is your "Random" history
-
-        Tap a color to set it to the home page color again
-
-        Long press a color for more options
+        \(stringToAppend)Tap a color to restore it to the app home page
 
         Swipe a color to remove it from your history
+
+        Long press a color for more options
 
         """
     }
