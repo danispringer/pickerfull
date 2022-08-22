@@ -33,7 +33,7 @@ class PickerFullScreenshots: XCTestCase {
 
     func testAdvancedPicker() {
         app.launch()
-        app.buttons["Advanced Editors"].tap()
+        app.buttons["Image Color Picker"].tap()
         XCTAssertTrue(app.buttons["Sliders"].waitForExistence(timeout: 5))
         app.buttons["Sliders"].tap()
 // XCTAssert(XCUIApplication().scrollViews.otherElements.staticTexts["Display P3 Hex Color #"]
@@ -48,11 +48,11 @@ class PickerFullScreenshots: XCTestCase {
 
     func testFloatingPicker() {
         app.launch()
-        app.staticTexts["Image Menu"].tap()
+        app.staticTexts["Choose Photo"].tap()
         app.collectionViews.buttons["Choose Photo"].tap()
-        app.scrollViews.otherElements.images["Photo, March 30, 2018, 3:14 PM"].tap()
-        XCTAssert(app.buttons["Advanced Editors"].waitForExistence(timeout: 5))
-        app.buttons["Advanced Editors"].tap()
+        app.scrollViews.otherElements.images.firstMatch.tap()
+        XCTAssert(app.buttons["Image Color Picker"].waitForExistence(timeout: 5))
+        app.buttons["Image Color Picker"].tap()
         app.buttons["Floating color picker"].tap()
         XCTAssert(app.waitForExistence(timeout: 5))
         _ = XCTWaiter.wait(for: [expectation(description: "Wait for n seconds")], timeout: 10.0)
