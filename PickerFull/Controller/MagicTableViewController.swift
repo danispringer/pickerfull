@@ -29,7 +29,8 @@ class MagicTableViewController: UITableViewController {
     // MARK: Helpers
 
     func getArray() -> [String]? {
-        return readFromDocs(fromDocumentsWithFileName: Const.UserDef.filename)
+        let myArray = readFromDocs(fromDocumentsWithFileName: Const.UserDef.filename)
+        return myArray?.sorted { $0 < $1 }
     }
 
 
@@ -83,6 +84,7 @@ class MagicTableViewController: UITableViewController {
         Long press a color for more options
 
         Swipe a color to remove it from your history
+
         """
     }
 
