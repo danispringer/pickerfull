@@ -597,9 +597,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 extension MakerViewController {
 
     func requestReviewManually() {
-        // Note: Replace the XXXXXXXXXX below with the App Store ID for your app
-        //       You can find the App Store ID in your app's product URL
-
         guard let writeReviewURL = URL(string: Const.AppInfo.reviewLink)
         else {
             fatalError("Expected a valid URL")
