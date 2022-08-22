@@ -39,6 +39,8 @@ struct Const {
         static let sendFeedback = "Contact Us"
         static let shareApp = "Tell a Friend"
         static let addFromCamera = "Take Photo"
+        static let okMessage = "OK"
+        static let notNowMessage = "Not now"
         static let addFromGallery = "Choose Photo"
         static let clearImage = "Delete Photo"
         static let bundleShort = "CFBundleShortVersionString"
