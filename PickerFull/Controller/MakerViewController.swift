@@ -335,7 +335,14 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     @IBAction func downloadAsImage() {
         let image = generateImage()
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
+        var isiOSAppOnMac = false
+        isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
+        if isiOSAppOnMac {
+            shareAsImage()
+        } else {
+            UIImageWriteToSavedPhotosAlbum(
+                image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
+        }
     }
 
 
