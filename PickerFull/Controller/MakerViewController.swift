@@ -31,7 +31,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     @IBOutlet weak var shareOrCopyButton: UIButton!
     @IBOutlet weak var randomButton: UIButton!
     @IBOutlet weak var historyButton: UIButton!
-    @IBOutlet weak var downloadImageButton: UIButton!
 
     // MARK: properties
 
@@ -297,6 +296,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
     func getShareOrCopyMenu() -> UIMenu {
 
+        let downloadImageAction = UIAction(title: "Generate Screenshot",
+                                          image: UIImage(systemName: "square.and.arrow.down")) { _ in
+            self.downloadAsImage()
+        }
+
         let shareTextHexAction = UIAction(title: "Share as HEX",
                                           image: UIImage(systemName: "doc.text")) { _ in
             self.shareAsText(format: .hex)
@@ -325,7 +329,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         }
 
         let shareMenu = UIMenu(options: .displayInline, children: [
-            shareImageAction, shareTextRGBAction, shareTextHexAction,
+            downloadImageAction, shareImageAction, shareTextRGBAction, shareTextHexAction,
             copyImageAction, copyTextRgbAction, copyTextHexAction])
 
         return shareMenu
@@ -514,7 +518,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         messageLabel.isHidden = !hide
         qrImageView.isHidden = !hide
         for button: UIButton in [aboutButton, advancedButton, imageMenuButton, shareOrCopyButton,
-                                 randomButton, historyButton, downloadImageButton] {
+                                 randomButton, historyButton] {
             button.isHidden = hide
         }
         containerScrollView.isHidden = hide

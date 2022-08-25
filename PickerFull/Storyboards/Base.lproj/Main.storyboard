@@ -75,7 +75,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEo-KS-B1i">
-                                <rect key="frame" x="16" y="424.66666666666669" width="139" height="34.333333333333314"/>
+                                <rect key="frame" x="16" y="467" width="139" height="34.333333333333314"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="info.circle" catalog="system" imagePlacement="leading" title="About App" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
@@ -85,7 +85,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-hD-fEQ">
-                                <rect key="frame" x="16" y="467" width="147.66666666666666" height="34.333333333333314"/>
+                                <rect key="frame" x="16" y="509.33333333333331" width="147.66666666666666" height="34.333333333333314"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.up" catalog="system" imagePlacement="leading" title="Share Menu" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
@@ -95,7 +95,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNf-u5-6Xf">
-                                <rect key="frame" x="16" y="509.33333333333331" width="171.33333333333334" height="34.333333333333314"/>
+                                <rect key="frame" x="16" y="551.66666666666663" width="171.33333333333334" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="camera" catalog="system" imagePlacement="leading" title="Choose Photo" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
@@ -105,7 +105,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-OX-DMb">
-                                <rect key="frame" x="16" y="551.66666666666663" width="183" height="34.333333333333371"/>
+                                <rect key="frame" x="16" y="594" width="183" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="book" catalog="system" imagePlacement="leading" title="Random History" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
@@ -118,7 +118,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXP-06-ffR">
-                                <rect key="frame" x="16" y="594" width="205" height="34.333333333333371"/>
+                                <rect key="frame" x="16" y="636.33333333333337" width="205" height="34.333333333333371"/>
                                 <buttonConfiguration key="configuration" style="filled" image="paintpalette" catalog="system" imagePlacement="leading" title="Image Color Picker" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
@@ -130,7 +130,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2z-Ue-gCv">
-                                <rect key="frame" x="16" y="636.33333333333337" width="206" height="34.333333333333371"/>
+                                <rect key="frame" x="16" y="678.66666666666663" width="206" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="wand.and.stars" catalog="system" imagePlacement="leading" title="New Random Color" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
@@ -140,19 +140,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="randomTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sI0-fo-rtJ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3P7-jg-UrI">
-                                <rect key="frame" x="16" y="678.66666666666663" width="217.66666666666666" height="34.333333333333371"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.down" catalog="system" imagePlacement="leading" title="Generate Screenshot" imagePadding="8">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
-                                    <color key="baseForegroundColor" systemColor="tintColor"/>
-                                    <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="downloadAsImage" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rbv-Bc-sP3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -166,25 +153,22 @@
                             <constraint firstItem="Ldp-OX-DMb" firstAttribute="bottom" secondItem="gXP-06-ffR" secondAttribute="top" constant="-8" id="C2l-Af-roz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="i2z-Ue-gCv" secondAttribute="trailing" constant="16" id="ET9-Tp-dor"/>
                             <constraint firstItem="4cf-hD-fEQ" firstAttribute="bottom" secondItem="BNf-u5-6Xf" secondAttribute="top" constant="-8" id="FFd-5n-Kfu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="i2z-Ue-gCv" secondAttribute="bottom" constant="16" id="HUt-f2-bD0"/>
                             <constraint firstItem="BNf-u5-6Xf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Jo5-t1-1G4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7iT-jJ-EaV" secondAttribute="trailing" id="P5C-FX-5bk"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3P7-jg-UrI" secondAttribute="bottom" constant="16" id="PMY-Qu-epo"/>
                             <constraint firstItem="Fhb-Dc-Ypx" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="QjK-wW-wex"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="SYy-T5-Xpr"/>
                             <constraint firstItem="Ldp-OX-DMb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="T99-iO-R3z"/>
                             <constraint firstItem="4cf-hD-fEQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="TRl-S0-E5a"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ldp-OX-DMb" secondAttribute="trailing" constant="16" id="Tzo-Mi-BDC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4cf-hD-fEQ" secondAttribute="trailing" constant="16" id="Yas-6Q-iC6"/>
-                            <constraint firstItem="3P7-jg-UrI" firstAttribute="top" secondItem="i2z-Ue-gCv" secondAttribute="bottom" constant="8" id="Yw5-r8-IXl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BNf-u5-6Xf" secondAttribute="trailing" constant="16" id="ZSJ-24-QGI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BKY-HB-wIv" secondAttribute="bottom" constant="40" id="Zdq-nc-oiG"/>
                             <constraint firstItem="Fhb-Dc-Ypx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="aBU-Qi-PjP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bEo-KS-B1i" secondAttribute="trailing" constant="16" id="aJL-XZ-Cjd"/>
                             <constraint firstItem="bEo-KS-B1i" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="egG-3H-S5t"/>
-                            <constraint firstItem="3P7-jg-UrI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="est-l2-3oQ"/>
                             <constraint firstItem="i2z-Ue-gCv" firstAttribute="top" secondItem="gXP-06-ffR" secondAttribute="bottom" constant="8" id="f31-Y3-WFE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="L0L-A8-4Ez" secondAttribute="trailing" id="i5j-nH-5i5"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3P7-jg-UrI" secondAttribute="trailing" constant="16" id="j7v-h4-8f4"/>
                             <constraint firstItem="4cf-hD-fEQ" firstAttribute="top" secondItem="bEo-KS-B1i" secondAttribute="bottom" constant="8" id="mJd-vN-adk"/>
                             <constraint firstItem="gXP-06-ffR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="mSd-nR-AiE"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mw9-bO-m8F"/>
@@ -201,7 +185,6 @@
                         <outlet property="aboutButton" destination="bEo-KS-B1i" id="m8F-Sr-n6f"/>
                         <outlet property="advancedButton" destination="gXP-06-ffR" id="hM9-dP-Sul"/>
                         <outlet property="containerScrollView" destination="L0L-A8-4Ez" id="ixP-pm-NIn"/>
-                        <outlet property="downloadImageButton" destination="3P7-jg-UrI" id="xmB-Km-zmq"/>
                         <outlet property="historyButton" destination="Ldp-OX-DMb" id="Fkc-eL-CKG"/>
                         <outlet property="imageMenuButton" destination="BNf-u5-6Xf" id="A9n-8k-GLr"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="nVb-Od-V3R"/>
@@ -226,10 +209,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MagicCell" id="ZFJ-pI-PMh" customClass="MagicCell" customModule="PickerFull" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.333332061767578" width="375" height="92.333335876464844"/>
+                                <rect key="frame" x="0.0" y="55.333332061767578" width="375" height="92.666664123535156"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZFJ-pI-PMh" id="hd8-Ze-7gE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="92.333335876464844"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="92.666664123535156"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABCDEF" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCe-dH-rNb" userLabel="HEXHEX">
@@ -239,13 +222,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="123,123,123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="939-sv-HEi">
-                                            <rect key="frame" x="16" y="53.666666666666664" width="163.66666666666666" height="22.666666666666664"/>
+                                            <rect key="frame" x="16" y="53.666666666666657" width="163.66666666666666" height="23"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J10-oG-MJg">
-                                            <rect key="frame" x="195.66666666666663" y="16.000000000000004" width="243.33333333333337" height="60.333333333333343"/>
+                                            <rect key="frame" x="195.66666666666663" y="15.999999999999996" width="243.33333333333337" height="60.666666666666657"/>
                                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                                         </view>
                                     </subviews>
@@ -288,7 +271,6 @@
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="paintpalette" catalog="system" width="128" height="105"/>
         <image name="qr" width="2214" height="2214"/>
-        <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="wand.and.stars" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
