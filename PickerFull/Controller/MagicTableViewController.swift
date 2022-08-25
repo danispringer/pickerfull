@@ -28,6 +28,20 @@ class MagicTableViewController: UITableViewController {
 
     // MARK: Helpers
 
+    @objc func deleteAll() {
+        print("user tapped delete all")
+        let alert = createAlert(alertReasonParam: .deleteHistory, okMessage: "No")
+        let deleteAction = UIAlertAction(title: "Yes", style: .destructive) { [self] _ in
+            var currentArray: [String] = readFromDocs(fromDocumentsWithFileName: Const.UserDef.filename) ?? []
+            currentArray = []
+            saveToDocs(text: currentArray.joined(separator: ","), withFileName: Const.UserDef.filename)
+            tableView.reloadData()
+            setEditing(false, animated: true)
+        }
+        alert.addAction(deleteAction)
+        present(alert, animated: true)
+    }
+
     func getArray() -> [String]? {
         let myArray = readFromDocs(fromDocumentsWithFileName: Const.UserDef.filename)
         return myArray?.reversed() // ?.sorted { $0 < $1 }
@@ -35,6 +49,20 @@ class MagicTableViewController: UITableViewController {
 
 
     // MARK: TableView
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        if editing {
+//            super.setEditing(true, animated: true)
+            let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteAll))
+            deleteButton.tintColor = .red
+            self.navigationItem.rightBarButtonItems = [editButtonItem, deleteButton]
+        } else {
+//            super.setEditing(false, animated: true)
+            self.navigationItem.rightBarButtonItems = [editButtonItem]
+        }
+    }
+
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let rootViewController = self.navigationController!.viewControllers.first as! MakerViewController
@@ -111,16 +139,16 @@ class MagicTableViewController: UITableViewController {
             return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
                 let copyHEXAction = UIAction(title: "Copy HEX", image: UIImage(systemName: "doc.on.doc")) { _ in
                     let hexToCopy: String = (tableView.cellForRow(at: indexPath) as! MagicCell).hexLabel.text!
-                UIPasteboard.general.string = String(hexToCopy.suffix(6))
-            }
+                    UIPasteboard.general.string = String(hexToCopy.suffix(6))
+                }
 
-            let copyRGBAction = UIAction(title: "Copy RGB", image: UIImage(systemName: "doc.on.doc")) { _ in
-                let rgbToCopy: String = (tableView.cellForRow(at: indexPath) as! MagicCell).rgbLabel.text!
-                UIPasteboard.general.string = String(rgbToCopy[5...rgbToCopy.count-1])
-            }
+                let copyRGBAction = UIAction(title: "Copy RGB", image: UIImage(systemName: "doc.on.doc")) { _ in
+                    let rgbToCopy: String = (tableView.cellForRow(at: indexPath) as! MagicCell).rgbLabel.text!
+                    UIPasteboard.general.string = String(rgbToCopy[5...rgbToCopy.count-1])
+                }
 
-            return UIMenu(title: "", children: [copyHEXAction, copyRGBAction])
+                return UIMenu(title: "", children: [copyHEXAction, copyRGBAction])
+            }
         }
-    }
 
 }

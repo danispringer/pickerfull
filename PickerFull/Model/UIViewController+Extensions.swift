@@ -18,6 +18,7 @@ extension UIViewController {
         case imageSaved
         case permissionDeniedGallery
         case permissiondeniedCamera
+        case deleteHistory
     }
 
 
@@ -42,6 +43,9 @@ extension UIViewController {
                 alertMessage = """
             Access was previously denied. Please grant access from Settings to use your Camera from within the app.
             """
+            case .deleteHistory:
+                alertTitle = "Delete All History?"
+                alertMessage = "Are you sure you want to delete all of Random History?"
             default:
                 alertTitle = "Unknown Error"
                 alertMessage = """
