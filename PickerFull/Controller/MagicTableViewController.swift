@@ -11,6 +11,10 @@ import UIKit
 class MagicTableViewController: UITableViewController {
 
 
+    // MARK: Properties
+
+    var deleteAllButton: UIBarButtonItem!
+
     // MARK: Life cycle
 
     override func viewDidLoad() {
@@ -23,6 +27,9 @@ class MagicTableViewController: UITableViewController {
 
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.title = "Random History"
+
+        deleteAllButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteAll))
+        deleteAllButton.tintColor = .red
     }
 
 
@@ -52,13 +59,8 @@ class MagicTableViewController: UITableViewController {
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        if editing {
-            let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteAll))
-            deleteButton.tintColor = .red
-            self.navigationItem.rightBarButtonItems = [editButtonItem, deleteButton]
-        } else {
-            self.navigationItem.rightBarButtonItems = [editButtonItem]
-        }
+        self.navigationItem.rightBarButtonItems = editing ? [editButtonItem, deleteAllButton]
+        : [editButtonItem]
     }
 
 
@@ -93,16 +95,11 @@ class MagicTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
-        let stringToAppend = getArray()?.count ?? 0 > 0 ? "" :
-        """
-        Colors will appear here as you create them, using the "New Random Color" button on the app's \
-        homepage
-
-
-        """
 
         return """
-        \(stringToAppend)Tap a color to restore it to the app home page
+        Colors will appear here as you create them using the "New Random Color" button on the app's homepage
+
+        Tap a color to restore it to the app home page
 
         Swipe a color to remove it from your history
 
