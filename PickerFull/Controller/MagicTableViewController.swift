@@ -53,12 +53,10 @@ class MagicTableViewController: UITableViewController {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         if editing {
-//            super.setEditing(true, animated: true)
             let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteAll))
             deleteButton.tintColor = .red
             self.navigationItem.rightBarButtonItems = [editButtonItem, deleteButton]
         } else {
-//            super.setEditing(false, animated: true)
             self.navigationItem.rightBarButtonItems = [editButtonItem]
         }
     }
