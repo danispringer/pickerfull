@@ -36,12 +36,6 @@ class PickerFullScreenshots: XCTestCase {
         app.buttons["Image Color Picker"].tap()
         XCTAssertTrue(app.buttons["Sliders"].waitForExistence(timeout: 5))
         app.buttons["Sliders"].tap()
-// XCTAssert(XCUIApplication().scrollViews.otherElements.staticTexts["Display P3 Hex Color #"]
-// .waitForExistence(timeout: 5))
-//        XCUIApplication().scrollViews.otherElements.staticTexts["Display P3 Hex Color #"].tap()
-//        XCTAssert(app.buttons["sRGB"].waitForExistence(timeout: 5))
-//        app.buttons["sRGB"].tap()
-//        XCTAssert(app.staticTexts["Colors"].waitForExistence(timeout: 5))
         takeScreenshot(name: "Advanced")
     }
 
@@ -64,9 +58,9 @@ class PickerFullScreenshots: XCTestCase {
 
     func testSaveImage() {
         app.launch()
-        XCTAssertTrue(app.buttons["Generate Screenshot"].firstMatch.waitForExistence(timeout: 5))
-        app.buttons["Generate Screenshot"].firstMatch.tap()
-        XCTAssertTrue(app.sheets["Screenshot Generated"].waitForExistence(timeout: 5))
+        app.staticTexts["Share Menu"].tap()
+        app.collectionViews.buttons["Generate Screenshot"].tap()
+        XCTAssertTrue(app.staticTexts["Screenshot Generated"].waitForExistence(timeout: 5))
     }
 
 
