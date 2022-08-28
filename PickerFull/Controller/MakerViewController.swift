@@ -585,13 +585,21 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD())
         colorPicker.selectedColor = selectedColor
         DispatchQueue.main.async {
+            self.colorPicker.modalPresentationStyle = .popover
             self.present(self.colorPicker, animated: true)
         }
 
     }
 
 
-    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+//    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+//        let hexString = hexStringFromColor(color: colorPicker.selectedColor)
+//        updateColor(hexStringParam: hexString)
+//    }
+
+
+    func colorPickerViewController(_ viewController: UIColorPickerViewController,
+                                   didSelect color: UIColor, continuously: Bool) {
         let hexString = hexStringFromColor(color: colorPicker.selectedColor)
         updateColor(hexStringParam: hexString)
     }

@@ -21,10 +21,14 @@ class TutorialViewController: UIViewController {
         super.viewDidLoad()
 
         myTextView.text = """
-        hello, this is tutorial. this paragraph will say how to use this app, as well as remind users \
-        that they can see this tutorial again later... This text is scrollable, simply by swiping on it, \
-        so it can be very long, and the design won't break. It can also have emojis 🤩 bold text, and lots \
-        more.
+
+        (TIP: you can view this page later by tapping "About App")
+
+        STEP #1: tap "Choose Photo" and take or pick a photo
+        STEP #2: (Optional) Once a photo is added to the app pinch to zoom in to the wanted color
+        STEP #3: tap "Image Color Picker"
+        STEP #4: tap the top-left pen icon
+        STEP #5: drag-and-drop the circle over the wanted color
         """
 
     }
