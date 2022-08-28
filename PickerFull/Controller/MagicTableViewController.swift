@@ -95,16 +95,8 @@ class MagicTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
-
         return """
-        Colors will appear here as you create them using the "New Random Color" button on the app's homepage
-
-        Tap a color to restore it to the app home page
-
-        Swipe a color to remove it from your history
-
-        Long press a color for more options
-
+        Tap, swipe, or long press a color for options
         """
     }
 
