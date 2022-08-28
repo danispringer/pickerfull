@@ -322,7 +322,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     func getShareOrCopyMenu() -> UIMenu {
 
         let downloadImageAction = UIAction(title: "Generate Screenshot",
-                                          image: UIImage(systemName: "square.and.arrow.down")) { _ in
+                                           image: UIImage(systemName: "square.and.arrow.down")) { _ in
             self.downloadAsImage()
         }
 
