@@ -550,20 +550,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     }
 
 
-//    func toggleBlur(_ enable: Bool) {
-//        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialLight)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = view.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        blurEffectView.tag = 12
-//        if enable {
-//            view.insertSubview(blurEffectView, at: 10)
-//        } else {
-//            view.viewWithTag(12)?.removeFromSuperview()
-//        }
-//    }
-
-
     func shareApp() {
 
         let message = "https://apps.apple.com/app/id1410565176"
