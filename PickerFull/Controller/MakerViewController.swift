@@ -86,6 +86,13 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             button.showsMenuAsPrimaryAction = true
         }
 
+        for button: UIButton in [aboutButton, advancedButton, imageMenuButton, shareOrCopyButton,
+                                 randomButton, historyButton] {
+            button.clipsToBounds = true
+            button.layer.cornerRadius = 8
+            button.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        }
+
 
     }
 
@@ -592,10 +599,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     }
 
 
-//    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-//        let hexString = hexStringFromColor(color: colorPicker.selectedColor)
-//        updateColor(hexStringParam: hexString)
-//    }
+    //    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+    //        let hexString = hexStringFromColor(color: colorPicker.selectedColor)
+    //        updateColor(hexStringParam: hexString)
+    //    }
 
 
     func colorPickerViewController(_ viewController: UIColorPickerViewController,
