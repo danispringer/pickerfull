@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         UD.register(defaults: [
-            Const.UserDef.colorKey: Const.UserDef.defaultColor
+            Const.UserDef.colorKey: Const.UserDef.defaultColor,
+            Const.UserDef.tutorialShown: false
         ])
 
         return true

@@ -32,6 +32,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     @IBOutlet weak var randomButton: UIButton!
     @IBOutlet weak var historyButton: UIButton!
 
+
     // MARK: properties
 
     var hexArrayForRandom: [String] = []
@@ -85,12 +86,23 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             button.showsMenuAsPrimaryAction = true
         }
 
+
     }
 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if !UD.bool(forKey: Const.UserDef.tutorialShown) {
+            showTutorial()
+            // TODO: set UD to tutorial shown true
+        }
     }
 
 
@@ -101,6 +113,13 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
 
     // MARK: Helpers
+
+    func showTutorial() {
+        let storyboard = UIStoryboard(name: Const.StoryboardIDIB.main, bundle: nil)
+        let tutorialVC = storyboard.instantiateViewController(withIdentifier: Const.StoryboardIDIB.tutorialVC)
+        present(tutorialVC, animated: true)
+    }
+
 
     @objc func handleDoubleTap(_ recognizer: UITapGestureRecognizer) {
         if containerScrollView.zoomScale < containerScrollView.maximumZoomScale { // zoom in
@@ -274,13 +293,19 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         }
 
 
+        let tutorial = UIAction(title: Const.AppInfo.tutorial, image: UIImage(systemName: "info.circle"),
+                                state: .off) { _ in
+            self.showTutorial()
+        }
+
+
         var myTitle = Const.AppInfo.appName
         if let safeVersion = version {
             myTitle += " \(Const.AppInfo.version) \(safeVersion)"
         }
 
         let aboutMenu = UIMenu(title: myTitle, image: nil, options: .displayInline,
-                               children: [review, shareApp, moreApps])
+                               children: [review, shareApp, moreApps, tutorial])
         return aboutMenu
     }
 
@@ -523,6 +548,20 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         }
         containerScrollView.isHidden = hide
     }
+
+
+//    func toggleBlur(_ enable: Bool) {
+//        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialLight)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = view.bounds
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        blurEffectView.tag = 12
+//        if enable {
+//            view.insertSubview(blurEffectView, at: 10)
+//        } else {
+//            view.viewWithTag(12)?.removeFromSuperview()
+//        }
+//    }
 
 
     func shareApp() {

@@ -164,7 +164,7 @@ extension UIViewController {
                 return myArray
             }
         } catch {
-            print("Error reading saved file")
+            // print("Error reading saved file")
             return nil
         }
     }

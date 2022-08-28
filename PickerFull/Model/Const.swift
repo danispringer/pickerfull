@@ -19,6 +19,7 @@ struct Const {
         static let main = "Main"
         static let magicCell = "MagicCell"
         static let magicTableVC = "MagicTableVC"
+        static let tutorialVC = "TutorialViewController"
     }
 
 
@@ -26,6 +27,7 @@ struct Const {
         static let colorKey = "color"
         static let defaultColor = "E57BF2"
         static let filename = "colors.txt"
+        static let tutorialShown = "tutorialShown"
     }
 
     struct Values {
@@ -37,6 +39,7 @@ struct Const {
         static let version = "v."
         static let leaveReview = "Leave a Review"
         static let sendFeedback = "Contact Us"
+        static let tutorial = "Tutorial"
         static let shareApp = "Tell a Friend"
         static let addFromCamera = "Take Photo"
         static let okMessage = "OK"
