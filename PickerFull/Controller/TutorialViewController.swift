@@ -22,13 +22,20 @@ class TutorialViewController: UIViewController {
 
         myTextView.text = """
 
-        (TIP: you can view this page later by tapping "About App")
+        (TIP: view this later by tapping on ❔)
 
-        STEP #1: tap "Choose Photo" and take or pick a photo
-        STEP #2: (Optional) Once a photo is added to the app pinch to zoom in to the wanted color
-        STEP #3: tap "Image Color Picker"
-        STEP #4: tap the top-left pen icon
-        STEP #5: drag-and-drop the circle over the wanted color
+        STEP #1: tap 📷, then take or pick a photo
+
+        STEP #2: tap 🎨
+
+        STEP #3: tap the top-left 🖊️ icon
+
+        STEP #4: drag-and-drop the circle over the wanted color
+
+        And you're done! You can now share your color by tapping on SHARE
+
+        (You can now close the color picker page using the "X", and change or remove the photo by tapping \
+        on 📷)
         """
 
     }

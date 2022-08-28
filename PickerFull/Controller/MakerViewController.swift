@@ -101,7 +101,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
 
         if !UD.bool(forKey: Const.UserDef.tutorialShown) {
             showTutorial()
-            // TODO: set UD to tutorial shown true
+            UD.set(true, forKey: Const.UserDef.tutorialShown)
         }
     }
 
