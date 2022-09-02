@@ -44,7 +44,7 @@ class TutorialViewController: UIViewController {
          over the wanted color, then let it go to select that color
         """)
         let aString8 = NSAttributedString("""
-        \n\nThat's it! You may immediately share your color: return to the home screen, and tap
+        \n\nThat's it! Share your color by tapping
         """)
         let shareIcon = NSTextAttachment(image: UIImage(systemName: "square.and.arrow.up")!)
         let shareIconString = NSAttributedString(attachment: shareIcon)

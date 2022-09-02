@@ -609,6 +609,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
                                    didSelect color: UIColor, continuously: Bool) {
         let hexString = hexStringFromColor(color: colorPicker.selectedColor)
         updateColor(hexStringParam: hexString)
+        dismiss(animated: true)
     }
 
 
