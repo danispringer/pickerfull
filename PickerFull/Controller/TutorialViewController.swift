@@ -20,39 +20,41 @@ class TutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let aString1 = NSAttributedString("(TIP: view this later by tapping ")
+        self.title = "Tutorial"
+
+        let aString1 = NSAttributedString("(Tap ")
+        let aString1b = NSAttributedString(" to view this tutorial later)\n")
         let infoIcon = NSTextAttachment(image: UIImage(systemName: "info.circle")!)
         let infoiconString = NSAttributedString(attachment: infoIcon)
-        let aString2 = NSAttributedString(")")
-        let aString3 = NSAttributedString("\n\nSTEP #1: tap ")
+        let aString3 = NSAttributedString("\n\nTap ")
         let cameraIcon = NSTextAttachment(image: UIImage(systemName: "camera")!)
         let cameraIconString = NSAttributedString(attachment: cameraIcon)
-        let aString4 = NSAttributedString(", then take or pick a photo")
-        let aString5 = NSAttributedString("\n\nSTEP #2: tap ")
+        let aString4 = NSAttributedString(" to take or pick a photo")
+        let aString5 = NSAttributedString("\n\nTap ")
+        let aString5b = NSAttributedString(", then tap ")
+        let aString5c = NSAttributedString(" , to bring up ")
+        let circleIcon = NSTextAttachment(image: UIImage(systemName: "square.circle")!)
+        let circleIconString = NSAttributedString(attachment: circleIcon)
         let paintIcon = NSTextAttachment(image: UIImage(systemName: "paintpalette")!)
         let paintIconString = NSAttributedString(attachment: paintIcon)
-        let aString6 = NSAttributedString("\n\nSTEP #3: tap ")
         let penIcon = NSTextAttachment(image: UIImage(systemName: "eyedropper")!)
         let penIconString = NSAttributedString(attachment: penIcon)
-        let aString7 = NSAttributedString("""
-        \n\nSTEP #4: drag-and-drop the circle over the wanted color
-
-        And you're done! You can now share your color by tapping
+        let aString7 = NSAttributedString("\n\nDrag ")
+        let aString7b = NSAttributedString("""
+         over the wanted color, then let it go to select that color
+        """)
+        let aString8 = NSAttributedString("""
+        \n\nThat's it! You may immediately share your color: return to the home screen, and tap
         """)
         let shareIcon = NSTextAttachment(image: UIImage(systemName: "square.and.arrow.up")!)
         let shareIconString = NSAttributedString(attachment: shareIcon)
-        let aString8 = NSAttributedString("""
-        \n\n(You can now close the color picker page using the "X", and change or remove the photo \
-        by tapping
-        """)
-        let aString9 = NSAttributedString(")")
         let aSpace = NSAttributedString(" ")
 
         let fullString = NSMutableAttributedString(string: "")
-        for attrString in [aString1, infoiconString, aString2, aString3, cameraIconString,
-                           aString4, aString5, paintIconString, aString6, penIconString,
-                           aString7, aSpace, shareIconString, aString8, aSpace,
-                           cameraIconString, aString9
+        for attrString in [aString1, infoiconString, aString1b, aString3, cameraIconString,
+                           aString4, aString5, paintIconString, aString5b, penIconString,
+                           aString5c, circleIconString, aString7, circleIconString, aString7b,
+                           aString8, aSpace, shareIconString
         ] {
             fullString.append(attrString)
         }
@@ -68,11 +70,5 @@ class TutorialViewController: UIViewController {
 
     }
 
-
-    // MARK: Helpers
-
-    @IBAction func closePressed(_ sender: Any) {
-        dismiss(animated: true)
-    }
 
 }

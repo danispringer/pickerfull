@@ -124,7 +124,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     func showTutorial() {
         let storyboard = UIStoryboard(name: Const.StoryboardIDIB.main, bundle: nil)
         let tutorialVC = storyboard.instantiateViewController(withIdentifier: Const.StoryboardIDIB.tutorialVC)
-        present(tutorialVC, animated: true)
+        self.navigationController?.pushViewController(tutorialVC, animated: true)
     }
 
 
