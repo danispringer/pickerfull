@@ -107,10 +107,15 @@ class TutorialViewController: UIViewController, AVPlayerViewControllerDelegate {
 
 
     @IBAction func playVideoTapped(_ sender: Any) {
+        guard !(player.timeControlStatus == .playing) else {
+            return
+        }
+
         playerController.player = player
         let audioSession = AVAudioSession.sharedInstance()
         try? audioSession.setActive(true, options: [])
         playerController.delegate = self
+
         present(playerController, animated: true) { [self] in
             player.play()
         }
