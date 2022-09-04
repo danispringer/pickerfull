@@ -591,9 +591,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     @IBAction func showColorPicker() {
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD())
         colorPicker.selectedColor = selectedColor
-        DispatchQueue.main.async {
-            self.colorPicker.modalPresentationStyle = .popover
-            self.present(self.colorPicker, animated: true)
+        DispatchQueue.main.async { [self] in
+            colorPicker.modalPresentationStyle = .popover
+            colorPicker.popoverPresentationController?.sourceView = advancedButton
+            present(colorPicker, animated: true)
         }
 
     }
