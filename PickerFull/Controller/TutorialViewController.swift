@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 class TutorialViewController: UIViewController {
 
@@ -67,6 +68,23 @@ class TutorialViewController: UIViewController {
 
         // draw the result in a label
         myTextView.attributedText = fullString
+
+    }
+
+
+    // MARK: Helpers
+
+    @IBAction func playVideoTapped(_ sender: Any) {
+        guard let path = Bundle.main.path(forResource: "vid", ofType: "mov") else {
+            debugPrint("vid.mov not found")
+            return
+        }
+        let player = AVPlayer(url: URL(fileURLWithPath: path))
+        let playerController = AVPlayerViewController()
+        playerController.player = player
+        present(playerController, animated: true) {
+            player.play()
+        }
 
     }
 

@@ -15,7 +15,6 @@
 		330F747D21ABBA9300F420B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F747421ABBA9300F420B0 /* AppDelegate.swift */; };
 		330F747E21ABBA9300F420B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 330F747621ABBA9300F420B0 /* Assets.xcassets */; };
 		331409DC28C4556200E0849F /* vid.mov in Resources */ = {isa = PBXBuildFile; fileRef = 331409DB28C4556200E0849F /* vid.mov */; };
-		331409DE28C4559100E0849F /* vid.mov in Resources */ = {isa = PBXBuildFile; fileRef = 331409DD28C4559100E0849F /* vid.mov */; };
 		332D748B283A5FDC0039BC68 /* PickerFullScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D748A283A5FDC0039BC68 /* PickerFullScreenshots.swift */; };
 		33691AA028BBF96600B5437C /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33691A9F28BBF96600B5437C /* TutorialViewController.swift */; };
 		337055CB21CC77F6001B253C /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337055CA21CC77F6001B253C /* Intents.framework */; };
@@ -289,7 +288,6 @@
 				330F747921ABBA9300F420B0 /* Main.storyboard in Resources */,
 				330F747821ABBA9300F420B0 /* LaunchScreen.storyboard in Resources */,
 				330F747E21ABBA9300F420B0 /* Assets.xcassets in Resources */,
-				331409DE28C4559100E0849F /* vid.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
