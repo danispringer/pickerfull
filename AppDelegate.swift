@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 
 @UIApplicationMain
@@ -33,6 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Const.UserDef.colorKey: Const.UserDef.defaultColor,
             Const.UserDef.tutorialShown: false
         ])
+
+        let audioSession = AVAudioSession.sharedInstance()
+
+        do {
+            try audioSession.setCategory(.playback)
+        } catch {
+            print("Audio session failed")
+        }
 
         return true
     }

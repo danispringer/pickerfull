@@ -9,11 +9,17 @@
 import UIKit
 import AVKit
 
-class TutorialViewController: UIViewController {
+class TutorialViewController: UIViewController, AVPlayerViewControllerDelegate {
 
     // MARK: Outlets
 
     @IBOutlet weak var myTextView: UITextView!
+
+
+    // MARK: Properties
+
+    let playerController = AVPlayerViewController()
+    var player: AVPlayer!
 
 
     // MARK: Life Cycle
@@ -69,20 +75,32 @@ class TutorialViewController: UIViewController {
         // draw the result in a label
         myTextView.attributedText = fullString
 
+        guard let path = Bundle.main.path(forResource: "vid", ofType: "mov") else {
+            debugPrint("vid.mov not found")
+            return
+        }
+        player = AVPlayer(url: URL(fileURLWithPath: path))
+
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(didfinishPlaying),
+            name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+
     }
 
 
     // MARK: Helpers
 
+    @objc func didfinishPlaying() {
+        playerController.dismiss(animated: true, completion: nil)
+    }
+
+
     @IBAction func playVideoTapped(_ sender: Any) {
-        guard let path = Bundle.main.path(forResource: "vid", ofType: "mov") else {
-            debugPrint("vid.mov not found")
-            return
-        }
-        let player = AVPlayer(url: URL(fileURLWithPath: path))
-        let playerController = AVPlayerViewController()
         playerController.player = player
-        present(playerController, animated: true) {
+        let audioSession = AVAudioSession.sharedInstance()
+        try? audioSession.setActive(true, options: [])
+        playerController.delegate = self
+        present(playerController, animated: true) { [self] in
             player.play()
         }
 
