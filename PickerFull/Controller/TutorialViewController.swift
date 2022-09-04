@@ -108,6 +108,7 @@ class TutorialViewController: UIViewController, AVPlayerViewControllerDelegate {
 
     @IBAction func playVideoTapped(_ sender: Any) {
         guard !(player.timeControlStatus == .playing) else {
+            present(playerController, animated: true)
             return
         }
 
