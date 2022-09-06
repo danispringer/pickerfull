@@ -74,6 +74,8 @@ class TutorialViewController: UIViewController, AVPlayerViewControllerDelegate {
 
         // draw the result in a label
         myTextView.attributedText = fullString
+        myTextView.layer.cornerRadius = 8
+        myTextView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 
         guard let path = Bundle.main.path(forResource: "vid", ofType: "mov") else {
             debugPrint("vid.mov not found")

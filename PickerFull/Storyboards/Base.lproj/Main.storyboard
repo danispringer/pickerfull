@@ -41,16 +41,16 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYC-xS-kBc">
                                 <rect key="frame" x="16" y="246.66666666666669" width="343" height="515.33333333333326"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OH-xg-YFJ">
-                                <rect key="frame" x="80" y="179.66666666666666" width="215" height="35"/>
+                                <rect key="frame" x="68.333333333333329" y="179.66666666666666" width="238.33333333333337" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="play.circle.fill" catalog="system" title="Watch Tutorial Video" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="filled" image="play.circle.fill" catalog="system" title="Watch 1-minute Tutorial" imagePadding="8">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -258,10 +258,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MagicCell" id="ZFJ-pI-PMh" customClass="MagicCell" customModule="PickerFull" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.333332061767578" width="375" height="91.666664123535156"/>
+                                <rect key="frame" x="0.0" y="55.333332061767578" width="375" height="92.333335876464844"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZFJ-pI-PMh" id="hd8-Ze-7gE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="91.666664123535156"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="92.333335876464844"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABCDEF" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCe-dH-rNb" userLabel="HEXHEX">
@@ -271,13 +271,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="123,123,123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="939-sv-HEi">
-                                            <rect key="frame" x="16" y="53.666666666666657" width="163.66666666666666" height="22"/>
+                                            <rect key="frame" x="16" y="53.666666666666664" width="163.66666666666666" height="22.666666666666664"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J10-oG-MJg">
-                                            <rect key="frame" x="195.66666666666663" y="15.999999999999996" width="243.33333333333337" height="59.666666666666657"/>
+                                            <rect key="frame" x="195.66666666666663" y="16.000000000000004" width="243.33333333333337" height="60.333333333333343"/>
                                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                                         </view>
                                     </subviews>
@@ -325,6 +325,9 @@
         <image name="wand.and.stars" catalog="system" width="128" height="115"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
