@@ -124,7 +124,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
     func showTutorial() {
         let storyboard = UIStoryboard(name: Const.StoryboardIDIB.main, bundle: nil)
         let tutorialVC = storyboard.instantiateViewController(withIdentifier: Const.StoryboardIDIB.tutorialVC)
-        self.navigationController?.pushViewController(tutorialVC, animated: true)
+        present(tutorialVC, animated: true)
     }
 
 
@@ -300,7 +300,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         }
 
 
-        let tutorial = UIAction(title: Const.AppInfo.tutorial, image: UIImage(systemName: "info.circle"),
+        let tutorial = UIAction(title: Const.AppInfo.tutorial, image: UIImage(systemName: "play.circle"),
                                 state: .off) { _ in
             self.showTutorial()
         }

@@ -39,7 +39,7 @@ struct Const {
         static let version = "v."
         static let leaveReview = "Leave a Review"
         static let sendFeedback = "Contact Us"
-        static let tutorial = "Tutorial"
+        static let tutorial = "Watch Tutorial"
         static let shareApp = "Tell a Friend"
         static let addFromCamera = "Take Photo"
         static let okMessage = "OK"
