@@ -401,20 +401,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             }
             return
         }
-        let alert = createAlert(alertReasonParam: AlertReason.imageSaved, okMessage: Const.AppInfo.notNowMessage)
-        let openLibraryButton = UIAlertAction(title: "Open Gallery",
-                                              style: .default, handler: { _ in
-            UIApplication.shared.open(URL(string: Const.AppInfo.galleryLink)!)
-
-        })
-        alert.addAction(openLibraryButton)
-        if let presenter = alert.popoverPresentationController {
-            presenter.sourceView = shareOrCopyButton
-        }
-        DispatchQueue.main.async {
-            self.present(alert, animated: true)
-        }
-
+        let imagePreviewVC = UIStoryboard(
+            name: Const.StoryboardIDIB.main, bundle: nil).instantiateViewController(
+                withIdentifier: Const.StoryboardIDIB.imagePreviewVC) as! ImagePreviewViewController
+        imagePreviewVC.actualImage = hexImage
+        present(imagePreviewVC, animated: true)
     }
 
 

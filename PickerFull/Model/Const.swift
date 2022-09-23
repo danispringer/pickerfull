@@ -20,6 +20,7 @@ struct Const {
         static let magicCell = "MagicCell"
         static let magicTableVC = "MagicTableVC"
         static let tutorialVC = "TutorialViewController"
+        static let imagePreviewVC = "ImagePreviewViewController"
     }
 
 
