@@ -9,7 +9,6 @@
 import UIKit
 import StoreKit
 import MessageUI
-import Intents
 import AVKit
 
 
