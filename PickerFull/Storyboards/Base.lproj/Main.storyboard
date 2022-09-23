@@ -33,42 +33,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Watch 1-minute tutorial" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqV-Yt-hoe">
-                                <rect key="frame" x="16" y="336.66666666666669" width="343" height="26.333333333333314"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OH-xg-YFJ">
-                                <rect key="frame" x="115.33333333333333" y="395" width="144.66666666666669" height="35"/>
+                                <rect key="frame" x="104" y="395" width="167" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="play.circle.fill" catalog="system" title="Watch Now" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="filled" image="play.circle.fill" catalog="system" title="Watch Tutorial" imagePadding="8">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="playVideoTapped:" destination="1kX-cY-ZQw" eventType="touchUpInside" id="ath-Yw-elf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z29-LU-d3p">
-                                <rect key="frame" x="294.66666666666669" y="727" width="64.333333333333314" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Done">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="donePressed:" destination="1kX-cY-ZQw" eventType="touchUpInside" id="fKJ-a1-h9d"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu." adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5l-o2-0BV">
-                                <rect key="frame" x="16" y="655" width="343" height="64"/>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="r8J-ns-AW9"/>
-                                </constraints>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to PickerFull" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTx-er-wQY">
                                 <rect key="frame" x="16" y="63.000000000000007" width="177" height="81.666666666666686"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
@@ -82,31 +56,33 @@
                                     <constraint firstAttribute="height" constant="128" id="xzY-C4-9Kf"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z29-LU-d3p">
+                                <rect key="frame" x="142.33333333333334" y="478" width="90.333333333333343" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Not Now">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="donePressed:" destination="1kX-cY-ZQw" eventType="touchUpInside" id="fKJ-a1-h9d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Qw-7v-UHS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="0OH-xg-YFJ" firstAttribute="top" secondItem="iqV-Yt-hoe" secondAttribute="bottom" constant="32" id="3Ba-Th-L9S"/>
-                            <constraint firstItem="L5l-o2-0BV" firstAttribute="leading" secondItem="3Qw-7v-UHS" secondAttribute="leading" constant="16" id="3IM-xf-QKs"/>
                             <constraint firstItem="L2U-5L-VDM" firstAttribute="top" secondItem="3Qw-7v-UHS" secondAttribute="top" constant="16" id="3U7-aU-qOi"/>
+                            <constraint firstItem="z29-LU-d3p" firstAttribute="centerX" secondItem="3Qw-7v-UHS" secondAttribute="centerX" id="4nG-WW-sol"/>
                             <constraint firstItem="3Qw-7v-UHS" firstAttribute="trailing" secondItem="L2U-5L-VDM" secondAttribute="trailing" constant="16" id="DRe-mU-Uex"/>
-                            <constraint firstItem="z29-LU-d3p" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3Qw-7v-UHS" secondAttribute="leading" constant="16" id="IJz-5G-iI0"/>
-                            <constraint firstItem="3Qw-7v-UHS" firstAttribute="trailing" secondItem="iqV-Yt-hoe" secondAttribute="trailing" constant="16" id="SBk-nA-Uf3"/>
+                            <constraint firstItem="z29-LU-d3p" firstAttribute="top" secondItem="0OH-xg-YFJ" secondAttribute="bottom" constant="48" id="Q6S-SU-ALP"/>
                             <constraint firstItem="NTx-er-wQY" firstAttribute="top" secondItem="3Qw-7v-UHS" secondAttribute="top" constant="16" id="WnH-0C-EQ5"/>
-                            <constraint firstItem="iqV-Yt-hoe" firstAttribute="leading" secondItem="3Qw-7v-UHS" secondAttribute="leading" constant="16" id="YGz-pW-qHT"/>
                             <constraint firstItem="L2U-5L-VDM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NTx-er-wQY" secondAttribute="trailing" constant="16" id="dPK-GG-lKF"/>
                             <constraint firstItem="0OH-xg-YFJ" firstAttribute="centerX" secondItem="3Qw-7v-UHS" secondAttribute="centerX" id="eGO-na-reC"/>
-                            <constraint firstItem="3Qw-7v-UHS" firstAttribute="trailing" secondItem="L5l-o2-0BV" secondAttribute="trailing" constant="16" id="fvl-dm-1DJ"/>
-                            <constraint firstItem="3Qw-7v-UHS" firstAttribute="trailing" secondItem="z29-LU-d3p" secondAttribute="trailing" constant="16" id="iEP-vH-9Ml"/>
-                            <constraint firstItem="3Qw-7v-UHS" firstAttribute="bottom" secondItem="z29-LU-d3p" secondAttribute="bottom" constant="16" id="kBZ-Bf-UDm"/>
-                            <constraint firstItem="z29-LU-d3p" firstAttribute="top" secondItem="L5l-o2-0BV" secondAttribute="bottom" constant="8" id="lXz-Sm-6rA"/>
                             <constraint firstItem="0OH-xg-YFJ" firstAttribute="centerY" secondItem="3Qw-7v-UHS" secondAttribute="centerY" id="r6V-BZ-zo9"/>
                             <constraint firstItem="NTx-er-wQY" firstAttribute="leading" secondItem="3Qw-7v-UHS" secondAttribute="leading" constant="16" id="tzP-WO-KdT"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="iconExtraImageView" destination="L2U-5L-VDM" id="vvK-sV-3R8"/>
-                        <outlet property="myTextView" destination="L5l-o2-0BV" id="HaM-WC-6PQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nbf-7u-CIa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -291,10 +267,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MagicCell" id="ZFJ-pI-PMh" customClass="MagicCell" customModule="PickerFull" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.333332061767578" width="375" height="91.666664123535156"/>
+                                <rect key="frame" x="0.0" y="55.333332061767578" width="375" height="92.333335876464844"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZFJ-pI-PMh" id="hd8-Ze-7gE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="91.666664123535156"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="92.333335876464844"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABCDEF" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCe-dH-rNb" userLabel="HEXHEX">
@@ -304,13 +280,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="123,123,123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="939-sv-HEi">
-                                            <rect key="frame" x="16" y="53.666666666666657" width="163.66666666666666" height="22"/>
+                                            <rect key="frame" x="16" y="53.666666666666664" width="163.66666666666666" height="22.666666666666664"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J10-oG-MJg">
-                                            <rect key="frame" x="195.66666666666663" y="15.999999999999996" width="243.33333333333337" height="59.666666666666657"/>
+                                            <rect key="frame" x="195.66666666666663" y="16.000000000000004" width="243.33333333333337" height="60.333333333333343"/>
                                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                                         </view>
                                     </subviews>
@@ -357,12 +333,6 @@
         <image name="qr" width="2214" height="2214"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="wand.and.stars" catalog="system" width="128" height="115"/>
-        <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
