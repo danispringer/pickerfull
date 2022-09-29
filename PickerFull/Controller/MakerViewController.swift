@@ -10,10 +10,12 @@ import UIKit
 import StoreKit
 import MessageUI
 import AVKit
+import UniformTypeIdentifiers
 
 
-class MakerViewController: UIViewController, UINavigationControllerDelegate, UIColorPickerViewControllerDelegate,
-                           UIScrollViewDelegate, UIImagePickerControllerDelegate {
+class MakerViewController: UIViewController, UINavigationControllerDelegate,
+                           UIColorPickerViewControllerDelegate, UIScrollViewDelegate,
+                           UIImagePickerControllerDelegate, UIDropInteractionDelegate {
 
 
     // MARK: Outlets
@@ -91,6 +93,9 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
             button.layer.cornerRadius = 8
             button.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         }
+
+        let dropInteraction = UIDropInteraction(delegate: self)
+        userImageView.addInteraction(dropInteraction)
 
 
     }
@@ -633,6 +638,59 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate, UIC
         saveToDocs(text: savedColors.joined(separator: ","), withFileName: Const.UserDef.filename)
     }
 
+
+}
+
+
+extension MakerViewController {
+
+    func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
+        return session.hasItemsConforming(toTypeIdentifiers: [UTType.image.identifier]) &&
+        session.items.count == 1
+    }
+
+
+    func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+        let dropLocation = session.location(in: view)
+        //        updateLayers(forDropLocation: dropLocation)
+
+        let operation: UIDropOperation
+
+        if userImageView.frame.contains(dropLocation) {
+            /*
+             If you add in-app drag-and-drop support for the .move operation,
+             you must write code to coordinate between the drag interaction
+             delegate and the drop interaction delegate.
+             */
+            userImageView.backgroundColor = .secondarySystemBackground.withAlphaComponent(0.7)
+            operation = session.localDragSession == nil ? .copy : .move
+        } else {
+            // Do not allow dropping outside of the image view.
+            userImageView.backgroundColor = .clear
+            operation = .cancel
+        }
+        return UIDropProposal(operation: operation)
+    }
+
+
+    func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
+        // Consume drag items (in this example, of type UIImage).
+        session.loadObjects(ofClass: UIImage.self) { imageItems in
+            let images = imageItems as! [UIImage]
+
+            /*
+             If you do not employ the loadObjects(ofClass:completion:) convenience
+             method of the UIDropSession class, which automatically employs
+             the main thread, explicitly dispatch UI work to the main thread.
+             For example, you can use `DispatchQueue.main.async` method.
+             */
+            self.userImageView.image = images.first
+            self.userImageView.backgroundColor = .clear
+        }
+
+        // Perform additional UI updates as needed.
+        // let dropLocation = session.location(in: view)
+    }
 
 }
 
