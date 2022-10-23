@@ -41,7 +41,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     let colorPicker = UIColorPickerViewController()
     let imagePicker = UIImagePickerController()
 
-    // TODO: fix image download and share on mac
 
     // MARK: Life Cycle
 
@@ -379,7 +378,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         var isiOSAppOnMac = false
         isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
         if isiOSAppOnMac {
-            shareAsImage()
+            // TODO: fixme
         } else {
             UIImageWriteToSavedPhotosAlbum(
                 image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
@@ -485,8 +484,15 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
 
     func copyAsImage() {
-        let image = generateImage()
-        UIPasteboard.general.image = image
+        var isiOSAppOnMac = false
+        isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
+        if isiOSAppOnMac {
+            // TODO: fixme
+        } else {
+            let image = generateImage()
+            UIPasteboard.general.image = image
+        }
+
     }
 
 
@@ -606,7 +612,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                                    didSelect color: UIColor, continuously: Bool) {
         let hexString = hexStringFromColor(color: colorPicker.selectedColor)
         updateColor(hexStringParam: hexString)
-//        dismiss(animated: true)
+        //        dismiss(animated: true)
     }
 
 
