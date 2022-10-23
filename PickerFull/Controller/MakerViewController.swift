@@ -41,6 +41,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     let colorPicker = UIColorPickerViewController()
     let imagePicker = UIImagePickerController()
 
+    // TODO: fix image download and share on mac
 
     // MARK: Life Cycle
 
@@ -605,7 +606,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                                    didSelect color: UIColor, continuously: Bool) {
         let hexString = hexStringFromColor(color: colorPicker.selectedColor)
         updateColor(hexStringParam: hexString)
-        dismiss(animated: true)
+//        dismiss(animated: true)
     }
 
 
