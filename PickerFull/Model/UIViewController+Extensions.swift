@@ -29,26 +29,26 @@ extension UIViewController {
         var alertTitle = ""
         var alertMessage = ""
         switch alertReasonParam {
-            case .imageSaved:
-                alertPreferredStyle = UIAlertController.Style.actionSheet
-                alertTitle = "Screenshot Generated"
-                alertMessage = "View it now in your gallery"
-            case .permissionDeniedGallery:
-                alertTitle = "Allow PickerFull access to your Gallery"
-                alertMessage = """
+        case .imageSaved:
+            alertPreferredStyle = UIAlertController.Style.actionSheet
+            alertTitle = "Screenshot Generated"
+            alertMessage = "View it now in your gallery"
+        case .permissionDeniedGallery:
+            alertTitle = "Allow PickerFull access to your Gallery"
+            alertMessage = """
                 Access was previously denied. Please grant access from Settings so PickerFull can save your image.
                 """
-            case .permissiondeniedCamera:
-                alertTitle = "Allow PickerFull access to your Camera"
-                alertMessage = """
+        case .permissiondeniedCamera:
+            alertTitle = "Allow PickerFull access to your Camera"
+            alertMessage = """
             Access was previously denied. Please grant access from Settings to use your Camera from within the app.
             """
-            case .deleteHistory:
-                alertTitle = "Delete All History?"
-                alertMessage = "Are you sure you want to delete all of Random History?"
-            default:
-                alertTitle = "Unknown Error"
-                alertMessage = """
+        case .deleteHistory:
+            alertTitle = "Delete All History?"
+            alertMessage = "Are you sure you want to delete all of Random History?"
+        default:
+            alertTitle = "Unknown Error"
+            alertMessage = """
             An unknown error occurred. Please try again
             """
         }
@@ -85,10 +85,10 @@ extension UIViewController {
         let blueString = hex[4...5]
 
         rgbString = String(Int(redString, radix: 16)!) +
-        ", " +
-        String(Int(greenString, radix: 16)!) +
-        ", " +
-        String(Int(blueString, radix: 16)!)
+            ", " +
+            String(Int(greenString, radix: 16)!) +
+            ", " +
+            String(Int(blueString, radix: 16)!)
 
         return rgbString
     }

@@ -60,7 +60,7 @@ class MagicTableViewController: UITableViewController {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         self.navigationItem.rightBarButtonItems = editing ? [editButtonItem, deleteAllButton]
-        : [editButtonItem]
+            : [editButtonItem]
     }
 
 
@@ -104,38 +104,38 @@ class MagicTableViewController: UITableViewController {
     override func tableView(
         _ tableView: UITableView,
         trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            let deleteAction = UIContextualAction(
-                style: .destructive, title: "Delete",
-                handler: { [self] (_, _, success: (Bool) -> Void) in
-                    let hexKeyItem: String = getArray()![indexPath.row]
-                    var currentArray: [String] = readFromDocs(fromDocumentsWithFileName: Const.UserDef.filename) ?? []
-                    currentArray = currentArray.filter { $0 != hexKeyItem }
-                    saveToDocs(text: currentArray.joined(separator: ","), withFileName: Const.UserDef.filename)
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-                    success(true)
-                })
-            deleteAction.backgroundColor = .red
-            return UISwipeActionsConfiguration(actions: [deleteAction])
-        }
+        let deleteAction = UIContextualAction(
+            style: .destructive, title: "Delete",
+            handler: { [self] (_, _, success: (Bool) -> Void) in
+                let hexKeyItem: String = getArray()![indexPath.row]
+                var currentArray: [String] = readFromDocs(fromDocumentsWithFileName: Const.UserDef.filename) ?? []
+                currentArray = currentArray.filter { $0 != hexKeyItem }
+                saveToDocs(text: currentArray.joined(separator: ","), withFileName: Const.UserDef.filename)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                success(true)
+            })
+        deleteAction.backgroundColor = .red
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
 
 
     override func tableView(
         _ tableView: UITableView,
         contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
 
-            return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
-                let copyHEXAction = UIAction(title: "Copy HEX", image: UIImage(systemName: "doc.on.doc")) { _ in
-                    let hexToCopy: String = (tableView.cellForRow(at: indexPath) as! MagicCell).hexLabel.text!
-                    UIPasteboard.general.string = String(hexToCopy.suffix(6))
-                }
-
-                let copyRGBAction = UIAction(title: "Copy RGB", image: UIImage(systemName: "doc.on.doc")) { _ in
-                    let rgbToCopy: String = (tableView.cellForRow(at: indexPath) as! MagicCell).rgbLabel.text!
-                    UIPasteboard.general.string = String(rgbToCopy[5...rgbToCopy.count-1])
-                }
-
-                return UIMenu(title: "", children: [copyHEXAction, copyRGBAction])
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let copyHEXAction = UIAction(title: "Copy HEX", image: UIImage(systemName: "doc.on.doc")) { _ in
+                let hexToCopy: String = (tableView.cellForRow(at: indexPath) as! MagicCell).hexLabel.text!
+                UIPasteboard.general.string = String(hexToCopy.suffix(6))
             }
+
+            let copyRGBAction = UIAction(title: "Copy RGB", image: UIImage(systemName: "doc.on.doc")) { _ in
+                let rgbToCopy: String = (tableView.cellForRow(at: indexPath) as! MagicCell).rgbLabel.text!
+                UIPasteboard.general.string = String(rgbToCopy[5...rgbToCopy.count-1])
+            }
+
+            return UIMenu(title: "", children: [copyHEXAction, copyRGBAction])
         }
+    }
 
 }

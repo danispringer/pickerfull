@@ -235,11 +235,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                                                 okMessage: Const.AppInfo.notNowMessage)
                         let goToSettingsButton = UIAlertAction(title: "Open Settings",
                                                                style: .default, handler: { _ in
-                            if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
-                                UIApplication.shared.open(url)
-                            }
+                                                                if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
+                                                                    UIApplication.shared.open(url)
+                                                                }
 
-                        })
+                                                               })
                         alert.addAction(goToSettingsButton)
                         if let presenter = alert.popoverPresentationController {
                             presenter.sourceView = imageMenuButton
@@ -365,8 +365,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         }
 
         let shareMenu = UIMenu(options: .displayInline, children: [
-            downloadImageAction, shareImageAction, shareTextRGBAction, shareTextHexAction,
-            copyImageAction, copyTextRgbAction, copyTextHexAction])
+                                downloadImageAction, shareImageAction, shareTextRGBAction, shareTextHexAction,
+                                copyImageAction, copyTextRgbAction, copyTextHexAction])
 
         return shareMenu
 
@@ -392,10 +392,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                                     okMessage: Const.AppInfo.notNowMessage)
             let goToSettingsButton = UIAlertAction(title: "Open Settings",
                                                    style: .default, handler: { _ in
-                if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
-                    UIApplication.shared.open(url)
-                }
-            })
+                                                    if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
+                                                        UIApplication.shared.open(url)
+                                                    }
+                                                   })
             alert.addAction(goToSettingsButton)
             if let presenter = alert.popoverPresentationController {
                 presenter.sourceView = shareOrCopyButton
@@ -416,11 +416,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     func copyAsText(format: Format) {
         var myText = ""
         switch format {
-            case .hex:
-                myText = getSafeHexFromUD()
-            case .rgb:
-                let hexString = getSafeHexFromUD()
-                myText = rgbFrom(hex: hexString)
+        case .hex:
+            myText = getSafeHexFromUD()
+        case .rgb:
+            let hexString = getSafeHexFromUD()
+            myText = rgbFrom(hex: hexString)
         }
         UIPasteboard.general.string = myText
     }
@@ -429,11 +429,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     func shareAsText(format: Format) {
         var myText = ""
         switch format {
-            case .hex:
-                myText = getSafeHexFromUD()
-            case .rgb:
-                let hexString = getSafeHexFromUD()
-                myText = rgbFrom(hex: hexString)
+        case .hex:
+            myText = getSafeHexFromUD()
+        case .rgb:
+            let hexString = getSafeHexFromUD()
+            myText = rgbFrom(hex: hexString)
         }
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = shareOrCopyButton
@@ -653,7 +653,7 @@ extension MakerViewController {
 
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         return session.hasItemsConforming(toTypeIdentifiers: [UTType.image.identifier]) &&
-        session.items.count == 1
+            session.items.count == 1
     }
 
 
@@ -723,9 +723,9 @@ extension MakerViewController {
 // Helper function inserted by Swift 4.2 migrator.
 private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(
     _ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-        return Dictionary(uniqueKeysWithValues: input.map { key, value in
-            (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
-    }
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in
+                        (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}
 
 
 // Helper function inserted by Swift 4.2 migrator.
@@ -737,5 +737,5 @@ private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerCon
 // Helper function inserted by Swift 4.2 migrator.
 private func convertFromUIImagePickerControllerInfoKeyDictionary(
     _ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-    }
+    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
