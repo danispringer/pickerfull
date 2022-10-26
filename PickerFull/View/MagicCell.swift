@@ -9,13 +9,13 @@
 import UIKit
 
 class MagicCell: UITableViewCell {
-
-
+    
+    
     // MARK: Outlets
-
+    
     @IBOutlet weak var hexLabel: UILabel!
     @IBOutlet weak var rgbLabel: UILabel!
     @IBOutlet weak var colorView: UIView!
-
-
+    
+    
 }

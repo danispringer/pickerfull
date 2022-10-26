@@ -16,42 +16,42 @@ import UniformTypeIdentifiers
 class MakerViewController: UIViewController, UINavigationControllerDelegate,
                            UIColorPickerViewControllerDelegate, UIScrollViewDelegate,
                            UIImagePickerControllerDelegate, UIDropInteractionDelegate {
-
-
+    
+    
     // MARK: Outlets
-
+    
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var qrImageView: UIImageView!
     @IBOutlet weak var containerScrollView: UIScrollView!
     @IBOutlet weak var userImageView: UIImageView!
-
+    
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var advancedButton: UIButton!
     @IBOutlet weak var imageMenuButton: UIButton!
     @IBOutlet weak var shareOrCopyButton: UIButton!
     @IBOutlet weak var randomButton: UIButton!
     @IBOutlet weak var historyButton: UIButton!
-
-
+    
+    
     // MARK: properties
-
+    
     var hexArrayForRandom: [String] = []
     var hexImage: UIImage!
     let colorPicker = UIColorPickerViewController()
     let imagePicker = UIImagePickerController()
-
-
+    
+    
     // MARK: Life Cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if CommandLine.arguments.contains("--pickerfullScreenshots") {
             // We are in testing mode, make arrangements if needed
             UIView.setAnimationsEnabled(false)
         }
-
+        
         containerScrollView.delegate = self
         containerScrollView.minimumZoomScale = 1.0
         containerScrollView.maximumZoomScale = 20.0
@@ -69,73 +69,73 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         messageLabel.layer.cornerRadius = 20
         messageLabel.layer.masksToBounds = true
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD())
-
+        
         resultView.backgroundColor = selectedColor
-
+        
         colorPicker.delegate = self
         colorPicker.supportsAlpha = false
         colorPicker.selectedColor = selectedColor
         colorPicker.title = "Image Color Picker"
-
+        
         imagePicker.delegate = self
-
+        
         aboutButton.menu = getAboutMenu()
         shareOrCopyButton.menu = getShareOrCopyMenu()
         imageMenuButton.menu = getImageMenu()
-
+        
         for button: UIButton in [aboutButton, imageMenuButton, shareOrCopyButton] {
             button.showsMenuAsPrimaryAction = true
         }
-
+        
         for button: UIButton in [aboutButton, advancedButton, imageMenuButton, shareOrCopyButton,
                                  randomButton, historyButton] {
             button.clipsToBounds = true
             button.layer.cornerRadius = 8
             button.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         }
-
+        
         let dropInteraction = UIDropInteraction(delegate: self)
         userImageView.addInteraction(dropInteraction)
-
-
+        
+        
     }
-
-
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-
-
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         if !UD.bool(forKey: Const.UserDef.tutorialShown) {
             showTutorial()
             UD.set(true, forKey: Const.UserDef.tutorialShown)
         }
     }
-
-
+    
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-
-
+    
+    
     // MARK: Helpers
-
+    
     func showTutorial() {
         let storyboard = UIStoryboard(name: Const.StoryboardIDIB.main, bundle: nil)
         let tutorialVC = storyboard.instantiateViewController(withIdentifier: Const.StoryboardIDIB.tutorialVC)
         present(tutorialVC, animated: true)
     }
-
-
+    
+    
     @objc func handleDoubleTap(_ recognizer: UITapGestureRecognizer) {
         if containerScrollView.zoomScale < containerScrollView.maximumZoomScale { // zoom in
             let point = recognizer.location(in: userImageView)
-
+            
             let scrollSize = containerScrollView.frame.size
             let size = CGSize(width: scrollSize.width / containerScrollView.maximumZoomScale,
                               height: scrollSize.height / containerScrollView.maximumZoomScale)
@@ -148,8 +148,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                                      center: recognizer.location(in: userImageView)), animated: true)
         }
     }
-
-
+    
+    
     func zoomRectForScale(scale: CGFloat, center: CGPoint) -> CGRect {
         var zoomRect = CGRect.zero
         zoomRect.size.height = userImageView.frame.size.height / scale
@@ -159,19 +159,19 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         zoomRect.origin.y = newCenter.y - (zoomRect.size.height / 2.0)
         return zoomRect
     }
-
-
+    
+    
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return userImageView
     }
-
-
+    
+    
     func getSafeHexFromUD() -> String {
         let hexString: String = UD.string(forKey: Const.UserDef.colorKey)!
         return hexString
     }
-
-
+    
+    
     func showApps() {
         let myURL = URL(string: Const.AppInfo.appsLink)
         guard let safeURL = myURL else {
@@ -182,28 +182,28 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             DispatchQueue.main.async {
                 self.present(alert, animated: true)
             }
-
+            
             return
         }
         UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
     }
-
-
+    
+    
     // MARK: Update Color
-
+    
     func updateColor(hexStringParam: String) {
         let mySafeString: String = hexStringParam
         let selectedColor: UIColor = uiColorFrom(hex: mySafeString)
         self.resultView.backgroundColor = selectedColor
         colorPicker.selectedColor = selectedColor
-
+        
         UD.set(mySafeString, forKey: Const.UserDef.colorKey)
-
+        
     }
-
-
+    
+    
     // MARK: Buttons
-
+    
     fileprivate func tryShowingCamera() {
         DispatchQueue.main.async {
             // already authorized
@@ -215,10 +215,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                 self.present(alert, animated: true)
             }
         }
-
+        
     }
-
-
+    
+    
     func getImageMenu() -> UIMenu {
         let newImageFromCamera = UIAction(title: Const.AppInfo.addFromCamera, image: UIImage(systemName: "camera"),
                                           state: .off) { _ in
@@ -235,11 +235,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                                                 okMessage: Const.AppInfo.notNowMessage)
                         let goToSettingsButton = UIAlertAction(title: "Open Settings",
                                                                style: .default, handler: { _ in
-                                                                if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
-                                                                    UIApplication.shared.open(url)
-                                                                }
-
-                                                               })
+                            if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
+                                UIApplication.shared.open(url)
+                            }
+                            
+                        })
                         alert.addAction(goToSettingsButton)
                         if let presenter = alert.popoverPresentationController {
                             presenter.sourceView = imageMenuButton
@@ -257,11 +257,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 self.imagePicker.sourceType = .photoLibrary
                 self.imagePicker.allowsEditing = false
-
+                
                 DispatchQueue.main.async {
                     self.present(self.imagePicker, animated: true, completion: nil)
                 }
-
+                
             }
         }
         let clearImage = UIAction(title: Const.AppInfo.clearImage,
@@ -269,13 +269,13 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             self.userImageView.image = nil
             self.userImageView.accessibilityLabel = ""
         }
-
+        
         let imageMenu = UIMenu(title: "", image: nil, options: .displayInline,
                                children: [newImageFromCamera, newImageFromGallery, clearImage])
         return imageMenu
     }
-
-
+    
+    
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
@@ -284,12 +284,12 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         containerScrollView.zoomScale = containerScrollView.minimumZoomScale
         imagePicker.dismiss(animated: true, completion: nil)
     }
-
-
+    
+    
     func getAboutMenu() -> UIMenu {
-
+        
         let version: String? = Bundle.main.infoDictionary?[Const.AppInfo.bundleShort] as? String
-
+        
         let shareApp = UIAction(title: Const.AppInfo.shareApp, image: UIImage(systemName: "heart"),
                                 state: .off) { _ in
             self.shareApp()
@@ -302,51 +302,51 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                                 state: .off) { _ in
             self.showApps()
         }
-
-
+        
+        
         let tutorial = UIAction(title: Const.AppInfo.tutorial, image: UIImage(systemName: "play.circle"),
                                 state: .off) { _ in
             self.showTutorial()
         }
-
-
+        
+        
         var myTitle = Const.AppInfo.appName
         if let safeVersion = version {
             myTitle += " \(Const.AppInfo.version) \(safeVersion)"
         }
-
+        
         let aboutMenu = UIMenu(title: myTitle, image: nil, options: .displayInline,
                                children: [review, shareApp, moreApps, tutorial])
         return aboutMenu
     }
-
-
+    
+    
     @IBAction func historyButtonTapped() {
         let magicVC = UIStoryboard(name: Const.StoryboardIDIB.main, bundle: nil)
             .instantiateViewController(withIdentifier: Const.StoryboardIDIB.magicTableVC)
-
+        
         self.navigationController?.pushViewController(magicVC, animated: true)
-
+        
     }
-
-
+    
+    
     func getShareOrCopyMenu() -> UIMenu {
-
+        
         let downloadImageAction = UIAction(title: "Generate Screenshot",
                                            image: UIImage(systemName: "square.and.arrow.down")) { _ in
             self.downloadAsImage()
         }
-
+        
         let shareTextHexAction = UIAction(title: "Share as HEX",
                                           image: UIImage(systemName: "doc.text")) { _ in
             self.shareAsText(format: .hex)
         }
-
+        
         let shareTextRGBAction = UIAction(title: "Share as RGB",
                                           image: UIImage(systemName: "doc.text")) { _ in
             self.shareAsText(format: .rgb)
         }
-
+        
         let shareImageAction = UIAction(title: "Share as image",
                                         image: UIImage(systemName: "photo")) { _ in
             self.shareAsImage()
@@ -363,16 +363,16 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                                        image: UIImage(systemName: "photo")) { _ in
             self.copyAsImage()
         }
-
+        
         let shareMenu = UIMenu(options: .displayInline, children: [
-                                downloadImageAction, shareImageAction, shareTextRGBAction, shareTextHexAction,
-                                copyImageAction, copyTextRgbAction, copyTextHexAction])
-
+            downloadImageAction, shareImageAction, shareTextRGBAction, shareTextHexAction,
+            copyImageAction, copyTextRgbAction, copyTextHexAction])
+        
         return shareMenu
-
+        
     }
-
-
+    
+    
     @IBAction func downloadAsImage() {
         let image = generateImage()
         var isiOSAppOnMac = false
@@ -384,18 +384,18 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                 image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
         }
     }
-
-
+    
+    
     @objc func saveImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         guard error == nil else {
             let alert = createAlert(alertReasonParam: AlertReason.permissionDeniedGallery,
                                     okMessage: Const.AppInfo.notNowMessage)
             let goToSettingsButton = UIAlertAction(title: "Open Settings",
                                                    style: .default, handler: { _ in
-                                                    if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
-                                                        UIApplication.shared.open(url)
-                                                    }
-                                                   })
+                if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
+                    UIApplication.shared.open(url)
+                }
+            })
             alert.addAction(goToSettingsButton)
             if let presenter = alert.popoverPresentationController {
                 presenter.sourceView = shareOrCopyButton
@@ -411,29 +411,29 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         imagePreviewVC.actualImage = hexImage
         present(imagePreviewVC, animated: true)
     }
-
-
+    
+    
     func copyAsText(format: Format) {
         var myText = ""
         switch format {
-        case .hex:
-            myText = getSafeHexFromUD()
-        case .rgb:
-            let hexString = getSafeHexFromUD()
-            myText = rgbFrom(hex: hexString)
+            case .hex:
+                myText = getSafeHexFromUD()
+            case .rgb:
+                let hexString = getSafeHexFromUD()
+                myText = rgbFrom(hex: hexString)
         }
         UIPasteboard.general.string = myText
     }
-
-
+    
+    
     func shareAsText(format: Format) {
         var myText = ""
         switch format {
-        case .hex:
-            myText = getSafeHexFromUD()
-        case .rgb:
-            let hexString = getSafeHexFromUD()
-            myText = rgbFrom(hex: hexString)
+            case .hex:
+                myText = getSafeHexFromUD()
+            case .rgb:
+                let hexString = getSafeHexFromUD()
+                myText = rgbFrom(hex: hexString)
         }
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = shareOrCopyButton
@@ -446,20 +446,20 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                 DispatchQueue.main.async {
                     self.present(alert, animated: true)
                 }
-
+                
                 return
             }
         }
         DispatchQueue.main.async {
             self.present(activityController, animated: true)
         }
-
+        
     }
-
-
+    
+    
     func shareAsImage() {
         let image = generateImage()
-
+        
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = shareOrCopyButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
@@ -471,18 +471,18 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                 DispatchQueue.main.async {
                     self.present(alert, animated: true)
                 }
-
-
+                
+                
                 return
             }
         }
         DispatchQueue.main.async {
             self.present(activityController, animated: true)
         }
-
+        
     }
-
-
+    
+    
     func copyAsImage() {
         var isiOSAppOnMac = false
         isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
@@ -492,14 +492,14 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             let image = generateImage()
             UIPasteboard.general.image = image
         }
-
+        
     }
-
-
+    
+    
     func generateImage() -> UIImage {
-
+        
         elementsShould(hide: true)
-
+        
         let regularAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 16),
             .foregroundColor: UIColor.white]
@@ -514,40 +514,40 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         let attributedMessagePreRGB = NSAttributedString(
             string: "\n\nRGB\n",
             attributes: regularAttributes)
-
+        
         let rgbString = rgbFrom(hex: hexString)
         let myUIColor = uiColorFrom(hex: hexString)
-
+        
         let attributedMessageJumboRGB = NSAttributedString(string: rgbString, attributes: jumboAttributes)
-
+        
         let attributedMessagePost = NSAttributedString(
             string: Const.AppInfo.creditMessage,
             attributes: regularAttributes)
-
+        
         let myAttributedText = NSMutableAttributedString()
-
+        
         myAttributedText.append(attributedMessagePreHex)
         myAttributedText.append(attributedMessageJumboHex)
         myAttributedText.append(attributedMessagePreRGB)
         myAttributedText.append(attributedMessageJumboRGB)
         myAttributedText.append(attributedMessagePost)
-
+        
         messageLabel.attributedText = myAttributedText
         let viewColorWas = view.backgroundColor
         view.backgroundColor = myUIColor
-
+        
         UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
         view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
         hexImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-
+        
         view.backgroundColor = viewColorWas
         elementsShould(hide: false)
-
+        
         return hexImage
     }
-
-
+    
+    
     func elementsShould(hide: Bool) {
         messageLabel.isHidden = !hide
         qrImageView.isHidden = !hide
@@ -557,12 +557,12 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         }
         containerScrollView.isHidden = hide
     }
-
-
+    
+    
     func shareApp() {
-
+        
         let message = "https://apps.apple.com/app/id1410565176"
-
+        
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
         activityController.popoverPresentationController?.sourceView = aboutButton
@@ -575,21 +575,21 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                 DispatchQueue.main.async {
                     self.present(alert, animated: true)
                 }
-
+                
                 return
             }
         }
         if let presenter = activityController.popoverPresentationController {
             presenter.sourceView = aboutButton
         }
-
+        
         DispatchQueue.main.async {
             self.present(activityController, animated: true)
         }
-
+        
     }
-
-
+    
+    
     @IBAction func showColorPicker() {
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD())
         colorPicker.selectedColor = selectedColor
@@ -598,71 +598,71 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             colorPicker.popoverPresentationController?.sourceView = advancedButton
             present(colorPicker, animated: true)
         }
-
+        
     }
-
-
+    
+    
     //    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
     //        let hexString = hexStringFromColor(color: colorPicker.selectedColor)
     //        updateColor(hexStringParam: hexString)
     //    }
-
-
+    
+    
     func colorPickerViewController(_ viewController: UIColorPickerViewController,
                                    didSelect color: UIColor, continuously: Bool) {
         let hexString = hexStringFromColor(color: colorPicker.selectedColor)
         updateColor(hexStringParam: hexString)
         //        dismiss(animated: true)
     }
-
-
+    
+    
     // MARK: Random
-
+    
     @IBAction func randomTapped(_ sender: Any) {
         makeRandomColor()
     }
-
-
+    
+    
     public func makeRandomColor() {
         var randomHex = ""
         let randomRed = hexArrayForRandom.randomElement()!
         let randomGreen = hexArrayForRandom.randomElement()!
         let randomBlue = hexArrayForRandom.randomElement()!
-
+        
         randomHex = randomRed + randomGreen + randomBlue
-
+        
         updateColor(hexStringParam: randomHex)
         saveToUD(color: randomHex)
     }
-
-
+    
+    
     func saveToUD(color: String) {
-
+        
         var savedColors: [String] = readFromDocs(fromDocumentsWithFileName: Const.UserDef.filename) ?? []
-
+        
         savedColors.append(color)
-
+        
         saveToDocs(text: savedColors.joined(separator: ","), withFileName: Const.UserDef.filename)
     }
-
-
+    
+    
 }
 
 
 extension MakerViewController {
-
+    
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         return session.hasItemsConforming(toTypeIdentifiers: [UTType.image.identifier]) &&
-            session.items.count == 1
+        session.items.count == 1
     }
-
-
+    
+    
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
         let dropLocation = session.location(in: view)
         //        updateLayers(forDropLocation: dropLocation)
-
+        
         let operation: UIDropOperation
-
+        
         if userImageView.frame.contains(dropLocation) {
             /*
              If you add in-app drag-and-drop support for the .move operation,
@@ -678,13 +678,13 @@ extension MakerViewController {
         }
         return UIDropProposal(operation: operation)
     }
-
-
+    
+    
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
         // Consume drag items (in this example, of type UIImage).
         session.loadObjects(ofClass: UIImage.self) { imageItems in
             let images = imageItems as! [UIImage]
-
+            
             /*
              If you do not employ the loadObjects(ofClass:completion:) convenience
              method of the UIDropSession class, which automatically employs
@@ -694,38 +694,38 @@ extension MakerViewController {
             self.userImageView.image = images.first
             self.userImageView.backgroundColor = .clear
         }
-
+        
         // Perform additional UI updates as needed.
         // let dropLocation = session.location(in: view)
     }
-
+    
 }
 
 
 extension MakerViewController {
-
+    
     func requestReviewManually() {
         guard let writeReviewURL = URL(string: Const.AppInfo.reviewLink)
         else {
             fatalError("Expected a valid URL")
         }
-
+        
         UIApplication.shared.open(
             writeReviewURL,
             options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
             completionHandler: nil)
-
+        
     }
-
+    
 }
 
 
 // Helper function inserted by Swift 4.2 migrator.
 private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(
     _ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-    return Dictionary(uniqueKeysWithValues: input.map { key, value in
-                        (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
-}
+        return Dictionary(uniqueKeysWithValues: input.map { key, value in
+            (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    }
 
 
 // Helper function inserted by Swift 4.2 migrator.
@@ -737,5 +737,5 @@ private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerCon
 // Helper function inserted by Swift 4.2 migrator.
 private func convertFromUIImagePickerControllerInfoKeyDictionary(
     _ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
+        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+    }

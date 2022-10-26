@@ -65,12 +65,12 @@ class TutorialViewController: UIViewController, AVPlayerViewControllerDelegate {
     func playerViewController(
         _ playerViewController: AVPlayerViewController,
         restoreUserInterfaceForPictureInPictureStopWithCompletionHandler
-            completionHandler: @escaping (Bool) -> Void) {
-        present(playerController, animated: true) { [self] in
-            player.play()
-            completionHandler(true)
+        completionHandler: @escaping (Bool) -> Void) {
+            present(playerController, animated: true) { [self] in
+                player.play()
+                completionHandler(true)
+            }
         }
-    }
 
 
     @objc func didfinishPlaying() {
@@ -100,5 +100,5 @@ class TutorialViewController: UIViewController, AVPlayerViewControllerDelegate {
         dismiss(animated: true)
     }
 
-
+    
 }
