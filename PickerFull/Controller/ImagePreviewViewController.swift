@@ -39,4 +39,3 @@ class ImagePreviewViewController: UIViewController {
         dismiss(animated: true)
     }
 }
-
