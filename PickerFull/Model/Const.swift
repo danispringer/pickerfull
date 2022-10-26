@@ -13,8 +13,8 @@ let UD = UserDefaults.standard
 
 
 struct Const {
-    
-    
+
+
     struct StoryboardIDIB {
         static let main = "Main"
         static let magicCell = "MagicCell"
@@ -22,20 +22,20 @@ struct Const {
         static let tutorialVC = "TutorialViewController"
         static let imagePreviewVC = "ImagePreviewViewController"
     }
-    
-    
+
+
     struct UserDef {
         static let colorKey = "color"
         static let defaultColor = "E57BF2"
         static let filename = "colors.txt"
         static let tutorialShown = "tutorialShown"
     }
-    
+
     struct Values {
         static let numToHexFormatter = "%02X"
         static let rgbMax = 255.0
     }
-    
+
     struct AppInfo {
         static let version = "v."
         static let leaveReview = "Leave a Review"
@@ -55,17 +55,18 @@ struct Const {
         static let showAppsButtonTitle = "More Apps"
         static let appsLink = "https://apps.apple.com/developer/id1402417666"
         static let creditMessage = """
-        
-        
+
+
         Screenshot created with
         PickerFull
         by
         Daniel Springer
-        
+
         Create, edit and share your favorite colors
         Get it now on the App Store
-        
+
         """
     }
-    
+
 }
+

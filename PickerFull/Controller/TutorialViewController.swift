@@ -100,5 +100,6 @@ class TutorialViewController: UIViewController, AVPlayerViewControllerDelegate {
         dismiss(animated: true)
     }
 
-    
+
 }
+

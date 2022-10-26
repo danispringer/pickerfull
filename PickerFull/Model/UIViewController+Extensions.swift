@@ -10,9 +10,9 @@ import UIKit
 
 
 extension UIViewController {
-    
+
     // MARK: Alerts
-    
+
     enum AlertReason {
         case unknown
         case imageSaved
@@ -20,12 +20,12 @@ extension UIViewController {
         case permissiondeniedCamera
         case deleteHistory
     }
-    
-    
+
+
     func createAlert(alertReasonParam: AlertReason, okMessage: String) -> UIAlertController {
-        
+
         var alertPreferredStyle = UIAlertController.Style.alert
-        
+
         var alertTitle = ""
         var alertMessage = ""
         switch alertReasonParam {
@@ -52,81 +52,81 @@ extension UIViewController {
             An unknown error occurred. Please try again
             """
         }
-        
+
         let alert = UIAlertController(
             title: alertTitle,
             message: alertMessage,
             preferredStyle: alertPreferredStyle)
-        
+
         let alertAction = UIAlertAction(
             title: okMessage,
             style: .cancel,
             handler: nil)
         alert.addAction(alertAction)
-        
+
         return alert
     }
-    
-    
+
+
     // MARK: Helpers
-    
+
     enum Format {
         case hex
         case rgb
     }
-    
-    
+
+
     func rgbFrom(hex: String) -> String {
-        
+
         var rgbString = ""
-        
+
         let redString = hex[0...1]
         let greenString = hex[2...3]
         let blueString = hex[4...5]
-        
+
         rgbString = String(Int(redString, radix: 16)!) +
         ", " +
         String(Int(greenString, radix: 16)!) +
         ", " +
         String(Int(blueString, radix: 16)!)
-        
+
         return rgbString
     }
-    
-    
+
+
     func uiColorFrom(hex: String) -> UIColor {
-        
+
         let redString = hex[0...1]
         let greenString = hex[2...3]
         let blueString = hex[4...5]
-        
+
         var myColor: UIColor
-        
+
         myColor = UIColor(
             red: CGFloat(Int(redString, radix: 16)!) / 255.0,
             green: CGFloat(Int(greenString, radix: 16)!) / 255.0,
             blue: CGFloat(Int(blueString, radix: 16)!) / 255.0,
             alpha: 1.0)
-        
-        
+
+
         return myColor
     }
-    
-    
+
+
     func hexStringFromColor(color: UIColor) -> String {
         let components = color.cgColor.components
         let red: CGFloat = components?[0] ?? 0.0
         let green: CGFloat = components?[1] ?? 0.0
         let blue: CGFloat = components?[2] ?? 0.0
-        
+
         let hexString = String.init(format: "%02lX%02lX%02lX",
                                     lroundf(Float(red * 255)),
                                     lroundf(Float(green * 255)),
                                     lroundf(Float(blue * 255)))
         return hexString
     }
-    
-    
+
+
     private func documentDirectory() -> String {
         let documentDirectory = NSSearchPathForDirectoriesInDomains(
             .documentDirectory,
@@ -134,19 +134,19 @@ extension UIViewController {
             true)
         return documentDirectory[0]
     }
-    
-    
+
+
     private func append(toPath path: String,
                         withPathComponent pathComponent: String) -> String? {
         if var pathURL = URL(string: path) {
             pathURL.appendPathComponent(pathComponent)
-            
+
             return pathURL.absoluteString
         }
-        
+
         return nil
     }
-    
+
     func readFromDocs(fromDocumentsWithFileName fileName: String) -> [String]? {
         guard let filePath = self.append(toPath: self.documentDirectory(),
                                          withPathComponent: fileName) else {
@@ -168,15 +168,15 @@ extension UIViewController {
             return nil
         }
     }
-    
-    
+
+
     func saveToDocs(text: String,
                     withFileName fileName: String) {
         guard let filePath = self.append(toPath: documentDirectory(),
                                          withPathComponent: fileName) else {
             return
         }
-        
+
         do {
             try text.write(toFile: filePath,
                            atomically: true,
@@ -185,8 +185,9 @@ extension UIViewController {
             print("Error", error)
             return
         }
-        
+
         // print("Save successful")
     }
-    
+
 }
+
