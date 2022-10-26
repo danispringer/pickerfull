@@ -378,7 +378,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         var isiOSAppOnMac = false
         isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
         if isiOSAppOnMac {
-            // TODO: fixme
+            // TODO: fixme: see apple email link
         } else {
             UIImageWriteToSavedPhotosAlbum(
                 image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
@@ -487,7 +487,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         var isiOSAppOnMac = false
         isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
         if isiOSAppOnMac {
-            // TODO: fixme
+            // TODO: fixme: see apple email link
         } else {
             let image = generateImage()
             UIPasteboard.general.image = image
