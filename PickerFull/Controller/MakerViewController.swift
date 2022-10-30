@@ -517,7 +517,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         var isiOSAppOnMac = false
         isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
         if isiOSAppOnMac {
-            // TODO: fixme: see apple email link
             shareAsImage()
         } else {
             let image = generateImage()
