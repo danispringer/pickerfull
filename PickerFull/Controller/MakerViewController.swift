@@ -524,7 +524,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             UIPasteboard.general.image = image
         }
     }
-
+// TODO: don't ask to save to gallery, or only ask on preview page (but also state 'drag works')
 
     func generateImage() -> UIImage {
 
