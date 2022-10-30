@@ -523,7 +523,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             let image = generateImage()
             UIPasteboard.general.image = image
         }
-
     }
 
 

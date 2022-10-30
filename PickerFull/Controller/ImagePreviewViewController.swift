@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImagePreviewViewController: UIViewController {
+class ImagePreviewViewController: UIViewController, UIDragInteractionDelegate {
 
     // MARK: Outlets
 
@@ -25,10 +25,27 @@ class ImagePreviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         myImageView.image = actualImage
+        myImageView.isUserInteractionEnabled = true
+        customEnableDragging(on: myImageView, dragInteractionDelegate: self)
     }
 
 
     // MARK: Helpers
+
+    func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
+        // Cast is required for NSItemProviderWriting support.
+        let stringItemProvider = NSItemProvider(object: myImageView.image! as UIImage)
+        return [
+            UIDragItem(itemProvider: stringItemProvider)
+        ]
+    }
+
+
+    func customEnableDragging(on view: UIView, dragInteractionDelegate: UIDragInteractionDelegate) {
+        let dragInteraction = UIDragInteraction(delegate: dragInteractionDelegate)
+        view.addInteraction(dragInteraction)
+    }
+
 
     @IBAction func openGalleryTapped(_ sender: Any) {
         var isiOSAppOnMac = false
