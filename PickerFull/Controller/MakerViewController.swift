@@ -11,6 +11,7 @@ import StoreKit
 import MessageUI
 import AVKit
 import UniformTypeIdentifiers
+import Photos
 
 
 class MakerViewController: UIViewController, UINavigationControllerDelegate,
@@ -374,15 +375,43 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
 
     @IBAction func downloadAsImage() {
-        let image = generateImage()
-        var isiOSAppOnMac = false
-        isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
-        if isiOSAppOnMac {
-            // TODO: fixme: see apple email link
-            shareAsImage()
-        } else {
-            UIImageWriteToSavedPhotosAlbum(
-                image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
+        Task { @MainActor in
+            let image = generateImage()
+            var isiOSAppOnMac = false
+            isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
+            if isiOSAppOnMac {
+                PHPhotoLibrary
+                    .requestAuthorization(for: .addOnly) { status in
+                        switch status {
+                            case .authorized:
+                                PHPhotoLibrary.shared().performChanges({
+                                    PHAssetChangeRequest.creationRequestForAsset(from: image)
+                                }, completionHandler: { done, error in
+                                    if done {
+                                        DispatchQueue.main.async {
+                                            let imagePreviewVC = UIStoryboard(
+                                                name: Const.StoryboardIDIB.main, bundle: nil)
+                                                .instantiateViewController(
+                                                    withIdentifier: Const.StoryboardIDIB.imagePreviewVC)
+                                            as! ImagePreviewViewController
+                                            imagePreviewVC.actualImage = self.hexImage
+                                            self.present(imagePreviewVC, animated: true)
+                                        }
+
+                                    } else {
+                                        print(error!.localizedDescription)
+                                    }
+                                })
+                            case .denied, .limited, .notDetermined, .restricted:
+                                print("\(status)")
+                            @unknown default:
+                                fatalError()
+                        }
+                    }
+            } else {
+                UIImageWriteToSavedPhotosAlbum(
+                    image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
+            }
         }
     }
 

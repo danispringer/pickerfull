@@ -15,7 +15,6 @@ extension UIViewController {
 
     enum AlertReason {
         case unknown
-        case imageSaved
         case permissionDeniedGallery
         case permissiondeniedCamera
         case deleteHistory
@@ -24,15 +23,9 @@ extension UIViewController {
 
     func createAlert(alertReasonParam: AlertReason, okMessage: String) -> UIAlertController {
 
-        var alertPreferredStyle = UIAlertController.Style.alert
-
         var alertTitle = ""
         var alertMessage = ""
         switch alertReasonParam {
-            case .imageSaved:
-                alertPreferredStyle = UIAlertController.Style.actionSheet
-                alertTitle = "Screenshot Generated"
-                alertMessage = "View it now in your gallery"
             case .permissionDeniedGallery:
                 alertTitle = "Allow PickerFull access to your Gallery"
                 alertMessage = """
@@ -56,7 +49,7 @@ extension UIViewController {
         let alert = UIAlertController(
             title: alertTitle,
             message: alertMessage,
-            preferredStyle: alertPreferredStyle)
+            preferredStyle: .alert)
 
         let alertAction = UIAlertAction(
             title: okMessage,

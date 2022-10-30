@@ -31,7 +31,19 @@ class ImagePreviewViewController: UIViewController {
     // MARK: Helpers
 
     @IBAction func openGalleryTapped(_ sender: Any) {
-        UIApplication.shared.open(URL(string: Const.AppInfo.galleryLink)!)
+        var isiOSAppOnMac = false
+        isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
+        if isiOSAppOnMac {
+            let path = (FileManager.default.urls(
+                for: .applicationDirectory,
+                in: .systemDomainMask
+            ).first?.appendingPathComponent("Photos.app"))!
+            UIApplication.shared.open(path)
+
+        } else {
+            UIApplication.shared.open(URL(string: Const.AppInfo.galleryLink)!)
+        }
+
     }
 
 
