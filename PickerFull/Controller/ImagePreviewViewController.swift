@@ -66,12 +66,7 @@ class ImagePreviewViewController: UIViewController, UIDragInteractionDelegate {
             }
             return
         }
-        let alert = createAlert(alertReasonParam: .imageSaved, okMessage: "OK")
-        let openGalleryAction = UIAlertAction(title: "Open Photos", style: .default) { _ in
-            self.openGalleryTapped()
-        }
-        alert.addAction(openGalleryAction)
-        present(alert, animated: true)
+        showImageSavedAlert()
     }
 
 
@@ -128,8 +123,7 @@ class ImagePreviewViewController: UIViewController, UIDragInteractionDelegate {
                                 }, completionHandler: { done, error in
                                     if done {
                                         DispatchQueue.main.async {
-                                            let alert = self.createAlert(alertReasonParam: .imageSaved, okMessage: "OK")
-                                            self.present(alert, animated: true)
+                                            self.showImageSavedAlert()
                                         }
                                     } else {
                                         print(error!.localizedDescription)
@@ -146,6 +140,16 @@ class ImagePreviewViewController: UIViewController, UIDragInteractionDelegate {
                     image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
             }
         }
+    }
+
+
+    func showImageSavedAlert() {
+        let alert = createAlert(alertReasonParam: .imageSaved, okMessage: "OK")
+        let openGalleryAction = UIAlertAction(title: "Open Photos", style: .default) { _ in
+            self.openGalleryTapped()
+        }
+        alert.addAction(openGalleryAction)
+        present(alert, animated: true)
     }
 
 
