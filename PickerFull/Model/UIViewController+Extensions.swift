@@ -18,6 +18,7 @@ extension UIViewController {
         case permissionDeniedGallery
         case permissiondeniedCamera
         case deleteHistory
+        case imageSaved
     }
 
 
@@ -39,6 +40,9 @@ extension UIViewController {
             case .deleteHistory:
                 alertTitle = "Delete All History?"
                 alertMessage = "Are you sure you want to delete all of Random History?"
+            case .imageSaved:
+                alertTitle = "Image Saved"
+                alertMessage = "You can view it in your Photos app"
             default:
                 alertTitle = "Unknown Error"
                 alertMessage = """

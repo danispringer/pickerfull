@@ -98,61 +98,86 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="Mhs-xX-Vry">
-                                <rect key="frame" x="16" y="179.66666666666663" width="398" height="585"/>
+                                <rect key="frame" x="16" y="147.66666666666663" width="398" height="499"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="1UD-oN-VfA"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="128" id="y91-3E-Mfn"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image Saved to Gallery" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkh-Pc-aKO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here Is Your Image" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkh-Pc-aKO">
                                 <rect key="frame" x="16" y="75" width="398" height="40.666666666666657"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6JT-WC-AfJ">
-                                <rect key="frame" x="126.66666666666667" y="796.66666666666663" width="176.66666666666663" height="34.333333333333371"/>
+                                <rect key="frame" x="130" y="780.66666666666663" width="170.33333333333337" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="photo.on.rectangle.angled" catalog="system" title="View in Gallery" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.down" catalog="system" title="Save to Photos" imagePadding="8">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="openGalleryTapped:" destination="JgW-Mn-Xfr" eventType="touchUpInside" id="ETJ-Bb-ZPL"/>
+                                    <action selector="downloadAsImage" destination="JgW-Mn-Xfr" eventType="touchUpInside" id="nJM-tV-6dA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPh-8w-h2G">
+                                <rect key="frame" x="139.66666666666666" y="729.66666666666663" width="150.99999999999997" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.up" catalog="system" title="Share image" imagePadding="8">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="shareAsImage" destination="JgW-Mn-Xfr" eventType="touchUpInside" id="FeP-Jv-gRr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="678-P1-fCm">
-                                <rect key="frame" x="169.66666666666666" y="847" width="90.666666666666657" height="35"/>
+                                <rect key="frame" x="132.66666666666669" y="847" width="164.66666666666669" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Not Now">
+                                <buttonConfiguration key="configuration" style="gray" image="trash" catalog="system" title="Discard image" imagePadding="8">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="notNowTapped:" destination="JgW-Mn-Xfr" eventType="touchUpInside" id="Yxv-Gk-ik2"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M2G-Ro-s0f">
+                                <rect key="frame" x="140" y="678.66666666666663" width="150" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="doc.on.doc" catalog="system" title="Copy image" imagePadding="8">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="copyAsImage" destination="JgW-Mn-Xfr" eventType="touchUpInside" id="1IT-W3-bdE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TmC-8T-32R"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Mhs-xX-Vry" firstAttribute="top" secondItem="qkh-Pc-aKO" secondAttribute="bottom" constant="32" id="4ro-PF-38O"/>
                             <constraint firstItem="Mhs-xX-Vry" firstAttribute="leading" secondItem="TmC-8T-32R" secondAttribute="leading" constant="16" id="5Qn-qX-9fn"/>
-                            <constraint firstItem="6JT-WC-AfJ" firstAttribute="top" secondItem="Mhs-xX-Vry" secondAttribute="bottom" constant="32" id="6dA-fW-cqG"/>
                             <constraint firstItem="qkh-Pc-aKO" firstAttribute="leading" secondItem="TmC-8T-32R" secondAttribute="leading" constant="16" id="7Ra-h7-XID"/>
                             <constraint firstItem="qkh-Pc-aKO" firstAttribute="top" secondItem="TmC-8T-32R" secondAttribute="top" constant="16" id="CIi-U0-8MX"/>
-                            <constraint firstItem="678-P1-fCm" firstAttribute="top" secondItem="6JT-WC-AfJ" secondAttribute="bottom" constant="16" id="IDv-wV-vyB"/>
+                            <constraint firstItem="M2G-Ro-s0f" firstAttribute="top" secondItem="Mhs-xX-Vry" secondAttribute="bottom" constant="32" id="DBt-WN-mP6"/>
+                            <constraint firstItem="rPh-8w-h2G" firstAttribute="top" secondItem="M2G-Ro-s0f" secondAttribute="bottom" constant="16" id="Hbv-iM-qGd"/>
+                            <constraint firstItem="678-P1-fCm" firstAttribute="top" secondItem="6JT-WC-AfJ" secondAttribute="bottom" constant="32" id="IDv-wV-vyB"/>
                             <constraint firstItem="TmC-8T-32R" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6JT-WC-AfJ" secondAttribute="trailing" constant="16" id="IgJ-be-pQE"/>
                             <constraint firstItem="678-P1-fCm" firstAttribute="bottom" secondItem="TmC-8T-32R" secondAttribute="bottom" constant="-16" id="Ua8-vJ-FeL"/>
                             <constraint firstItem="678-P1-fCm" firstAttribute="centerX" secondItem="TmC-8T-32R" secondAttribute="centerX" id="aEA-zL-0Eq"/>
                             <constraint firstItem="TmC-8T-32R" firstAttribute="trailing" secondItem="Mhs-xX-Vry" secondAttribute="trailing" constant="16" id="b7j-7G-6PN"/>
-                            <constraint firstItem="Mhs-xX-Vry" firstAttribute="top" secondItem="qkh-Pc-aKO" secondAttribute="bottom" constant="64" id="bRK-LZ-fH7"/>
                             <constraint firstItem="678-P1-fCm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="TmC-8T-32R" secondAttribute="leading" constant="16" id="bfT-tY-43F"/>
+                            <constraint firstItem="6JT-WC-AfJ" firstAttribute="top" secondItem="rPh-8w-h2G" secondAttribute="bottom" constant="16" id="ctN-s7-LUd"/>
                             <constraint firstItem="6JT-WC-AfJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="TmC-8T-32R" secondAttribute="leading" constant="16" id="d5W-bt-GjE"/>
                             <constraint firstItem="6JT-WC-AfJ" firstAttribute="centerX" secondItem="TmC-8T-32R" secondAttribute="centerX" id="fRk-du-Pel"/>
                             <constraint firstItem="TmC-8T-32R" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="678-P1-fCm" secondAttribute="trailing" constant="16" id="s9i-1Q-6ZA"/>
                             <constraint firstItem="TmC-8T-32R" firstAttribute="trailing" secondItem="qkh-Pc-aKO" secondAttribute="trailing" constant="16" id="w8p-Az-b72"/>
+                            <constraint firstItem="rPh-8w-h2G" firstAttribute="centerX" secondItem="TmC-8T-32R" secondAttribute="centerX" id="xdm-Xg-RcM"/>
+                            <constraint firstItem="M2G-Ro-s0f" firstAttribute="centerX" secondItem="TmC-8T-32R" secondAttribute="centerX" id="zfx-X8-p2m"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="myImageView" destination="Mhs-xX-Vry" id="YfK-wg-yTG"/>
+                        <outlet property="shareAsImageButton" destination="rPh-8w-h2G" id="OSb-If-nad"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TGH-EA-KZT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -209,37 +234,37 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEo-KS-B1i">
-                                <rect key="frame" x="0.0" y="573" width="50" height="34"/>
+                                <rect key="frame" x="0.0" y="573" width="137" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system" imagePadding="0.0">
+                                <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system" imagePlacement="leading" title="About app" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-hD-fEQ">
-                                <rect key="frame" x="0.0" y="615" width="48" height="34"/>
+                                <rect key="frame" x="0.0" y="615" width="172.33333333333334" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system" imagePadding="0.0">
+                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system" imagePlacement="leading" title="Share and save" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNf-u5-6Xf">
-                                <rect key="frame" x="0.0" y="657" width="55.666666666666664" height="34"/>
+                                <rect key="frame" x="0.0" y="657" width="164.33333333333334" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="camera" catalog="system" imagePadding="0.0">
+                                <buttonConfiguration key="configuration" style="plain" image="camera" catalog="system" imagePlacement="leading" title="Import image" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-OX-DMb">
-                                <rect key="frame" x="0.0" y="699" width="53" height="34"/>
+                                <rect key="frame" x="0.0" y="699" width="180.33333333333334" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="book" catalog="system" imagePadding="0.0">
+                                <buttonConfiguration key="configuration" style="plain" image="book" catalog="system" imagePlacement="leading" title="Random history" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                 </buttonConfiguration>
@@ -248,9 +273,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXP-06-ffR">
-                                <rect key="frame" x="0.0" y="741" width="54" height="34"/>
+                                <rect key="frame" x="0.0" y="741" width="186.33333333333334" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <buttonConfiguration key="configuration" style="plain" image="paintpalette" catalog="system" imagePadding="0.0">
+                                <buttonConfiguration key="configuration" style="plain" image="paintpalette" catalog="system" imagePlacement="leading" title="Advanced editor" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                 </buttonConfiguration>
@@ -259,10 +284,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2z-Ue-gCv">
-                                <rect key="frame" x="0.0" y="783" width="51" height="34"/>
+                                <rect key="frame" x="0.0" y="783" width="198.66666666666666" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="wand.and.stars" catalog="system" imagePadding="0.0">
+                                <buttonConfiguration key="configuration" style="plain" image="wand.and.stars" catalog="system" imagePlacement="leading" title="New random color" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                 </buttonConfiguration>
@@ -319,7 +344,7 @@
                         <outlet property="qrImageView" destination="Fhb-Dc-Ypx" id="Fxm-Fy-TXC"/>
                         <outlet property="randomButton" destination="i2z-Ue-gCv" id="QxC-RW-8xC"/>
                         <outlet property="resultView" destination="7iT-jJ-EaV" id="fu8-S3-1HE"/>
-                        <outlet property="shareOrCopyButton" destination="4cf-hD-fEQ" id="b94-Cb-zKb"/>
+                        <outlet property="shareOrSaveButton" destination="4cf-hD-fEQ" id="lZe-Ld-135"/>
                         <outlet property="userImageView" destination="xQP-48-zh1" id="Lh3-tB-FQc"/>
                     </connections>
                 </viewController>
@@ -337,10 +362,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MagicCell" id="ZFJ-pI-PMh" customClass="MagicCell" customModule="PickerFull" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.333332061767578" width="430" height="92.666664123535156"/>
+                                <rect key="frame" x="0.0" y="55.333332061767578" width="430" height="92.333335876464844"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZFJ-pI-PMh" id="hd8-Ze-7gE">
-                                    <rect key="frame" x="0.0" y="0.0" width="430" height="92.666664123535156"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="92.333335876464844"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABCDEF" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCe-dH-rNb" userLabel="HEXHEX">
@@ -350,13 +375,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="123,123,123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="939-sv-HEi">
-                                            <rect key="frame" x="16" y="53.666666666666657" width="191" height="23"/>
+                                            <rect key="frame" x="16" y="53.666666666666664" width="191" height="22.666666666666664"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J10-oG-MJg">
-                                            <rect key="frame" x="223" y="15.999999999999996" width="271" height="60.666666666666657"/>
+                                            <rect key="frame" x="223" y="16.000000000000004" width="271" height="60.333333333333343"/>
                                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                                         </view>
                                     </subviews>
@@ -395,15 +420,17 @@
     </scenes>
     <resources>
         <image name="IconExtra" width="1024" height="1024"/>
-        <image name="book" catalog="system" width="128" height="99"/>
-        <image name="camera" catalog="system" width="128" height="93"/>
-        <image name="info.circle" catalog="system" width="128" height="123"/>
-        <image name="paintpalette" catalog="system" width="128" height="105"/>
-        <image name="photo.on.rectangle.angled" catalog="system" width="128" height="98"/>
-        <image name="play.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="book" catalog="system" width="32" height="32"/>
+        <image name="camera" catalog="system" width="32" height="32"/>
+        <image name="doc.on.doc" catalog="system" width="32" height="32"/>
+        <image name="info.circle" catalog="system" width="32" height="32"/>
+        <image name="paintpalette" catalog="system" width="32" height="32"/>
+        <image name="play.circle.fill" catalog="system" width="32" height="32"/>
         <image name="qr" width="2214" height="2214"/>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
-        <image name="wand.and.stars" catalog="system" width="128" height="115"/>
+        <image name="square.and.arrow.down" catalog="system" width="32" height="32"/>
+        <image name="square.and.arrow.up" catalog="system" width="32" height="32"/>
+        <image name="trash" catalog="system" width="32" height="32"/>
+        <image name="wand.and.stars" catalog="system" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

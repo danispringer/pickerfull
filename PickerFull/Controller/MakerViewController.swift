@@ -11,7 +11,6 @@ import StoreKit
 import MessageUI
 import AVKit
 import UniformTypeIdentifiers
-import Photos
 
 
 class MakerViewController: UIViewController, UINavigationControllerDelegate,
@@ -30,10 +29,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var advancedButton: UIButton!
     @IBOutlet weak var imageMenuButton: UIButton!
-    @IBOutlet weak var shareOrCopyButton: UIButton!
     @IBOutlet weak var randomButton: UIButton!
     @IBOutlet weak var historyButton: UIButton!
 
+    @IBOutlet weak var shareOrSaveButton: UIButton!
 
     // MARK: properties
 
@@ -81,14 +80,14 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         imagePicker.delegate = self
 
         aboutButton.menu = getAboutMenu()
-        shareOrCopyButton.menu = getShareOrCopyMenu()
+        shareOrSaveButton.menu = getShareOrSaveMenu()
         imageMenuButton.menu = getImageMenu()
 
-        for button: UIButton in [aboutButton, imageMenuButton, shareOrCopyButton] {
+        for button: UIButton in [aboutButton, imageMenuButton, shareOrSaveButton] {
             button.showsMenuAsPrimaryAction = true
         }
 
-        for button: UIButton in [aboutButton, advancedButton, imageMenuButton, shareOrCopyButton,
+        for button: UIButton in [aboutButton, advancedButton, imageMenuButton, shareOrSaveButton,
                                  randomButton, historyButton] {
             button.clipsToBounds = true
             button.layer.cornerRadius = 8
@@ -331,11 +330,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     }
 
 
-    func getShareOrCopyMenu() -> UIMenu {
+    func getShareOrSaveMenu() -> UIMenu {
 
-        let downloadImageAction = UIAction(title: "Generate Screenshot",
+        let generateImageAction = UIAction(title: "Generate Screenshot",
                                            image: UIImage(systemName: "square.and.arrow.down")) { _ in
-            self.downloadAsImage()
+            self.generateImage()
         }
 
         let shareTextHexAction = UIAction(title: "Share as HEX",
@@ -347,11 +346,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                                           image: UIImage(systemName: "doc.text")) { _ in
             self.shareAsText(format: .rgb)
         }
-
-        let shareImageAction = UIAction(title: "Share as image",
-                                        image: UIImage(systemName: "photo")) { _ in
-            self.shareAsImage()
-        }
         let copyTextHexAction = UIAction(title: "Copy as HEX",
                                          image: UIImage(systemName: "doc.on.doc")) { _ in
             self.copyAsText(format: .hex)
@@ -360,85 +354,21 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                                          image: UIImage(systemName: "doc.on.doc")) { _ in
             self.copyAsText(format: .rgb)
         }
-        let copyImageAction = UIAction(title: "Copy as image",
-                                       image: UIImage(systemName: "photo")) { _ in
-            self.copyAsImage()
-        }
 
         let shareMenu = UIMenu(options: .displayInline, children: [
-            downloadImageAction, shareImageAction, shareTextRGBAction, shareTextHexAction,
-            copyImageAction, copyTextRgbAction, copyTextHexAction])
+            generateImageAction, shareTextRGBAction, shareTextHexAction,
+            copyTextRgbAction, copyTextHexAction])
 
         return shareMenu
 
     }
 
 
-    @IBAction func downloadAsImage() {
-        Task { @MainActor in
-            let image = generateImage()
-            var isiOSAppOnMac = false
-            isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
-            if isiOSAppOnMac {
-                PHPhotoLibrary
-                    .requestAuthorization(for: .addOnly) { status in
-                        switch status {
-                            case .authorized:
-                                PHPhotoLibrary.shared().performChanges({
-                                    PHAssetChangeRequest.creationRequestForAsset(from: image)
-                                }, completionHandler: { done, error in
-                                    if done {
-                                        DispatchQueue.main.async {
-                                            let imagePreviewVC = UIStoryboard(
-                                                name: Const.StoryboardIDIB.main, bundle: nil)
-                                                .instantiateViewController(
-                                                    withIdentifier: Const.StoryboardIDIB.imagePreviewVC)
-                                            as! ImagePreviewViewController
-                                            imagePreviewVC.actualImage = self.hexImage
-                                            self.present(imagePreviewVC, animated: true)
-                                        }
-
-                                    } else {
-                                        print(error!.localizedDescription)
-                                    }
-                                })
-                            case .denied, .limited, .notDetermined, .restricted:
-                                print("\(status)")
-                            @unknown default:
-                                fatalError()
-                        }
-                    }
-            } else {
-                UIImageWriteToSavedPhotosAlbum(
-                    image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
-            }
-        }
-    }
-
-
-    @objc func saveImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        guard error == nil else {
-            let alert = createAlert(alertReasonParam: AlertReason.permissionDeniedGallery,
-                                    okMessage: Const.AppInfo.notNowMessage)
-            let goToSettingsButton = UIAlertAction(title: "Open Settings",
-                                                   style: .default, handler: { _ in
-                if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
-                    UIApplication.shared.open(url)
-                }
-            })
-            alert.addAction(goToSettingsButton)
-            if let presenter = alert.popoverPresentationController {
-                presenter.sourceView = shareOrCopyButton
-            }
-            DispatchQueue.main.async {
-                self.present(alert, animated: true)
-            }
-            return
-        }
+    func presentImagePreview() {
         let imagePreviewVC = UIStoryboard(
             name: Const.StoryboardIDIB.main, bundle: nil).instantiateViewController(
                 withIdentifier: Const.StoryboardIDIB.imagePreviewVC) as! ImagePreviewViewController
-        imagePreviewVC.actualImage = hexImage
+        imagePreviewVC.actualImage = hexImage!
         present(imagePreviewVC, animated: true)
     }
 
@@ -466,12 +396,12 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                 myText = rgbFrom(hex: hexString)
         }
         let activityController = UIActivityViewController(activityItems: [myText], applicationActivities: nil)
-        activityController.popoverPresentationController?.sourceView = shareOrCopyButton
+        activityController.popoverPresentationController?.sourceView = shareOrSaveButton
         activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
                 let alert = self.createAlert(alertReasonParam: AlertReason.unknown, okMessage: Const.AppInfo.okMessage)
                 if let presenter = alert.popoverPresentationController {
-                    presenter.sourceView = self.shareOrCopyButton
+                    presenter.sourceView = self.shareOrSaveButton
                 }
                 DispatchQueue.main.async {
                     self.present(alert, animated: true)
@@ -487,45 +417,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     }
 
 
-    func shareAsImage() {
-        let image = generateImage()
-
-        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        activityController.popoverPresentationController?.sourceView = shareOrCopyButton
-        activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
-            guard error == nil else {
-                let alert = self.createAlert(alertReasonParam: AlertReason.unknown, okMessage: Const.AppInfo.okMessage)
-                if let presenter = alert.popoverPresentationController {
-                    presenter.sourceView = self.shareOrCopyButton
-                }
-                DispatchQueue.main.async {
-                    self.present(alert, animated: true)
-                }
-
-
-                return
-            }
-        }
-        DispatchQueue.main.async {
-            self.present(activityController, animated: true)
-        }
-
-    }
-
-
-    func copyAsImage() {
-        var isiOSAppOnMac = false
-        isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
-        if isiOSAppOnMac {
-            shareAsImage()
-        } else {
-            let image = generateImage()
-            UIPasteboard.general.image = image
-        }
-    }
-// TODO: don't ask to save to gallery, or only ask on preview page (but also state 'drag works')
-
-    func generateImage() -> UIImage {
+    func generateImage() {
 
         elementsShould(hide: true)
 
@@ -573,14 +465,14 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         view.backgroundColor = viewColorWas
         elementsShould(hide: false)
 
-        return hexImage
+        presentImagePreview()
     }
 
 
     func elementsShould(hide: Bool) {
         messageLabel.isHidden = !hide
         qrImageView.isHidden = !hide
-        for button: UIButton in [aboutButton, advancedButton, imageMenuButton, shareOrCopyButton,
+        for button: UIButton in [aboutButton, advancedButton, imageMenuButton, shareOrSaveButton,
                                  randomButton, historyButton] {
             button.isHidden = hide
         }
@@ -631,17 +523,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     }
 
 
-    //    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-    //        let hexString = hexStringFromColor(color: colorPicker.selectedColor)
-    //        updateColor(hexStringParam: hexString)
-    //    }
-
-
     func colorPickerViewController(_ viewController: UIColorPickerViewController,
                                    didSelect color: UIColor, continuously: Bool) {
         let hexString = hexStringFromColor(color: colorPicker.selectedColor)
         updateColor(hexStringParam: hexString)
-        //        dismiss(animated: true)
     }
 
 
