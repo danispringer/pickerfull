@@ -14,6 +14,8 @@ class PickerFullScreenshots: XCTestCase {
 
     var app: XCUIApplication!
 
+    let pickerString = "Advanced editor"
+
 
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -33,7 +35,7 @@ class PickerFullScreenshots: XCTestCase {
 
     func testAdvancedPicker() {
         app.launch()
-        app.buttons["Image Color Picker"].tap()
+        app.buttons[pickerString].tap()
         XCTAssertTrue(app.buttons["Sliders"].waitForExistence(timeout: 5))
         app.buttons["Sliders"].tap()
         takeScreenshot(name: "Advanced")
@@ -42,11 +44,11 @@ class PickerFullScreenshots: XCTestCase {
 
     func testFloatingPicker() {
         app.launch()
-        app.staticTexts["Choose Photo"].tap()
+        app.staticTexts["Import image"].tap()
         app.collectionViews.buttons["Choose Photo"].tap()
         app.scrollViews.otherElements.images.firstMatch.tap()
-        XCTAssert(app.buttons["Image Color Picker"].waitForExistence(timeout: 5))
-        app.buttons["Image Color Picker"].tap()
+        XCTAssert(app.buttons[pickerString].waitForExistence(timeout: 5))
+        app.buttons[pickerString].tap()
         app.buttons["Floating color picker"].tap()
         XCTAssert(app.waitForExistence(timeout: 5))
         _ = XCTWaiter.wait(for: [expectation(description: "Wait for n seconds")], timeout: 10.0)
@@ -58,9 +60,9 @@ class PickerFullScreenshots: XCTestCase {
 
     func testSaveImage() {
         app.launch()
-        app.staticTexts["Share Menu"].tap()
+        app.staticTexts["Share and save"].tap()
         app.collectionViews.buttons["Generate Screenshot"].tap()
-        XCTAssertTrue(app.staticTexts["Screenshot Generated"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Here Is Your Image"].waitForExistence(timeout: 5))
     }
 
 
