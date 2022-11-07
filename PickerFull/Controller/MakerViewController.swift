@@ -515,16 +515,19 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD())
         colorPicker.selectedColor = selectedColor
         DispatchQueue.main.async { [self] in
-            colorPicker.modalPresentationStyle = .popover
             colorPicker.popoverPresentationController?.sourceView = advancedButton
             present(colorPicker, animated: true)
+            if !UD.bool(forKey: Const.UserDef.xSavesShown) {
+                let alert = createAlert(alertReasonParam: .xSaves, okMessage: "I understand")
+                colorPicker.present(alert, animated: true)
+                UD.set(true, forKey: Const.UserDef.xSavesShown)
+            }
         }
 
     }
 
 
-    func colorPickerViewController(_ viewController: UIColorPickerViewController,
-                                   didSelect color: UIColor, continuously: Bool) {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         let hexString = hexStringFromColor(color: colorPicker.selectedColor)
         updateColor(hexStringParam: hexString)
     }

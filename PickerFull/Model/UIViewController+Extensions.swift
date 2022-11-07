@@ -19,6 +19,7 @@ extension UIViewController {
         case permissiondeniedCamera
         case deleteHistory
         case imageSaved
+        case xSaves
     }
 
 
@@ -27,6 +28,15 @@ extension UIViewController {
         var alertTitle = ""
         var alertMessage = ""
         switch alertReasonParam {
+            case .xSaves:
+                alertTitle = "Important"
+                alertMessage = """
+                You can close this page in two ways:
+
+                Tapping on 'X' will SAVE the selected color to the app home screen.
+
+                Dragging the page to the bottom of the screen will DISCARD the selection.
+                """
             case .permissionDeniedGallery:
                 alertTitle = "Allow PickerFull access to your Gallery"
                 alertMessage = """

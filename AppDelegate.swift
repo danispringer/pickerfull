@@ -32,7 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UD.register(defaults: [
             Const.UserDef.colorKey: Const.UserDef.defaultColor,
-            Const.UserDef.tutorialShown: false
+            Const.UserDef.tutorialShown: false,
+            Const.UserDef.xSavesShown: false
         ])
 
         let audioSession = AVAudioSession.sharedInstance()

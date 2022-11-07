@@ -29,6 +29,7 @@ struct Const {
         static let defaultColor = "E57BF2"
         static let filename = "colors.txt"
         static let tutorialShown = "tutorialShown"
+        static let xSavesShown = "xSavesShown"
     }
 
     struct Values {
