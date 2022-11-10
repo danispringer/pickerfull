@@ -40,7 +40,7 @@ struct Const {
     struct AppInfo {
         static let version = "v."
         static let leaveReview = "Leave a Review"
-        static let sendFeedback = "Contact Us"
+        // static let sendFeedback = "Contact Us"
         static let tutorial = "Watch Tutorial"
         static let shareApp = "Tell a Friend"
         static let addFromCamera = "Take Photo"
@@ -52,7 +52,7 @@ struct Const {
         static let appName = "PickerFull"
         static let galleryLink = "photos-redirect://"
         static let reviewLink = "https://apps.apple.com/app/id1410565176?action=write-review"
-        static let bundleAndRandom = "io.github.danispringer.Color-Picker.makeRandom"
+        // static let bundleAndRandom = "io.github.danispringer.Color-Picker.makeRandom"
         static let showAppsButtonTitle = "More Apps"
         static let appsLink = "https://apps.apple.com/developer/id1402417666"
         static let creditMessage = """

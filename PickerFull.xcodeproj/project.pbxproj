@@ -217,7 +217,8 @@
 				33CF3A81204F084B000823BF /* Frameworks */,
 				33CF3A82204F084B000823BF /* Resources */,
 				33CD2A3E20FAE636004A4CB3 /* Embed Foundation Extensions */,
-				33A96D1421B64EAA001809CD /* ShellScript */,
+				33A96D1421B64EAA001809CD /* Run Script: Swiftlint */,
+				33583B67291CB37900C75A39 /* Run Script: Ruby Unused */,
 			);
 			buildRules = (
 			);
@@ -295,7 +296,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		33A96D1421B64EAA001809CD /* ShellScript */ = {
+		33583B67291CB37900C75A39 /* Run Script: Ruby Unused */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -305,6 +306,26 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script: Ruby Unused";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#file=\"unused.rb\"\n#if [ -f \"$file\" ]\n#then\n#echo \"$file found.\"\n#ruby unused.rb xcode\n#else\n#echo \"unused.rb doesn't exist\"\n#fi\n";
+		};
+		33A96D1421B64EAA001809CD /* Run Script: Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script: Swiftlint";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -544,7 +565,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.31;
+				MARKETING_VERSION = 7.33;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.danispringer.Color-Picker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -571,7 +592,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.31;
+				MARKETING_VERSION = 7.33;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.danispringer.Color-Picker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
