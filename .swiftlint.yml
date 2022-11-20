@@ -1,6 +1,9 @@
 vertical_whitespace:
   max_empty_lines: 2
 
+line_length:
+    warning: 96
+
 disabled_rules:
   - force_cast
   - file_length
