@@ -35,7 +35,8 @@ class ImagePreviewViewController: UIViewController, UIDragInteractionDelegate {
 
     // MARK: Helpers
 
-    func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
+    func dragInteraction(_ interaction: UIDragInteraction,
+                         itemsForBeginning session: UIDragSession) -> [UIDragItem] {
         // Cast is required for NSItemProviderWriting support.
         let stringItemProvider = NSItemProvider(object: myImageView.image! as UIImage)
         return [
@@ -44,13 +45,15 @@ class ImagePreviewViewController: UIViewController, UIDragInteractionDelegate {
     }
 
 
-    func customEnableDragging(on view: UIView, dragInteractionDelegate: UIDragInteractionDelegate) {
+    func customEnableDragging(on view: UIView,
+                              dragInteractionDelegate: UIDragInteractionDelegate) {
         let dragInteraction = UIDragInteraction(delegate: dragInteractionDelegate)
         view.addInteraction(dragInteraction)
     }
 
 
-    @objc func saveImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+    @objc func saveImage(_ image: UIImage, didFinishSavingWithError error: Error?,
+                         contextInfo: UnsafeRawPointer) {
         guard error == nil else {
             let alert = createAlert(alertReasonParam: AlertReason.permissionDeniedGallery,
                                     okMessage: Const.AppInfo.notNowMessage)
@@ -73,11 +76,14 @@ class ImagePreviewViewController: UIViewController, UIDragInteractionDelegate {
     @IBAction func shareAsImage() {
         let image = actualImage!
 
-        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        let activityController = UIActivityViewController(activityItems: [image],
+                                                          applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = shareAsImageButton
-        activityController.completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
+        activityController
+            .completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
             guard error == nil else {
-                let alert = self.createAlert(alertReasonParam: AlertReason.unknown, okMessage: Const.AppInfo.okMessage)
+                let alert = self.createAlert(alertReasonParam: AlertReason.unknown,
+                                             okMessage: Const.AppInfo.okMessage)
                 if let presenter = alert.popoverPresentationController {
                     presenter.sourceView = self.shareAsImageButton
                 }
@@ -137,7 +143,8 @@ class ImagePreviewViewController: UIViewController, UIDragInteractionDelegate {
                     }
             } else {
                 UIImageWriteToSavedPhotosAlbum(
-                    image, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
+                    image, self,
+                    #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
             }
         }
     }

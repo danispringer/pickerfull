@@ -40,12 +40,14 @@ extension UIViewController {
             case .permissionDeniedGallery:
                 alertTitle = "Allow PickerFull access to your Gallery"
                 alertMessage = """
-                Access was previously denied. Please grant access from Settings so PickerFull can save your image.
+                Access was previously denied. Please grant access from Settings so\
+                PickerFull can save your image.
                 """
             case .permissiondeniedCamera:
                 alertTitle = "Allow PickerFull access to your Camera"
                 alertMessage = """
-            Access was previously denied. Please grant access from Settings to use your Camera from within the app.
+            Access was previously denied. Please grant access from Settings to use your\
+            Camera from within the app.
             """
             case .deleteHistory:
                 alertTitle = "Delete All History?"
