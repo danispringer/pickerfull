@@ -48,7 +48,7 @@ struct Const {
         static let notNowMessage = "Not now"
         static let addFromGallery = "Choose Photo"
         static let clearImage = "Delete Photo"
-        static let bundleShort = "CFBundleShortVersionString"
+        static let appVersion = "CFBundleShortVersionString"
         static let appName = "PickerFull"
         static let galleryLink = "photos-redirect://"
         static let reviewLink = "https://apps.apple.com/app/id1410565176?action=write-review"
@@ -67,6 +67,8 @@ struct Const {
         Get it now on the App Store
 
         """
+        static let contact = "Email Me"
+        static let emailString = "00.segue_affix@icloud.com"
     }
 
 }

@@ -300,7 +300,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
     func getAboutMenu() -> UIMenu {
 
-        let version: String? = Bundle.main.infoDictionary?[Const.AppInfo.bundleShort] as? String
+        let version: String? = Bundle.main.infoDictionary?[Const.AppInfo.appVersion] as? String
 
         let shareApp = UIAction(title: Const.AppInfo.shareApp,
                                 image: UIImage(systemName: "heart"),
@@ -324,6 +324,12 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             self.showTutorial()
         }
 
+        let emailAction = UIAction(title: Const.AppInfo.contact,
+                                   image: UIImage(systemName: "envelope.badge"),
+                                   state: .off) { _ in
+            self.sendEmailTapped()
+        }
+
 
         var myTitle = Const.AppInfo.appName
         if let safeVersion = version {
@@ -331,7 +337,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         }
 
         let aboutMenu = UIMenu(title: myTitle, image: nil, options: .displayInline,
-                               children: [review, shareApp, moreApps, tutorial])
+                               children: [emailAction, review, shareApp, moreApps, tutorial])
         return aboutMenu
     }
 
@@ -589,6 +595,53 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                    withFileName: Const.UserDef.filename)
     }
 
+
+}
+
+
+extension MakerViewController: MFMailComposeViewControllerDelegate {
+
+    func sendEmailTapped() {
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+
+
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the
+        // --mailComposeDelegate-- property, NOT the --delegate-- property
+
+        mailComposerVC.setToRecipients([Const.AppInfo.emailString])
+        let version: String? = Bundle.main.infoDictionary![Const.AppInfo.appVersion] as? String
+        var myTitle = Const.AppInfo.appName
+        if let safeVersion = version {
+            myTitle += " \(Const.AppInfo.version) \(safeVersion)"
+        }
+        mailComposerVC.setSubject(myTitle)
+        mailComposerVC.setMessageBody("Hi, I have a question about your app.", isHTML: false)
+
+        return mailComposerVC
+    }
+
+
+    func showSendMailErrorAlert() {
+        let alert = createAlert(alertReasonParam: .emailError,
+                                okMessage: Const.AppInfo.okMessage)
+        present(alert, animated: true)
+    }
+
+
+    // MARK: MFMailComposeViewControllerDelegate
+
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
 
 }
 

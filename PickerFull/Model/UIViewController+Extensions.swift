@@ -20,6 +20,7 @@ extension UIViewController {
         case deleteHistory
         case imageSaved
         case xSaves
+        case emailError
     }
 
 
@@ -28,6 +29,12 @@ extension UIViewController {
         var alertTitle = ""
         var alertMessage = ""
         switch alertReasonParam {
+            case .emailError:
+                alertTitle = "Email Not Sent"
+                alertMessage = """
+                Your device could not send e-mail. Please check e-mail configuration and \
+                try again.
+                """
             case .xSaves:
                 alertTitle = "Important"
                 alertMessage = """
