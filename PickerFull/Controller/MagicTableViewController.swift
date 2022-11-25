@@ -25,6 +25,7 @@ class MagicTableViewController: UITableViewController {
             UIView.setAnimationsEnabled(false)
         }
 
+        navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.title = "Random History"
 
