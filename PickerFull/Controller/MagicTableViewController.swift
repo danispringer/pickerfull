@@ -16,7 +16,7 @@ class MagicTableViewController: UITableViewController {
     var deleteAllButton: UIBarButtonItem!
 
     // MARK: Life cycle
-
+// TODO create a second history page in ib and code, for when user taps on X button in advanced page, only adding the selected color to the second list if it is not already in it.
     override func viewDidLoad() {
         super.viewDidLoad()
 
