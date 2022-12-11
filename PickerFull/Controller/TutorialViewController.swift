@@ -25,7 +25,7 @@ class TutorialViewController: UIViewController, AVPlayerViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-// TODO: redo video (voiceover can be shortcut text to audio)
+        // TODO: redo video (voiceover can be shortcut text to audio)
         guard let path = Bundle.main.path(forResource: "vid", ofType: "mov") else {
             debugPrint("vid.mov not found")
             return
