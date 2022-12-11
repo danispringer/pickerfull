@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 Const.UserDef.colorKey: Const.UserDef.defaultColor,
                 Const.UserDef.tutorialShown: false,
                 Const.UserDef.xSavesShown: false
-            ])
+            ]) // TODO: ?more sort options?
 
             let audioSession = AVAudioSession.sharedInstance()
 
