@@ -175,6 +175,7 @@ extension UIViewController {
         return nil
     }
 
+
     func readFromDocs(withFileName fileName: String) -> [String]? {
         guard let filePath = self.append(toPath: self.documentDirectory(),
                                          withPathComponent: fileName) else {

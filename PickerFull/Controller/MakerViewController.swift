@@ -510,7 +510,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         messageLabel.isHidden = !hide
         qrImageView.isHidden = !hide
         for button: UIButton in [aboutButton, pickerMenuButton, imageMenuButton,
-                                 shareOrSaveButton, randomButton, randomHistoryButton] {
+                                 shareOrSaveButton, randomButton, randomHistoryButton,
+                                 advancedHistoryButton] {
             button.isHidden = hide
         }
         containerScrollView.isHidden = hide
