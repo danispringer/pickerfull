@@ -244,30 +244,30 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-hD-fEQ">
-                                <rect key="frame" x="0.0" y="588" width="215" height="34"/>
+                                <rect key="frame" x="0.0" y="588" width="216.33333333333334" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system" imagePlacement="leading" title="Share and save color" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up.circle" catalog="system" imagePlacement="leading" title="Share and save color" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNf-u5-6Xf">
-                                <rect key="frame" x="0.0" y="630" width="164.33333333333334" height="34"/>
+                                <rect key="frame" x="0.0" y="630" width="158.33333333333334" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="camera" catalog="system" imagePlacement="leading" title="Import image" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="plain" image="camera.circle" catalog="system" imagePlacement="leading" title="Import image" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47O-Zh-mK7">
-                                <rect key="frame" x="0.0" y="672" width="195.66666666666666" height="35"/>
+                                <rect key="frame" x="0.0" y="672" width="190" height="35"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="book" catalog="system" imagePlacement="leading" title="Advanced History" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="plain" image="books.vertical.circle" catalog="system" imagePlacement="leading" title="Advanced history" imagePadding="8">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                 </buttonConfiguration>
@@ -276,10 +276,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-OX-DMb">
-                                <rect key="frame" x="0.0" y="715" width="180.33333333333334" height="34"/>
+                                <rect key="frame" x="0.0" y="715" width="177" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="book" catalog="system" imagePlacement="leading" title="Random history" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="plain" image="book.circle" catalog="system" imagePlacement="leading" title="Random history" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
@@ -289,9 +289,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXP-06-ffR">
-                                <rect key="frame" x="0.0" y="757" width="186.33333333333334" height="34"/>
+                                <rect key="frame" x="0.0" y="757" width="182.33333333333334" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <buttonConfiguration key="configuration" style="plain" image="paintpalette" catalog="system" imagePlacement="leading" title="Advanced editor" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="plain" image="gear.circle" catalog="system" imagePlacement="leading" title="Advanced editor" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
@@ -301,10 +301,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2z-Ue-gCv">
-                                <rect key="frame" x="0.0" y="799" width="198.66666666666666" height="34"/>
+                                <rect key="frame" x="0.0" y="799" width="197.33333333333334" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="wand.and.stars" catalog="system" imagePlacement="leading" title="New random color" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="plain" image="shuffle.circle" catalog="system" imagePlacement="leading" title="New random color" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
@@ -507,17 +507,19 @@
     </scenes>
     <resources>
         <image name="IconExtra" width="1024" height="1024"/>
-        <image name="book" catalog="system" width="128" height="99"/>
-        <image name="camera" catalog="system" width="128" height="93"/>
+        <image name="book.circle" catalog="system" width="128" height="123"/>
+        <image name="books.vertical.circle" catalog="system" width="128" height="123"/>
+        <image name="camera.circle" catalog="system" width="128" height="123"/>
         <image name="doc.on.doc" catalog="system" width="116" height="128"/>
+        <image name="gear.circle" catalog="system" width="128" height="123"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
-        <image name="paintpalette" catalog="system" width="128" height="105"/>
         <image name="play.circle.fill" catalog="system" width="128" height="123"/>
         <image name="qr" width="2214" height="2214"/>
+        <image name="shuffle.circle" catalog="system" width="128" height="123"/>
         <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="square.and.arrow.up.circle" catalog="system" width="128" height="123"/>
         <image name="trash" catalog="system" width="117" height="128"/>
-        <image name="wand.and.stars" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
