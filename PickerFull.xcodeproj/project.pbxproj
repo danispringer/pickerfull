@@ -93,12 +93,12 @@
 		330F746921ABBA9300F420B0 /* PickerFull */ = {
 			isa = PBXGroup;
 			children = (
-				33AE171027A8BEAA00551532 /* View */,
-				330F747121ABBA9300F420B0 /* Model */,
-				330F746F21ABBA9300F420B0 /* Controller */,
-				330F746A21ABBA9300F420B0 /* Storyboards */,
 				330F747521ABBA9300F420B0 /* Assets */,
+				330F746F21ABBA9300F420B0 /* Controller */,
 				330F747721ABBA9300F420B0 /* Info.plist */,
+				330F747121ABBA9300F420B0 /* Model */,
+				330F746A21ABBA9300F420B0 /* Storyboards */,
+				33AE171027A8BEAA00551532 /* View */,
 			);
 			path = PickerFull;
 			sourceTree = "<group>";
@@ -106,8 +106,8 @@
 		330F746A21ABBA9300F420B0 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				330F746D21ABBA9300F420B0 /* Main.storyboard */,
 				330F746B21ABBA9300F420B0 /* LaunchScreen.storyboard */,
+				330F746D21ABBA9300F420B0 /* Main.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -115,9 +115,9 @@
 		330F746F21ABBA9300F420B0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				330F747021ABBA9300F420B0 /* MakerViewController.swift */,
 				332FAC9B28DD62CC002770CC /* ImagePreviewViewController.swift */,
 				33AE170E27A8B58C00551532 /* MagicTableViewController.swift */,
+				330F747021ABBA9300F420B0 /* MakerViewController.swift */,
 				33691A9F28BBF96600B5437C /* TutorialViewController.swift */,
 			);
 			path = Controller;
@@ -126,9 +126,9 @@
 		330F747121ABBA9300F420B0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				330F747221ABBA9300F420B0 /* UIViewController+Extensions.swift */,
-				330F747321ABBA9300F420B0 /* String+Extensions.swift */,
 				33D2213E21AFDF0900FBFEA7 /* Const.swift */,
+				330F747321ABBA9300F420B0 /* String+Extensions.swift */,
+				330F747221ABBA9300F420B0 /* UIViewController+Extensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -136,8 +136,8 @@
 		330F747521ABBA9300F420B0 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				331409DF28C458B800E0849F /* vid.mov */,
 				330F747621ABBA9300F420B0 /* Assets.xcassets */,
+				331409DF28C458B800E0849F /* vid.mov */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -170,12 +170,12 @@
 		33CF3A7B204F084B000823BF = {
 			isa = PBXGroup;
 			children = (
-				33D64DD628B6ED8C00E17E1C /* ColorFull.entitlements */,
 				330F747421ABBA9300F420B0 /* AppDelegate.swift */,
+				33D64DD628B6ED8C00E17E1C /* ColorFull.entitlements */,
+				337055C921CC77F5001B253C /* Frameworks */,
 				330F746921ABBA9300F420B0 /* PickerFull */,
 				332D7489283A5FDC0039BC68 /* PickerFullScreenshots */,
 				33CF3A85204F084B000823BF /* Products */,
-				337055C921CC77F5001B253C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
