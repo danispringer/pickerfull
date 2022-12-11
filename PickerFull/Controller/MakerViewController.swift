@@ -27,11 +27,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     @IBOutlet weak var userImageView: UIImageView!
 
     @IBOutlet weak var aboutButton: UIButton!
-    @IBOutlet weak var advancedButton: UIButton!
+    @IBOutlet weak var pickerMenuButton: UIButton!
     @IBOutlet weak var imageMenuButton: UIButton!
     @IBOutlet weak var randomButton: UIButton!
-    @IBOutlet weak var historyButton: UIButton!
-
+    @IBOutlet weak var randomHistoryButton: UIButton!
+    @IBOutlet weak var advancedHistoryButton: UIButton!
     @IBOutlet weak var shareOrSaveButton: UIButton!
 
     // MARK: properties
@@ -88,8 +88,9 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             button.showsMenuAsPrimaryAction = true
         }
 
-        for button: UIButton in [aboutButton, advancedButton, imageMenuButton,
-                                 shareOrSaveButton, randomButton, historyButton] {
+        for button: UIButton in [aboutButton, pickerMenuButton, imageMenuButton,
+                                 shareOrSaveButton, randomButton, randomHistoryButton,
+                                 advancedHistoryButton] {
             button.clipsToBounds = true
             button.layer.cornerRadius = 8
             button.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
@@ -351,6 +352,14 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     }
 
 
+    @IBAction func advancedHistoryTapped() {
+        let advancedVC = UIStoryboard(name: Const.StoryboardIDIB.main, bundle: nil)
+            .instantiateViewController(withIdentifier: Const.StoryboardIDIB.advancedTableVC)
+
+        self.navigationController?.pushViewController(advancedVC, animated: true)
+    }
+
+
     func getShareOrSaveMenu() -> UIMenu {
 
         let generateImageAction = UIAction(
@@ -500,8 +509,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     func elementsShould(hide: Bool) {
         messageLabel.isHidden = !hide
         qrImageView.isHidden = !hide
-        for button: UIButton in [aboutButton, advancedButton, imageMenuButton,
-                                 shareOrSaveButton, randomButton, historyButton] {
+        for button: UIButton in [aboutButton, pickerMenuButton, imageMenuButton,
+                                 shareOrSaveButton, randomButton, randomHistoryButton] {
             button.isHidden = hide
         }
         containerScrollView.isHidden = hide
@@ -542,11 +551,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     }
 
 
-    @IBAction func showColorPicker() {
+    @IBAction func pickerMenuButtonTapped() {
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD())
         colorPicker.selectedColor = selectedColor
         DispatchQueue.main.async { [self] in
-            colorPicker.popoverPresentationController?.sourceView = advancedButton
+            colorPicker.popoverPresentationController?.sourceView = pickerMenuButton
             present(colorPicker, animated: true)
             if !UD.bool(forKey: Const.UserDef.xSavesShown) {
                 let alert = createAlert(alertReasonParam: .xSaves, okMessage: "I understand")
@@ -561,6 +570,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         let hexString = hexStringFromColor(color: colorPicker.selectedColor)
         updateColor(hexStringParam: hexString)
+        saveToFiles(color: hexString, filename: Const.UserDef.advancedHistoryFilename)
     }
 
 
@@ -580,19 +590,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         randomHex = randomRed + randomGreen + randomBlue
 
         updateColor(hexStringParam: randomHex)
-        saveToUD(color: randomHex)
-    }
-
-
-    func saveToUD(color: String) {
-
-        var savedColors: [String] = readFromDocs(
-            fromDocumentsWithFileName: Const.UserDef.filename) ?? []
-
-        savedColors.append(color)
-
-        saveToDocs(text: savedColors.joined(separator: ","),
-                   withFileName: Const.UserDef.filename)
+        saveToFiles(color: randomHex, filename: Const.UserDef.randomHistoryFilename)
     }
 
 

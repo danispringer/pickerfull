@@ -1,20 +1,19 @@
 //
-//  MagicCell.swift
+//  AdvancedCell.swift
 //  PickerFull
 //
-//  Created by Daniel Springer on 1/31/22.
-//  Copyright © 2022 Daniel Springer. All rights reserved.
+//  Created by dani on 12/11/22.
+//  Copyright © 2022 Dani Springer. All rights reserved.
 //
 
 import UIKit
 
-class MagicCell: UITableViewCell {
+class AdvancedCell: UITableViewCell {
 
     // MARK: Outlets
 
     @IBOutlet weak var hexLabel: UILabel!
     @IBOutlet weak var rgbLabel: UILabel!
     @IBOutlet weak var colorView: UIView!
-
 
 }

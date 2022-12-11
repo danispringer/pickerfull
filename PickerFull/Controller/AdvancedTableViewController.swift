@@ -1,15 +1,14 @@
 //
-//  MagicTableViewController.swift
+//  AdvancedTableViewController.swift
 //  PickerFull
 //
-//  Created by Daniel Springer on 1/31/22.
-//  Copyright © 2022 Daniel Springer. All rights reserved.
+//  Created by dani on 12/11/22.
+//  Copyright © 2022 Dani Springer. All rights reserved.
 //
 
 import UIKit
 
-class MagicTableViewController: UITableViewController {
-
+class AdvancedTableViewController: UITableViewController {
 
     // MARK: Properties
 
@@ -27,7 +26,7 @@ class MagicTableViewController: UITableViewController {
 
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.rightBarButtonItem = self.editButtonItem
-        self.title = "Random History"
+        self.title = "Advanced History"
 
         deleteAllButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self,
                                           action: #selector(deleteAll))
@@ -41,10 +40,10 @@ class MagicTableViewController: UITableViewController {
         let alert = createAlert(alertReasonParam: .deleteHistory, okMessage: "No")
         let deleteAction = UIAlertAction(title: "Yes", style: .destructive) { [self] _ in
             var currentArray: [String] = readFromDocs(
-                withFileName: Const.UserDef.randomHistoryFilename) ?? []
+                withFileName: Const.UserDef.advancedHistoryFilename) ?? []
             currentArray = []
             saveToDocs(text: currentArray.joined(separator: ","),
-                       withFileName: Const.UserDef.randomHistoryFilename)
+                       withFileName: Const.UserDef.advancedHistoryFilename)
             tableView.reloadData()
             setEditing(false, animated: true)
         }
@@ -54,7 +53,7 @@ class MagicTableViewController: UITableViewController {
 
     func getArray() -> [String]? {
         let myArray = readFromDocs(
-            withFileName: Const.UserDef.randomHistoryFilename)
+            withFileName: Const.UserDef.advancedHistoryFilename)
         return myArray?.reversed() // ?.sorted { $0 < $1 }
     }
 
@@ -81,7 +80,7 @@ class MagicTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: Const.StoryboardIDIB.magicCell) as! MagicCell
+            withIdentifier: Const.StoryboardIDIB.advancedCell) as! AdvancedCell
         cell.hexLabel.text = "HEX: \(getArray()![indexPath.row])"
         cell.rgbLabel.text = "RGB: \(rgbFrom(hex: getArray()![indexPath.row]))"
         cell.colorView.backgroundColor = uiColorFrom(hex: getArray()![indexPath.row])
@@ -119,10 +118,10 @@ class MagicTableViewController: UITableViewController {
                 handler: { [self] (_, _, success: (Bool) -> Void) in
                     let hexKeyItem: String = getArray()![indexPath.row]
                     var currentArray: [String] = readFromDocs(
-                        withFileName: Const.UserDef.randomHistoryFilename) ?? []
+                        withFileName: Const.UserDef.advancedHistoryFilename) ?? []
                     currentArray = currentArray.filter { $0 != hexKeyItem }
                     saveToDocs(text: currentArray.joined(separator: ","),
-                               withFileName: Const.UserDef.randomHistoryFilename)
+                               withFileName: Const.UserDef.advancedHistoryFilename)
                     tableView.deleteRows(at: [indexPath], with: .automatic)
                     success(true)
                 })
@@ -140,14 +139,14 @@ class MagicTableViewController: UITableViewController {
                 let copyHEXAction = UIAction(title: "Copy HEX",
                                              image: UIImage(systemName: "doc.on.doc")) { _ in
                     let hexToCopy: String = (tableView.cellForRow(at: indexPath)
-                                             as! MagicCell).hexLabel.text!
+                                             as! AdvancedCell).hexLabel.text!
                     UIPasteboard.general.string = String(hexToCopy.suffix(6))
                 }
 
                 let copyRGBAction = UIAction(title: "Copy RGB",
                                              image: UIImage(systemName: "doc.on.doc")) { _ in
                     let rgbToCopy: String = (tableView.cellForRow(at: indexPath)
-                                             as! MagicCell).rgbLabel.text!
+                                             as! AdvancedCell).rgbLabel.text!
                     UIPasteboard.general.string = String(rgbToCopy[5...rgbToCopy.count-1])
                 }
 

@@ -23,6 +23,8 @@
 		33AE171227A8BEC800551532 /* MagicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE171127A8BEC800551532 /* MagicCell.swift */; };
 		33D2213F21AFDF0900FBFEA7 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D2213E21AFDF0900FBFEA7 /* Const.swift */; };
 		33DCF99D283B22B7000DB1C8 /* screenshots.sh in Resources */ = {isa = PBXBuildFile; fileRef = 33DCF99C283B22B7000DB1C8 /* screenshots.sh */; };
+		33EC94DF2945A81A001AA6E4 /* AdvancedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC94DE2945A81A001AA6E4 /* AdvancedTableViewController.swift */; };
+		33EC94E12945AC0E001AA6E4 /* AdvancedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC94E02945AC0E001AA6E4 /* AdvancedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		33D2213E21AFDF0900FBFEA7 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		33D64DD628B6ED8C00E17E1C /* ColorFull.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ColorFull.entitlements; sourceTree = "<group>"; };
 		33DCF99C283B22B7000DB1C8 /* screenshots.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = screenshots.sh; sourceTree = "<group>"; };
+		33EC94DE2945A81A001AA6E4 /* AdvancedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTableViewController.swift; sourceTree = "<group>"; };
+		33EC94E02945AC0E001AA6E4 /* AdvancedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,11 +98,11 @@
 			isa = PBXGroup;
 			children = (
 				330F747521ABBA9300F420B0 /* Assets */,
+				330F747121ABBA9300F420B0 /* Model */,
+				33AE171027A8BEAA00551532 /* View */,
 				330F746F21ABBA9300F420B0 /* Controller */,
 				330F747721ABBA9300F420B0 /* Info.plist */,
-				330F747121ABBA9300F420B0 /* Model */,
 				330F746A21ABBA9300F420B0 /* Storyboards */,
-				33AE171027A8BEAA00551532 /* View */,
 			);
 			path = PickerFull;
 			sourceTree = "<group>";
@@ -106,8 +110,8 @@
 		330F746A21ABBA9300F420B0 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				330F746B21ABBA9300F420B0 /* LaunchScreen.storyboard */,
 				330F746D21ABBA9300F420B0 /* Main.storyboard */,
+				330F746B21ABBA9300F420B0 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -115,8 +119,9 @@
 		330F746F21ABBA9300F420B0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				332FAC9B28DD62CC002770CC /* ImagePreviewViewController.swift */,
+				33EC94DE2945A81A001AA6E4 /* AdvancedTableViewController.swift */,
 				33AE170E27A8B58C00551532 /* MagicTableViewController.swift */,
+				332FAC9B28DD62CC002770CC /* ImagePreviewViewController.swift */,
 				330F747021ABBA9300F420B0 /* MakerViewController.swift */,
 				33691A9F28BBF96600B5437C /* TutorialViewController.swift */,
 			);
@@ -163,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				33AE171127A8BEC800551532 /* MagicCell.swift */,
+				33EC94E02945AC0E001AA6E4 /* AdvancedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -350,11 +356,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				330F747C21ABBA9300F420B0 /* String+Extensions.swift in Sources */,
+				33EC94DF2945A81A001AA6E4 /* AdvancedTableViewController.swift in Sources */,
 				332FAC9C28DD62CC002770CC /* ImagePreviewViewController.swift in Sources */,
 				330F747D21ABBA9300F420B0 /* AppDelegate.swift in Sources */,
 				33691AA028BBF96600B5437C /* TutorialViewController.swift in Sources */,
 				330F747A21ABBA9300F420B0 /* MakerViewController.swift in Sources */,
 				330F747B21ABBA9300F420B0 /* UIViewController+Extensions.swift in Sources */,
+				33EC94E12945AC0E001AA6E4 /* AdvancedCell.swift in Sources */,
 				33AE171227A8BEC800551532 /* MagicCell.swift in Sources */,
 				33D2213F21AFDF0900FBFEA7 /* Const.swift in Sources */,
 				33AE170F27A8B58C00551532 /* MagicTableViewController.swift in Sources */,

@@ -84,6 +84,18 @@ extension UIViewController {
     }
 
 
+    func saveToFiles(color: String, filename: String) {
+
+        var savedColors: [String] = readFromDocs(
+            withFileName: filename) ?? []
+
+        savedColors.append(color)
+
+        saveToDocs(text: savedColors.joined(separator: ","),
+                   withFileName: filename)
+    }
+
+
     // MARK: Helpers
 
     enum Format {
@@ -163,7 +175,7 @@ extension UIViewController {
         return nil
     }
 
-    func readFromDocs(fromDocumentsWithFileName fileName: String) -> [String]? {
+    func readFromDocs(withFileName fileName: String) -> [String]? {
         guard let filePath = self.append(toPath: self.documentDirectory(),
                                          withPathComponent: fileName) else {
             return nil
