@@ -32,13 +32,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if CommandLine.arguments.contains("--pickerfullScreenshots") {
                 // We are in testing mode, make arrangements
                 UD.set(Const.UserDef.defaultColor, forKey: Const.UserDef.colorKey)
-            } // TODO: for testing: add advanced history filled. redo screenshots..?
+            }
 
             UD.register(defaults: [
                 Const.UserDef.colorKey: Const.UserDef.defaultColor,
                 Const.UserDef.tutorialShown: false,
                 Const.UserDef.xSavesShown: false
-            ]) // TODO: ?more sort options?
+            ])
+            // TODO: add screenshot for second history?
+            // TODO: ?more sort options?
+            // TODO: redo tutorial as text
 
             let audioSession = AVAudioSession.sharedInstance()
 
