@@ -39,8 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 Const.UserDef.tutorialShown: false,
                 Const.UserDef.xSavesShown: false
             ])
-            // TODO: add screenshot for second history?
-            // more sort options?
+            // TODO: automate doable screenshots & use plain (add 2nd history)
 
             let audioSession = AVAudioSession.sharedInstance()
 
