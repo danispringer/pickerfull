@@ -39,8 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 Const.UserDef.tutorialShown: false,
                 Const.UserDef.xSavesShown: false
             ])
-            // TODO: redo tutorial as text or video?
-            // if video make it accessible
+            // TODO: if video make it accessible
             // add screenshot for second history?
             // more sort options?
 
