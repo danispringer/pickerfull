@@ -44,7 +44,7 @@ class PickerFullScreenshots: XCTestCase {
 
     func testFloatingPicker() {
         app.launch()
-        app.staticTexts["Import image"].tap()
+        app.staticTexts["Import photo"].tap()
         app.collectionViews.buttons["Choose Photo"].tap()
         app.scrollViews.otherElements.images.firstMatch.tap()
         XCTAssert(app.buttons[pickerString].waitForExistence(timeout: 5))

@@ -39,9 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 Const.UserDef.tutorialShown: false,
                 Const.UserDef.xSavesShown: false
             ])
-            // TODO: add screenshot for second history?
-            // TODO: ?more sort options?
-            // TODO: redo tutorial as text
+            // TODO: redo tutorial as text or video?
+            // if video make it accessible
+            // add screenshot for second history?
+            // more sort options?
 
             let audioSession = AVAudioSession.sharedInstance()
 
