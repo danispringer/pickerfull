@@ -1,0 +1,19 @@
+Here is how to extract a color from a photo, in just 4 steps.
+
+STEP 1: Select a Photo.
+To select a photo, tap on "Import photo". Then, tap on "Choose a Photo".
+Next, tap on the photo you would like to use.
+
+STEP 2: adjust the zoom.
+To zoom in, or to zoom out, just double tap, anywhere on the photo.
+
+STEP 3: extract the color.
+To extract the color, tap on "Advanced editor". Then: tap on here.
+Now, drag the circle over the color you would like to extract, then, let go of the circle.
+
+STEP 4: save your color.
+To save the color, tap on the top right "X".
+Next, tap on "Share". Then, tap "Generate Screenshot".
+Finally, tap on "Save to Photos".
+
+And, you're done. Congrats! You now know the basics of this app. Explore it to learn more of what it can do. Enjoy!
