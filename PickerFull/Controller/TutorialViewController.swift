@@ -25,7 +25,7 @@ class TutorialViewController: UIViewController, AVPlayerViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let path = Bundle.main.path(forResource: "vid", ofType: "mov") else {
+        guard let path = Bundle.main.path(forResource: "vid2", ofType: "mov") else {
             debugPrint("vid.mov not found")
             return
         }
