@@ -30,7 +30,27 @@ class PickerFullScreenshots: XCTestCase {
     func testHome() {
         app.launch()
         app.buttons["Not Now"].firstMatch.tap()
+        XCTAssertTrue(app.buttons["About app"].waitForExistence(timeout: 5))
         takeScreenshot(name: "Home")
+    }
+
+
+    func testTutorial() {
+        app.launch()
+        XCTAssertTrue(app.buttons["Not Now"].waitForExistence(timeout: 5))
+        takeScreenshot(name: "Tutorial")
+    }
+
+
+    func testRandomHistory() {
+        app.launch()
+        app.buttons["Not Now"].tap()
+        for _ in 1...15 {
+            app.buttons["New random color"].tap()
+        }
+        app.buttons["Random history"].tap()
+        XCTAssertTrue(app.buttons["Edit"].waitForExistence(timeout: 5))
+        takeScreenshot(name: "random-history")
     }
 
 
@@ -40,6 +60,7 @@ class PickerFullScreenshots: XCTestCase {
         app.buttons[pickerString].tap()
         XCTAssertTrue(app.buttons["Sliders"].waitForExistence(timeout: 5))
         app.buttons["Sliders"].tap()
+        // TODO: maybe tap on RGB/P3 button?
         takeScreenshot(name: "Advanced")
     }
 
