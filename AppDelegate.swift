@@ -35,12 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UD.set(false, forKey: Const.UserDef.tutorialShown)
                 UD.set(false, forKey: Const.UserDef.xSavesShown)
 
-                do {
-                    try FileManager.default.removeItem(atPath: documentDirectory())
-                } catch {
-                    print("oops")
+                for filename in [Const.UserDef.randomHistoryFilename,
+                                 Const.UserDef.advancedHistoryFilename] {
+                    var currentArray: [String] = readFromDocs(
+                        withFileName: filename) ?? []
+                    currentArray = []
+                    saveToDocs(text: currentArray.joined(separator: ","),
+                               withFileName: filename)
                 }
-
 
             }
 
@@ -63,12 +65,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
 
+    func readFromDocs(withFileName fileName: String) -> [String]? {
+        guard let filePath = append(toPath: self.documentDirectory(),
+                                         withPathComponent: fileName) else {
+            return nil
+        }
+        do {
+            let savedString = try String(contentsOfFile: filePath)
+            let myArray = savedString.components(separatedBy: ",")
+            if myArray.isEmpty {
+                return nil
+            } else {
+                if myArray.count == 1 && myArray.first == "" {
+                    return nil
+                }
+                return myArray
+            }
+        } catch {
+            // print("Error reading saved file")
+            return nil
+        }
+    }
+
+
+    func saveToDocs(text: String,
+                    withFileName fileName: String) {
+        guard let filePath = self.append(toPath: documentDirectory(),
+                                         withPathComponent: fileName) else {
+            return
+        }
+
+        do {
+            try text.write(toFile: filePath,
+                           atomically: true,
+                           encoding: .utf8)
+        } catch {
+            print("Error", error)
+            return
+        }
+    }
+
+
     private func documentDirectory() -> String {
         let documentDirectory = NSSearchPathForDirectoriesInDomains(
             .documentDirectory,
             .userDomainMask,
             true)
         return documentDirectory[0]
+    }
+
+
+    private func append(toPath path: String,
+                        withPathComponent pathComponent: String) -> String? {
+        if var pathURL = URL(string: path) {
+            pathURL.appendPathComponent(pathComponent)
+
+            return pathURL.absoluteString
+        }
+
+        return nil
     }
 
 }

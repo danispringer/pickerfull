@@ -60,6 +60,8 @@ class PickerFullScreenshots: XCTestCase {
         app.buttons[pickerString].tap()
         XCTAssertTrue(app.buttons["Sliders"].waitForExistence(timeout: 5))
         app.buttons["Sliders"].tap()
+        app.textFields.firstMatch.typeText("E57BF2")
+        app.buttons["Sliders"].tap()
         // TODO: maybe tap on RGB/P3 button?
         takeScreenshot(name: "Advanced")
     }
