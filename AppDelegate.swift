@@ -32,6 +32,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if CommandLine.arguments.contains("--pickerfullScreenshots") {
                 // We are in testing mode, make arrangements
                 UD.set(Const.UserDef.defaultColor, forKey: Const.UserDef.colorKey)
+                UD.set(false, forKey: Const.UserDef.tutorialShown)
+                UD.set(false, forKey: Const.UserDef.xSavesShown)
+
+                do {
+                    try FileManager.default.removeItem(atPath: documentDirectory())
+                } catch {
+                    print("oops")
+                }
+
+
             }
 
             UD.register(defaults: [
@@ -51,5 +61,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             return true
         }
+
+
+    private func documentDirectory() -> String {
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(
+            .documentDirectory,
+            .userDomainMask,
+            true)
+        return documentDirectory[0]
+    }
 
 }

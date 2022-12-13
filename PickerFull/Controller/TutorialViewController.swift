@@ -25,6 +25,12 @@ class TutorialViewController: UIViewController, AVPlayerViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if CommandLine.arguments.contains("--pickerfullScreenshots") {
+            // We are in testing mode, make arrangements if needed
+            UIView.setAnimationsEnabled(false)
+        }
+
         guard let path = Bundle.main.path(forResource: "vid2", ofType: "mov") else {
             debugPrint("vid.mov not found")
             return

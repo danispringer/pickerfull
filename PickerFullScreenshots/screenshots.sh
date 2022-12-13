@@ -12,9 +12,10 @@ schemeName="PickerFull"
 # or from `xcrun simctl list`.
 
 simulators=(
+    "iPhone 14 Pro Max"
     "iPhone 13 Pro Max"
     "iPhone 8 Plus"
-    "iPad Pro (12.9-inch) (5th generation)"
+    "iPad Pro (12.9-inch) (6th generation)"
 )
 
 # All the languages we want to screenshot (ISO 3166-1 codes)

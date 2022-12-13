@@ -29,12 +29,14 @@ class PickerFullScreenshots: XCTestCase {
 
     func testHome() {
         app.launch()
+        app.buttons["Not Now"].firstMatch.tap()
         takeScreenshot(name: "Home")
     }
 
 
     func testAdvancedPicker() {
         app.launch()
+        app.buttons["Not Now"].firstMatch.tap()
         app.buttons[pickerString].tap()
         XCTAssertTrue(app.buttons["Sliders"].waitForExistence(timeout: 5))
         app.buttons["Sliders"].tap()
@@ -44,6 +46,7 @@ class PickerFullScreenshots: XCTestCase {
 
     func testFloatingPicker() {
         app.launch()
+        app.buttons["Not Now"].firstMatch.tap()
         app.staticTexts["Import photo"].tap()
         app.collectionViews.buttons["Choose Photo"].tap()
         app.scrollViews.otherElements.images.firstMatch.tap()
@@ -60,7 +63,8 @@ class PickerFullScreenshots: XCTestCase {
 
     func testSaveImage() {
         app.launch()
-        app.staticTexts["Share and save"].tap()
+        app.buttons["Not Now"].firstMatch.tap()
+        app.staticTexts["Share and save color"].tap()
         app.collectionViews.buttons["Generate Screenshot"].tap()
         XCTAssertTrue(app.staticTexts["Here Is Your Image"].waitForExistence(timeout: 5))
     }

@@ -27,6 +27,12 @@ class ImagePreviewViewController: UIViewController, UIDragInteractionDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if CommandLine.arguments.contains("--pickerfullScreenshots") {
+            // We are in testing mode, make arrangements if needed
+            UIView.setAnimationsEnabled(false)
+        }
+
         myImageView.image = actualImage
         myImageView.isUserInteractionEnabled = true
         customEnableDragging(on: myImageView, dragInteractionDelegate: self)
