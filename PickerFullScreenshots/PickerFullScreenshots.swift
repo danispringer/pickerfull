@@ -2,8 +2,8 @@
 //  PickerFullScreenshots.swift
 //  PickerFullScreenshots
 //
-//  Created by dani on 5/22/22.
-//  Copyright © 2022 Dani Springer. All rights reserved.
+//  Created by Daniel Springer on 5/22/22.
+//  Copyright © 2023 Daniel Springer. All rights reserved.
 //
 
 import XCTest

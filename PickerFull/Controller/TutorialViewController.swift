@@ -2,8 +2,8 @@
 //  TutorialViewController.swift
 //  PickerFull
 //
-//  Created by dani on 8/28/22.
-//  Copyright © 2022 Dani Springer. All rights reserved.
+//  Created by Daniel Springer on 8/28/22.
+//  Copyright © 2023 Daniel Springer. All rights reserved.
 //
 
 import UIKit
