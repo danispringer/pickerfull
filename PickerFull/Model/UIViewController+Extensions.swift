@@ -45,13 +45,13 @@ extension UIViewController {
                 Dragging the page to the bottom of the screen will DISCARD the selection.
                 """
             case .permissionDeniedGallery:
-                alertTitle = "Allow PickerFull access to your Gallery"
+                alertTitle = "Allow app access to your Gallery"
                 alertMessage = """
-                Access was previously denied. Please grant access from Settings so\
-                PickerFull can save your image.
+                Access was previously denied. Please grant access from Settings to save \
+                your image.
                 """
             case .permissiondeniedCamera:
-                alertTitle = "Allow PickerFull access to your Camera"
+                alertTitle = "Allow app access to your Camera"
                 alertMessage = """
             Access was previously denied. Please grant access from Settings to use your\
             Camera from within the app.

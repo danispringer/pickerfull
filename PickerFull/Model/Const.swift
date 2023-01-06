@@ -51,7 +51,7 @@ struct Const {
         static let addFromGallery = "Choose Photo"
         static let clearImage = "Delete Photo"
         static let appVersion = "CFBundleShortVersionString"
-        static let appName = "PickerFull"
+        static let appName = "PickerFull - Color Extractor"
         static let galleryLink = "photos-redirect://"
         static let reviewLink = "https://apps.apple.com/app/id1410565176?action=write-review"
         static let showAppsButtonTitle = "More Apps"
@@ -60,7 +60,7 @@ struct Const {
 
 
         Screenshot created with
-        PickerFull
+        \(appName)
         by
         Daniel Springer
 
