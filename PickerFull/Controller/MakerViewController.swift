@@ -362,6 +362,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     // TODO: split to sections
     // add HSL. more?
     // ?add share equivalents (separate section/s)
+    // add paste/import equivalents
     func getShareOrSaveMenu() -> UIMenu {
 
         let generateImageAction = UIAction(
@@ -409,8 +410,15 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                 self.copyAsText(format: .swiftui)
             }
 
+        let copyColorMagicAction = UIAction(
+            title: "Copy as Color",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.copyAsText(format: .colorMagic)
+            }
+
         let shareMenu = UIMenu(options: .displayInline, children: [
             generateImageAction,
+            copyColorMagicAction,
             copyTextSwiftUIAction,
             copyTextSwiftLiteralAction,
             copyTextSwiftAction,
@@ -418,9 +426,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             copyTextFloatAction,
             copyTextRgbAction,
             copyTextHexAction])
-
         return shareMenu
-
     }
 
 
@@ -437,6 +443,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     func copyAsText(format: Format) {
         var myText = ""
         let hexString = getSafeHexFromUD()
+        guard format != .colorMagic else {
+            UIPasteboard.general.color = .red // uiColorFrom(hex: hexString)
+            return
+        }
         myText = hexTo(format: format, hex: hexString)
         UIPasteboard.general.string = myText
     }

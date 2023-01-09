@@ -62,7 +62,6 @@ class PickerFullScreenshots: XCTestCase {
         app.buttons["Sliders"].tap()
         app.textFields.firstMatch.typeText("E57BF2")
         app.buttons["Sliders"].tap()
-        // TODO: maybe tap on RGB/P3 button?
         takeScreenshot(name: "Advanced")
     }
 

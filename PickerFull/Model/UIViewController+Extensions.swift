@@ -107,6 +107,7 @@ extension UIViewController {
         case swift
         case swiftLiteral
         case swiftui
+        case colorMagic
     }
 
 
@@ -205,6 +206,10 @@ extension UIViewController {
                 ", blue: " + aHexToFloat(hex: blueString) +
                 ", opacity: 1.000)"
                 return swiftUIString
+            case .colorMagic:
+                let alert = createAlert(alertReasonParam: .unknown, okMessage: "OK")
+                present(alert, animated: true)
+                return ""
         }
 
     }
