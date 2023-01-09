@@ -359,7 +359,9 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         self.navigationController?.pushViewController(advancedVC, animated: true)
     }
 
-
+    // TODO: split to sections
+    // add HSL. more?
+    // ?add share equivalents (separate section/s)
     func getShareOrSaveMenu() -> UIMenu {
 
         let generateImageAction = UIAction(
