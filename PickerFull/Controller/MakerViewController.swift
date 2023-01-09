@@ -364,31 +364,58 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
         let generateImageAction = UIAction(
             title: "Generate Screenshot",
-            image: UIImage(systemName: "square.and.arrow.down")) { _ in
+            image: UIImage(systemName: "photo")) { _ in
                 self.generateImage()
             }
+        let copyTextHexAction = UIAction(
+            title: "Copy as HEX",
+            image: UIImage(systemName: "number")) { _ in
+                self.copyAsText(format: .hex)
+            }
+        let copyTextRgbAction = UIAction(
+            title: "Copy as RGB",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.copyAsText(format: .rgb)
+            }
+        let copyTextFloatAction = UIAction(
+            title: "Copy as Float",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.copyAsText(format: .float)
+            }
 
-        let shareTextHexAction = UIAction(title: "Share as HEX",
-                                          image: UIImage(systemName: "doc.text")) { _ in
-            self.shareAsText(format: .hex)
-        }
+        let copyTextObjcAction = UIAction(
+            title: "Copy as Objective-C",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.copyAsText(format: .objc)
+            }
 
-        let shareTextRGBAction = UIAction(title: "Share as RGB",
-                                          image: UIImage(systemName: "doc.text")) { _ in
-            self.shareAsText(format: .rgb)
-        }
-        let copyTextHexAction = UIAction(title: "Copy as HEX",
-                                         image: UIImage(systemName: "doc.on.doc")) { _ in
-            self.copyAsText(format: .hex)
-        }
-        let copyTextRgbAction = UIAction(title: "Copy as RGB",
-                                         image: UIImage(systemName: "doc.on.doc")) { _ in
-            self.copyAsText(format: .rgb)
-        }
+        let copyTextSwiftAction = UIAction(
+            title: "Copy as Swift",
+            image: UIImage(systemName: "swift")) { _ in
+                self.copyAsText(format: .swift)
+            }
+
+        let copyTextSwiftLiteralAction = UIAction(
+            title: "Copy as Swift Literal",
+            image: UIImage(systemName: "swift")) { _ in
+                self.copyAsText(format: .swiftLiteral)
+            }
+
+        let copyTextSwiftUIAction = UIAction(
+            title: "Copy as SwiftUI",
+            image: UIImage(systemName: "swift")) { _ in
+                self.copyAsText(format: .swiftui)
+            }
 
         let shareMenu = UIMenu(options: .displayInline, children: [
-            generateImageAction, shareTextRGBAction, shareTextHexAction,
-            copyTextRgbAction, copyTextHexAction])
+            generateImageAction,
+            copyTextSwiftUIAction,
+            copyTextSwiftLiteralAction,
+            copyTextSwiftAction,
+            copyTextObjcAction,
+            copyTextFloatAction,
+            copyTextRgbAction,
+            copyTextHexAction])
 
         return shareMenu
 
@@ -407,48 +434,9 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
     func copyAsText(format: Format) {
         var myText = ""
-        switch format {
-            case .hex:
-                myText = getSafeHexFromUD()
-            case .rgb:
-                let hexString = getSafeHexFromUD()
-                myText = rgbFrom(hex: hexString)
-        }
+        let hexString = getSafeHexFromUD()
+        myText = hexTo(format: format, hex: hexString)
         UIPasteboard.general.string = myText
-    }
-
-
-    func shareAsText(format: Format) {
-        var myText = ""
-        switch format {
-            case .hex:
-                myText = getSafeHexFromUD()
-            case .rgb:
-                let hexString = getSafeHexFromUD()
-                myText = rgbFrom(hex: hexString)
-        }
-        let activityController = UIActivityViewController(activityItems: [myText],
-                                                          applicationActivities: nil)
-        activityController.popoverPresentationController?.sourceView = shareOrSaveButton
-        activityController
-            .completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
-                guard error == nil else {
-                    let alert = self.createAlert(alertReasonParam: AlertReason.unknown,
-                                                 okMessage: Const.AppInfo.okMessage)
-                    if let presenter = alert.popoverPresentationController {
-                        presenter.sourceView = self.shareOrSaveButton
-                    }
-                    DispatchQueue.main.async {
-                        self.present(alert, animated: true)
-                    }
-
-                    return
-                }
-            }
-        DispatchQueue.main.async {
-            self.present(activityController, animated: true)
-        }
-
     }
 
 
@@ -472,7 +460,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             string: "\n\nRGB\n",
             attributes: regularAttributes)
 
-        let rgbString = rgbFrom(hex: hexString)
+        let rgbString = hexTo(format: .rgbTable, hex: hexString)
         let myUIColor = uiColorFrom(hex: hexString)
 
         let attributedMessageJumboRGB = NSAttributedString(string: rgbString,

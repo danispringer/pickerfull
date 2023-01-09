@@ -82,7 +82,10 @@ class AdvancedTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: Const.StoryboardIDIB.advancedCell) as! AdvancedCell
         cell.hexLabel.text = "HEX: \(getArray()![indexPath.row])"
-        cell.rgbLabel.text = "RGB: \(rgbFrom(hex: getArray()![indexPath.row]))"
+
+        let rgbString = hexTo(format: .rgbTable, hex: getArray()![indexPath.row])
+
+        cell.rgbLabel.text = "RGB: \(rgbString)"
         cell.colorView.backgroundColor = uiColorFrom(hex: getArray()![indexPath.row])
         cell.colorView.layer.cornerRadius = 6
         return cell

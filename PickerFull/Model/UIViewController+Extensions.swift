@@ -101,24 +101,112 @@ extension UIViewController {
     enum Format {
         case hex
         case rgb
+        case rgbTable
+        case float
+        case objc
+        case swift
+        case swiftLiteral
+        case swiftui
     }
 
 
-    func rgbFrom(hex: String) -> String {
+    private func aHexToRGB(hex: String) -> String {
+        return String(Int(hex, radix: 16)!)
+    }
 
-        var rgbString = ""
 
-        let redString = hex[0...1]
-        let greenString = hex[2...3]
-        let blueString = hex[4...5]
+    private func aHexToFloat(hex: String) -> String {
+        let aInt = Int(hex, radix: 16)!
+        let aFloat = Double(aInt) / 255.0
+        let aRounded = (aFloat * 1000).rounded(.toNearestOrEven) / 1000
+        return "\(aRounded)"
+    }
 
-        rgbString = String(Int(redString, radix: 16)!) +
-        ", " +
-        String(Int(greenString, radix: 16)!) +
-        ", " +
-        String(Int(blueString, radix: 16)!)
 
-        return rgbString
+    func hexTo(format: Format, hex: String) -> String {
+
+        switch format {
+            case .rgb:
+                var rgbString = ""
+                let redString = hex[0...1]
+                let greenString = hex[2...3]
+                let blueString = hex[4...5]
+                rgbString = "rgb(" +
+                aHexToRGB(hex: redString) +
+                ", " +
+                aHexToRGB(hex: greenString) +
+                ", " +
+                aHexToRGB(hex: blueString) +
+                ")"
+                return rgbString
+            case .rgbTable:
+                var rgbString = ""
+                let redString = hex[0...1]
+                let greenString = hex[2...3]
+                let blueString = hex[4...5]
+                rgbString = aHexToRGB(hex: redString) +
+                ", " +
+                aHexToRGB(hex: greenString) +
+                ", " +
+                aHexToRGB(hex: blueString)
+                return rgbString
+            case .hex:
+                return "#\(hex)"
+            case .float:
+                var floatString = ""
+                let redString = hex[0...1]
+                let greenString = hex[2...3]
+                let blueString = hex[4...5]
+                floatString = "(" +
+                aHexToFloat(hex: redString) +
+                ", " +
+                aHexToFloat(hex: greenString) +
+                ", " +
+                aHexToFloat(hex: blueString) +
+                ")"
+                return floatString
+            case .objc:
+                var objcString = ""
+                let redString = hex[0...1]
+                let greenString = hex[2...3]
+                let blueString = hex[4...5]
+                objcString = "[UIColor colorWithRed: " + aHexToFloat(hex: redString) +
+                " green: " + aHexToFloat(hex: greenString) +
+                " blue: " + aHexToFloat(hex: blueString) +
+                " alpha: 1.000]"
+                return objcString
+            case .swift:
+                var swiftString = ""
+                let redString = hex[0...1]
+                let greenString = hex[2...3]
+                let blueString = hex[4...5]
+                swiftString = "UIColor(red: " + aHexToFloat(hex: redString) +
+                ", green: " + aHexToFloat(hex: greenString) +
+                ", blue: " + aHexToFloat(hex: blueString) +
+                ", alpha: 1.000)"
+                return swiftString
+            case .swiftLiteral:
+                var swiftLiteralString = ""
+                let redString = hex[0...1]
+                let greenString = hex[2...3]
+                let blueString = hex[4...5]
+                swiftLiteralString = "#colorLiteral(red: " + aHexToFloat(hex: redString) +
+                ", green: " + aHexToFloat(hex: greenString) +
+                ", blue: " + aHexToFloat(hex: blueString) +
+                ", alpha: 1.000)"
+                return swiftLiteralString
+            case .swiftui:
+                var swiftUIString = ""
+                let redString = hex[0...1]
+                let greenString = hex[2...3]
+                let blueString = hex[4...5]
+                swiftUIString = "Color(red: " + aHexToFloat(hex: redString) +
+                ", green: " + aHexToFloat(hex: greenString) +
+                ", blue: " + aHexToFloat(hex: blueString) +
+                ", opacity: 1.000)"
+                return swiftUIString
+        }
+
     }
 
 
