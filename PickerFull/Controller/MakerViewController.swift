@@ -363,6 +363,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     // add HSL. more?
     // ?add share equivalents (separate section/s)
     // add paste/import equivalents
+    // update or remove long press options from histories
     func getShareOrSaveMenu() -> UIMenu {
 
         let generateImageAction = UIAction(
