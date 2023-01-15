@@ -33,6 +33,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     @IBOutlet weak var randomHistoryButton: UIButton!
     @IBOutlet weak var advancedHistoryButton: UIButton!
     @IBOutlet weak var shareOrSaveButton: UIButton!
+    @IBOutlet weak var generateScreenshotButton: UIButton!
 
     // MARK: properties
 
@@ -83,18 +84,25 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         aboutButton.menu = getAboutMenu()
         shareOrSaveButton.menu = getShareOrSaveMenu()
         imageMenuButton.menu = getImageMenu()
+        generateScreenshotButton.addTarget(self, action: #selector(generateImage),
+                                           for: .touchUpInside)
 
         for button: UIButton in [aboutButton, imageMenuButton, shareOrSaveButton] {
             button.showsMenuAsPrimaryAction = true
         }
 
-        for button: UIButton in [aboutButton, pickerMenuButton, imageMenuButton,
+        for button: UIButton in [pickerMenuButton, imageMenuButton,
                                  shareOrSaveButton, randomButton, randomHistoryButton,
-                                 advancedHistoryButton] {
+                                 advancedHistoryButton, generateScreenshotButton] {
             button.clipsToBounds = true
             button.layer.cornerRadius = 8
             button.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         }
+
+        aboutButton.clipsToBounds = true
+        aboutButton.layer.cornerRadius = 8
+        aboutButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+
 
         let dropInteraction = UIDropInteraction(delegate: self)
         userImageView.addInteraction(dropInteraction)
@@ -359,17 +367,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         self.navigationController?.pushViewController(advancedVC, animated: true)
     }
 
-    // TODO: split to sections
-    // add share equivalents (separate section/s)
-    // add paste/import equivalents
-    // update or remove long press options from histories
+    // TODO: update long press options from histories
     func getShareOrSaveMenu() -> UIMenu {
-
-        let generateImageAction = UIAction(
-            title: "Generate Screenshot",
-            image: UIImage(systemName: "photo")) { _ in
-                self.generateImage()
-            }
 
         // MARK: Copy options
         let copyTextHexAction = UIAction(
@@ -464,7 +463,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         ])
 
         let shareAndCopyMenu = UIMenu(options: .displayInline, children: [
-            generateImageAction,
             shareMenu,
             copyTextSwiftUIAction,
             copyTextSwiftLiteralAction,
@@ -499,12 +497,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         var myText = ""
         let hexString = getSafeHexFromUD()
         myText = hexTo(format: format, hex: hexString)
-        // TODO: share myText
         share(string: myText, sourceView: shareOrSaveButton)
     }
 
 
-    func generateImage() {
+    @objc func generateImage() {
 
         elementsShould(hide: true)
 
@@ -563,7 +560,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         qrImageView.isHidden = !hide
         for button: UIButton in [aboutButton, pickerMenuButton, imageMenuButton,
                                  shareOrSaveButton, randomButton, randomHistoryButton,
-                                 advancedHistoryButton] {
+                                 advancedHistoryButton, generateScreenshotButton] {
             button.isHidden = hide
         }
         containerScrollView.isHidden = hide
