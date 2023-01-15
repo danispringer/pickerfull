@@ -24,6 +24,169 @@ extension UIViewController {
     }
 
 
+    func getShareOrSaveMenu(sourceView: UIView) -> UIMenu {
+
+        // MARK: Copy options
+        let copyTextHexAction = UIAction(
+            title: "Copy as HEX",
+            image: UIImage(systemName: "number")) { _ in
+                self.copyAsText(format: .hex)
+            }
+        let copyTextRgbAction = UIAction(
+            title: "Copy as RGB",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.copyAsText(format: .rgb)
+            }
+        let copyTextFloatAction = UIAction(
+            title: "Copy as Float",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.copyAsText(format: .float)
+            }
+
+        let copyTextObjcAction = UIAction(
+            title: "Copy as Objective-C",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.copyAsText(format: .objc)
+            }
+
+        let copyTextSwiftAction = UIAction(
+            title: "Copy as Swift",
+            image: UIImage(systemName: "swift")) { _ in
+                self.copyAsText(format: .swift)
+            }
+
+        let copyTextSwiftLiteralAction = UIAction(
+            title: "Copy as Swift Literal",
+            image: UIImage(systemName: "swift")) { _ in
+                self.copyAsText(format: .swiftLiteral)
+            }
+
+        let copyTextSwiftUIAction = UIAction(
+            title: "Copy as SwiftUI",
+            image: UIImage(systemName: "swift")) { _ in
+                self.copyAsText(format: .swiftui)
+            }
+
+        // MARK: Share options
+        let shareTextHexAction = UIAction(
+            title: "Share as HEX",
+            image: UIImage(systemName: "number")) { _ in
+                self.shareAsText(format: .hex, sourceView: sourceView)
+            }
+        let shareTextRgbAction = UIAction(
+            title: "Share as RGB",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.shareAsText(format: .rgb, sourceView: sourceView)
+            }
+        let shareTextFloatAction = UIAction(
+            title: "Share as Float",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.shareAsText(format: .float, sourceView: sourceView)
+            }
+
+        let shareTextObjcAction = UIAction(
+            title: "Share as Objective-C",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.shareAsText(format: .objc, sourceView: sourceView)
+            }
+
+        let shareTextSwiftAction = UIAction(
+            title: "Share as Swift",
+            image: UIImage(systemName: "swift")) { _ in
+                self.shareAsText(format: .swift, sourceView: sourceView)
+            }
+
+        let shareTextSwiftLiteralAction = UIAction(
+            title: "Share as Swift Literal",
+            image: UIImage(systemName: "swift")) { _ in
+                self.shareAsText(format: .swiftLiteral, sourceView: sourceView)
+            }
+
+        let shareTextSwiftUIAction = UIAction(
+            title: "Share as SwiftUI",
+            image: UIImage(systemName: "swift")) { _ in
+                self.shareAsText(format: .swiftui, sourceView: sourceView)
+            }
+
+        let shareMenu = UIMenu(options: .displayInline, children: [
+            shareTextSwiftUIAction,
+            shareTextSwiftLiteralAction,
+            shareTextSwiftAction,
+            shareTextObjcAction,
+            shareTextFloatAction,
+            shareTextRgbAction,
+            shareTextHexAction
+        ])
+
+        let shareAndCopyMenu = UIMenu(options: .displayInline, children: [
+            shareMenu,
+            copyTextSwiftUIAction,
+            copyTextSwiftLiteralAction,
+            copyTextSwiftAction,
+            copyTextObjcAction,
+            copyTextFloatAction,
+            copyTextRgbAction,
+            copyTextHexAction])
+        return shareAndCopyMenu
+    }
+
+
+    func copyAsText(format: ExportFormat) {
+        var myText = ""
+        let hexString = getSafeHexFromUD()
+        myText = hexTo(format: format, hex: hexString)
+        UIPasteboard.general.string = myText
+    }
+
+
+    func shareAsText(format: ExportFormat, sourceView: UIView) {
+        var myText = ""
+        let hexString = getSafeHexFromUD()
+        myText = hexTo(format: format, hex: hexString)
+        share(string: myText, sourceView: sourceView)
+    }
+
+
+    func share(string: String, sourceView: UIView) {
+
+        let message = string
+
+        let activityController = UIActivityViewController(activityItems: [message],
+                                                          applicationActivities: nil)
+        activityController.modalPresentationStyle = .popover
+        activityController.popoverPresentationController?.sourceView = sourceView
+        activityController
+            .completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
+                guard error == nil else {
+                    let alert = self.createAlert(alertReasonParam: AlertReason.unknown,
+                                                 okMessage: Const.AppInfo.okMessage)
+                    if let presenter = alert.popoverPresentationController {
+                        presenter.sourceView = sourceView
+                    }
+                    DispatchQueue.main.async {
+                        self.present(alert, animated: true)
+                    }
+
+                    return
+                }
+            }
+        if let presenter = activityController.popoverPresentationController {
+            presenter.sourceView = sourceView
+        }
+
+        DispatchQueue.main.async {
+            self.present(activityController, animated: true)
+        }
+
+    }
+
+
+    func getSafeHexFromUD() -> String {
+        let hexString: String = UD.string(forKey: Const.UserDef.colorKey)!
+        return hexString
+    }
+
+
     func createAlert(alertReasonParam: AlertReason, okMessage: String) -> UIAlertController {
 
         var alertTitle = ""
@@ -98,7 +261,7 @@ extension UIViewController {
 
     // MARK: Helpers
 
-    enum Format {
+    enum ExportFormat {
         case hex
         case rgb
         case rgbTable
@@ -123,7 +286,7 @@ extension UIViewController {
     }
 
 
-    func hexTo(format: Format, hex: String) -> String {
+    func hexTo(format: ExportFormat, hex: String) -> String {
 
         switch format {
             case .rgb:

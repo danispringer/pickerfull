@@ -82,7 +82,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         imagePicker.delegate = self
 
         aboutButton.menu = getAboutMenu()
-        shareOrSaveButton.menu = getShareOrSaveMenu()
+        shareOrSaveButton.menu = getShareOrSaveMenu(sourceView: shareOrSaveButton)
         imageMenuButton.menu = getImageMenu()
         generateScreenshotButton.addTarget(self, action: #selector(generateImage),
                                            for: .touchUpInside)
@@ -175,12 +175,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return userImageView
-    }
-
-
-    func getSafeHexFromUD() -> String {
-        let hexString: String = UD.string(forKey: Const.UserDef.colorKey)!
-        return hexString
     }
 
 
@@ -368,111 +362,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     }
 
     // TODO: update long press options from histories
-    func getShareOrSaveMenu() -> UIMenu {
-
-        // MARK: Copy options
-        let copyTextHexAction = UIAction(
-            title: "Copy as HEX",
-            image: UIImage(systemName: "number")) { _ in
-                self.copyAsText(format: .hex)
-            }
-        let copyTextRgbAction = UIAction(
-            title: "Copy as RGB",
-            image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.copyAsText(format: .rgb)
-            }
-        let copyTextFloatAction = UIAction(
-            title: "Copy as Float",
-            image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.copyAsText(format: .float)
-            }
-
-        let copyTextObjcAction = UIAction(
-            title: "Copy as Objective-C",
-            image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.copyAsText(format: .objc)
-            }
-
-        let copyTextSwiftAction = UIAction(
-            title: "Copy as Swift",
-            image: UIImage(systemName: "swift")) { _ in
-                self.copyAsText(format: .swift)
-            }
-
-        let copyTextSwiftLiteralAction = UIAction(
-            title: "Copy as Swift Literal",
-            image: UIImage(systemName: "swift")) { _ in
-                self.copyAsText(format: .swiftLiteral)
-            }
-
-        let copyTextSwiftUIAction = UIAction(
-            title: "Copy as SwiftUI",
-            image: UIImage(systemName: "swift")) { _ in
-                self.copyAsText(format: .swiftui)
-            }
-
-        // MARK: Share options
-        let shareTextHexAction = UIAction(
-            title: "Share as HEX",
-            image: UIImage(systemName: "number")) { _ in
-                self.shareAsText(format: .hex)
-            }
-        let shareTextRgbAction = UIAction(
-            title: "Share as RGB",
-            image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.shareAsText(format: .rgb)
-            }
-        let shareTextFloatAction = UIAction(
-            title: "Share as Float",
-            image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.shareAsText(format: .float)
-            }
-
-        let shareTextObjcAction = UIAction(
-            title: "Share as Objective-C",
-            image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.shareAsText(format: .objc)
-            }
-
-        let shareTextSwiftAction = UIAction(
-            title: "Share as Swift",
-            image: UIImage(systemName: "swift")) { _ in
-                self.shareAsText(format: .swift)
-            }
-
-        let shareTextSwiftLiteralAction = UIAction(
-            title: "Share as Swift Literal",
-            image: UIImage(systemName: "swift")) { _ in
-                self.shareAsText(format: .swiftLiteral)
-            }
-
-        let shareTextSwiftUIAction = UIAction(
-            title: "Share as SwiftUI",
-            image: UIImage(systemName: "swift")) { _ in
-                self.shareAsText(format: .swiftui)
-            }
-
-        let shareMenu = UIMenu(options: .displayInline, children: [
-            shareTextSwiftUIAction,
-            shareTextSwiftLiteralAction,
-            shareTextSwiftAction,
-            shareTextObjcAction,
-            shareTextFloatAction,
-            shareTextRgbAction,
-            shareTextHexAction
-        ])
-
-        let shareAndCopyMenu = UIMenu(options: .displayInline, children: [
-            shareMenu,
-            copyTextSwiftUIAction,
-            copyTextSwiftLiteralAction,
-            copyTextSwiftAction,
-            copyTextObjcAction,
-            copyTextFloatAction,
-            copyTextRgbAction,
-            copyTextHexAction])
-        return shareAndCopyMenu
-    }
 
 
     func presentImagePreview() {
@@ -482,22 +371,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         as! ImagePreviewViewController
         imagePreviewVC.actualImage = hexImage!
         present(imagePreviewVC, animated: true)
-    }
-
-
-    func copyAsText(format: Format) {
-        var myText = ""
-        let hexString = getSafeHexFromUD()
-        myText = hexTo(format: format, hex: hexString)
-        UIPasteboard.general.string = myText
-    }
-
-
-    func shareAsText(format: Format) {
-        var myText = ""
-        let hexString = getSafeHexFromUD()
-        myText = hexTo(format: format, hex: hexString)
-        share(string: myText, sourceView: shareOrSaveButton)
     }
 
 
@@ -564,40 +437,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             button.isHidden = hide
         }
         containerScrollView.isHidden = hide
-    }
-
-
-    func share(string: String, sourceView: UIView) {
-
-        let message = string
-
-        let activityController = UIActivityViewController(activityItems: [message],
-                                                          applicationActivities: nil)
-        activityController.modalPresentationStyle = .popover
-        activityController.popoverPresentationController?.sourceView = sourceView
-        activityController
-            .completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
-                guard error == nil else {
-                    let alert = self.createAlert(alertReasonParam: AlertReason.unknown,
-                                                 okMessage: Const.AppInfo.okMessage)
-                    if let presenter = alert.popoverPresentationController {
-                        presenter.sourceView = self.aboutButton
-                    }
-                    DispatchQueue.main.async {
-                        self.present(alert, animated: true)
-                    }
-
-                    return
-                }
-            }
-        if let presenter = activityController.popoverPresentationController {
-            presenter.sourceView = aboutButton
-        }
-
-        DispatchQueue.main.async {
-            self.present(activityController, animated: true)
-        }
-
     }
 
 
