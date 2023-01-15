@@ -306,7 +306,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         let shareApp = UIAction(title: Const.AppInfo.shareApp,
                                 image: UIImage(systemName: "heart"),
                                 state: .off) { _ in
-            self.shareApp()
+            self.share(string: Const.AppInfo.appsLink, sourceView: self.aboutButton)
         }
         let review = UIAction(title: Const.AppInfo.leaveReview,
                               image: UIImage(systemName: "hand.thumbsup"), state: .off) { _ in
@@ -360,8 +360,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     }
 
     // TODO: split to sections
-    // add HSL. more?
-    // ?add share equivalents (separate section/s)
+    // add share equivalents (separate section/s)
     // add paste/import equivalents
     // update or remove long press options from histories
     func getShareOrSaveMenu() -> UIMenu {
@@ -371,6 +370,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             image: UIImage(systemName: "photo")) { _ in
                 self.generateImage()
             }
+
+        // MARK: Copy options
         let copyTextHexAction = UIAction(
             title: "Copy as HEX",
             image: UIImage(systemName: "number")) { _ in
@@ -411,15 +412,60 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                 self.copyAsText(format: .swiftui)
             }
 
-        let copyColorMagicAction = UIAction(
-            title: "Copy as Color",
+        // MARK: Share options
+        let shareTextHexAction = UIAction(
+            title: "Share as HEX",
+            image: UIImage(systemName: "number")) { _ in
+                self.shareAsText(format: .hex)
+            }
+        let shareTextRgbAction = UIAction(
+            title: "Share as RGB",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.copyAsText(format: .colorMagic)
+                self.shareAsText(format: .rgb)
+            }
+        let shareTextFloatAction = UIAction(
+            title: "Share as Float",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.shareAsText(format: .float)
+            }
+
+        let shareTextObjcAction = UIAction(
+            title: "Share as Objective-C",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.shareAsText(format: .objc)
+            }
+
+        let shareTextSwiftAction = UIAction(
+            title: "Share as Swift",
+            image: UIImage(systemName: "swift")) { _ in
+                self.shareAsText(format: .swift)
+            }
+
+        let shareTextSwiftLiteralAction = UIAction(
+            title: "Share as Swift Literal",
+            image: UIImage(systemName: "swift")) { _ in
+                self.shareAsText(format: .swiftLiteral)
+            }
+
+        let shareTextSwiftUIAction = UIAction(
+            title: "Share as SwiftUI",
+            image: UIImage(systemName: "swift")) { _ in
+                self.shareAsText(format: .swiftui)
             }
 
         let shareMenu = UIMenu(options: .displayInline, children: [
+            shareTextSwiftUIAction,
+            shareTextSwiftLiteralAction,
+            shareTextSwiftAction,
+            shareTextObjcAction,
+            shareTextFloatAction,
+            shareTextRgbAction,
+            shareTextHexAction
+        ])
+
+        let shareAndCopyMenu = UIMenu(options: .displayInline, children: [
             generateImageAction,
-            copyColorMagicAction,
+            shareMenu,
             copyTextSwiftUIAction,
             copyTextSwiftLiteralAction,
             copyTextSwiftAction,
@@ -427,7 +473,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             copyTextFloatAction,
             copyTextRgbAction,
             copyTextHexAction])
-        return shareMenu
+        return shareAndCopyMenu
     }
 
 
@@ -444,12 +490,17 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     func copyAsText(format: Format) {
         var myText = ""
         let hexString = getSafeHexFromUD()
-        guard format != .colorMagic else {
-            UIPasteboard.general.color = .red // uiColorFrom(hex: hexString)
-            return
-        }
         myText = hexTo(format: format, hex: hexString)
         UIPasteboard.general.string = myText
+    }
+
+
+    func shareAsText(format: Format) {
+        var myText = ""
+        let hexString = getSafeHexFromUD()
+        myText = hexTo(format: format, hex: hexString)
+        // TODO: share myText
+        share(string: myText, sourceView: shareOrSaveButton)
     }
 
 
@@ -519,14 +570,14 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     }
 
 
-    func shareApp() {
+    func share(string: String, sourceView: UIView) {
 
-        let message = "https://apps.apple.com/app/id1410565176"
+        let message = string
 
         let activityController = UIActivityViewController(activityItems: [message],
                                                           applicationActivities: nil)
         activityController.modalPresentationStyle = .popover
-        activityController.popoverPresentationController?.sourceView = aboutButton
+        activityController.popoverPresentationController?.sourceView = sourceView
         activityController
             .completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
                 guard error == nil else {
