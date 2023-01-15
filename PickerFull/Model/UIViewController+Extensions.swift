@@ -24,88 +24,101 @@ extension UIViewController {
     }
 
 
-    func getShareOrSaveMenu(sourceView: UIView) -> UIMenu {
+    func getShareOrSaveMenu(sourceView: UIView, hexString: String?) -> UIMenu {
+
+        var safeHexString = ""
+
+        if hexString == nil {
+            safeHexString = getSafeHexFromUD()
+        } else {
+            safeHexString = hexString!
+        }
 
         // MARK: Copy options
         let copyTextHexAction = UIAction(
             title: "Copy as HEX",
             image: UIImage(systemName: "number")) { _ in
-                self.copyAsText(format: .hex)
+                self.copyAsText(format: .hex, hexString: safeHexString)
             }
         let copyTextRgbAction = UIAction(
             title: "Copy as RGB",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.copyAsText(format: .rgb)
+                self.copyAsText(format: .rgb, hexString: safeHexString)
             }
         let copyTextFloatAction = UIAction(
             title: "Copy as Float",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.copyAsText(format: .float)
+                self.copyAsText(format: .float, hexString: safeHexString)
             }
 
         let copyTextObjcAction = UIAction(
             title: "Copy as Objective-C",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.copyAsText(format: .objc)
+                self.copyAsText(format: .objc, hexString: safeHexString)
             }
 
         let copyTextSwiftAction = UIAction(
             title: "Copy as Swift",
             image: UIImage(systemName: "swift")) { _ in
-                self.copyAsText(format: .swift)
+                self.copyAsText(format: .swift, hexString: safeHexString)
             }
 
         let copyTextSwiftLiteralAction = UIAction(
             title: "Copy as Swift Literal",
             image: UIImage(systemName: "swift")) { _ in
-                self.copyAsText(format: .swiftLiteral)
+                self.copyAsText(format: .swiftLiteral, hexString: safeHexString)
             }
 
         let copyTextSwiftUIAction = UIAction(
             title: "Copy as SwiftUI",
             image: UIImage(systemName: "swift")) { _ in
-                self.copyAsText(format: .swiftui)
+                self.copyAsText(format: .swiftui, hexString: safeHexString)
             }
 
         // MARK: Share options
         let shareTextHexAction = UIAction(
             title: "Share as HEX",
             image: UIImage(systemName: "number")) { _ in
-                self.shareAsText(format: .hex, sourceView: sourceView)
+                self.shareAsText(format: .hex, sourceView: sourceView, hexString: safeHexString)
             }
         let shareTextRgbAction = UIAction(
             title: "Share as RGB",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.shareAsText(format: .rgb, sourceView: sourceView)
+                self.shareAsText(format: .rgb, sourceView: sourceView, hexString: safeHexString)
             }
         let shareTextFloatAction = UIAction(
             title: "Share as Float",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.shareAsText(format: .float, sourceView: sourceView)
+                self.shareAsText(format: .float, sourceView: sourceView,
+                                 hexString: safeHexString)
             }
 
         let shareTextObjcAction = UIAction(
             title: "Share as Objective-C",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.shareAsText(format: .objc, sourceView: sourceView)
+                self.shareAsText(format: .objc, sourceView: sourceView,
+                                 hexString: safeHexString)
             }
 
         let shareTextSwiftAction = UIAction(
             title: "Share as Swift",
             image: UIImage(systemName: "swift")) { _ in
-                self.shareAsText(format: .swift, sourceView: sourceView)
+                self.shareAsText(format: .swift, sourceView: sourceView,
+                                 hexString: safeHexString)
             }
 
         let shareTextSwiftLiteralAction = UIAction(
             title: "Share as Swift Literal",
             image: UIImage(systemName: "swift")) { _ in
-                self.shareAsText(format: .swiftLiteral, sourceView: sourceView)
+                self.shareAsText(format: .swiftLiteral, sourceView: sourceView,
+                                 hexString: safeHexString)
             }
 
         let shareTextSwiftUIAction = UIAction(
             title: "Share as SwiftUI",
             image: UIImage(systemName: "swift")) { _ in
-                self.shareAsText(format: .swiftui, sourceView: sourceView)
+                self.shareAsText(format: .swiftui, sourceView: sourceView,
+                                 hexString: safeHexString)
             }
 
         let shareMenu = UIMenu(options: .displayInline, children: [
@@ -131,17 +144,15 @@ extension UIViewController {
     }
 
 
-    func copyAsText(format: ExportFormat) {
+    func copyAsText(format: ExportFormat, hexString: String) {
         var myText = ""
-        let hexString = getSafeHexFromUD()
         myText = hexTo(format: format, hex: hexString)
         UIPasteboard.general.string = myText
     }
 
 
-    func shareAsText(format: ExportFormat, sourceView: UIView) {
+    func shareAsText(format: ExportFormat, sourceView: UIView, hexString: String) {
         var myText = ""
-        let hexString = getSafeHexFromUD()
         myText = hexTo(format: format, hex: hexString)
         share(string: myText, sourceView: sourceView)
     }

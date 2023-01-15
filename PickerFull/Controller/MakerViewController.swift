@@ -82,7 +82,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         imagePicker.delegate = self
 
         aboutButton.menu = getAboutMenu()
-        shareOrSaveButton.menu = getShareOrSaveMenu(sourceView: shareOrSaveButton)
+        shareOrSaveButton.menu = getShareOrSaveMenu(sourceView: shareOrSaveButton,
+                                                    hexString: nil)
         imageMenuButton.menu = getImageMenu()
         generateScreenshotButton.addTarget(self, action: #selector(generateImage),
                                            for: .touchUpInside)
@@ -360,8 +361,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
         self.navigationController?.pushViewController(advancedVC, animated: true)
     }
-
-    // TODO: update long press options from histories
 
 
     func presentImagePreview() {

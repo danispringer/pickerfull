@@ -138,21 +138,14 @@ class MagicTableViewController: UITableViewController {
         point: CGPoint) -> UIContextMenuConfiguration? {
 
             return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
-                let copyHEXAction = UIAction(title: "Copy HEX",
-                                             image: UIImage(systemName: "doc.on.doc")) { _ in
-                    let hexToCopy: String = (tableView.cellForRow(at: indexPath)
-                                             as! MagicCell).hexLabel.text!
-                    UIPasteboard.general.string = String(hexToCopy.suffix(6))
-                }
 
-                let copyRGBAction = UIAction(title: "Copy RGB",
-                                             image: UIImage(systemName: "doc.on.doc")) { _ in
-                    let rgbToCopy: String = (tableView.cellForRow(at: indexPath)
-                                             as! MagicCell).rgbLabel.text!
-                    UIPasteboard.general.string = String(rgbToCopy[5...rgbToCopy.count-1])
-                }
+                let hexToCopy: String = (tableView.cellForRow(at: indexPath)
+                                         as! MagicCell).hexLabel.text!
+                let someHexString = String(hexToCopy.suffix(6))
 
-                return UIMenu(title: "", children: [copyHEXAction, copyRGBAction])
+                return self.getShareOrSaveMenu(
+                    sourceView: tableView.cellForRow(at: indexPath)!,
+                    hexString: someHexString)
             }
         }
 
