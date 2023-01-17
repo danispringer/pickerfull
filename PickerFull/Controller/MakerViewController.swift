@@ -387,16 +387,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         let hexString = getSafeHexFromUD()
         let attributedMessageJumboHex = NSAttributedString(string: hexString,
                                                            attributes: jumboAttributes)
-        let attributedMessagePreRGB = NSAttributedString(
-            string: "\n\nRGB\n",
-            attributes: regularAttributes)
-
-        // hexString
-        let rgbString = hexTo(format: .rgbTable)
         let myUIColor = uiColorFrom(hex: hexString)
-
-        let attributedMessageJumboRGB = NSAttributedString(string: rgbString,
-                                                           attributes: jumboAttributes)
 
         let attributedMessagePost = NSAttributedString(
             string: Const.AppInfo.creditMessage,
@@ -406,8 +397,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
         myAttributedText.append(attributedMessagePreHex)
         myAttributedText.append(attributedMessageJumboHex)
-        myAttributedText.append(attributedMessagePreRGB)
-        myAttributedText.append(attributedMessageJumboRGB)
         myAttributedText.append(attributedMessagePost)
 
         messageLabel.attributedText = myAttributedText

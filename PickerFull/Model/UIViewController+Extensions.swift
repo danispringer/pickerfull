@@ -38,9 +38,14 @@ extension UIViewController {
                 self.copyAsText(format: .rgb)
             }
         let copyTextHSBAction = UIAction(
-            title: "Copy as HSB",
+            title: "Copy as HSB/HSV",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.copyAsText(format: .hsb)
+                self.copyAsText(format: .hsbhsv)
+            }
+        let copyTextHSLAction = UIAction(
+            title: "Copy as HSL",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.copyAsText(format: .hsl)
             }
         let copyTextFloatAction = UIAction(
             title: "Copy as Float",
@@ -84,9 +89,14 @@ extension UIViewController {
                 self.shareAsText(format: .rgb, sourceView: sourceView)
             }
         let shareTextHSBAction = UIAction(
-            title: "Share as HSB",
+            title: "Share as HSB/HSV",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.shareAsText(format: .hsb, sourceView: sourceView)
+                self.shareAsText(format: .hsbhsv, sourceView: sourceView)
+            }
+        let shareTextHSLAction = UIAction(
+            title: "Share as HSL",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.shareAsText(format: .hsl, sourceView: sourceView)
             }
         let shareTextFloatAction = UIAction(
             title: "Share as Float",
@@ -124,6 +134,7 @@ extension UIViewController {
             shareTextSwiftAction,
             shareTextObjcAction,
             shareTextFloatAction,
+            shareTextHSLAction,
             shareTextHSBAction,
             shareTextRgbAction,
             shareTextHexAction
@@ -136,6 +147,7 @@ extension UIViewController {
             copyTextSwiftAction,
             copyTextObjcAction,
             copyTextFloatAction,
+            copyTextHSLAction,
             copyTextHSBAction,
             copyTextRgbAction,
             copyTextHexAction])
@@ -274,8 +286,8 @@ extension UIViewController {
     enum ExportFormat {
         case hex
         case rgb
-        case hsb
-        case rgbTable
+        case hsbhsv
+        case hsl
         case float
         case objc
         case swift
@@ -302,7 +314,17 @@ extension UIViewController {
         let hex = getSafeHexFromUD()
 
         switch format {
-            case .hsb:
+            case .hsl:
+                let someUIColor = uiColorFrom(hex: hex)
+                let someHSL = someUIColor.hsl
+                let roundedHue = round(someHSL.hue * 10) / 10.0
+                let roundedSaturation = round(someHSL.saturation * 10) / 10.0
+                let roundedLightness = round(someHSL.lightness * 10) / 10.0
+                return """
+                (hue: \(roundedHue), saturation: \(roundedSaturation), \
+                brightness: \(roundedLightness))
+                """
+            case .hsbhsv:
                 var hue: CGFloat = 0
                 var saturation: CGFloat = 0
                 var brightness: CGFloat = 0
@@ -337,17 +359,6 @@ extension UIViewController {
                 ", " +
                 aHexToRGB(hex: blueString) +
                 ")"
-                return rgbString
-            case .rgbTable:
-                var rgbString = ""
-                let redString = hex[0...1]
-                let greenString = hex[2...3]
-                let blueString = hex[4...5]
-                rgbString = aHexToRGB(hex: redString) +
-                ", " +
-                aHexToRGB(hex: greenString) +
-                ", " +
-                aHexToRGB(hex: blueString)
                 return rgbString
             case .hex:
                 return "#\(hex)"
