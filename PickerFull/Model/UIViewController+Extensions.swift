@@ -299,7 +299,7 @@ extension UIViewController {
 
     func hexTo(format: ExportFormat) -> String {
 
-        let hex = getSafeHexFromUD() // TODO: fixme
+        let hex = getSafeHexFromUD()
 
         switch format {
             case .hsb:
