@@ -98,22 +98,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="Mhs-xX-Vry">
-                                <rect key="frame" x="16" y="147.66666666666663" width="398" height="499.00000000000011"/>
+                                <rect key="frame" x="16" y="147.66666666666663" width="398" height="499"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="1UD-oN-VfA"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="128" id="y91-3E-Mfn"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here Is Your Image" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkh-Pc-aKO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Screenshot" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkh-Pc-aKO">
                                 <rect key="frame" x="16" y="75" width="398" height="40.666666666666657"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6JT-WC-AfJ">
-                                <rect key="frame" x="130" y="780.66666666666663" width="170.33333333333337" height="34.333333333333371"/>
+                                <rect key="frame" x="168.33333333333334" y="780.66666666666663" width="93.333333333333343" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.down" catalog="system" title="Save to Photos" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.down" catalog="system" title="Save" imagePadding="8">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -121,9 +121,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPh-8w-h2G">
-                                <rect key="frame" x="139.66666666666666" y="729.66666666666663" width="150.99999999999997" height="35"/>
+                                <rect key="frame" x="165" y="729.66666666666663" width="100.33333333333331" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.up" catalog="system" title="Share image" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.up" catalog="system" title="Share" imagePadding="8">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -131,9 +131,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="678-P1-fCm">
-                                <rect key="frame" x="132.66666666666669" y="847" width="164.66666666666669" height="35"/>
+                                <rect key="frame" x="158" y="847" width="114" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="trash" catalog="system" title="Discard image" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="gray" image="trash" catalog="system" title="Discard" imagePadding="8">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -141,9 +141,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M2G-Ro-s0f">
-                                <rect key="frame" x="140" y="678.66666666666663" width="150" height="35"/>
+                                <rect key="frame" x="165.33333333333334" y="678.66666666666663" width="99.333333333333343" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="doc.on.doc" catalog="system" title="Copy image" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="filled" image="doc.on.doc" catalog="system" title="Copy" imagePadding="8">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -244,19 +244,19 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEf-rT-J3K">
-                                <rect key="frame" x="0.0" y="545" width="222.33333333333334" height="35"/>
+                                <rect key="frame" x="0.0" y="545" width="156.33333333333334" height="35"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="photo" catalog="system" imagePlacement="leading" title="Generate screenshot" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="plain" image="doc.circle" catalog="system" imagePlacement="leading" title="Export as file" imagePadding="8">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-hD-fEQ">
-                                <rect key="frame" x="0.0" y="588" width="216.33333333333334" height="34"/>
+                                <rect key="frame" x="0.0" y="588" width="162.33333333333334" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up.circle" catalog="system" imagePlacement="leading" title="Share and save color" imagePadding="8">
+                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up.circle" catalog="system" imagePlacement="leading" title="Export as text" imagePadding="8">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
@@ -370,15 +370,15 @@
                         <outlet property="aboutButton" destination="bEo-KS-B1i" id="m8F-Sr-n6f"/>
                         <outlet property="advancedHistoryButton" destination="47O-Zh-mK7" id="23S-0I-LIY"/>
                         <outlet property="containerScrollView" destination="L0L-A8-4Ez" id="ixP-pm-NIn"/>
-                        <outlet property="generateScreenshotButton" destination="PEf-rT-J3K" id="DwQ-uq-3o4"/>
-                        <outlet property="imageMenuButton" destination="BNf-u5-6Xf" id="A9n-8k-GLr"/>
+                        <outlet property="exportAsFilesMenuButton" destination="PEf-rT-J3K" id="DwQ-uq-3o4"/>
+                        <outlet property="exportAsTextMenuButton" destination="4cf-hD-fEQ" id="lZe-Ld-135"/>
+                        <outlet property="imageImportMenuButton" destination="BNf-u5-6Xf" id="A9n-8k-GLr"/>
                         <outlet property="messageLabel" destination="BKY-HB-wIv" id="nVb-Od-V3R"/>
                         <outlet property="pickerMenuButton" destination="gXP-06-ffR" id="hM9-dP-Sul"/>
                         <outlet property="qrImageView" destination="Fhb-Dc-Ypx" id="Fxm-Fy-TXC"/>
                         <outlet property="randomButton" destination="i2z-Ue-gCv" id="QxC-RW-8xC"/>
                         <outlet property="randomHistoryButton" destination="Ldp-OX-DMb" id="Fkc-eL-CKG"/>
                         <outlet property="resultView" destination="7iT-jJ-EaV" id="fu8-S3-1HE"/>
-                        <outlet property="shareOrSaveButton" destination="4cf-hD-fEQ" id="lZe-Ld-135"/>
                         <outlet property="userImageView" destination="xQP-48-zh1" id="Lh3-tB-FQc"/>
                     </connections>
                 </viewController>
@@ -506,10 +506,10 @@
         <image name="book.circle" catalog="system" width="128" height="123"/>
         <image name="books.vertical.circle" catalog="system" width="128" height="123"/>
         <image name="camera.circle" catalog="system" width="128" height="123"/>
+        <image name="doc.circle" catalog="system" width="128" height="123"/>
         <image name="doc.on.doc" catalog="system" width="116" height="128"/>
         <image name="gear.circle" catalog="system" width="128" height="123"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
-        <image name="photo" catalog="system" width="128" height="93"/>
         <image name="play.circle.fill" catalog="system" width="128" height="123"/>
         <image name="qr" width="2214" height="2214"/>
         <image name="shuffle.circle" catalog="system" width="128" height="123"/>

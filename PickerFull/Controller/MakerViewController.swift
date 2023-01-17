@@ -11,6 +11,7 @@ import StoreKit
 import MessageUI
 import AVKit
 import UniformTypeIdentifiers
+import PDFKit
 
 
 class MakerViewController: UIViewController, UINavigationControllerDelegate,
@@ -28,12 +29,13 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var pickerMenuButton: UIButton!
-    @IBOutlet weak var imageMenuButton: UIButton!
+    @IBOutlet weak var imageImportMenuButton: UIButton!
     @IBOutlet weak var randomButton: UIButton!
     @IBOutlet weak var randomHistoryButton: UIButton!
     @IBOutlet weak var advancedHistoryButton: UIButton!
-    @IBOutlet weak var shareOrSaveButton: UIButton!
-    @IBOutlet weak var generateScreenshotButton: UIButton!
+    @IBOutlet weak var exportAsTextMenuButton: UIButton!
+    @IBOutlet weak var exportAsFilesMenuButton: UIButton!
+
 
     // MARK: properties
 
@@ -82,18 +84,18 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         imagePicker.delegate = self
 
         aboutButton.menu = getAboutMenu()
-        shareOrSaveButton.menu = getShareOrSaveMenu(sourceView: shareOrSaveButton)
-        imageMenuButton.menu = getImageMenu()
-        generateScreenshotButton.addTarget(self, action: #selector(generateImage),
-                                           for: .touchUpInside)
+        exportAsTextMenuButton.menu = getShareMenu(sourceView: exportAsTextMenuButton)
+        imageImportMenuButton.menu = getImageMenu()
+        exportAsFilesMenuButton.menu = getFileMenu(sourceView: exportAsFilesMenuButton)
 
-        for button: UIButton in [aboutButton, imageMenuButton, shareOrSaveButton] {
+        for button: UIButton in [aboutButton, imageImportMenuButton, exportAsTextMenuButton,
+                                 exportAsFilesMenuButton] {
             button.showsMenuAsPrimaryAction = true
         }
 
-        for button: UIButton in [pickerMenuButton, imageMenuButton,
-                                 shareOrSaveButton, randomButton, randomHistoryButton,
-                                 advancedHistoryButton, generateScreenshotButton] {
+        for button: UIButton in [pickerMenuButton, imageImportMenuButton,
+                                 exportAsTextMenuButton, randomButton, randomHistoryButton,
+                                 advancedHistoryButton, exportAsFilesMenuButton] {
             button.clipsToBounds = true
             button.layer.cornerRadius = 8
             button.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
@@ -106,8 +108,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
         let dropInteraction = UIDropInteraction(delegate: self)
         userImageView.addInteraction(dropInteraction)
-
-
     }
 
 
@@ -119,7 +119,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         if !UD.bool(forKey: Const.UserDef.tutorialShown) {
             showTutorial()
             UD.set(true, forKey: Const.UserDef.tutorialShown)
@@ -254,7 +253,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
                         })
                         alert.addAction(goToSettingsButton)
                         if let presenter = alert.popoverPresentationController {
-                            presenter.sourceView = imageMenuButton
+                            presenter.sourceView = imageImportMenuButton
                         }
                         DispatchQueue.main.async { [self] in
                             present(alert, animated: true)
@@ -422,17 +421,98 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
         view.backgroundColor = viewColorWas
         elementsShould(hide: false)
+    }
 
-        presentImagePreview()
+
+    func getFileMenu(sourceView: UIView) -> UIMenu {
+
+        // MARK: Copy options
+        let getImage = UIAction(
+            title: "Generate Screenshot",
+            image: UIImage(systemName: "photo")) { _ in
+                self.generateImage()
+                self.presentImagePreview()
+            }
+        let sharePDF = UIAction(
+            title: "Share as PDF",
+            image: UIImage(systemName: "doc.circle")) { _ in
+                self.shareAsPDF()
+            }
+
+        let exportAsFileMenu = UIMenu(options: .displayInline, children: [
+            getImage,
+            sharePDF])
+        return exportAsFileMenu
+    }
+
+
+    func shareAsPDF() {
+        generateImage()
+        let image: UIImage = hexImage
+        let myData = createPDFDataFromImage(image: image)
+
+        let activityController = UIActivityViewController(activityItems: [myData],
+                                                          applicationActivities: nil)
+        activityController.popoverPresentationController?.sourceView = exportAsFilesMenuButton
+        activityController
+            .completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
+                guard error == nil else {
+                    let alert = self.createAlert(alertReasonParam: AlertReason.unknown,
+                                                 okMessage: Const.AppInfo.okMessage)
+                    if let presenter = alert.popoverPresentationController {
+                        presenter.sourceView = self.exportAsFilesMenuButton
+                    }
+                    DispatchQueue.main.async {
+                        self.present(alert, animated: true)
+                    }
+                    return
+                }
+            }
+        DispatchQueue.main.async {
+            self.present(activityController, animated: true)
+        }
+    }
+
+
+    func createPDFDataFromImage(image: UIImage) -> NSMutableData {
+        let pdfData = NSMutableData()
+        let imgView = UIImageView.init(image: image)
+        let imageRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+        UIGraphicsBeginPDFContextToData(pdfData, imageRect, nil)
+        UIGraphicsBeginPDFPage()
+        let context = UIGraphicsGetCurrentContext()
+        imgView.layer.render(in: context!)
+        UIGraphicsEndPDFContext()
+
+        // try saving in doc dir to confirm:
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
+        let path = dir?.appendingPathComponent("""
+        HEX-Color-\(getSafeHexFromUD())-PickerFull-iOS-App-Daniel-Springer.pdf
+        """)
+
+        do {
+            try pdfData.write(to: path!, options: .atomic)
+        } catch {
+            let alert = createAlert(alertReasonParam: .unknown,
+                                    okMessage: Const.AppInfo.okMessage)
+            if let presenter = alert.popoverPresentationController {
+                presenter.sourceView = exportAsFilesMenuButton
+            }
+            DispatchQueue.main.async {
+                self.present(alert, animated: true)
+            }
+        }
+
+        return pdfData
     }
 
 
     func elementsShould(hide: Bool) {
         messageLabel.isHidden = !hide
         qrImageView.isHidden = !hide
-        for button: UIButton in [aboutButton, pickerMenuButton, imageMenuButton,
-                                 shareOrSaveButton, randomButton, randomHistoryButton,
-                                 advancedHistoryButton, generateScreenshotButton] {
+        for button: UIButton in [aboutButton, pickerMenuButton, imageImportMenuButton,
+                                 exportAsTextMenuButton, randomButton, randomHistoryButton,
+                                 advancedHistoryButton, exportAsFilesMenuButton] {
             button.isHidden = hide
         }
         containerScrollView.isHidden = hide

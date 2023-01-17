@@ -24,7 +24,7 @@ extension UIViewController {
     }
 
 
-    func getShareOrSaveMenu(sourceView: UIView) -> UIMenu {
+    func getShareMenu(sourceView: UIView) -> UIMenu {
 
         // MARK: Copy options
         let copyTextHexAction = UIAction(
