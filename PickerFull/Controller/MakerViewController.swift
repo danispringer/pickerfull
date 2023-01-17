@@ -435,7 +435,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             }
         let sharePDF = UIAction(
             title: "Share as PDF",
-            image: UIImage(systemName: "doc.circle")) { _ in
+            image: UIImage(systemName: "doc.text")) { _ in
                 self.shareAsPDF()
             }
 
