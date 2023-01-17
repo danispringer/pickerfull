@@ -70,6 +70,9 @@ struct Const {
         """
         static let contact = "Email Me"
         static let emailString = "00.segue_affix@icloud.com"
+        static let historyHeader = """
+        Tap a color to restore it to the home page of the app and share it
+        """
     }
 
 }

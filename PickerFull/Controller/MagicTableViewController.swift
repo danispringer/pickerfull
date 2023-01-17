@@ -83,8 +83,6 @@ class MagicTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: Const.StoryboardIDIB.magicCell) as! MagicCell
         cell.hexLabel.text = "HEX: \(getArray()![indexPath.row])"
-        let rgbString = hexTo(format: .rgbTable, hex: getArray()![indexPath.row])
-        cell.rgbLabel.text = "RGB: \(rgbString)"
         cell.colorView.backgroundColor = uiColorFrom(hex: getArray()![indexPath.row])
         cell.colorView.layer.cornerRadius = 6
         return cell
@@ -105,9 +103,7 @@ class MagicTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             titleForHeaderInSection section: Int) -> String? {
 
-        return """
-        Tap, swipe, or long press a color for options
-        """
+        return Const.AppInfo.historyHeader
     }
 
 
@@ -129,24 +125,6 @@ class MagicTableViewController: UITableViewController {
                 })
             deleteAction.backgroundColor = .red
             return UISwipeActionsConfiguration(actions: [deleteAction])
-        }
-
-
-    override func tableView(
-        _ tableView: UITableView,
-        contextMenuConfigurationForRowAt indexPath: IndexPath,
-        point: CGPoint) -> UIContextMenuConfiguration? {
-
-            return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
-
-                let hexToCopy: String = (tableView.cellForRow(at: indexPath)
-                                         as! MagicCell).hexLabel.text!
-                let someHexString = String(hexToCopy.suffix(6))
-
-                return self.getShareOrSaveMenu(
-                    sourceView: tableView.cellForRow(at: indexPath)!,
-                    hexString: someHexString)
-            }
         }
 
 }

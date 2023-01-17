@@ -82,8 +82,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         imagePicker.delegate = self
 
         aboutButton.menu = getAboutMenu()
-        shareOrSaveButton.menu = getShareOrSaveMenu(sourceView: shareOrSaveButton,
-                                                    hexString: nil)
+        shareOrSaveButton.menu = getShareOrSaveMenu(sourceView: shareOrSaveButton)
         imageMenuButton.menu = getImageMenu()
         generateScreenshotButton.addTarget(self, action: #selector(generateImage),
                                            for: .touchUpInside)
@@ -393,7 +392,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             string: "\n\nRGB\n",
             attributes: regularAttributes)
 
-        let rgbString = hexTo(format: .rgbTable, hex: hexString)
+        // hexString
+        let rgbString = hexTo(format: .rgbTable)
         let myUIColor = uiColorFrom(hex: hexString)
 
         let attributedMessageJumboRGB = NSAttributedString(string: rgbString,

@@ -24,101 +24,98 @@ extension UIViewController {
     }
 
 
-    func getShareOrSaveMenu(sourceView: UIView, hexString: String?) -> UIMenu {
-
-        var safeHexString = ""
-
-        if hexString == nil {
-            safeHexString = getSafeHexFromUD()
-        } else {
-            safeHexString = hexString!
-        }
+    func getShareOrSaveMenu(sourceView: UIView) -> UIMenu {
 
         // MARK: Copy options
         let copyTextHexAction = UIAction(
             title: "Copy as HEX",
             image: UIImage(systemName: "number")) { _ in
-                self.copyAsText(format: .hex, hexString: safeHexString)
+                self.copyAsText(format: .hex)
             }
         let copyTextRgbAction = UIAction(
             title: "Copy as RGB",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.copyAsText(format: .rgb, hexString: safeHexString)
+                self.copyAsText(format: .rgb)
+            }
+        let copyTextHSBAction = UIAction(
+            title: "Copy as HSB",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.copyAsText(format: .hsb)
             }
         let copyTextFloatAction = UIAction(
             title: "Copy as Float",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.copyAsText(format: .float, hexString: safeHexString)
+                self.copyAsText(format: .float)
             }
 
         let copyTextObjcAction = UIAction(
             title: "Copy as Objective-C",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.copyAsText(format: .objc, hexString: safeHexString)
+                self.copyAsText(format: .objc)
             }
 
         let copyTextSwiftAction = UIAction(
             title: "Copy as Swift",
             image: UIImage(systemName: "swift")) { _ in
-                self.copyAsText(format: .swift, hexString: safeHexString)
+                self.copyAsText(format: .swift)
             }
 
         let copyTextSwiftLiteralAction = UIAction(
             title: "Copy as Swift Literal",
             image: UIImage(systemName: "swift")) { _ in
-                self.copyAsText(format: .swiftLiteral, hexString: safeHexString)
+                self.copyAsText(format: .swiftLiteral)
             }
 
         let copyTextSwiftUIAction = UIAction(
             title: "Copy as SwiftUI",
             image: UIImage(systemName: "swift")) { _ in
-                self.copyAsText(format: .swiftui, hexString: safeHexString)
+                self.copyAsText(format: .swiftui)
             }
 
         // MARK: Share options
         let shareTextHexAction = UIAction(
             title: "Share as HEX",
             image: UIImage(systemName: "number")) { _ in
-                self.shareAsText(format: .hex, sourceView: sourceView, hexString: safeHexString)
+                self.shareAsText(format: .hex, sourceView: sourceView)
             }
         let shareTextRgbAction = UIAction(
             title: "Share as RGB",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.shareAsText(format: .rgb, sourceView: sourceView, hexString: safeHexString)
+                self.shareAsText(format: .rgb, sourceView: sourceView)
+            }
+        let shareTextHSBAction = UIAction(
+            title: "Share as HSB",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.shareAsText(format: .hsb, sourceView: sourceView)
             }
         let shareTextFloatAction = UIAction(
             title: "Share as Float",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.shareAsText(format: .float, sourceView: sourceView,
-                                 hexString: safeHexString)
+                self.shareAsText(format: .float, sourceView: sourceView)
             }
 
         let shareTextObjcAction = UIAction(
             title: "Share as Objective-C",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
-                self.shareAsText(format: .objc, sourceView: sourceView,
-                                 hexString: safeHexString)
+                self.shareAsText(format: .objc, sourceView: sourceView)
             }
 
         let shareTextSwiftAction = UIAction(
             title: "Share as Swift",
             image: UIImage(systemName: "swift")) { _ in
-                self.shareAsText(format: .swift, sourceView: sourceView,
-                                 hexString: safeHexString)
+                self.shareAsText(format: .swift, sourceView: sourceView)
             }
 
         let shareTextSwiftLiteralAction = UIAction(
             title: "Share as Swift Literal",
             image: UIImage(systemName: "swift")) { _ in
-                self.shareAsText(format: .swiftLiteral, sourceView: sourceView,
-                                 hexString: safeHexString)
+                self.shareAsText(format: .swiftLiteral, sourceView: sourceView)
             }
 
         let shareTextSwiftUIAction = UIAction(
             title: "Share as SwiftUI",
             image: UIImage(systemName: "swift")) { _ in
-                self.shareAsText(format: .swiftui, sourceView: sourceView,
-                                 hexString: safeHexString)
+                self.shareAsText(format: .swiftui, sourceView: sourceView)
             }
 
         let shareMenu = UIMenu(options: .displayInline, children: [
@@ -127,6 +124,7 @@ extension UIViewController {
             shareTextSwiftAction,
             shareTextObjcAction,
             shareTextFloatAction,
+            shareTextHSBAction,
             shareTextRgbAction,
             shareTextHexAction
         ])
@@ -138,22 +136,23 @@ extension UIViewController {
             copyTextSwiftAction,
             copyTextObjcAction,
             copyTextFloatAction,
+            copyTextHSBAction,
             copyTextRgbAction,
             copyTextHexAction])
         return shareAndCopyMenu
     }
 
 
-    func copyAsText(format: ExportFormat, hexString: String) {
+    func copyAsText(format: ExportFormat) {
         var myText = ""
-        myText = hexTo(format: format, hex: hexString)
+        myText = hexTo(format: format)
         UIPasteboard.general.string = myText
     }
 
 
-    func shareAsText(format: ExportFormat, sourceView: UIView, hexString: String) {
+    func shareAsText(format: ExportFormat, sourceView: UIView) {
         var myText = ""
-        myText = hexTo(format: format, hex: hexString)
+        myText = hexTo(format: format)
         share(string: myText, sourceView: sourceView)
     }
 
@@ -275,6 +274,7 @@ extension UIViewController {
     enum ExportFormat {
         case hex
         case rgb
+        case hsb
         case rgbTable
         case float
         case objc
@@ -297,9 +297,30 @@ extension UIViewController {
     }
 
 
-    func hexTo(format: ExportFormat, hex: String) -> String {
+    func hexTo(format: ExportFormat) -> String {
+
+        let hex = getSafeHexFromUD() // TODO: fixme
 
         switch format {
+            case .hsb:
+                var hue: CGFloat = 0
+                var saturation: CGFloat = 0
+                var brightness: CGFloat = 0
+                var alpha: CGFloat = 0
+                let couldBeConverted = uiColorFrom(hex: hex)
+                    .getHue(&hue, saturation: &saturation,
+                            brightness: &brightness, alpha: &alpha)
+                if couldBeConverted {
+                    return """
+                    (hue: \(hue), saturation: \(saturation), brightness: \(brightness), \
+                    alpha: \(alpha))
+                    """
+                    // The color is in a compatible color space, and the variables
+                    // `hue`, `saturation`, `brightness`, and `alpha` have been
+                    // changed to contain these values.
+                } else {
+                    return "Error. Please let us know."
+                }
             case .rgb:
                 var rgbString = ""
                 let redString = hex[0...1]
