@@ -311,9 +311,13 @@ extension UIViewController {
                     .getHue(&hue, saturation: &saturation,
                             brightness: &brightness, alpha: &alpha)
                 if couldBeConverted {
+                    let roundedHue = round(hue * 1000) / 1000.0
+                    let roundedSaturation = round(saturation * 1000) / 1000.0
+                    let roundedBrightness = round(brightness * 1000) / 1000.0
+                    let roundedAlpha = round(alpha * 1000) / 1000.0
                     return """
-                    (hue: \(hue), saturation: \(saturation), brightness: \(brightness), \
-                    alpha: \(alpha))
+                    (hue: \(roundedHue), saturation: \(roundedSaturation), \
+                    brightness: \(roundedBrightness), alpha: \(roundedAlpha))
                     """
                     // The color is in a compatible color space, and the variables
                     // `hue`, `saturation`, `brightness`, and `alpha` have been
