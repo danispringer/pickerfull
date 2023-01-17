@@ -63,3 +63,35 @@ extension UIColor {
     }
 
 }
+
+
+extension UIColor {
+    // swiftlint:disable:next large_tuple
+    func colorComponentsByMatchingToCMYK() -> (cyan: CGFloat, magenta: CGFloat,
+                                               yellow: CGFloat, key: CGFloat) {
+        let intent = CGColorRenderingIntent.perceptual
+        let cmykColor = self.cgColor.converted(to: CGColorSpaceCreateDeviceCMYK(),
+                                               intent: intent, options: nil)
+        let cyan: CGFloat = round((cmykColor?.components![0])! * 100)
+        let magenta: CGFloat = round((cmykColor?.components![1])! * 100)
+        let yellow: CGFloat = round((cmykColor?.components![2])! * 100)
+        let key: CGFloat = round((cmykColor?.components![3])! * 100)
+        return (cyan, magenta, yellow, key)
+    }
+}
+
+// TODO: create more color spaces options
+// extension UIColor {
+//    // swiftlint:disable:next large_tuple
+//    func colorComponentsByMatchingTo NAME() -> (cyan: CGFloat, magenta: CGFloat,
+//                                               yellow: CGFloat, key: CGFloat) {
+//        let intent = CGColorRenderingIntent.perceptual
+//        let cmykColor = self.cgColor.converted(to: CGColorSpaceCreateDevice NAME,
+//                                               intent: intent, options: nil)
+//        let cyan: CGFloat = round((cmykColor?.components![0])! * 100)
+//        let magenta: CGFloat = round((cmykColor?.components![1])! * 100)
+//        let yellow: CGFloat = round((cmykColor?.components![2])! * 100)
+//        let key: CGFloat = round((cmykColor?.components![3])! * 100)
+//        return (cyan, magenta, yellow, key)
+//    }
+// }

@@ -47,6 +47,11 @@ extension UIViewController {
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
                 self.copyAsText(format: .hsl)
             }
+        let copyTextCMYKAction = UIAction(
+            title: "Copy as CMYK",
+            image: UIImage(systemName: "printer")) { _ in
+                self.copyAsText(format: .cmyk)
+            }
         let copyTextFloatAction = UIAction(
             title: "Copy as Float",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
@@ -98,6 +103,11 @@ extension UIViewController {
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
                 self.shareAsText(format: .hsl, sourceView: sourceView)
             }
+        let shareTextCMYKAction = UIAction(
+            title: "Share as CMYK",
+            image: UIImage(systemName: "printer")) { _ in
+                self.shareAsText(format: .cmyk, sourceView: sourceView)
+            }
         let shareTextFloatAction = UIAction(
             title: "Share as Float",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
@@ -134,6 +144,7 @@ extension UIViewController {
             shareTextSwiftAction,
             shareTextObjcAction,
             shareTextFloatAction,
+            shareTextCMYKAction,
             shareTextHSLAction,
             shareTextHSBAction,
             shareTextRgbAction,
@@ -147,6 +158,7 @@ extension UIViewController {
             copyTextSwiftAction,
             copyTextObjcAction,
             copyTextFloatAction,
+            copyTextCMYKAction,
             copyTextHSLAction,
             copyTextHSBAction,
             copyTextRgbAction,
@@ -288,6 +300,7 @@ extension UIViewController {
         case rgb
         case hsbhsv
         case hsl
+        case cmyk
         case float
         case objc
         case swift
@@ -314,6 +327,17 @@ extension UIViewController {
         let hex = getSafeHexFromUD()
 
         switch format {
+            case .cmyk:
+                let someUIColor = uiColorFrom(hex: hex)
+                let someCMYK = someUIColor.colorComponentsByMatchingToCMYK()
+                let roundedCyan = round(someCMYK.cyan * 1000) / 1000
+                let roundedMagenta = round(someCMYK.magenta * 1000) / 1000
+                let roundedYellow = round(someCMYK.yellow * 1000) / 1000
+                let roundedKey = round(someCMYK.key * 1000) / 1000
+                return """
+                (cyan: \(roundedCyan), magenta: \(roundedMagenta), \
+                yellow: \(roundedYellow), key/black: \(roundedKey))
+                """
             case .hsl:
                 let someUIColor = uiColorFrom(hex: hex)
                 let someHSL = someUIColor.hsl
