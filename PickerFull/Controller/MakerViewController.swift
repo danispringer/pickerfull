@@ -370,7 +370,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         present(imagePreviewVC, animated: true)
     }
 
-
+// TODO: add all values to screenshot
+    // TODO: update app store screenshots
     @objc func generateImage() {
 
         elementsShould(hide: true)
