@@ -62,6 +62,11 @@ extension UIViewController {
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
                 self.copyAsText(format: .xyz)
             }
+        let copyTextLABAction = UIAction(
+            title: "Copy as LAB (CIE)",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.copyAsText(format: .cielab)
+            }
         let copyTextFloatAction = UIAction(
             title: "Copy as Float",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
@@ -128,6 +133,11 @@ extension UIViewController {
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
                 self.shareAsText(format: .xyz, sourceView: sourceView)
             }
+        let shareTextLABAction = UIAction(
+            title: "Share as LAB (CIE)",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.shareAsText(format: .cielab, sourceView: sourceView)
+            }
         let shareTextFloatAction = UIAction(
             title: "Share as Float",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
@@ -164,6 +174,7 @@ extension UIViewController {
             shareTextSwiftAction,
             shareTextObjcAction,
             shareTextFloatAction,
+            shareTextLABAction,
             shareTextXYZAction,
             shareTextGrayAction,
             shareTextCMYKAction,
@@ -180,6 +191,7 @@ extension UIViewController {
             copyTextSwiftAction,
             copyTextObjcAction,
             copyTextFloatAction,
+            copyTextLABAction,
             copyTextXYZAction,
             copyTextGrayAction,
             copyTextCMYKAction,
@@ -327,6 +339,7 @@ extension UIViewController {
         case cmyk
         case grayscale
         case xyz
+        case cielab
         case float
         case objc
         case swift
@@ -353,6 +366,15 @@ extension UIViewController {
         let hex = getSafeHexFromUD()
 
         switch format {
+            case .cielab:
+                let someUIColor = uiColorFrom(hex: hex)
+                let someLabColor = someUIColor.Lab
+                let roundedL = round(someLabColor.L * 1000) / 1000
+                let roundedA = round(someLabColor.a * 1000) / 1000
+                let roundedB = round(someLabColor.b * 1000) / 1000
+                return """
+                (L: \(roundedL), a: \(roundedA), b: \(roundedB))
+                """
             case .xyz:
                 let someUIColor = uiColorFrom(hex: hex)
                 let someXYZColor = someUIColor.XYZ
