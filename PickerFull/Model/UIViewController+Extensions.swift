@@ -413,7 +413,7 @@ extension UIViewController {
                 let roundedLightness = round(someHSL.lightness * 10) / 10.0
                 return """
                 (hue: \(roundedHue), saturation: \(roundedSaturation), \
-                brightness: \(roundedLightness))
+                lightness: \(roundedLightness))
                 """
             case .hsbhsv:
                 var hue: CGFloat = 0
