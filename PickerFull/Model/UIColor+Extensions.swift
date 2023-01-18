@@ -80,8 +80,8 @@ extension UIColor {
     }
 }
 
- extension UIColor {
-     func colorComponentsByMatchingToGray() -> (gray: CGFloat, alpha: CGFloat)? {
+extension UIColor {
+    func colorComponentsByMatchingToGray() -> (gray: CGFloat, alpha: CGFloat)? {
         var grayscale: CGFloat = 0
         var alpha: CGFloat = 0
 
@@ -91,7 +91,7 @@ extension UIColor {
             return nil
         }
     }
- }
+}
 
 /// https://gist.github.com/adamgraham/677c0c41901f3eafb441951de9bc914c
 /// An extension to provide conversion to and from CIE 1931 XYZ colors.
