@@ -370,8 +370,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         present(imagePreviewVC, animated: true)
     }
 
-// TODO: add all values to screenshot
+    // TODO: add all values to screenshot
     // TODO: update app store screenshots
+    // TODO: add deep link: shareable, opens app and sets color
+    // TODO: choose PDF name
     @objc func generateImage() {
 
         elementsShould(hide: true)
