@@ -52,6 +52,16 @@ extension UIViewController {
             image: UIImage(systemName: "printer")) { _ in
                 self.copyAsText(format: .cmyk)
             }
+        let copyTextGrayAction = UIAction(
+            title: "Copy as Grayscale",
+            image: UIImage(systemName: "moonphase.full.moon")) { _ in
+                self.copyAsText(format: .grayscale)
+            }
+        let copyTextXYZAction = UIAction(
+            title: "Copy as XYZ",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.copyAsText(format: .xyz)
+            }
         let copyTextFloatAction = UIAction(
             title: "Copy as Float",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
@@ -108,6 +118,16 @@ extension UIViewController {
             image: UIImage(systemName: "printer")) { _ in
                 self.shareAsText(format: .cmyk, sourceView: sourceView)
             }
+        let shareTextGrayAction = UIAction(
+            title: "Share as Grayscale",
+            image: UIImage(systemName: "moonphase.full.moon")) { _ in
+                self.shareAsText(format: .grayscale, sourceView: sourceView)
+            }
+        let shareTextXYZAction = UIAction(
+            title: "Share as XYZ",
+            image: UIImage(systemName: "eyedropper.halffull")) { _ in
+                self.shareAsText(format: .xyz, sourceView: sourceView)
+            }
         let shareTextFloatAction = UIAction(
             title: "Share as Float",
             image: UIImage(systemName: "eyedropper.halffull")) { _ in
@@ -144,6 +164,8 @@ extension UIViewController {
             shareTextSwiftAction,
             shareTextObjcAction,
             shareTextFloatAction,
+            shareTextXYZAction,
+            shareTextGrayAction,
             shareTextCMYKAction,
             shareTextHSLAction,
             shareTextHSBAction,
@@ -158,6 +180,8 @@ extension UIViewController {
             copyTextSwiftAction,
             copyTextObjcAction,
             copyTextFloatAction,
+            copyTextXYZAction,
+            copyTextGrayAction,
             copyTextCMYKAction,
             copyTextHSLAction,
             copyTextHSBAction,
@@ -301,6 +325,8 @@ extension UIViewController {
         case hsbhsv
         case hsl
         case cmyk
+        case grayscale
+        case xyz
         case float
         case objc
         case swift
@@ -327,6 +353,25 @@ extension UIViewController {
         let hex = getSafeHexFromUD()
 
         switch format {
+            case .xyz:
+                let someUIColor = uiColorFrom(hex: hex)
+                let someXYZColor = someUIColor.XYZ
+                let roundedX = round(someXYZColor.XValue * 1000) / 1000
+                let roundedY = round(someXYZColor.YValue * 1000) / 1000
+                let roundedZ = round(someXYZColor.ZValue * 1000) / 1000
+                return """
+                (X: \(roundedX), Y: \(roundedY), Z: \(roundedZ))
+                """
+            case .grayscale:
+                let someUIColor = uiColorFrom(hex: hex)
+                let someGray = someUIColor.colorComponentsByMatchingToGray()
+                guard let safeGray = someGray?.gray, let safeAlpha = someGray?.alpha else {
+                    return "error. please let us know."
+                }
+                let roundedGray = round(safeGray * 1000) / 1000
+                let roundedAlpha = round(safeAlpha * 1000) / 1000
+
+                return "(gray: \(roundedGray), alpha: \(roundedAlpha))"
             case .cmyk:
                 let someUIColor = uiColorFrom(hex: hex)
                 let someCMYK = someUIColor.colorComponentsByMatchingToCMYK()

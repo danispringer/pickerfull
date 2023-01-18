@@ -80,9 +80,91 @@ extension UIColor {
     }
 }
 
-// TODO: create more color spaces options
+ extension UIColor {
+     func colorComponentsByMatchingToGray() -> (gray: CGFloat, alpha: CGFloat)? {
+        var grayscale: CGFloat = 0
+        var alpha: CGFloat = 0
+
+        if self.getWhite(&grayscale, alpha: &alpha) {
+            return (grayscale, alpha)
+        } else {
+            return nil
+        }
+    }
+ }
+
+/// https://gist.github.com/adamgraham/677c0c41901f3eafb441951de9bc914c
+/// An extension to provide conversion to and from CIE 1931 XYZ colors.
+extension UIColor {
+
+    /// The CIE 1931 XYZ components of a color - luminance (Y) and chromaticity (X,Z).
+    struct CIEXYZ: Hashable {
+
+        /// A mix of cone response curves chosen to be orthogonal to luminance and
+        /// non-negative, in the range [0, 95.047].
+        var XValue: CGFloat
+        /// The luminance component of the color, in the range [0, 100].
+        var YValue: CGFloat
+        /// Somewhat equal to blue, or the "S" cone response, in the range [0, 108.883].
+        var ZValue: CGFloat
+
+    }
+
+    /// The CIE 1931 XYZ components of the color.
+    var XYZ: CIEXYZ {
+        var (redValue, greenValue, blueValue) = (CGFloat(), CGFloat(), CGFloat())
+        getRed(&redValue, green: &greenValue, blue: &blueValue, alpha: nil)
+
+        // sRGB (D65) gamma correction - inverse companding to get linear values
+        redValue = (redValue > 0.03928) ? pow((redValue + 0.055) / 1.055, 2.4) :
+        (redValue / 12.92)
+        greenValue = (greenValue > 0.03928) ? pow((greenValue + 0.055) / 1.055, 2.4) :
+        (greenValue / 12.92)
+        blueValue = (blueValue > 0.03928) ? pow((blueValue + 0.055) / 1.055, 2.4) :
+        (blueValue / 12.92)
+
+        // sRGB (D65) matrix transformation
+        // http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
+        let xThing = (0.4124564 * redValue) + (0.3575761 * greenValue) + (0.1804375 * blueValue)
+        let yThing = (0.2126729 * redValue) + (0.7151522 * greenValue) + (0.0721750 * blueValue)
+        let zThing = (0.0193339 * redValue) + (0.1191920 * greenValue) + (0.9503041 * blueValue)
+
+        return CIEXYZ(XValue: xThing * 100.0,
+                      YValue: yThing * 100.0,
+                      ZValue: zThing * 100.0)
+    }
+
+    /// Initializes a color from CIE 1931 XYZ components.
+    /// - parameter XYZ: The components used to initialize the color.
+    /// - parameter alpha: The alpha value of the color.
+    convenience init(_ XYZ: CIEXYZ, alpha: CGFloat = 1.0) {
+        let xInit = XYZ.XValue / 100.0
+        let yInit = XYZ.YValue / 100.0
+        let zInit = XYZ.ZValue / 100.0
+
+        // sRGB (D65) matrix transformation
+        // http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
+        var redInit =  (3.2404542 * xInit) - (1.5371385 * yInit) - (0.4985314 * zInit)
+        var greenInit = (-0.9692660 * xInit) + (1.8760108 * yInit) + (0.0415560 * zInit)
+        var blueInit =  (0.0556434 * xInit) - (0.2040259 * yInit) + (1.0572252 * zInit)
+
+        // sRGB (D65) gamma correction - companding to get non-linear values
+        let kInit: CGFloat = 1.0 / 2.4
+        redInit = (redInit <= 0.00304) ? (12.92 * redInit) :
+        (1.055 * pow(redInit, kInit) - 0.055)
+        greenInit = (greenInit <= 0.00304) ? (12.92 * greenInit) :
+        (1.055 * pow(greenInit, kInit) - 0.055)
+        blueInit = (blueInit <= 0.00304) ? (12.92 * blueInit) :
+        (1.055 * pow(blueInit, kInit) - 0.055)
+
+        self.init(red: redInit, green: greenInit, blue: blueInit, alpha: alpha)
+    }
+
+}
+
+
+// template to create more color spaces options
 // extension UIColor {
-//    // swiftlint:disable:next large_tuple
 //    func colorComponentsByMatchingTo NAME() -> (cyan: CGFloat, magenta: CGFloat,
 //                                               yellow: CGFloat, key: CGFloat) {
 //        let intent = CGColorRenderingIntent.perceptual
