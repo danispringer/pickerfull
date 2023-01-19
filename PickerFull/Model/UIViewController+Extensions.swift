@@ -331,7 +331,7 @@ extension UIViewController {
 
     // MARK: Helpers
 
-    enum ExportFormat {
+    enum ExportFormat: CaseIterable {
         case hex
         case rgb
         case hsbhsv
@@ -373,7 +373,7 @@ extension UIViewController {
                 let roundedA = round(someLabColor.a * 1000) / 1000
                 let roundedB = round(someLabColor.b * 1000) / 1000
                 return """
-                (L: \(roundedL), a: \(roundedA), b: \(roundedB))
+                Lab(\(roundedL), \(roundedA), \(roundedB))
                 """
             case .xyz:
                 let someUIColor = uiColorFrom(hex: hex)
@@ -382,18 +382,17 @@ extension UIViewController {
                 let roundedY = round(someXYZColor.YValue * 1000) / 1000
                 let roundedZ = round(someXYZColor.ZValue * 1000) / 1000
                 return """
-                (X: \(roundedX), Y: \(roundedY), Z: \(roundedZ))
+                xyz(\(roundedX), \(roundedY), \(roundedZ))
                 """
             case .grayscale:
                 let someUIColor = uiColorFrom(hex: hex)
                 let someGray = someUIColor.colorComponentsByMatchingToGray()
-                guard let safeGray = someGray?.gray, let safeAlpha = someGray?.alpha else {
+                guard let safeGray = someGray?.gray else {
                     return "error. please let us know."
                 }
                 let roundedGray = round(safeGray * 1000) / 1000
-                let roundedAlpha = round(safeAlpha * 1000) / 1000
 
-                return "(gray: \(roundedGray), alpha: \(roundedAlpha))"
+                return "gray(\(roundedGray))"
             case .cmyk:
                 let someUIColor = uiColorFrom(hex: hex)
                 let someCMYK = someUIColor.colorComponentsByMatchingToCMYK()
@@ -402,8 +401,7 @@ extension UIViewController {
                 let roundedYellow = round(someCMYK.yellow * 1000) / 1000
                 let roundedKey = round(someCMYK.key * 1000) / 1000
                 return """
-                (cyan: \(roundedCyan), magenta: \(roundedMagenta), \
-                yellow: \(roundedYellow), key/black: \(roundedKey))
+                cmyk(\(roundedCyan), \(roundedMagenta), \(roundedYellow), \(roundedKey))
                 """
             case .hsl:
                 let someUIColor = uiColorFrom(hex: hex)
@@ -412,8 +410,7 @@ extension UIViewController {
                 let roundedSaturation = round(someHSL.saturation * 10) / 10.0
                 let roundedLightness = round(someHSL.lightness * 10) / 10.0
                 return """
-                (hue: \(roundedHue), saturation: \(roundedSaturation), \
-                lightness: \(roundedLightness))
+                hsl(\(roundedHue), \(roundedSaturation), \(roundedLightness))
                 """
             case .hsbhsv:
                 var hue: CGFloat = 0
@@ -429,8 +426,8 @@ extension UIViewController {
                     let roundedBrightness = round(brightness * 1000) / 1000.0
                     let roundedAlpha = round(alpha * 1000) / 1000.0
                     return """
-                    (hue: \(roundedHue), saturation: \(roundedSaturation), \
-                    brightness: \(roundedBrightness), alpha: \(roundedAlpha))
+                    hsb(\(roundedHue), \(roundedSaturation), \(roundedBrightness), \
+                    \(roundedAlpha))
                     """
                     // The color is in a compatible color space, and the variables
                     // `hue`, `saturation`, `brightness`, and `alpha` have been
@@ -458,7 +455,7 @@ extension UIViewController {
                 let redString = hex[0...1]
                 let greenString = hex[2...3]
                 let blueString = hex[4...5]
-                floatString = "(" +
+                floatString = "float(" +
                 aHexToFloat(hex: redString) +
                 ", " +
                 aHexToFloat(hex: greenString) +

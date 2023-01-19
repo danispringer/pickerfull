@@ -20,8 +20,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
 
     // MARK: Outlets
+    @IBOutlet weak var messageUITextView: UITextView!
 
-    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var qrImageView: UIImageView!
     @IBOutlet weak var containerScrollView: UIScrollView!
@@ -43,6 +43,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     var hexImage: UIImage!
     let colorPicker = UIColorPickerViewController()
     let imagePicker = UIImagePickerController()
+    let textViewInset: CGFloat = 16
 
 
     // MARK: Life Cycle
@@ -70,8 +71,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             hexArrayForRandom.append(String(format: Const.Values.numToHexFormatter, number))
         }
         elementsShould(hide: false)
-        messageLabel.layer.cornerRadius = 20
-        messageLabel.layer.masksToBounds = true
+//        messageLabel.layer.cornerRadius = 20
+//        messageLabel.layer.masksToBounds = true
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD())
 
         resultView.backgroundColor = selectedColor
@@ -108,6 +109,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
         let dropInteraction = UIDropInteraction(delegate: self)
         userImageView.addInteraction(dropInteraction)
+
+        messageUITextView.isScrollEnabled = false
     }
 
 
@@ -370,10 +373,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         present(imagePreviewVC, animated: true)
     }
 
-    // TODO: add all values to screenshot
-    // TODO: update app store screenshots
-    // TODO: add deep link: shareable, opens app and sets color
-    // TODO: choose PDF name
+    // TODO: todos
+    // add all values to screenshot
+    // update app store screenshots
+    // add deep link: shareable, opens app and sets color
+    // choose PDF name
     @objc func generateImage() {
 
         elementsShould(hide: true)
@@ -381,28 +385,38 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         let regularAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 16),
             .foregroundColor: UIColor.white]
-        let jumboAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 40),
-            .foregroundColor: UIColor.white]
-        let attributedMessagePreHex = NSAttributedString(
-            string: "\nHEX\n",
-            attributes: regularAttributes)
         let hexString = getSafeHexFromUD()
-        let attributedMessageJumboHex = NSAttributedString(string: hexString,
-                                                           attributes: jumboAttributes)
         let myUIColor = uiColorFrom(hex: hexString)
 
-        let attributedMessagePost = NSAttributedString(
+        let attrCredits = NSAttributedString(
             string: Const.AppInfo.creditMessage,
             attributes: regularAttributes)
 
         let myAttributedText = NSMutableAttributedString()
 
-        myAttributedText.append(attributedMessagePreHex)
-        myAttributedText.append(attributedMessageJumboHex)
-        myAttributedText.append(attributedMessagePost)
+        let colorFullDictString = getDictForSelectedColor()
+        let attrDictString = NSAttributedString(
+        string: colorFullDictString,
+        attributes: regularAttributes)
 
-        messageLabel.attributedText = myAttributedText
+        myAttributedText.append(attrDictString)
+        myAttributedText.append(attrCredits)
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4
+        myAttributedText.addAttribute(
+            .paragraphStyle, value: paragraphStyle,
+            range: NSRange(location: 0, length: myAttributedText.length))
+
+        messageUITextView.attributedText = myAttributedText
+        messageUITextView.textContainerInset = UIEdgeInsets(
+            top: textViewInset,
+            left: textViewInset,
+            bottom: textViewInset,
+            right: textViewInset)
+
+        messageUITextView.sizeToFit()
+
         let viewColorWas = view.backgroundColor
         view.backgroundColor = myUIColor
 
@@ -413,6 +427,16 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
         view.backgroundColor = viewColorWas
         elementsShould(hide: false)
+    }
+
+
+    func getDictForSelectedColor() -> String {
+        var aString = ""
+        for format in ExportFormat.allCases {
+            let thing = hexTo(format: format)
+            aString.append("\(thing)\n")
+        }
+        return aString
     }
 
 
@@ -500,7 +524,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
 
     func elementsShould(hide: Bool) {
-        messageLabel.isHidden = !hide
+        messageUITextView.isHidden = !hide
         qrImageView.isHidden = !hide
         for button: UIButton in [aboutButton, pickerMenuButton, imageImportMenuButton,
                                  exportAsTextMenuButton, randomButton, randomHistoryButton,

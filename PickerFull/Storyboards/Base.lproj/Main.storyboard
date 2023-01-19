@@ -98,7 +98,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="Mhs-xX-Vry">
-                                <rect key="frame" x="16" y="147.66666666666663" width="398" height="499"/>
+                                <rect key="frame" x="16" y="147.66666666666663" width="398" height="499.00000000000011"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="1UD-oN-VfA"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="128" id="y91-3E-Mfn"/>
@@ -220,19 +220,20 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Z9v-kO-aBk"/>
                             </scrollView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qr" translatesAutoresizingMaskIntoConstraints="NO" id="Fhb-Dc-Ypx">
-                                <rect key="frame" x="151" y="135" width="128" height="128"/>
+                                <rect key="frame" x="302" y="551.66666666666663" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Fhb-Dc-Ypx" secondAttribute="height" multiplier="1:1" id="3Pg-da-yGm"/>
                                     <constraint firstAttribute="height" constant="128" id="CAo-KK-37q"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKY-HB-wIv" userLabel="Message Label">
-                                <rect key="frame" x="40" y="788.66666666666663" width="350" height="20.333333333333371"/>
-                                <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.5" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8U-WJ-eLO">
+                                <rect key="frame" x="0.0" y="679.66666666666663" width="430" height="252.33333333333337"/>
+                                <color key="backgroundColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEo-KS-B1i">
                                 <rect key="frame" x="293" y="798" width="137" height="35"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -328,6 +329,7 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="7iT-jJ-EaV" secondAttribute="bottom" id="0hc-S8-bD4"/>
                             <constraint firstItem="i2z-Ue-gCv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1CU-mA-66G"/>
+                            <constraint firstItem="t8U-WJ-eLO" firstAttribute="top" secondItem="Fhb-Dc-Ypx" secondAttribute="bottom" id="6xg-Xs-XWF"/>
                             <constraint firstItem="L0L-A8-4Ez" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7Gc-Oh-SJh"/>
                             <constraint firstItem="gXP-06-ffR" firstAttribute="top" secondItem="Ldp-OX-DMb" secondAttribute="bottom" constant="8" id="C2l-Af-roz"/>
                             <constraint firstItem="bEo-KS-B1i" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i2z-Ue-gCv" secondAttribute="trailing" constant="16" id="ET9-Tp-dor"/>
@@ -336,7 +338,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="i2z-Ue-gCv" secondAttribute="bottom" constant="16" id="HUt-f2-bD0"/>
                             <constraint firstItem="BNf-u5-6Xf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Jo5-t1-1G4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7iT-jJ-EaV" secondAttribute="trailing" id="P5C-FX-5bk"/>
-                            <constraint firstItem="Fhb-Dc-Ypx" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="QjK-wW-wex"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Fhb-Dc-Ypx" secondAttribute="trailing" id="QjK-wW-wex"/>
                             <constraint firstItem="Ldp-OX-DMb" firstAttribute="top" secondItem="47O-Zh-mK7" secondAttribute="bottom" constant="8" id="RKI-XO-XAE"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="SYy-T5-Xpr"/>
                             <constraint firstItem="Ldp-OX-DMb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="T99-iO-R3z"/>
@@ -347,17 +349,16 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4cf-hD-fEQ" secondAttribute="trailing" constant="16" id="Yas-6Q-iC6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bEo-KS-B1i" secondAttribute="trailing" id="ZMM-zq-Kaa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BNf-u5-6Xf" secondAttribute="trailing" constant="16" id="ZSJ-24-QGI"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BKY-HB-wIv" secondAttribute="bottom" constant="40" id="Zdq-nc-oiG"/>
-                            <constraint firstItem="Fhb-Dc-Ypx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="aBU-Qi-PjP"/>
+                            <constraint firstItem="t8U-WJ-eLO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZoD-Qo-a11"/>
+                            <constraint firstAttribute="bottom" secondItem="t8U-WJ-eLO" secondAttribute="bottom" id="bOf-Jr-zqn"/>
                             <constraint firstItem="47O-Zh-mK7" firstAttribute="top" secondItem="BNf-u5-6Xf" secondAttribute="bottom" constant="8" id="eMe-Dj-L98"/>
                             <constraint firstItem="i2z-Ue-gCv" firstAttribute="top" secondItem="gXP-06-ffR" secondAttribute="bottom" constant="8" id="f31-Y3-WFE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="L0L-A8-4Ez" secondAttribute="trailing" id="i5j-nH-5i5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PEf-rT-J3K" secondAttribute="trailing" constant="16" id="iCg-gq-g98"/>
                             <constraint firstItem="gXP-06-ffR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mSd-nR-AiE"/>
                             <constraint firstItem="7iT-jJ-EaV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mw9-bO-m8F"/>
-                            <constraint firstItem="BKY-HB-wIv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="n95-Oy-Pzb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="t8U-WJ-eLO" secondAttribute="trailing" id="nC2-wc-heV"/>
                             <constraint firstItem="L0L-A8-4Ez" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="rVN-Xv-6CT"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BKY-HB-wIv" secondAttribute="trailing" constant="40" id="sW6-xr-tSj"/>
                             <constraint firstItem="PEf-rT-J3K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tLE-Kl-5yw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gXP-06-ffR" secondAttribute="trailing" constant="16" id="w4B-OH-RbI"/>
                             <constraint firstItem="4cf-hD-fEQ" firstAttribute="top" secondItem="PEf-rT-J3K" secondAttribute="bottom" constant="8" id="xnv-oh-i0D"/>
@@ -373,7 +374,7 @@
                         <outlet property="exportAsFilesMenuButton" destination="PEf-rT-J3K" id="DwQ-uq-3o4"/>
                         <outlet property="exportAsTextMenuButton" destination="4cf-hD-fEQ" id="lZe-Ld-135"/>
                         <outlet property="imageImportMenuButton" destination="BNf-u5-6Xf" id="A9n-8k-GLr"/>
-                        <outlet property="messageLabel" destination="BKY-HB-wIv" id="nVb-Od-V3R"/>
+                        <outlet property="messageUITextView" destination="t8U-WJ-eLO" id="8JF-Gy-GDo"/>
                         <outlet property="pickerMenuButton" destination="gXP-06-ffR" id="hM9-dP-Sul"/>
                         <outlet property="qrImageView" destination="Fhb-Dc-Ypx" id="Fxm-Fy-TXC"/>
                         <outlet property="randomButton" destination="i2z-Ue-gCv" id="QxC-RW-8xC"/>
@@ -517,6 +518,9 @@
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="square.and.arrow.up.circle" catalog="system" width="128" height="123"/>
         <image name="trash" catalog="system" width="117" height="128"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

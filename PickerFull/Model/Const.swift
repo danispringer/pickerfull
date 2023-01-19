@@ -58,15 +58,10 @@ struct Const {
         static let appsLink = "https://apps.apple.com/us/developer/daniel-springer/id1402417666"
         static let creditMessage = """
 
-
-        Screenshot created with
-        \(appName)
-        by
-        Daniel Springer
-
-        Create, edit and share your favorite colors
-        Get it now on the App Store
-
+        Created by: \(appName)
+        App by: Daniel Springer
+        Extract a Color From Any Photo
+        Scan QR code to get it now on the App Store
         """
         static let contact = "Email Me"
         static let emailString = "00.segue_affix@icloud.com"
