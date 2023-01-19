@@ -57,11 +57,9 @@ struct Const {
         static let showAppsButtonTitle = "More Apps"
         static let appsLink = "https://apps.apple.com/us/developer/daniel-springer/id1402417666"
         static let creditMessage = """
-
-        Created by: \(appName)
-        App by: Daniel Springer
-        Extract a Color From Any Photo
-        Scan QR code to get it now on the App Store
+        \n\(appName)
+        Install Now. Scan Qr Code for App Store.
+        App Developed by Daniel Springer
         """
         static let contact = "Email Me"
         static let emailString = "00.segue_affix@icloud.com"

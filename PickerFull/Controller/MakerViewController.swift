@@ -385,12 +385,15 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         let regularAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 16),
             .foregroundColor: UIColor.white]
+        let creditsAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 14, weight: .semibold),
+            .foregroundColor: UIColor.white]
         let hexString = getSafeHexFromUD()
         let myUIColor = uiColorFrom(hex: hexString)
 
         let attrCredits = NSAttributedString(
             string: Const.AppInfo.creditMessage,
-            attributes: regularAttributes)
+            attributes: creditsAttributes)
 
         let myAttributedText = NSMutableAttributedString()
 
