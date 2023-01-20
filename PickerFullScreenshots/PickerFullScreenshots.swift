@@ -7,11 +7,12 @@
 //
 
 // TODO: update app store screenshots:
-// - circle picker in action on photo
-// - generated screenshot
-// - advanced editor
-// - random history
-// - share as text options
+// - manual: circle picker in action on photo
+// - manual: generated screenshot
+
+// - advanced editor. done.
+// - random history. done.
+// - share as text options. done.
 import XCTest
 
 class PickerFullScreenshots: XCTestCase {
@@ -69,36 +70,6 @@ class PickerFullScreenshots: XCTestCase {
         app.buttons["Sliders"].tap()
         XCTAssertTrue(app.scrollViews.otherElements.buttons["sRGB Hex Color #"].exists)
         takeScreenshot(named: "Advanced")
-    }
-
-
-    func testFloatingPicker() {
-        app.launch()
-        app.buttons[nowNowString].firstMatch.tap()
-        app.staticTexts["Import photo"].tap()
-        app.collectionViews.buttons["Choose Photo"].tap()
-        app.scrollViews.otherElements.images.firstMatch.tap()
-        XCTAssert(app.buttons[pickerString].waitForExistence(timeout: 5))
-        app.images.firstMatch.pinch(withScale: 3.5, velocity: 100)
-        app.buttons[pickerString].tap()
-        app.buttons["Floating color picker"].tap()
-        XCTAssert(app.buttons["About app"].waitForExistence(timeout: 5))
-
-        let insideImage = app.images.firstMatch.coordinate(
-            withNormalizedOffset: CGVector(dx: 0.33, dy: 0.5))
-
-        app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
-            .press(forDuration: 1, thenDragTo: insideImage, withVelocity: .fast,
-                   thenHoldForDuration: 3)
-
-        let expectation = XCTestExpectation(description: "Test")
-
-        DispatchQueue.global(qos: .default).async {
-            self.takeScreenshot(named: "Floating-picker")
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 5.0)
-
     }
 
 

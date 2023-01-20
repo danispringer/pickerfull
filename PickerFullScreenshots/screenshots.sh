@@ -58,7 +58,3 @@ for simulator in "${simulators[@]}"; do
     done
     echo "✅ Done"
 done
-
-#~/Library/Developer/CoreSimulator/Devices/52F442A3-401A-4CC3-BA3B-28E60F86759B/data/Media/DCIM/100APPLE/IMG_0007.JPG
-#xcrun simctl list devices | grep Booted | grep -E  '\w+-\w+-\w+-\w+-\w+' -o
-mv "$HOME/Library/Developer/CoreSimulator/Devices/*/data/Media/DCIM/100APPLE" $HOME/Desktop
