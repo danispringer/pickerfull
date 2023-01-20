@@ -37,8 +37,6 @@ rm -rf /Users/dani/Desktop/PickerFullScreenshots
 # Clear user screenshots
 rm -rf "$HOME/Library/Developer/CoreSimulator/Devices/*/data/Media/DCIM/100APPLE/IMG_{0007..0999}.JPG"
 
-#find "$HOME/Library/Developer/CoreSimulator/Devices/*/data/Media/DCIM/100APPLE/" ! \( -name "IMG_{0001..0006}.JPG" -a -name "IMG_{0001..0006}.HEIC" \) -delete
-
 for simulator in "${simulators[@]}"; do
     for language in "${languages[@]}"; do
         for appearance in "${appearances[@]}"; do
@@ -63,4 +61,4 @@ done
 
 #~/Library/Developer/CoreSimulator/Devices/52F442A3-401A-4CC3-BA3B-28E60F86759B/data/Media/DCIM/100APPLE/IMG_0007.JPG
 #xcrun simctl list devices | grep Booted | grep -E  '\w+-\w+-\w+-\w+-\w+' -o
-mv $HOME/Library/Developer/CoreSimulator/Devices/*/data/Media/DCIM/100APPLE/* $HOME/Desktop
+mv "$HOME/Library/Developer/CoreSimulator/Devices/*/data/Media/DCIM/100APPLE" $HOME/Desktop

@@ -374,7 +374,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     }
 
     // TODO: todos
-    // update app store screenshots
     // add deep link: shareable, opens app and sets color
     // choose PDF name
     @objc func generateImage() {

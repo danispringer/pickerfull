@@ -6,6 +6,12 @@
 //  Copyright © 2023 Daniel Springer. All rights reserved.
 //
 
+// TODO: update app store screenshots:
+// - circle picker in action on photo
+// - generated screenshot
+// - advanced editor
+// - random history
+// - share as text options
 import XCTest
 
 class PickerFullScreenshots: XCTestCase {
@@ -15,6 +21,7 @@ class PickerFullScreenshots: XCTestCase {
     var app: XCUIApplication!
 
     let pickerString = "Advanced editor"
+    let nowNowString = "Not Now"
 
 
     override func setUpWithError() throws {
@@ -27,36 +34,30 @@ class PickerFullScreenshots: XCTestCase {
     }
 
 
-    func testHome() {
+    func testShareTextOptions() {
         app.launch()
-        app.buttons["Not Now"].firstMatch.tap()
-        XCTAssertTrue(app.buttons["About app"].waitForExistence(timeout: 5))
-        takeScreenshot(name: "Home")
-    }
-
-
-    func testTutorial() {
-        app.launch()
-        XCTAssertTrue(app.buttons["Not Now"].waitForExistence(timeout: 5))
-        takeScreenshot(name: "Tutorial")
+        app.buttons[nowNowString].tap()
+        XCTAssertTrue(app.buttons["Export as text"].waitForExistence(timeout: 5))
+        app.buttons["Export as text"].tap()
+        takeScreenshot(named: "share-as-text-options")
     }
 
 
     func testRandomHistory() {
         app.launch()
-        app.buttons["Not Now"].tap()
+        app.buttons[nowNowString].tap()
         for _ in 1...15 {
             app.buttons["New random color"].tap()
         }
         app.buttons["Random history"].tap()
         XCTAssertTrue(app.buttons["Edit"].waitForExistence(timeout: 5))
-        takeScreenshot(name: "random-history")
+        takeScreenshot(named: "random-history")
     }
 
 
     func testAdvancedPicker() {
         app.launch()
-        app.buttons["Not Now"].firstMatch.tap()
+        app.buttons[nowNowString].firstMatch.tap()
         app.buttons[pickerString].tap()
         XCTAssertTrue(app.buttons["Sliders"].waitForExistence(timeout: 5))
         app.buttons["Sliders"].tap()
@@ -66,30 +67,40 @@ class PickerFullScreenshots: XCTestCase {
         app.textFields.firstMatch.typeText("E57BF2")
         app.buttons["Spectrum"].tap()
         app.buttons["Sliders"].tap()
-        takeScreenshot(name: "Advanced")
+        XCTAssertTrue(app.scrollViews.otherElements.buttons["sRGB Hex Color #"].exists)
+        takeScreenshot(named: "Advanced")
     }
 
 
     func testFloatingPicker() {
         app.launch()
-        app.buttons["Not Now"].firstMatch.tap()
+        app.buttons[nowNowString].firstMatch.tap()
         app.staticTexts["Import photo"].tap()
         app.collectionViews.buttons["Choose Photo"].tap()
         app.scrollViews.otherElements.images.firstMatch.tap()
         XCTAssert(app.buttons[pickerString].waitForExistence(timeout: 5))
         app.buttons[pickerString].tap()
         app.buttons["Floating color picker"].tap()
-        XCTAssert(app.waitForExistence(timeout: 5))
-        _ = XCTWaiter.wait(for: [expectation(description: "Wait for n seconds")], timeout: 10.0)
-        app.firstMatch.swipeUp(velocity: .fast)
-        takeScreenshot(name: "Floating-picker")
-        // how to show floating picker in screenshot?
+        XCTAssert(app.buttons["About app"].waitForExistence(timeout: 5))
+
+        let thing = app.images.firstMatch.coordinate(withNormalizedOffset: CGVector(dx: 50, dy: 50))
+
+        app.coordinate(withNormalizedOffset: CGVector(dx: 50, dy: 50)).press(forDuration: 1, thenDragTo: thing, withVelocity: .default, thenHoldForDuration: 5)
+
+        let expectation = XCTestExpectation(description: "Test")
+
+        DispatchQueue.global(qos: .default).async {
+            self.takeScreenshot(named: "Floating-picker")
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+
     }
 
 
     func testSaveImage() {
         app.launch()
-        app.buttons["Not Now"].firstMatch.tap()
+        app.buttons[nowNowString].firstMatch.tap()
         app.staticTexts["Export as file"].tap()
         app.collectionViews.buttons["Generate Screenshot"].tap()
         XCTAssertTrue(app.staticTexts["Your Screenshot"].waitForExistence(timeout: 5))
@@ -98,7 +109,7 @@ class PickerFullScreenshots: XCTestCase {
 
     // MARK: Take Screenshot
 
-    func takeScreenshot(name: String) {
+    func takeScreenshot(named: String) {
         // Take the screenshot
         let fullScreenshot = XCUIScreen.main.screenshot()
 
@@ -108,7 +119,7 @@ class PickerFullScreenshots: XCTestCase {
         // it later.
         let screenshotAttachment = XCTAttachment(
             uniformTypeIdentifier: "public.png",
-            name: "Screenshot-\(UIDevice.current.name)-\(name).png",
+            name: "Screenshot-\(UIDevice.current.model)-\(named).png",
             payload: fullScreenshot.pngRepresentation,
             userInfo: nil)
 
