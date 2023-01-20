@@ -83,9 +83,12 @@ class PickerFullScreenshots: XCTestCase {
         app.buttons["Floating color picker"].tap()
         XCTAssert(app.buttons["About app"].waitForExistence(timeout: 5))
 
-        let thing = app.images.firstMatch.coordinate(withNormalizedOffset: CGVector(dx: 50, dy: 50))
+        let thing = app.images.firstMatch.coordinate(
+            withNormalizedOffset: CGVector(dx: 0.2, dy: 0.4))
 
-        app.coordinate(withNormalizedOffset: CGVector(dx: 50, dy: 50)).press(forDuration: 1, thenDragTo: thing, withVelocity: .default, thenHoldForDuration: 5)
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.3, dy: 0.5))
+            .press(forDuration: 1, thenDragTo: thing, withVelocity: .default,
+                   thenHoldForDuration: 5)
 
         let expectation = XCTestExpectation(description: "Test")
 
@@ -93,7 +96,7 @@ class PickerFullScreenshots: XCTestCase {
             self.takeScreenshot(named: "Floating-picker")
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 10.0)
+        wait(for: [expectation], timeout: 5.0)
 
     }
 
