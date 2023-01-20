@@ -6,12 +6,6 @@
 //  Copyright © 2023 Daniel Springer. All rights reserved.
 //
 
-// TODO: update app store screenshots:
-// - manual: picker in action
-// - manual: generated screenshot
-
-// - advanced editor, random history, share as text, home: done.
-
 import XCTest
 
 class PickerFullScreenshots: XCTestCase {
