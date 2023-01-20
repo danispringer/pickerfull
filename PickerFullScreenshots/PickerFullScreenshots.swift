@@ -84,9 +84,9 @@ class PickerFullScreenshots: XCTestCase {
         XCTAssert(app.buttons["About app"].waitForExistence(timeout: 5))
 
         let thing = app.images.firstMatch.coordinate(
-            withNormalizedOffset: CGVector(dx: 0.2, dy: 0.4))
+            withNormalizedOffset: CGVector(dx: 0.27, dy: 0.55))
 
-        app.coordinate(withNormalizedOffset: CGVector(dx: 0.3, dy: 0.5))
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
             .press(forDuration: 1, thenDragTo: thing, withVelocity: .default,
                    thenHoldForDuration: 5)
 
