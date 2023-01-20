@@ -10,9 +10,8 @@
 // - manual: circle picker in action on photo
 // - manual: generated screenshot
 
-// - advanced editor. done.
-// - random history. done.
-// - share as text options. done.
+// - advanced editor, random history, share as text, home: done.
+
 import XCTest
 
 class PickerFullScreenshots: XCTestCase {
@@ -69,7 +68,8 @@ class PickerFullScreenshots: XCTestCase {
         app.buttons["Spectrum"].tap()
         XCTAssertTrue(app.buttons["Sliders"].waitForExistence(timeout: 5))
         app.buttons["Sliders"].tap()
-        XCTAssertTrue(app.scrollViews.otherElements.buttons["sRGB Hex Color #"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.scrollViews.otherElements.buttons["sRGB Hex Color #"]
+            .waitForExistence(timeout: 5))
         takeScreenshot(named: "Advanced-Editor")
     }
 
