@@ -7,7 +7,7 @@
 //
 
 // TODO: update app store screenshots:
-// - manual: circle picker in action on photo
+// - manual: picker in action
 // - manual: generated screenshot
 
 // - advanced editor, random history, share as text, home: done.
