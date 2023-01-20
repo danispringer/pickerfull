@@ -79,16 +79,17 @@ class PickerFullScreenshots: XCTestCase {
         app.collectionViews.buttons["Choose Photo"].tap()
         app.scrollViews.otherElements.images.firstMatch.tap()
         XCTAssert(app.buttons[pickerString].waitForExistence(timeout: 5))
+        app.images.firstMatch.pinch(withScale: 3.5, velocity: 100)
         app.buttons[pickerString].tap()
         app.buttons["Floating color picker"].tap()
         XCTAssert(app.buttons["About app"].waitForExistence(timeout: 5))
 
-        let thing = app.images.firstMatch.coordinate(
-            withNormalizedOffset: CGVector(dx: 0.27, dy: 0.55))
+        let insideImage = app.images.firstMatch.coordinate(
+            withNormalizedOffset: CGVector(dx: 0.33, dy: 0.5))
 
         app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
-            .press(forDuration: 1, thenDragTo: thing, withVelocity: .default,
-                   thenHoldForDuration: 5)
+            .press(forDuration: 1, thenDragTo: insideImage, withVelocity: .fast,
+                   thenHoldForDuration: 3)
 
         let expectation = XCTestExpectation(description: "Test")
 
