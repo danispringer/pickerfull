@@ -69,7 +69,7 @@ class PickerFullScreenshots: XCTestCase {
         app.buttons["Spectrum"].tap()
         app.buttons["Sliders"].tap()
         XCTAssertTrue(app.scrollViews.otherElements.buttons["sRGB Hex Color #"].exists)
-        takeScreenshot(named: "Advanced")
+        takeScreenshot(named: "Advanced-Editor")
     }
 
 
@@ -79,6 +79,12 @@ class PickerFullScreenshots: XCTestCase {
         app.staticTexts["Export as file"].tap()
         app.collectionViews.buttons["Generate Screenshot"].tap()
         XCTAssertTrue(app.staticTexts["Your Screenshot"].waitForExistence(timeout: 5))
+    }
+
+    func testHome() {
+        app.launch()
+        XCTAssertTrue(app.buttons["About app"].waitForExistence(timeout: 5))
+        takeScreenshot(named: "Home")
     }
 
 
