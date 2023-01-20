@@ -67,8 +67,9 @@ class PickerFullScreenshots: XCTestCase {
         app.textFields.firstMatch.tap()
         app.textFields.firstMatch.typeText("E57BF2")
         app.buttons["Spectrum"].tap()
+        XCTAssertTrue(app.buttons["Sliders"].waitForExistence(timeout: 5))
         app.buttons["Sliders"].tap()
-        XCTAssertTrue(app.scrollViews.otherElements.buttons["sRGB Hex Color #"].exists)
+        XCTAssertTrue(app.scrollViews.otherElements.buttons["sRGB Hex Color #"].waitForExistence(timeout: 5))
         takeScreenshot(named: "Advanced-Editor")
     }
 
@@ -83,6 +84,7 @@ class PickerFullScreenshots: XCTestCase {
 
     func testHome() {
         app.launch()
+        app.buttons[nowNowString].firstMatch.tap()
         XCTAssertTrue(app.buttons["About app"].waitForExistence(timeout: 5))
         takeScreenshot(named: "Home")
     }
