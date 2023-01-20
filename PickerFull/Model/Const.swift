@@ -58,7 +58,7 @@ struct Const {
         static let appsLink = "https://apps.apple.com/us/developer/daniel-springer/id1402417666"
         static let creditMessage = """
         \n\(appName)
-        Install Now. Scan Qr Code for App Store.
+        Install Now. Scan QR Code for App Store.
         App Developed by Daniel Springer
         """
         static let contact = "Email Me"
