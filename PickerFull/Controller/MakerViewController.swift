@@ -374,8 +374,10 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     }
 
     // TODO: todos
-    // add deep link: shareable, opens app and sets color
-    // choose PDF name
+    // - add deep link: as a user I want to be able to share a link, which opens app
+    //   and sets current color to link value, something like apple.com/pickerfull/bababa
+    //
+    // - set PDF name to user-friendly/useful
     @objc func generateImage() {
 
         elementsShould(hide: true)
