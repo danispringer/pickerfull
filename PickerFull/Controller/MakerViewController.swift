@@ -111,6 +111,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         userImageView.addInteraction(dropInteraction)
 
         messageUITextView.isScrollEnabled = false
+
+        notif.addObserver(
+            self,
+            selector: #selector(updateColorFromActivity), name: .colorUrl, object: nil)
+
     }
 
 
@@ -136,6 +141,11 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
 
     // MARK: Helpers
+
+    @objc func updateColorFromActivity(_ notification: Notification) {
+        updateColor(hexStringParam: notification.userInfo!["value"] as! String)
+    }
+
 
     func showTutorial() {
         let storyboard = UIStoryboard(name: Const.StoryboardIDIB.main, bundle: nil)

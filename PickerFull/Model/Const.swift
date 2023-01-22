@@ -10,7 +10,7 @@ import UIKit
 
 // swiftlint:disable:next identifier_name
 let UD = UserDefaults.standard
-
+let notif = NotificationCenter.default
 
 struct Const {
 

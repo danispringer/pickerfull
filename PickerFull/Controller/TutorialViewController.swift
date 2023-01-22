@@ -37,9 +37,9 @@ class TutorialViewController: UIViewController, AVPlayerViewControllerDelegate {
         }
         player = AVPlayer(url: URL(fileURLWithPath: path))
 
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(didfinishPlaying),
-            name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+        notif.addObserver(self, selector: #selector(didfinishPlaying),
+                          name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+                          object: player.currentItem)
 
         iconExtraImageView.layer.cornerRadius = 16
 

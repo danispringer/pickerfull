@@ -64,9 +64,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
 
+    func application(_ application: UIApplication, open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:] ) -> Bool {
+
+        // Determine who sent the URL.
+        let sendingAppID = options[.sourceApplication]
+        print("source application = \(sendingAppID ?? "Unknown")")
+
+        // Process the URL.
+        guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
+              let colorPath = components.path,
+              let params = components.queryItems else {
+            print("Invalid URL or color path missing")
+            return false
+        }
+
+        if let colorID = params.first(where: { $0.name == "color" })?.value {
+            print("colorPath = \(colorPath)")
+            print("color = \(colorID)")
+            guard uiColorFrom(hex: colorID) != nil else {
+                return false
+            }
+
+            notif.post(name: .colorUrl, object: nil,
+                       userInfo: ["value": "\(colorID)"])
+            return true
+        } else {
+            print("Color ID missing")
+            return false
+        }
+    }
+
+
+    private func uiColorFrom(hex: String) -> UIColor? {
+
+        var myColor: UIColor?
+
+        guard let mySafeRed = Int(hex[0...1], radix: 16),
+              let mySafeGreen = Int(hex[2...3], radix: 16),
+              let mySafeBlue = Int(hex[4...5], radix: 16) else {
+            return nil
+        }
+
+        myColor = UIColor(
+            red: CGFloat(mySafeRed) / 255.0,
+            green: CGFloat(mySafeGreen) / 255.0,
+            blue: CGFloat(mySafeBlue) / 255.0,
+            alpha: 1.0)
+
+        return myColor
+    }
+
+
     func readFromDocs(withFileName fileName: String) -> [String]? {
         guard let filePath = append(toPath: self.documentDirectory(),
-                                         withPathComponent: fileName) else {
+                                    withPathComponent: fileName) else {
             return nil
         }
         do {
