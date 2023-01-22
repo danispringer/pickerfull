@@ -71,8 +71,6 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             hexArrayForRandom.append(String(format: Const.Values.numToHexFormatter, number))
         }
         elementsShould(hide: false)
-        //        messageLabel.layer.cornerRadius = 20
-        //        messageLabel.layer.masksToBounds = true
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD())
 
         resultView.backgroundColor = selectedColor
