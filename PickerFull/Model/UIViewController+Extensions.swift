@@ -321,6 +321,12 @@ extension UIViewController {
 
         var savedColors: [String] = readFromDocs(
             withFileName: filename) ?? []
+        savedColors = savedColors.uniqued()
+
+        guard !savedColors.contains(color) else {
+            print("color \(color) already saved")
+            return
+        }
 
         savedColors.append(color)
 
@@ -569,13 +575,14 @@ extension UIViewController {
         }
         do {
             let savedString = try String(contentsOfFile: filePath)
-            let myArray = savedString.components(separatedBy: ",")
+            var myArray = savedString.components(separatedBy: ",")
             if myArray.isEmpty {
                 return nil
             } else {
                 if myArray.count == 1 && myArray.first == "" {
                     return nil
                 }
+                myArray = myArray.uniqued()
                 return myArray
             }
         } catch {

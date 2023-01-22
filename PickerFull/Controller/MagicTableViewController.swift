@@ -53,8 +53,9 @@ class MagicTableViewController: UITableViewController {
     }
 
     func getArray() -> [String]? {
-        let myArray = readFromDocs(
+        var myArray = readFromDocs(
             withFileName: Const.UserDef.randomHistoryFilename)
+        myArray = myArray?.uniqued()
         return myArray?.reversed() // ?.sorted { $0 < $1 }
     }
 
@@ -107,24 +108,23 @@ class MagicTableViewController: UITableViewController {
     }
 
 
-    override func tableView(
-        _ tableView: UITableView,
-        trailingSwipeActionsConfigurationForRowAt
-        indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            let deleteAction = UIContextualAction(
-                style: .destructive, title: "Delete",
-                handler: { [self] (_, _, success: (Bool) -> Void) in
-                    let hexKeyItem: String = getArray()![indexPath.row]
-                    var currentArray: [String] = readFromDocs(
-                        withFileName: Const.UserDef.randomHistoryFilename) ?? []
-                    currentArray = currentArray.filter { $0 != hexKeyItem }
-                    saveToDocs(text: currentArray.joined(separator: ","),
-                               withFileName: Const.UserDef.randomHistoryFilename)
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-                    success(true)
-                })
-            deleteAction.backgroundColor = .red
-            return UISwipeActionsConfiguration(actions: [deleteAction])
-        }
+    override func tableView(_ tableView: UITableView,
+                            trailingSwipeActionsConfigurationForRowAt
+                            indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(
+            style: .destructive, title: "Delete",
+            handler: { [self] (_, _, success: (Bool) -> Void) in
+                let hexKeyItem: String = getArray()![indexPath.row]
+                var currentArray: [String] = readFromDocs(
+                    withFileName: Const.UserDef.randomHistoryFilename) ?? []
+                currentArray = currentArray.filter { $0 != hexKeyItem }
+                saveToDocs(text: currentArray.joined(separator: ","),
+                           withFileName: Const.UserDef.randomHistoryFilename)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                success(true)
+            })
+        deleteAction.backgroundColor = .red
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
 
 }

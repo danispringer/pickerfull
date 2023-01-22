@@ -14,6 +14,7 @@
 		330F747C21ABBA9300F420B0 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F747321ABBA9300F420B0 /* String+Extensions.swift */; };
 		330F747D21ABBA9300F420B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F747421ABBA9300F420B0 /* AppDelegate.swift */; };
 		330F747E21ABBA9300F420B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 330F747621ABBA9300F420B0 /* Assets.xcassets */; };
+		33108935297CE864004CE4EF /* Sequence+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33108934297CE864004CE4EF /* Sequence+Extensions.swift */; };
 		331829ED2947319E0088696C /* vid2.mov in Resources */ = {isa = PBXBuildFile; fileRef = 331829EC2947319E0088696C /* vid2.mov */; };
 		332D748B283A5FDC0039BC68 /* PickerFullScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D748A283A5FDC0039BC68 /* PickerFullScreenshots.swift */; };
 		332FAC9C28DD62CC002770CC /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332FAC9B28DD62CC002770CC /* ImagePreviewViewController.swift */; };
@@ -60,6 +61,7 @@
 		330F747421ABBA9300F420B0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		330F747621ABBA9300F420B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		330F747721ABBA9300F420B0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33108934297CE864004CE4EF /* Sequence+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extensions.swift"; sourceTree = "<group>"; };
 		331829EC2947319E0088696C /* vid2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = vid2.mov; sourceTree = "<group>"; };
 		332D7488283A5FDC0039BC68 /* PickerFullScreenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickerFullScreenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		332D748A283A5FDC0039BC68 /* PickerFullScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerFullScreenshots.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				330F747321ABBA9300F420B0 /* String+Extensions.swift */,
 				330F747221ABBA9300F420B0 /* UIViewController+Extensions.swift */,
 				339D22DB29772F6B008CEEA3 /* UIColor+Extensions.swift */,
+				33108934297CE864004CE4EF /* Sequence+Extensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				330F747B21ABBA9300F420B0 /* UIViewController+Extensions.swift in Sources */,
 				339D22DC29772F6B008CEEA3 /* UIColor+Extensions.swift in Sources */,
 				33EC94E12945AC0E001AA6E4 /* AdvancedCell.swift in Sources */,
+				33108935297CE864004CE4EF /* Sequence+Extensions.swift in Sources */,
 				33AE171227A8BEC800551532 /* MagicCell.swift in Sources */,
 				33D2213F21AFDF0900FBFEA7 /* Const.swift in Sources */,
 				33AE170F27A8B58C00551532 /* MagicTableViewController.swift in Sources */,
@@ -578,7 +582,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.50;
+				MARKETING_VERSION = 7.51;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.danispringer.Color-Picker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -606,7 +610,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.50;
+				MARKETING_VERSION = 7.51;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.danispringer.Color-Picker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
