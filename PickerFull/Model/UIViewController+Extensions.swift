@@ -324,7 +324,6 @@ extension UIViewController {
         savedColors = savedColors.uniqued()
 
         guard !savedColors.contains(color) else {
-            print("color \(color) already saved")
             return
         }
 
