@@ -87,20 +87,20 @@ class ImagePreviewViewController: UIViewController, UIDragInteractionDelegate {
         activityController.popoverPresentationController?.sourceView = shareAsImageButton
         activityController
             .completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
-            guard error == nil else {
-                let alert = self.createAlert(alertReasonParam: AlertReason.unknown,
-                                             okMessage: Const.AppInfo.okMessage)
-                if let presenter = alert.popoverPresentationController {
-                    presenter.sourceView = self.shareAsImageButton
-                }
-                DispatchQueue.main.async {
-                    self.present(alert, animated: true)
-                }
+                guard error == nil else {
+                    let alert = self.createAlert(alertReasonParam: AlertReason.unknown,
+                                                 okMessage: Const.AppInfo.okMessage)
+                    if let presenter = alert.popoverPresentationController {
+                        presenter.sourceView = self.shareAsImageButton
+                    }
+                    DispatchQueue.main.async {
+                        self.present(alert, animated: true)
+                    }
 
 
-                return
+                    return
+                }
             }
-        }
         DispatchQueue.main.async {
             self.present(activityController, animated: true)
         }

@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func readFromDocs(withFileName fileName: String) -> [String]? {
         guard let filePath = append(toPath: self.documentDirectory(),
-                                         withPathComponent: fileName) else {
+                                    withPathComponent: fileName) else {
             return nil
         }
         do {

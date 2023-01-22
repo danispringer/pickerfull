@@ -71,8 +71,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             hexArrayForRandom.append(String(format: Const.Values.numToHexFormatter, number))
         }
         elementsShould(hide: false)
-//        messageLabel.layer.cornerRadius = 20
-//        messageLabel.layer.masksToBounds = true
+        //        messageLabel.layer.cornerRadius = 20
+        //        messageLabel.layer.masksToBounds = true
         let selectedColor: UIColor = uiColorFrom(hex: getSafeHexFromUD())
 
         resultView.backgroundColor = selectedColor
@@ -373,11 +373,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         present(imagePreviewVC, animated: true)
     }
 
-    // TODO: todos
-    // - add deep link: as a user I want to be able to share a link, which opens app
-    //   and sets current color to link value, something like apple.com/pickerfull/bababa
-    //
-    // - set PDF name to user-friendly/useful
+
     @objc func generateImage() {
 
         elementsShould(hide: true)
@@ -399,8 +395,8 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
 
         let colorFullDictString = getDictForSelectedColor()
         let attrDictString = NSAttributedString(
-        string: colorFullDictString,
-        attributes: regularAttributes)
+            string: colorFullDictString,
+            attributes: regularAttributes)
 
         myAttributedText.append(attrDictString)
         myAttributedText.append(attrCredits)
@@ -468,9 +464,15 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     func shareAsPDF() {
         generateImage()
         let image: UIImage = hexImage
-        let myData = createPDFDataFromImage(image: image)
+        let myURL = createPDFDataFromImage(image: image)
 
-        let activityController = UIActivityViewController(activityItems: [myData],
+        guard let mySafeURL = myURL else {
+            let alert = createAlert(alertReasonParam: .unknown, okMessage: "OK")
+            present(alert, animated: true)
+            return
+        }
+
+        let activityController = UIActivityViewController(activityItems: [mySafeURL],
                                                           applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = exportAsFilesMenuButton
         activityController
@@ -493,7 +495,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     }
 
 
-    func createPDFDataFromImage(image: UIImage) -> NSMutableData {
+    func createPDFDataFromImage(image: UIImage) -> URL? {
         let pdfData = NSMutableData()
         let imgView = UIImageView.init(image: image)
         let imageRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
@@ -506,11 +508,15 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
         // try saving in doc dir to confirm:
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
         let path = dir?.appendingPathComponent("""
-        HEX-Color-\(getSafeHexFromUD())-PickerFull-iOS-App-Daniel-Springer.pdf
+        \(getSafeHexFromUD()) \(Const.AppInfo.appName) by Daniel Springer.pdf
         """)
 
+        guard let safePath = path else {
+            return nil
+        }
+
         do {
-            try pdfData.write(to: path!, options: .atomic)
+            try pdfData.write(to: safePath, options: .atomic)
         } catch {
             let alert = createAlert(alertReasonParam: .unknown,
                                     okMessage: Const.AppInfo.okMessage)
@@ -522,7 +528,7 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
             }
         }
 
-        return pdfData
+        return safePath
     }
 
 
