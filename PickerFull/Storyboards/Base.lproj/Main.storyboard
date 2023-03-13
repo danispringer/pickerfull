@@ -34,10 +34,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OH-xg-YFJ">
-                                <rect key="frame" x="82.666666666666657" y="451.33333333333331" width="264.66666666666674" height="54.666666666666686"/>
+                                <rect key="frame" x="62" y="454.66666666666669" width="306.33333333333331" height="47.666666666666686"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="play.circle.fill" catalog="system" title="Watch Tutorial" imagePadding="8">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
+                                <buttonConfiguration key="configuration" style="filled" image="play.circle.fill" catalog="system" title="Watch Tutorial (1:25)" imagePadding="8">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="playVideoTapped:" destination="1kX-cY-ZQw" eventType="touchUpInside" id="ath-Yw-elf"/>
@@ -57,7 +57,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z29-LU-d3p">
-                                <rect key="frame" x="161.33333333333334" y="554" width="107.33333333333334" height="40.333333333333371"/>
+                                <rect key="frame" x="161.33333333333334" y="550.33333333333337" width="107.33333333333334" height="40.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Not Now">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
