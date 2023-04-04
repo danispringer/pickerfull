@@ -162,7 +162,7 @@ extension UIColor {
 
 }
 
-// swiftlint:disable:file identifier_name
+// swiftlint:disable identifier_name
 /// https://gist.github.com/adamgraham/b2868c72e1d83d432e937bb02b6e27c8
 /// An extension to provide conversion to and from CIELAB colors.
 extension UIColor {
@@ -252,3 +252,4 @@ extension UIColor {
 //        return (cyan, magenta, yellow, key)
 //    }
 // }
+// swiftlint:enable identifier_name
