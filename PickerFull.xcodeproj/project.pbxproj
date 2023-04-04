@@ -247,8 +247,9 @@
 		33CF3A7C204F084B000823BF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Daniel Springer";
 				TargetAttributes = {
 					332D7487283A5FDC0039BC68 = {
@@ -330,7 +331,7 @@
 		33A96D1421B64EAA001809CD /* Run Script: Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
