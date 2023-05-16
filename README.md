@@ -1,4 +1,3 @@
-![logo](https://github.com/DaniSpringer/pickerfull/blob/master/PickerFull/Assets/Assets.xcassets/AppIcon.appiconset/icon.jpg?raw=true&sanitize=true)
 # PickerFull
 - This app lets you take a photo, extract a color, edit, and share - or find your next favorite color with the tap of a button
 - Export as a string of text in HEX or RGB values, or generate images containing all of that info, with just a tap
