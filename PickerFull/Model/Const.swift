@@ -54,7 +54,7 @@ struct Const {
         static let appName = "PickerFull - Color Extractor"
         static let galleryLink = "photos-redirect://"
         static let reviewLink = "https://apps.apple.com/app/id1410565176?action=write-review"
-        static let showAppsButtonTitle = "More Apps"
+        static let showAppsButtonTitle = "More By Daniel Springer"
         static let appsLink = "https://apps.apple.com/us/developer/daniel-springer/id1402417666"
         static let creditMessage = """
         \n\(appName)
