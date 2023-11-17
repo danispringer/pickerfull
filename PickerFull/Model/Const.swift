@@ -59,7 +59,7 @@ struct Const {
         static let creditMessage = """
         \n\(appName)
         Install Now. Scan QR Code for App Store.
-        App Developed by Daniel Springer
+        App Developed by Daniel Springer\n\n
         """
         static let contact = "Email Me"
         static let emailString = "00.segue_affix@icloud.com"
