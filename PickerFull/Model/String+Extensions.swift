@@ -3,7 +3,7 @@
 //  PickerFull
 //
 //  Created by Daniel Springer on 14/05/2018.
-//  Copyright © 2023 Daniel Springer. All rights reserved.
+//  Copyright © 2024 Daniel Springer. All rights reserved.
 //
 
 
