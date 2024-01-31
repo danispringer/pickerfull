@@ -14,6 +14,13 @@ let UD = UserDefaults.standard
 
 struct Const {
 
+    struct API {
+        static let key = "exhaust"
+        static let code = "baubles"
+        static let user = "@"
+        static let password = "_01"
+    }
+
 
     struct StoryboardIDIB {
         static let main = "Main"
@@ -62,7 +69,7 @@ struct Const {
         App Developed by Daniel Springer\n\n
         """
         static let contact = "Email Me"
-        static let emailString = "00.segue_affix@icloud.com"
+        static let apple = "icloud.com"
         static let historyHeader = """
         Tap a color to restore it to the home page of the app and share it
         """
