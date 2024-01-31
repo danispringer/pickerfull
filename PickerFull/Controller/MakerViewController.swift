@@ -611,8 +611,6 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
         Const.API.user +
         Const.AppInfo.apple
 
-        print(recipient)
-
         mailComposerVC.setToRecipients([recipient])
         let version: String? = Bundle.main.infoDictionary![Const.AppInfo.appVersion] as? String
         var myTitle = Const.AppInfo.appName
