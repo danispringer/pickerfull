@@ -249,7 +249,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = "Daniel Springer";
 				TargetAttributes = {
 					332D7487283A5FDC0039BC68 = {
@@ -585,7 +585,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.62;
+				MARKETING_VERSION = 7.63;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.danispringer.Color-Picker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -613,7 +613,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.62;
+				MARKETING_VERSION = 7.63;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.danispringer.Color-Picker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
