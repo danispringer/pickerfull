@@ -71,6 +71,7 @@
 		339D22DB29772F6B008CEEA3 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		33AE170E27A8B58C00551532 /* MagicTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicTableViewController.swift; sourceTree = "<group>"; };
 		33AE171127A8BEC800551532 /* MagicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicCell.swift; sourceTree = "<group>"; };
+		33B231992BA406AF00EA75C6 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		33CF3A84204F084B000823BF /* PickerFull.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickerFull.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33D2213E21AFDF0900FBFEA7 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		33D64DD628B6ED8C00E17E1C /* ColorFull.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ColorFull.entitlements; sourceTree = "<group>"; };
@@ -182,6 +183,7 @@
 		33CF3A7B204F084B000823BF = {
 			isa = PBXGroup;
 			children = (
+				33B231992BA406AF00EA75C6 /* PrivacyInfo.xcprivacy */,
 				330F747421ABBA9300F420B0 /* AppDelegate.swift */,
 				33D64DD628B6ED8C00E17E1C /* ColorFull.entitlements */,
 				337055C921CC77F5001B253C /* Frameworks */,
@@ -585,7 +587,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.63;
+				MARKETING_VERSION = 7.64;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.danispringer.Color-Picker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -613,7 +615,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.63;
+				MARKETING_VERSION = 7.64;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.danispringer.Color-Picker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
