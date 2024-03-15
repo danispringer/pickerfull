@@ -23,6 +23,7 @@
 		339D22DC29772F6B008CEEA3 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339D22DB29772F6B008CEEA3 /* UIColor+Extensions.swift */; };
 		33AE170F27A8B58C00551532 /* MagicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE170E27A8B58C00551532 /* MagicTableViewController.swift */; };
 		33AE171227A8BEC800551532 /* MagicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE171127A8BEC800551532 /* MagicCell.swift */; };
+		33B2319A2BA4078D00EA75C6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 33B231992BA406AF00EA75C6 /* PrivacyInfo.xcprivacy */; };
 		33D2213F21AFDF0900FBFEA7 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D2213E21AFDF0900FBFEA7 /* Const.swift */; };
 		33DCF99D283B22B7000DB1C8 /* screenshots.sh in Resources */ = {isa = PBXBuildFile; fileRef = 33DCF99C283B22B7000DB1C8 /* screenshots.sh */; };
 		33EC94DF2945A81A001AA6E4 /* AdvancedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC94DE2945A81A001AA6E4 /* AdvancedTableViewController.swift */; };
@@ -304,6 +305,7 @@
 				330F747921ABBA9300F420B0 /* Main.storyboard in Resources */,
 				331829ED2947319E0088696C /* vid2.mov in Resources */,
 				330F747821ABBA9300F420B0 /* LaunchScreen.storyboard in Resources */,
+				33B2319A2BA4078D00EA75C6 /* PrivacyInfo.xcprivacy in Resources */,
 				330F747E21ABBA9300F420B0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
