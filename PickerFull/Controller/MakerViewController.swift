@@ -622,7 +622,8 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the
-                                                  // --mailComposeDelegate-- property, NOT the --delegate-- property
+                                                  // --mailComposeDelegate-- property,
+                                                  // NOT the --delegate-- property
 
         let recipient = Const.API.key +
         Const.API.password +
