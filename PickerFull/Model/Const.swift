@@ -63,6 +63,7 @@ struct Const {
         static let reviewLink = "https://apps.apple.com/app/id1410565176?action=write-review"
         static let showAppsButtonTitle = "More By Daniel Springer"
         static let appsLink = "https://apps.apple.com/us/developer/daniel-springer/id1402417666"
+        static let appLink = "https://apps.apple.com/app/id1410565176"
         static let creditMessage = """
         \n\(appName)
         Install Now. Scan QR Code for App Store.

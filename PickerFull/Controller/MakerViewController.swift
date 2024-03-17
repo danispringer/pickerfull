@@ -372,9 +372,28 @@ class MakerViewController: UIViewController, UINavigationControllerDelegate,
     }
 
 
+    func generateQRCode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+
+            if let output = filter.outputImage?.transformed(by: transform) {
+                return UIImage(ciImage: output)
+            }
+        }
+
+        return nil
+    }
+
+
     @objc func generateImage() {
 
         elementsShould(hide: true)
+
+        qrImageView.image = generateQRCode(from: Const.AppInfo.appLink)
+
 
         let regularAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 16),
@@ -603,7 +622,7 @@ extension MakerViewController: MFMailComposeViewControllerDelegate {
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the
-        // --mailComposeDelegate-- property, NOT the --delegate-- property
+                                                  // --mailComposeDelegate-- property, NOT the --delegate-- property
 
         let recipient = Const.API.key +
         Const.API.password +
